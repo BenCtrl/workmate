@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="14.386946mm"
+   height="13.040468mm"
+   viewBox="0 0 14.386946 13.040468"
+   version="1.1"
+   id="svg8">
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(-22.651347,-78.262066)">
+    <text
+       xml:space="preserve"
+       style="font-size:6.87807px;line-height:0.65;font-family:'Euro Technic Extended';-inkscape-font-specification:'Euro Technic Extended';letter-spacing:-0.00687807px;word-spacing:-0.00515857px;stroke-width:0.171952"
+       x="25.883976"
+       y="81.773621"
+       id="text2021"
+       transform="scale(0.96700521,1.0341206)"><tspan
+         id="tspan2019"
+         x="25.883976"
+         y="81.773621"
+         style="font-style:italic;stroke-width:0.171952">w</tspan><tspan
+         x="25.883976"
+         y="86.24437"
+         style="font-style:italic;stroke-width:0.171952"
+         id="tspan2023"
+         dx="-0.019496962"
+         dy="-0.019496962"
+         rotate="359.60001 0">m</tspan></text>
+  </g>
+</svg>
