@@ -1,0 +1,101 @@
+.sticky-note {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 246, 114);
+  box-shadow: 5px 5px 10px #444444;
+  width: 190px;
+  height: 190px;
+  margin: 12px;
+  padding: 18px;
+  transition: all 0.5s;
+  cursor: pointer;
+  position: relative;
+}
+
+.new-sticky-note {
+  color: #0000003f;
+}
+
+.new-sticky-note form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.new-sticky-note .new-note-input {
+  flex-grow: 1;
+  white-space: pre-wrap;
+  resize: none;
+  background-color: rgb(255, 246, 114);
+  border: none;
+  box-sizing: border-box;
+  padding: 0;
+  height: 80%;
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.new-sticky-note .new-note-input:focus {
+  border: none;
+  outline: none;
+}
+
+.new-sticky-note .new-note-in-progress {
+  color: rgb(74, 122, 255);
+  font-size: 2rem;
+  position: absolute;
+  left: 93%;
+  top: -8%;
+}
+
+.new-sticky-note .sticky-note-editing-controls {
+  display: flex;
+  font-size: 1.6rem;
+  justify-content: space-between;
+}
+
+.new-sticky-note .sticky-note-editing-controls button {
+  margin: 0;
+}
+
+.sticky-note .new-note-icon {
+  position: absolute;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.sticky-note:hover {
+  transform: scale(1.1);
+}
+
+.sticky-note:hover > .delete-note {
+  opacity: 1;
+}
+
+.sticky-note > .content {
+  overflow-wrap: break-word;
+  flex-grow: 1;
+}
+
+.new-sticky-note:hover {
+  color: black;
+}
+
+.sticky-note .delete-note {
+  opacity: 0;
+  transition: 0.1s;
+  display: flex;
+  justify-content: end;
+  justify-self: flex-end;
+}
+
+.sticky-note .delete-note button {
+  margin: 0;
+}
