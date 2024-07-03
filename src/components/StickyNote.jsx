@@ -19,7 +19,7 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote}) => {
             <div className='content'>{stickyNote.noteContent}</div>
 
             <div className='delete-note'>
-              <Button children={<HiOutlineTrash />} onClick={() => {deleteNote(stickyNote.id)}} className={'cancel'} />
+              <Button children={<HiOutlineTrash />} onClick={() => {deleteNote(stickyNote.id)}} className={'cancel'} toolTip={'Delete Note'}/>
             </div>
           </div>
       }

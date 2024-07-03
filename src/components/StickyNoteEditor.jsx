@@ -44,8 +44,8 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote}) => {
         className='new-note-input'
       />
       <div className="sticky-note-editing-controls">
-        <Button children={<HiXMark />} onClick={() => {editorEnabled((state) => !state); setStickyNoteContent('')}} className={'cancel'}/>
-        <Button children={<FaRegFloppyDisk />} type="submit" className={'confirm'}/>
+        <Button children={<HiXMark />} onClick={() => {editorEnabled((state) => !state); setStickyNoteContent('')}} className={'cancel'} toolTip={'Cancel'}/>
+        <Button children={<FaRegFloppyDisk />} type="submit" className={'confirm'} toolTip={'Save'}/>
       </div>
     </form>
   )

@@ -62,7 +62,7 @@ const NotesList = () => {
     <>
       <div className="workspace-navbar">
         <div>Sticky Notes</div>
-        <Button children={<HiArrowPath className='refresh' />} onClick={() => {fetchStickyNotes()}} toolTip={'Refresh Sticky Notes'}/>
+        <Button children={<HiArrowPath className='refresh' />} onClick={() => {fetchStickyNotes()}} toolTip={'Refresh Sticky Notes'} toolTipPos={'left'} />
       </div>
       <div id='notes-list'>
         {stickyNotes.map((stickyNote) => {
