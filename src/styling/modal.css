@@ -1,0 +1,27 @@
+.modal-wrapper {
+  height: 100vh;
+  width: 100vw;
+  position:  absolute;
+  background-color: rgba(0, 0, 0, 0.205);
+}
+
+.modal-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+  background-color: white;
+  border: 2px solid rgb(240, 240, 240);
+  border-radius: 12px;
+  position:  absolute;
+  top:40%;
+  transform:translateY(-50%);
+  left: calc(50% - 10rem);
+  padding: 1rem 2rem;
+  min-width: 20rem;
+}

@@ -1,3 +1,6 @@
+import React, { useContext } from 'react';
+import { AppConfigurationContext } from '../context/AppConfigurationContext';
+
 const Button = ({
   children,
   onClick,
@@ -7,9 +10,11 @@ const Button = ({
   style = {},
   type}) => {
 
+  const SETTINGS = useContext(AppConfigurationContext);
+
   const processComponentClasses = () => {
     if (toolTip || className || toolTipPos) {
-      return `${toolTip ? 'tooltip' : ''} ${className} ${toolTipPos}`.trim().replace('  ', ' ');
+      return `${toolTip && SETTINGS.TOOLTIPS ? 'tooltip' : ''} ${className} ${toolTipPos}`.trim().replace('  ', ' ');
     } else {
       return undefined;
     }

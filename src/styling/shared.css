@@ -114,3 +114,9 @@ button:active {
 .tooltip:hover::before, .tooltip:hover::after {
   opacity: 1;
 }
+
+fieldset {
+  border: 2px solid rgb(206, 206, 206);
+  border-radius: 0.4rem;
+  margin: 0;
+}

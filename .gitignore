@@ -23,4 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 
-src/stickynotes.json
+src/appdata.json
