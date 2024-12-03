@@ -112,6 +112,7 @@ button:active {
 }
 
 .tooltip:hover::before, .tooltip:hover::after {
+  transition-delay: 0.8s;
   opacity: 1;
 }
 
