@@ -81,6 +81,7 @@
 }
 
 .sticky-note > .content {
+  white-space: pre-line;
   overflow-wrap: break-word;
   flex-grow: 1;
 }
