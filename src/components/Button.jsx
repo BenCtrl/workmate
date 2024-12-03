@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppConfigurationContext } from '../context/AppConfigurationContext';
+import { AppSettingsContext } from '../App';
 
 const Button = ({
   children,
@@ -10,7 +10,7 @@ const Button = ({
   style = {},
   type}) => {
 
-  const SETTINGS = useContext(AppConfigurationContext);
+  const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const processComponentClasses = () => {
     if (toolTip || className || toolTipPos) {

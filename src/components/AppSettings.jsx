@@ -1,23 +1,30 @@
 import React, { useState, useContext } from 'react'
 import Button from './Button';
-import { AppConfigurationContext } from '../context/AppConfigurationContext';
+import { AppSettingsContext } from '../App';
 
 const AppSettings = () => {
-  const configurationContext = useContext(AppConfigurationContext);
-  const [toolTipsEnabled, setTooltipsEnabled] = useState(configurationContext.TOOLTIPS);
+  const {appSettings, setAppSettings} = useContext(AppSettingsContext);
+  const [toolTipsEnabled, setTooltipsEnabled] = useState(appSettings.TOOLTIPS);
 
   const updateSettings = async (event) => {
+    event.preventDefault();
+
+    const newSettings = {
+      TOOLTIPS: toolTipsEnabled
+    }
+
+    console.log(toolTipsEnabled);
+
     try {
       await fetch(`/api/settings`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          TOOLTIPS: toolTipsEnabled
-        })
+        body: JSON.stringify(newSettings)
       });
 
+      setAppSettings(newSettings);
       console.log('Successfully updated app settings!');
     } catch(error) {
         console.log('Error while saving settings', error);
