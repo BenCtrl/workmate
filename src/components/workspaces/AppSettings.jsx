@@ -35,7 +35,7 @@ const AppSettings = () => {
 
   return (
     <>
-      <h1 style={{marginTop: 'unset'}}>Settings</h1>
+      <h1>Settings</h1>
       <form onSubmit={updateSettings}>
         <fieldset>
           <legend>Accessibility</legend>

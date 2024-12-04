@@ -3,7 +3,7 @@ import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } 
 
 import '../styling/workspace.css'
 import NotesList from './workspaces/StickyNotes'
-import Documents from './workspaces/Documents'
+import Pages from './workspaces/Pages'
 import WorkspaceLayout from '../layouts/WorkspaceLayout'
 import Calendar from './workspaces/Calendar'
 import AppSettings from './workspaces/AppSettings'
@@ -13,7 +13,7 @@ const WorkSpace = () => {
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<WorkspaceLayout />}>
       <Route path='/stickynotes' element={<NotesList />} />
-      <Route path='/documents' element={<Documents />} />
+      <Route path='/pages' element={<Pages />} />
       <Route path='/calendar' element={<Calendar />} />
       <Route path='/settings' element={<AppSettings />} />
       <Route path='*' element={<WorkspaceNotFound />} />

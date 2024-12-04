@@ -9,7 +9,7 @@ export const WorkspaceTabs = () => {
   return (
     <div id="workspace-tabs">
       <WorkspaceTab icon={<HiOutlinePencilAlt />} pageTitle="Sticky Notes" to="/stickynotes" />
-      <WorkspaceTab icon={<HiOutlineDocumentText />} pageTitle="Documents" to="/documents" />
+      <WorkspaceTab icon={<HiOutlineDocumentText />} pageTitle="Pages" to="/pages" />
       <WorkspaceTab icon={<HiOutlineCalendar  />} pageTitle="Calendar" to="/calendar" />
 
       <WorkspaceTab icon={<HiOutlineCog8Tooth  />} pageTitle="Settings" style={{marginTop: "auto", borderTop: "1px solid #bbbbbb"}} to="/settings" />
