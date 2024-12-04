@@ -6,6 +6,7 @@ import NotesList from './workspaces/StickyNotes'
 import Documents from './workspaces/Documents'
 import WorkspaceLayout from '../layouts/WorkspaceLayout'
 import Calendar from './workspaces/Calendar'
+import AppSettings from './workspaces/AppSettings'
 import WorkspaceNotFound from './workspaces/WorkspaceNotFound'
 
 const WorkSpace = () => {
@@ -14,6 +15,7 @@ const WorkSpace = () => {
       <Route path='/stickynotes' element={<NotesList />} />
       <Route path='/documents' element={<Documents />} />
       <Route path='/calendar' element={<Calendar />} />
+      <Route path='/settings' element={<AppSettings />} />
       <Route path='*' element={<WorkspaceNotFound />} />
     </Route>
   ));

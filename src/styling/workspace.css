@@ -54,7 +54,21 @@
 }
 
 #workspace-tabs a.selected-workspace-tab {
+  position: relative;
   color: #3b3b3b;
   font-weight: bold;
-  background-color: #9b9b9b;
+  background-color: #0000001c;
+}
+
+#workspace-tabs a.selected-workspace-tab::before {
+  transition: 0.2s;
+  content: '';
+  display: block;
+  background-color: #76d981;
+  z-index: -1;
+  position: absolute;
+  left: 0.5rem;
+  border-radius: 0.4rem;
+  width: 100%;
+  height: 100%;
 }

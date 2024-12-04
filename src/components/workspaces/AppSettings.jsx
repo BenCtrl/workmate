@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
-import Button from './Button';
-import { AppSettingsContext } from '../App';
+import Button from '../Button';
+import { AppSettingsContext } from '../../App';
 
 const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);
@@ -35,6 +35,7 @@ const AppSettings = () => {
 
   return (
     <>
+      <h1 style={{marginTop: 'unset'}}>Settings</h1>
       <form onSubmit={updateSettings}>
         <fieldset>
           <legend>Accessibility</legend>
