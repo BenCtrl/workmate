@@ -18,11 +18,11 @@ export const WorkspaceTabs = () => {
       </NavLink>
 
       <NavLink className={({isActive}) => isActive ? 'selected-workspace-tab' : ''} to="/documents">
-      <WorkspaceTab icon={<HiOutlineDocumentText />} pageTitle="Documents" />
+        <WorkspaceTab icon={<HiOutlineDocumentText />} pageTitle="Documents" />
       </NavLink>
 
       <NavLink className={({isActive}) => isActive ? 'selected-workspace-tab' : ''} to="/calendar">
-      <WorkspaceTab icon={<HiOutlineCalendar  />} pageTitle="Calendar" />
+        <WorkspaceTab icon={<HiOutlineCalendar  />} pageTitle="Calendar" />
       </NavLink>
 
       <WorkspaceTab onClick={() => setShowModal(true)} icon={<HiOutlineCog8Tooth  />} pageTitle="Settings" style={{marginTop: "auto", borderTop: "1px solid #bbbbbb"}} />
