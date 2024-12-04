@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Note from './Note'
-import StickyNote from './StickyNote'
-import NewStickyNote from './NewStickyNote';
-import { HiCodeBracket, HiArrowPath } from "react-icons/hi2";
-import '../styling/noteslist.css'
-import Button from './Button';
+
+import '../../styling/noteslist.css'
+import StickyNote from '../StickyNote'
+import NewStickyNote from '../NewStickyNote';
 
 const NotesList = () => {
   const [stickyNotes, setStickyNotes] = useState([]);
@@ -60,10 +58,6 @@ const NotesList = () => {
 
   return (
     <>
-      <div className="workspace-navbar">
-        <div>Sticky Notes</div>
-        <Button children={<HiArrowPath className='refresh' />} onClick={() => {fetchStickyNotes()}} toolTip={'Refresh Sticky Notes'} toolTipPos={'left'} />
-      </div>
       <div id='notes-list'>
         {stickyNotes.map((stickyNote) => {
           return <StickyNote key={stickyNote.id} stickyNote={stickyNote} updateNoteSubmit={updateNote} deleteNote={deleteNote} />

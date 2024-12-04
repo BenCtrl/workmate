@@ -1,7 +1,17 @@
+#workspace-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
 #workspace {
   display: flex;
   flex-direction: column;
-  max-width: 100vw;
+  padding: 2rem;
+  flex-grow: 1;
+
+  /* TODO - DELETE THIS BEFORE FIXING TOOLTIP OVERFLOW PROPERLY */
+  overflow: hidden;
 }
 
 .workspace-navbar {
@@ -9,4 +19,42 @@
   padding: 0 2.5rem;
   align-items: center;
   justify-content: space-between;
+}
+
+#workspace-tabs {
+  display: flex;
+  flex-direction: column;
+  background-color: #d7d7d7;
+  font-size: 1.4rem;
+  min-width: max-content;
+}
+
+#workspace-tabs a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+#workspace-tabs .workspace-tab {
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.1s;
+}
+
+#workspace-tabs .workspace-tab .workspace-tab-title {
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+#workspace-tabs .workspace-tab:hover {
+  color: rgb(74, 122, 255);
+  cursor: pointer;
+}
+
+#workspace-tabs a.selected-workspace-tab {
+  color: #3b3b3b;
+  font-weight: bold;
+  background-color: #9b9b9b;
 }
