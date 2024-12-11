@@ -54,7 +54,7 @@ const NotesList = () => {
 
   useEffect(() => {
     fetchStickyNotes();
-}, []);
+  }, []);
 
   return (
     <>

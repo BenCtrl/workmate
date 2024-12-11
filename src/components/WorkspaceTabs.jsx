@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { HiOutlinePencilAlt, HiOutlineCalendar, HiOutlineDocumentText } from "react-icons/hi";
-import { HiOutlineCog8Tooth } from "react-icons/hi2";
+import { HiOutlinePencilAlt, HiOutlineCalendar } from "react-icons/hi";
+import { HiOutlineCog8Tooth, HiOutlineDocumentText } from "react-icons/hi2";
 
 import WorkspaceTab from './WorkspaceTab';
 
