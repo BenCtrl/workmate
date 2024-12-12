@@ -1,0 +1,191 @@
+html {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+body {
+  flex:1;
+}
+
+.search-input .search-input-icon {
+  margin: 0.2rem;
+}
+
+.text-input.search-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text-input {
+  margin: 1rem;
+  border: 2px solid rgba(0,0,0,0.75);
+  transition: 0.2s;
+}
+
+[data-theme="dark"] .text-input {
+  border-color: #ebebeb;
+}
+
+[data-theme="dark"] .text-input input {
+  color: #ebebeb;
+}
+
+.text-input:focus-within {
+  border: 2px solid rgba(74,122,255,0.75);
+}
+
+.text-input input {
+  border: none;
+  background-color: transparent;
+}
+
+.text-input input:focus {
+  outline: none;
+}
+
+input,
+button,
+.navlink-button,
+.text-input {
+  border-radius: 0.3rem;
+}
+
+textarea,
+button {
+  font-family: "Euro Technic", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+input {
+  padding: 0.6rem;
+  border: 0.1rem solid black;
+}
+
+textarea {
+  font-size: 1rem;
+}
+
+button, .navlink-button {
+  border: none;
+  margin: 1rem;
+  font-size: 1rem;
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  transition: 0.1s;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  background-color: rgba(0, 0, 0, 0.11);
+  position: relative;
+}
+
+button:disabled, button[disabled] {
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: 4px 4px 0px 0px #676767bf;
+}
+
+[data-theme="dark"] button, .navlink-button {
+  color: #ebebeb;
+  background-color: #ffffff17;
+}
+
+[data-theme="dark"] .sticky-note button {
+  background-color: rgba(0, 0, 0, 0.11);
+  color: #3d3d3d;
+}
+
+button:hover, .navlink-button:hover {
+  background-color: none;
+  box-shadow: 0px 0px 0px 3px rgba(74,122,255,0.75);
+  color: rgb(74, 122, 255);
+}
+
+/* button[disabled]:hover button:disabled:hover {
+  pointer-events: none;
+} */
+
+button.confirm:hover {
+  box-shadow: 0px 0px 0px 3px rgba(42, 207, 42, 0.75);
+  color: rgb(42, 207, 42);
+}
+
+button.cancel:hover {
+  box-shadow: 0px 0px 0px 3px rgba(255, 74, 74, 0.75);
+  color: rgba(255, 74, 74);
+}
+
+button:active, .navlink-button:active {
+  background-color: rgba(0, 0, 0, 0.171);
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.input input{
+  margin-top: 0.2rem;
+}
+
+.tooltip:before {
+  content: attr(data-text);
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  left:100%;
+  margin-left:15px;
+  font-size: 0.7rem;
+  text-wrap: nowrap;
+  padding:10px;
+  border-radius:5px;
+  background:#000;
+  color: #fff;
+  text-align:center;
+  opacity: 0;
+  transition: 0.1s;
+  transition-property: opacity;
+  pointer-events: none;
+}
+
+.tooltip:after {
+  content: "";
+  position:absolute;
+  left:101%; /* extra 1% to stop stickynote transform scale causing issues */
+  margin-left:-5px;
+  top:50%;
+  transform:translateY(-50%);
+  border:10px solid #000;
+  border-color: transparent black transparent transparent; 
+  opacity: 0;
+  transition: 0.1s;
+  transition-property: opacity;
+  pointer-events: none;
+}
+
+.tooltip.left:before {
+  left: initial;
+  margin: initial;
+  right: 100%;
+  margin-right: 15px;
+}
+
+.tooltip.left:after {
+  border-color: transparent transparent transparent black;
+  left: initial;
+  margin: initial;
+  right: 100%;
+  margin-right: -5px;
+}
+
+.tooltip:hover::before, .tooltip:hover::after {
+  transition-delay: 0.8s;
+  opacity: 1;
+}
+
+fieldset {
+  border: 2px solid rgb(206, 206, 206);
+  border-radius: 0.4rem;
+  margin: 0;
+}

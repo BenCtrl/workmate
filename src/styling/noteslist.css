@@ -1,0 +1,4 @@
+#notes-list {
+  display: flex;
+  flex-wrap: wrap;
+}
