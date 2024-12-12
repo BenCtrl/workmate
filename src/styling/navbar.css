@@ -12,6 +12,15 @@
   font-size: 1.7rem;
 }
 
+/* #navbar.darkmode {
+  color: white;
+  background-color: #161725;
+} */
+
+[data-theme="dark"] #navbar {
+  background-color: #161821;
+}
+
 #navbar .refresh {
   cursor: pointer;
   transition: 0.2s;

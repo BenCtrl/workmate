@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
-import { HiCodeBracket} from "react-icons/hi2";
+import React from 'react'
 import { ImCheckmark } from "react-icons/im";
 import '../styling/navbar.css'
 
 const NavBar = () => {
-  const [showModal, setShowModal] = useState(false);
-
   return (
     <div id="navbar">
       <div className="app-identifier">

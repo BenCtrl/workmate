@@ -15,9 +15,13 @@
 .page-list-item {
   display: flex;
   border-radius: 0.5rem;
-  background-color: #00000014;
+  background-color: #d7d7d7;
   transition: 0.2s;
   margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .page-list-item {
+  background-color: #191a29;
 }
 
 .page-list-item .page-list-item-options {
@@ -42,10 +46,19 @@
   margin-left: 1rem;
 }
 
+[data-theme="dark"] .page-list-item-description,
+.page-list-item .page-list-item-date-edited span {
+  color: #ffffff4f;
+}
+
 .page-list-item:hover {
   background-color: #00000021;
   cursor: pointer;
   box-shadow: 3px 3px 3px rgb(0 0 0 / 27%);
+}
+
+[data-theme="dark"] .page-list-item:hover {
+  background-color: #ffffff17;
 }
 
 .page-list-item .page-list-item-date-edited {

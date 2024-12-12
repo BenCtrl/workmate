@@ -24,6 +24,14 @@ body {
   transition: 0.2s;
 }
 
+[data-theme="dark"] .text-input {
+  border-color: #ebebeb;
+}
+
+[data-theme="dark"] .text-input input {
+  color: #ebebeb;
+}
+
 .text-input:focus-within {
   border: 2px solid rgba(74,122,255,0.75);
 }
@@ -66,9 +74,24 @@ button, .navlink-button {
   transition: 0.1s;
   cursor: pointer;
   padding: 0.3rem 0.6rem;
-  font-weight: bold;
   background-color: rgba(0, 0, 0, 0.11);
   position: relative;
+}
+
+button:disabled, button[disabled] {
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: 4px 4px 0px 0px #676767bf;
+}
+
+[data-theme="dark"] button, .navlink-button {
+  color: #ebebeb;
+  background-color: #ffffff17;
+}
+
+[data-theme="dark"] .sticky-note button {
+  background-color: rgba(0, 0, 0, 0.11);
+  color: #3d3d3d;
 }
 
 button:hover, .navlink-button:hover {
@@ -76,6 +99,10 @@ button:hover, .navlink-button:hover {
   box-shadow: 0px 0px 0px 3px rgba(74,122,255,0.75);
   color: rgb(74, 122, 255);
 }
+
+/* button[disabled]:hover button:disabled:hover {
+  pointer-events: none;
+} */
 
 button.confirm:hover {
   box-shadow: 0px 0px 0px 3px rgba(42, 207, 42, 0.75);

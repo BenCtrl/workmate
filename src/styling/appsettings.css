@@ -1,0 +1,5 @@
+.unsaved-changes-message {
+  margin-left: 1rem;
+  color: orange;
+  transition: 0.2s;
+}

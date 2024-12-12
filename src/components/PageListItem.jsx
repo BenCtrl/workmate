@@ -9,7 +9,7 @@ const PageListItem = ({page}) => {
       <NavLink to={`/pages/editor/${page.id}`}>
         <span className="page-list-item-title"><b>{page.title}</b></span>
         <span className="page-list-item-description">{page.description}</span>
-        <span className="page-list-item-date-edited"><span style={{color: '#0000004f'}}>Last Edited: </span>{page.dateTimeEdited}</span>
+        <span className="page-list-item-date-edited"><span>Last Edited: </span>{page.dateTimeEdited}</span>
       </NavLink>
       <Button className="page-list-item-options" children={<HiEllipsisVertical />} toolTip="Page Options" />
     </li>

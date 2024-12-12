@@ -8,7 +8,8 @@ const Button = ({
   toolTipPos = '',
   className = '',
   style = {},
-  type}) => {
+  type,
+  disabled}) => {
 
   const SETTINGS = useContext(AppSettingsContext).appSettings;
 
@@ -27,7 +28,8 @@ const Button = ({
       className={processComponentClasses()}
       style={style}
       data-text={toolTip}
-      onClick={onClick}>
+      onClick={onClick}
+      disabled={disabled}>
       {children}
     </button>
   )

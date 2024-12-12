@@ -10,6 +10,11 @@
   transition: all 0.5s;
   cursor: pointer;
   position: relative;
+  color: #3d3d3d;
+}
+
+[data-theme="dark"] .sticky-note {
+  box-shadow: 5px 5px 10px #000000;
 }
 
 .new-sticky-note {

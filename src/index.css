@@ -7,6 +7,16 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Theming variables */
+  --font-color: #3d3d3d;
+  --page-background-color: #ebebeb;
+}
+
+[data-theme="dark"]:root {
+  /* background-color: #161821; */
+  background-color: #1e202d;
+  color: #ebebeb;
 }
 
 body {

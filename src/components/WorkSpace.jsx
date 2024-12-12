@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
 
 import '../styling/workspace.css'
@@ -9,8 +9,20 @@ import Calendar from './workspaces/Calendar'
 import AppSettings from './workspaces/AppSettings'
 import WorkspaceNotFound from './workspaces/WorkspaceNotFound'
 import PageEditor, { pageLoader } from './workspaces/PageEditor'
+import { AppSettingsContext } from '../App'
 
 const WorkSpace = () => {
+  const SETTINGS = useContext(AppSettingsContext).appSettings;
+
+  const setAppTheme = () => {
+    document.documentElement.setAttribute("data-theme", SETTINGS.DARKMODE ? "dark" : "white");
+    // if (SETTINGS.DARKMODE) {
+    //   document.documentElement.setAttribute("data-theme", SETTINGS.DARKMODE ? "dark" : "white");
+    // } else {
+    //   document.documentElement.setAttribute("data-theme", "light");
+    // }
+  }
+
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<WorkspaceLayout />}>
       <Route path='/stickynotes' element={<NotesList />} />
@@ -22,6 +34,10 @@ const WorkSpace = () => {
       <Route path='*' element={<WorkspaceNotFound />} />
     </Route>
   ));
+
+  useEffect(() => {
+    setAppTheme();
+  }, [SETTINGS]);
 
   return (
     <RouterProvider router={router} />
