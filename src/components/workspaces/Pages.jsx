@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiOutlineDocumentPlus, HiMiniMagnifyingGlass } from "react-icons/hi2";
 
-
-import 'froala-editor/css/froala_style.min.css';
-import 'froala-editor/css/froala_editor.pkgd.min.css';
-
 import '../../styling/pagelist.css'
 import Button from '../Button';
 import PageListItem from '../PageListItem';
@@ -29,6 +25,15 @@ const Pages = () => {
     }
   };
 
+  const deletePage = async (id) => {
+    const res = await fetch(`/api/pages/${id}`, {
+      method: 'DELETE'
+    });
+
+    fetchPages();
+    return;
+  }
+
   useEffect(() => {
     fetchPages();
   }, []);
@@ -49,10 +54,10 @@ const Pages = () => {
           // TODO - Don't really like duplication of return line
           rootPages.map((page) => {
             if (searchQuery.length <= 0) {
-              return <PageListItem key={page.id} page={page} />
+              return <PageListItem key={page.id} page={page} deletePage={deletePage} />
             }
             else if (page.title.toLowerCase().includes(searchQuery.toLowerCase())) {
-              return <PageListItem key={page.id} page={page} />
+              return <PageListItem key={page.id} page={page} deletePage={deletePage} />
             }
           })
         }
@@ -61,4 +66,16 @@ const Pages = () => {
   )
 }
 
-export default Pages
+const addPageLoader = async (newPage) => {
+  const response = await fetch('/api/pages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newPage)
+  });
+
+  return;
+}
+
+export {Pages as default, addPageLoader}

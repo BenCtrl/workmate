@@ -47,7 +47,7 @@
 }
 
 [data-theme="dark"] .page-list-item-description,
-.page-list-item .page-list-item-date-edited span {
+[data-theme="dark"] .page-list-item .page-list-item-date-edited span {
   color: #ffffff4f;
 }
 

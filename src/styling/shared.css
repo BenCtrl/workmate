@@ -100,9 +100,9 @@ button:hover, .navlink-button:hover {
   color: rgb(74, 122, 255);
 }
 
-/* button[disabled]:hover button:disabled:hover {
-  pointer-events: none;
-} */
+.tiptap {
+  background-color: white;
+}
 
 button.confirm:hover {
   box-shadow: 0px 0px 0px 3px rgba(42, 207, 42, 0.75);
