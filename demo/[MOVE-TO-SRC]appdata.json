@@ -1,0 +1,79 @@
+{
+  "stickynotes": [
+    {
+      "id": "6610",
+      "noteContent": "TODO\n - Complete this app\n - Make it not break all the time\n - Something else :D"
+    }
+  ],
+  "pages": [
+    {
+      "id": "2c36",
+      "title": "Workmate Introduction",
+      "description": "",
+      "dateTimeCreated": 1734118130790,
+      "dateTimeEdited": 1734118130790,
+      "pageContent": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 1
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Welcome to workmate"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "This is a simple to use note taking application designed for ease of use and convenience. Though similar applications provide more illustrious features & tools, "
+              },
+              {
+                "type": "text",
+                "marks": [
+                  {
+                    "type": "bold"
+                  },
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "text": "workmate"
+              },
+              {
+                "type": "text",
+                "text": "' design philsophy is to be 'ready to use'"
+              },
+              {
+                "type": "hardBreak"
+              },
+              {
+                "type": "text",
+                "text": "and easily accessible for note taking."
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "However, in-depth & annotated documentation can also be created using this environment."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "settings": {
+    "TOOLTIPS": true,
+    "DARKMODE": false
+  }
+}
