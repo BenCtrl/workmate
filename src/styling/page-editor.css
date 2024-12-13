@@ -5,7 +5,22 @@
 }
 
 .page-editor-nodes {
+  display: flex;
   background-color: #d7d7d7;
+  padding: 1rem;
+}
+
+.page-editor-nodes button {
+  margin: 0 0.5rem;
+}
+
+.page-editor-nodes .page-editor-nodes-divider {
+  border-right: 1px solid #3d3d3d;
+  margin: 0 0.5rem;
+}
+
+[data-theme="dark"] .page-editor-nodes .page-editor-nodes-divider {
+  border-color: #ebebeb;
 }
 
 [data-theme="dark"] .page-editor-nodes {
@@ -15,7 +30,6 @@
 .page-editor-title {
   display: block;
   font-size: 2em;
-  margin-block-start: 0.67em;
   margin-block-end: 0.67em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
@@ -42,6 +56,11 @@
 
 .page-editor .tiptap {
   padding: 2rem;
+  height: 100%;
+}
+
+.page-editor .tiptap:focus {
+  outline: none;
 }
 
 [data-theme="dark"] .page-editor .tiptap {

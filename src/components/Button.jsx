@@ -7,6 +7,7 @@ const Button = ({
   toolTip,
   toolTipPos = '',
   className = '',
+  id,
   style = {},
   type,
   disabled}) => {
@@ -26,6 +27,7 @@ const Button = ({
     <button
       type={type}
       className={processComponentClasses()}
+      id={id}
       style={style}
       data-text={toolTip}
       onClick={onClick}

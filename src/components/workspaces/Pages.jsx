@@ -41,7 +41,7 @@ const Pages = () => {
   return (
     <>
       <div id="pages-controls">
-        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto'}} children={<HiOutlineDocumentPlus />} toolTip={"Create New Page"} onClick={() => {navigateTo("/pages/editor")}}/>
+        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto', fontSize: '1.4rem'}} children={<HiOutlineDocumentPlus />} toolTip={"Create New Page"} onClick={() => {navigateTo("/pages/editor")}}/>
 
         <div id="pages-search" className="search-input text-input page-control">
           <HiMiniMagnifyingGlass  className="search-input-icon" />
@@ -78,4 +78,16 @@ const addPageLoader = async (newPage) => {
   return;
 }
 
-export {Pages as default, addPageLoader}
+const updatePageLoader = async (page) => {
+  const response = await fetch(`/api/pages/${page.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(page)
+  });
+
+  return;
+}
+
+export {Pages as default, addPageLoader, updatePageLoader}

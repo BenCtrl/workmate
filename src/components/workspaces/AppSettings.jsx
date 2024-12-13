@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import Button from '../Button';
 import { AppSettingsContext } from '../../App';
 import '../../styling/appsettings.css'
+import Select from '../Select';
 
 const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);
@@ -54,6 +55,8 @@ const AppSettings = () => {
         <Button style={{margin: '12px 0'}} children={'Save'} disabled={!changesMade}/>
         {changesMade && <span class="unsaved-changes-message">Unsaved changes!</span>}
       </form>
+
+      <Select />
     </>
   )
 }
