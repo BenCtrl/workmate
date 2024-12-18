@@ -54,8 +54,6 @@ const AppSettings = () => {
         <Button style={{margin: '12px 0'}} children={'Save'} disabled={!changesMade}/>
         {changesMade && <span class="unsaved-changes-message">Unsaved changes!</span>}
       </form>
-
-      {/* <Select /> */}
     </>
   )
 }
