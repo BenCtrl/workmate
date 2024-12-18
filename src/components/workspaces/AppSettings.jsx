@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react'
 import Button from '../Button';
 import { AppSettingsContext } from '../../App';
-import '../../styling/appsettings.css'
-import Select from '../Select';
+import '../../styling/appsettings.css';
 
 const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);
@@ -56,7 +55,7 @@ const AppSettings = () => {
         {changesMade && <span class="unsaved-changes-message">Unsaved changes!</span>}
       </form>
 
-      <Select />
+      {/* <Select /> */}
     </>
   )
 }

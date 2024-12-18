@@ -7,9 +7,14 @@ import {
   HiArrowUturnLeft,
   HiArrowUturnRight,
   HiCodeBracketSquare,
+  HiListBullet
 } from "react-icons/hi2";
 import { FiBold, FiItalic } from "react-icons/fi";
 import { LuSave, LuSaveAll  } from "react-icons/lu";
+import { AiOutlineStrikethrough } from "react-icons/ai";
+import { GrBlockQuote } from "react-icons/gr";
+import { MdOutlineHorizontalRule } from "react-icons/md";
+import { GoHeading, GoListOrdered } from "react-icons/go";
 
 import StarterKit from '@tiptap/starter-kit';
 import CodeBlock from '@tiptap/extension-code-block';
@@ -22,13 +27,13 @@ import '../../styling/page-editor.css';
 const extensions = [
   StarterKit,
   CodeBlock,
-  TextStyle,
+  TextStyle
 ];
-
 
 const MenuBar = ({page}) => {
   const {editor} = useCurrentEditor();
   const [pageHeader, setPageHeader] = useState(page ? page.title : 'New Page');
+  const [selectedHeading, setSelectedHeading] = useState(1);
 
   const submitPage = (buttonEvent) => {
     const buttonId = buttonEvent.currentTarget.id;
@@ -66,23 +71,6 @@ const MenuBar = ({page}) => {
     console.log(buttonEvent.currentTarget.id);
   }
 
-  const applyHeading = (headingSelected) => {
-    switch (headingSelected) {
-      case 'H1':
-        editor.chain().focus().toggleHeading({ level: 1 }).run()
-        break;
-      case 'H2':
-        editor.chain().focus().toggleHeading({ level: 2 }).run()
-        break;
-      case 'H3':
-        editor.chain().focus().toggleHeading({ level: 3 }).run()
-        break;
-      case 'H4':
-        editor.chain().focus().toggleHeading({ level: 4 }).run()
-        break;
-    }
-  }
-
   if (!editor) {
     return null;
   }
@@ -98,16 +86,27 @@ const MenuBar = ({page}) => {
 
         <Button toolTip="Bold" children={<FiBold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
         <Button toolTip="Italic" children={<FiItalic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
+        <Button toolTip="Strikethrough" children={<AiOutlineStrikethrough  />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
         <Button toolTip="Code" children={<HiCodeBracket />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
         <Button toolTip="Code Block" children={<HiCodeBracketSquare />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
+        <Button toolTip="Block Quote" children={<GrBlockQuote />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
+        <Button toolTip="Horizontal Rule" children={<MdOutlineHorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
+        <Button toolTip="Bullet List" children={<HiListBullet />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
+        <Button toolTip="Bullet List" children={<GoListOrdered />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
 
         <span className="page-editor-nodes-divider"></span>
 
-        <select onChange={(changeEvent) => {applyHeading(changeEvent.target.value)}} id="heading-select">
-          <option value="H1">Heading 1</option>
-          <option value="H2">Heading 2</option>
-          <option value="H3">Heading 3</option>
-          <option value="H4">Heading 4</option>
+        <Button toolTip="Apply Heading" children={<GoHeading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run()}}/>
+        <select onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value))}} id="heading-select">
+
+        {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
+        {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}
+          <option value="1">Heading 1</option>
+          <option value="2">Heading 2</option>
+          <option value="3">Heading 3</option>
+          <option value="4">Heading 4</option>
+          <option value="5">Heading 5</option>
+          <option value="6">Heading 6</option>
         </select>
 
         <span style={{marginLeft: 'auto'}} className="page-editor-nodes-divider"></span>

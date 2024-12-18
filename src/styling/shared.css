@@ -64,10 +64,14 @@ input {
 
 select {
   border-radius: 0.3rem;
-  border: 1px solid white;
+  border: 1px solid #3d3d3d;
   background: inherit;
-  color: #ebebeb;
   padding: 0 0.3rem;
+}
+
+[data-theme="dark"] select {
+  border: 1px solid white;
+  color: #ebebeb;
 }
 
 textarea {
@@ -94,6 +98,7 @@ button:disabled, button[disabled] {
   cursor: not-allowed;
   pointer-events: none;
   box-shadow: 4px 4px 0px 0px #676767bf;
+  color: #676767bf !important;
 }
 
 [data-theme="dark"] button, .navlink-button {
