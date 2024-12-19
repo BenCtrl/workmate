@@ -7,12 +7,7 @@ const NavBar = () => {
     <div id="navbar">
       <div className="app-identifier">
         <i className='app-name'>workmate</i>
-        <ImCheckmark style={{
-          position: 'relative',
-          marginLeft: '0.4rem',
-          top: '0',
-          color: '#3d3d3d87'
-        }} />
+        <ImCheckmark className='app-icon' />
       </div>
 
       <i style={{fontSize: "1rem", color: "#bbbbbb"}}>Your friend for work :)</i>

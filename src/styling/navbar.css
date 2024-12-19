@@ -35,3 +35,14 @@
   cursor: default;
   user-select: none;
 }
+
+.app-identifier .app-icon {
+  position: relative;
+  margin-left: 0.4rem;
+  top: 0;
+  color: #3d3d3d87;
+}
+
+[data-theme="dark"] .app-identifier .app-icon {
+  color: #bfbfbf87;
+}
