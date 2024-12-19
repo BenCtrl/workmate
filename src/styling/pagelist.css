@@ -1,6 +1,9 @@
 #pages-list {
   padding: 0;
   list-style-type: none;
+  flex: 1 0 0;
+  min-height: 0;
+  overflow-y: scroll;
 }
 
 #pages-controls {
@@ -17,7 +20,7 @@
   border-radius: 0.5rem;
   background-color: #d7d7d7;
   transition: 0.2s;
-  margin-bottom: 0.5rem;
+  margin: 0 0.5rem 0.5rem 0;
 }
 
 [data-theme="dark"] .page-list-item {
