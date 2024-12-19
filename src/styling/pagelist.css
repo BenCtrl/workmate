@@ -6,6 +6,10 @@
   overflow-y: scroll;
 }
 
+[data-theme="dark"] #pages-list {
+  scrollbar-color: #ffffff17 transparent;
+}
+
 #pages-controls {
   display: flex;
   justify-content: end;
