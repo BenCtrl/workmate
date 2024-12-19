@@ -48,7 +48,8 @@ body {
 input,
 button,
 .navlink-button,
-.text-input {
+.text-input,
+select {
   border-radius: 0.3rem;
 }
 
@@ -62,23 +63,16 @@ input {
   border: 0.1rem solid black;
 }
 
-select {
-  border-radius: 0.3rem;
-  border: 1px solid #3d3d3d;
-  background: inherit;
-  padding: 0 0.3rem;
-}
-
 [data-theme="dark"] select {
-  border: 1px solid white;
   color: #ebebeb;
+  background-color: #ffffff17;
 }
 
 textarea {
   font-size: 1rem;
 }
 
-button, .navlink-button {
+button, .navlink-button, select {
   border: none;
   margin: 1rem;
   font-size: 1rem;
@@ -115,10 +109,6 @@ button:hover, .navlink-button:hover {
   background-color: none;
   box-shadow: 0px 0px 0px 3px rgba(74,122,255,0.75);
   color: rgb(74, 122, 255);
-}
-
-.tiptap {
-  background-color: white;
 }
 
 button.confirm:hover {
@@ -204,5 +194,9 @@ button:active, .navlink-button:active {
 fieldset {
   border: 2px solid rgb(206, 206, 206);
   border-radius: 0.4rem;
-  margin: 0;
+  margin: 0 0 1rem 0;
+}
+
+fieldset legend {
+  padding: 0 0.4rem;
 }

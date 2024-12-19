@@ -7,6 +7,7 @@ const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);
   const [toolTipsEnabled, setTooltipsEnabled] = useState(appSettings.TOOLTIPS);
   const [darkModeEnabled, setDarkModeEnabled] = useState(appSettings.DARKMODE);
+  const [wordCounterEnabled, setWordCounterEnabled] = useState(appSettings.WORD_COUNTER);
   const [changesMade, setChangesMade] = useState(false);
 
   const updateSettings = async (event) => {
@@ -14,7 +15,8 @@ const AppSettings = () => {
 
     const newSettings = {
       TOOLTIPS: toolTipsEnabled,
-      DARKMODE: darkModeEnabled
+      DARKMODE: darkModeEnabled,
+      WORD_COUNTER: wordCounterEnabled
     }
 
     try {
@@ -49,6 +51,14 @@ const AppSettings = () => {
           <div>
             <input type="checkbox" id="toggle-darkmode" name="toggle-tooltips" checked={darkModeEnabled} onChange={() => {setDarkModeEnabled((state) => !state)}} />
             <label htmlFor="toggle-tooltips">Darkmode</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Page Editor</legend>
+          <div>
+            <input type="checkbox" id="toggle-page-editor-word-count" name="toggle-page-editor-word-count" checked={wordCounterEnabled} onChange={() => {setWordCounterEnabled((state) => !state)}} />
+            <label htmlFor="toggle-page-editor-word-count">Word Counter</label>
           </div>
         </fieldset>
         <Button style={{margin: '12px 0'}} children={'Save'} disabled={!changesMade}/>

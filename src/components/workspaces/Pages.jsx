@@ -75,7 +75,8 @@ const addPageLoader = async (newPage) => {
     body: JSON.stringify(newPage)
   });
 
-  return;
+  const newPageData = await response.json();
+  return newPageData;
 }
 
 const updatePageLoader = async (page) => {

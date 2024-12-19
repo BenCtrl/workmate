@@ -11,6 +11,7 @@
     "server": "json-server --watch src/appdata.json --port 8000"
   },
   "dependencies": {
+    "@tiptap/extension-character-count": "^2.10.4",
     "@tiptap/extension-code-block": "^2.10.3",
     "@tiptap/extension-hard-break": "^2.10.3",
     "@tiptap/pm": "^2.10.3",

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useParams, useLoaderData } from 'react-router-dom';
-import { EditorProvider, useCurrentEditor } from '@tiptap/react';
+import React, { useCallback, useState, useContext } from 'react';
+import { useLoaderData, useBeforeUnload, useNavigate } from 'react-router-dom';
+import { EditorContent, useEditor } from '@tiptap/react';
 
 import {
   HiCodeBracket,
@@ -21,63 +21,72 @@ import CodeBlock from '@tiptap/extension-code-block';
 import TextStyle from '@tiptap/extension-text-style';
 
 import Button from '../Button';
+import { AppSettingsContext } from '../../App';
 import { addPageLoader, updatePageLoader } from './Pages';
 import '../../styling/page-editor.css';
+import CharacterCount from '@tiptap/extension-character-count';
 
 const extensions = [
   StarterKit,
   CodeBlock,
-  TextStyle
+  TextStyle,
+  CharacterCount.configure({
+    wordCounter: (text) => text.split(/\s+/).filter((word) => word !== '').length,
+  })
 ];
 
-const MenuBar = ({page}) => {
-  const {editor} = useCurrentEditor();
+const PageEditor = () => {
+  const page = useLoaderData();
+  const navigate = useNavigate();
+
   const [pageHeader, setPageHeader] = useState(page ? page.title : 'New Page');
   const [selectedHeading, setSelectedHeading] = useState(1);
+  const [changesMade, setChangesMade] = useState(false);
 
-  const submitPage = (buttonEvent) => {
+  const content = page ? page.pageContent : '<p style="color: #9d9d9d">Start your new page!</p>';
+  const SETTINGS = useContext(AppSettingsContext).appSettings;
+
+  const editor = useEditor({
+    extensions,
+    content,
+    onUpdate: (updateEvent) => {
+      setChangesMade(true);
+    }
+  });
+
+  const submitPage = async (buttonEvent) => {
     const buttonId = buttonEvent.currentTarget.id;
 
-    // Needs tidying up
-    if (page) {
-      if (buttonId === 'page-save-as') {
-        addPageLoader({
-          title: pageHeader,
-          description: "",
-          dateTimeCreated: Date.now(),
-          dateTimeEdited: Date.now(),
-          pageContent: editor.getJSON()
-        });
-      } else {
-        updatePageLoader({
-          id: page.id,
-          title: pageHeader,
-          description: "",
-          dateTimeCreated: page.dateTimeCreated,
-          dateTimeEdited: Date.now(),
-          pageContent: editor.getJSON()
-        });
-      }
-    } else {
-      addPageLoader({
-        title: pageHeader,
-        description: "",
-        dateTimeCreated: Date.now(),
-        dateTimeEdited: Date.now(),
-        pageContent: editor.getJSON()
-      });
+    const newPageData = {
+      id: page && page.id,
+      title: pageHeader,
+      description: "",
+      dateTimeCreated: page ? page.dateTimeCreated : Date.now(),
+      dateTimeEdited: Date.now(),
+      pageContent: editor.getJSON()
     }
 
-    console.log(buttonEvent.currentTarget.id);
+    try {
+      if (buttonId === 'page-save-as' || buttonId === 'page-save' && !page) {
+        const newPage = await addPageLoader(newPageData);
+        navigate(`/pages/editor/${newPage.id}`);
+      } else {
+        updatePageLoader(newPageData);
+      }
+
+      setChangesMade(false);
+    } catch (error) {
+      console.error(`Error while attempting to save page: ${error}`);
+    }
   }
 
-  if (!editor) {
-    return null;
-  }
+  useBeforeUnload(useCallback((unloadEvent) => {
+    changesMade && unloadEvent.preventDefault();
+  }));
 
   return (
     <>
-      <input value={pageHeader} onChange={(changeEvent) => setPageHeader(changeEvent.target.value)} class="page-editor-title"></input>
+      <input value={pageHeader} onChange={(changeEvent) => {setPageHeader(changeEvent.target.value); setChangesMade(true)}} class="page-editor-title"></input>
       <div class="page-editor-nodes">
         <Button toolTip="Undo" children={<HiArrowUturnLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
         <Button toolTip="Redo" children={<HiArrowUturnRight />} onClick={() => {editor.chain().focus().redo().run()}}/>
@@ -97,9 +106,8 @@ const MenuBar = ({page}) => {
         <span className="page-editor-nodes-divider"></span>
 
         <Button toolTip="Apply Heading" children={<GoHeading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run()}}/>
-        <select onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value))}} id="heading-select">
-
         {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
+        <select onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value))}} id="heading-select">
         {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}
           <option value="1">Heading 1</option>
           <option value="2">Heading 2</option>
@@ -111,26 +119,12 @@ const MenuBar = ({page}) => {
 
         <span style={{marginLeft: 'auto'}} className="page-editor-nodes-divider"></span>
 
-        <Button id="page-save-as" children={<LuSaveAll />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
-        <Button id="page-save" children={<LuSave />} toolTip={"Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
+        <Button id="page-save-as" children={<LuSaveAll />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+        <Button id="page-save" children={<LuSave />} toolTip={"Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
       </div>
-    </>
-  )
-}
 
-const PageEditor = () => {
-  const { id } = useParams();
-  const page = useLoaderData();
-  const content = page ? page.pageContent : '<p style="color: #9d9d9d">Start your new page!</p>';
-
-  return (
-    <>
-      <EditorProvider
-        extensions={extensions}
-        content={content}
-        editorContainerProps={{className: 'page-editor'}}
-        slotBefore={<MenuBar page={page} />}
-      ></EditorProvider>
+      <EditorContent editor={editor} className='page-editor' />
+      {SETTINGS.WORD_COUNTER && <div className="page-editor-word-count">Words: {editor.storage.characterCount.words()}</div>}
     </>
   )
 }
