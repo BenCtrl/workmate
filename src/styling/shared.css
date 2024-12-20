@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'EuroTechnicExtendedBold';
+  src: url('../assets/fonts/Euro-Technic-Extended-Bold.ttf');
+}
+
+
+/* base styling */
 html {
   display: flex;
   flex-direction: column;
@@ -20,20 +27,9 @@ body {
 
 .text-input {
   margin: 1rem;
-  border: 2px solid rgba(0,0,0,0.75);
   transition: 0.2s;
-}
-
-[data-theme="dark"] .text-input {
-  border-color: #ebebeb;
-}
-
-[data-theme="dark"] .text-input input {
-  color: #ebebeb;
-}
-
-.text-input:focus-within {
-  border: 2px solid rgba(74,122,255,0.75);
+  box-shadow: 4px 4px 0px 0px var(--button-accent-color);
+  background-color: var(--button-background-color);
 }
 
 .text-input input {
@@ -45,6 +41,10 @@ body {
   outline: none;
 }
 
+input {
+  color: var(--font-color);
+}
+
 input,
 button,
 .navlink-button,
@@ -53,19 +53,26 @@ select {
   border-radius: 0.3rem;
 }
 
+select,
+option {
+  font-size: 0.8rem !important;
+}
+
+option {
+  background-color: var(--page-background-color);
+  color: var(--font-color);
+}
+
 textarea,
-button {
+button,
+select,
+option {
   font-family: "Euro Technic", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 input {
   padding: 0.6rem;
   border: 0.1rem solid black;
-}
-
-[data-theme="dark"] select {
-  color: #ebebeb;
-  background-color: #ffffff17;
 }
 
 textarea {
@@ -76,11 +83,12 @@ button, .navlink-button, select {
   border: none;
   margin: 1rem;
   font-size: 1rem;
-  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 0px 0px var(--button-accent-color);
   transition: 0.1s;
   cursor: pointer;
   padding: 0.3rem 0.6rem;
-  background-color: rgba(0, 0, 0, 0.11);
+  background-color: var(--button-background-color);
+  color: var(--font-color);
   position: relative;
 }
 
@@ -91,39 +99,8 @@ button svg {
 button:disabled, button[disabled] {
   cursor: not-allowed;
   pointer-events: none;
-  box-shadow: 4px 4px 0px 0px #676767bf;
-  color: #676767bf !important;
-}
-
-[data-theme="dark"] button, .navlink-button {
-  color: #ebebeb;
-  background-color: #ffffff17;
-}
-
-[data-theme="dark"] .sticky-note button {
-  background-color: rgba(0, 0, 0, 0.11);
-  color: #3d3d3d;
-}
-
-button:hover, .navlink-button:hover {
-  background-color: none;
-  box-shadow: 0px 0px 0px 3px rgba(74,122,255,0.75);
-  color: rgb(74, 122, 255);
-}
-
-button.confirm:hover {
-  box-shadow: 0px 0px 0px 3px rgba(42, 207, 42, 0.75);
-  color: rgb(42, 207, 42);
-}
-
-button.cancel:hover {
-  box-shadow: 0px 0px 0px 3px rgba(255, 74, 74, 0.75);
-  color: rgba(255, 74, 74);
-}
-
-button:active, .navlink-button:active {
-  background-color: rgba(0, 0, 0, 0.171);
-  box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 0px 0px var(--button-disabled-accent-color);
+  color: var(--button-disabled-accent-color) !important;
 }
 
 .input {
@@ -148,7 +125,7 @@ button:active, .navlink-button:active {
   padding:10px;
   border-radius:5px;
   background:#000;
-  color: #fff;
+  color: var(--font-color);
   text-align:center;
   opacity: 0;
   transition: 0.1s;
@@ -186,17 +163,65 @@ button:active, .navlink-button:active {
   margin-right: -5px;
 }
 
-.tooltip:hover::before, .tooltip:hover::after {
-  transition-delay: 0.8s;
-  opacity: 1;
-}
-
 fieldset {
-  border: 2px solid rgb(206, 206, 206);
+  border: 2px solid var(--fieldset-outline-color);
   border-radius: 0.4rem;
   margin: 0 0 1rem 0;
 }
 
 fieldset legend {
   padding: 0 0.4rem;
+}
+
+/* behavioural styling */
+.text-input:focus-within {
+  box-shadow: 0px 0px 0px 3px var(--button-active-accent-color);
+}
+
+button:hover, .navlink-button:hover {
+  background-color: none;
+  box-shadow: 0px 0px 0px 3px var(--button-active-accent-color);
+  color: var(--button-active-accent-color);
+}
+
+button.confirm:hover {
+  box-shadow: 0px 0px 0px 3px rgba(42, 207, 42, 0.75);
+  color: rgb(42, 207, 42);
+}
+
+button.cancel:hover {
+  box-shadow: 0px 0px 0px 3px rgba(255, 74, 74, 0.75);
+  color: rgba(255, 74, 74);
+}
+
+button:active, 
+.navlink-button:active,
+.text-input:focus-within,
+select:focus {
+  background-color: #0000002c;
+}
+
+select:focus {
+  box-shadow: 0px 0px 0px 3px var(--button-active-accent-color);
+  outline: none;
+}
+
+.tooltip:hover::before, .tooltip:hover::after {
+  transition-delay: 0.8s;
+  opacity: 1;
+}
+
+/* theme styling */
+[data-theme="dark"] .text-input input {
+  color: #ebebeb;
+}
+
+[data-theme="dark"] .sticky-note button {
+  background-color: rgba(0, 0, 0, 0.11);
+  color: #3d3d3d;
+}
+
+[data-theme="dark"] select {
+  color: #ebebeb;
+  background-color: var(--button-background-color);
 }

@@ -1,22 +1,51 @@
+/* * {
+  background-image: url(https://christmastreesandlights.co.uk/media/catalog/product/cache/2f3a9391ab6f365c46e01fc2ff32c429/i/f/if04743.jpg);
+  background-size: contain;
+} */
+
+/* THEMING VARIABLES */
+/* Default theming variables */
+:root {
+  --font-color: #3d3d3d;
+  --page-background-color: #ebebeb;
+  --page-background-accent-color: #d7d7d7;
+  --button-background-color: #0000001c;
+  --button-active-accent-color: #4a7affbf;
+  --button-accent-color: #000000bf;
+  --button-disabled-accent-color: #676767bf;
+  --fieldset-outline-color: #cecece;
+  --font-faded-color: #0000004f;
+  --page-list-item-hover-background-color: #00000021;
+  --item-standard-box-shadow-color: #444444;
+  --page-background-watermark-color: #3d3d3d0d;
+  --workspace-tab-selected-color: #0000001c;
+  --navbar-background-color: #ffffff;
+}
+
+/* Dark theming variables */
+[data-theme="dark"]:root {
+  --font-color: #ebebeb;
+  --page-background-color: #1e202d;
+  --page-background-accent-color: #191a29;
+  --button-background-color: #ffffff17;
+  --fieldset-outline-color: #757575;
+  --font-faded-color: #ffffff4f;
+  --page-list-item-hover-background-color: #ffffff17;
+  --item-standard-box-shadow-color: #000000;
+  --page-background-watermark-color: #3d3d3d1c;
+  --workspace-tab-selected-color: #cfcfcf14;
+  --navbar-background-color: #161821;
+}
+
 :root {
   font-family: "Euro Technic", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-  color: #3d3d3d;
-  background-color: #ebebeb;
+  color: var(--font-color);
+  background-color: var(--page-background-color);
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* Theming variables */
-  --font-color: #3d3d3d;
-  --page-background-color: #ebebeb;
-}
-
-[data-theme="dark"]:root {
-  /* background-color: #161821; */
-  background-color: #1e202d;
-  color: #ebebeb;
 }
 
 body {

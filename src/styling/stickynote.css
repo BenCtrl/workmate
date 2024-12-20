@@ -1,8 +1,9 @@
+/* base styling */
 .sticky-note {
   display: flex;
   flex-direction: column;
-  background-color: rgb(255, 246, 114);
-  box-shadow: 5px 5px 10px #444444;
+  background-color: #fff672;
+  box-shadow: 5px 5px 10px var(--item-standard-box-shadow-color);
   width: 190px;
   height: 190px;
   margin: 12px;
@@ -11,10 +12,6 @@
   cursor: pointer;
   position: relative;
   color: #3d3d3d;
-}
-
-[data-theme="dark"] .sticky-note {
-  box-shadow: 5px 5px 10px #000000;
 }
 
 .new-sticky-note {
@@ -31,7 +28,7 @@
   flex-grow: 1;
   white-space: pre-wrap;
   resize: none;
-  background-color: rgb(255, 246, 114);
+  background-color: transparent;
   border: none;
   box-sizing: border-box;
   padding: 0;
@@ -41,13 +38,8 @@
   max-width: 100%;
 }
 
-.new-sticky-note .new-note-input:focus {
-  border: none;
-  outline: none;
-}
-
 .new-sticky-note .new-note-in-progress {
-  color: rgb(74, 122, 255);
+  color: #4a7aff;
   font-size: 2rem;
   position: absolute;
   left: 93%;
@@ -76,23 +68,10 @@
   width: 100%;
 }
 
-.sticky-note:hover {
-  transform: scale(1.1);
-  z-index: 1000;
-}
-
-.sticky-note:hover > .delete-note {
-  opacity: 1;
-}
-
 .sticky-note > .content {
   white-space: pre-line;
   overflow-wrap: break-word;
   flex-grow: 1;
-}
-
-.new-sticky-note:hover {
-  color: black;
 }
 
 .sticky-note .delete-note {
@@ -105,4 +84,23 @@
 
 .sticky-note .delete-note button {
   margin: 0;
+}
+
+/* behavioural styling */
+.new-sticky-note .new-note-input:focus {
+  border: none;
+  outline: none;
+}
+
+.sticky-note:hover {
+  transform: scale(1.1);
+  z-index: 1000;
+}
+
+.sticky-note:hover > .delete-note {
+  opacity: 1;
+}
+
+.new-sticky-note:hover {
+  color: black;
 }

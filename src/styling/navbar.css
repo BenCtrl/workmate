@@ -1,33 +1,10 @@
-@font-face {
-  font-family: 'EuroTechnicExtendedBold';
-  src: url('../assets/fonts/Euro-Technic-Extended-Bold.ttf');
-}
-
 #navbar {
   display: flex;
   place-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background-color: white;
+  background-color: var(--navbar-background-color);
   font-size: 1.7rem;
-}
-
-/* #navbar.darkmode {
-  color: white;
-  background-color: #161725;
-} */
-
-[data-theme="dark"] #navbar {
-  background-color: #161821;
-}
-
-#navbar .refresh {
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-#navbar .refresh:hover {
-  color: rgb(74, 122, 255);
 }
 
 .app-identifier {
@@ -40,9 +17,5 @@
   position: relative;
   margin-left: 0.4rem;
   top: 0;
-  color: #3d3d3d87;
-}
-
-[data-theme="dark"] .app-identifier .app-icon {
-  color: #bfbfbf87;
+  color: var(--font-faded-color);
 }

@@ -1,13 +1,10 @@
+/* base styling */
 #pages-list {
   padding: 0;
   list-style-type: none;
   flex: 1 0 0;
   min-height: 0;
   overflow-y: scroll;
-}
-
-[data-theme="dark"] #pages-list {
-  scrollbar-color: #ffffff17 transparent;
 }
 
 #pages-controls {
@@ -22,13 +19,9 @@
 .page-list-item {
   display: flex;
   border-radius: 0.5rem;
-  background-color: #d7d7d7;
+  background-color: var(--page-background-accent-color);
   transition: 0.2s;
   margin: 0 0.5rem 0.5rem 0;
-}
-
-[data-theme="dark"] .page-list-item {
-  background-color: #191a29;
 }
 
 .page-list-item .page-list-item-options {
@@ -49,25 +42,26 @@
 }
 
 .page-list-item-description {
-  color: #0000004f;
   margin-left: 1rem;
 }
 
-[data-theme="dark"] .page-list-item-description,
-[data-theme="dark"] .page-list-item .page-list-item-date-edited span {
-  color: #ffffff4f;
-}
-
-.page-list-item:hover {
-  background-color: #00000021;
-  cursor: pointer;
-  box-shadow: 3px 3px 3px rgb(0 0 0 / 27%);
-}
-
-[data-theme="dark"] .page-list-item:hover {
-  background-color: #ffffff17;
+.page-list-item-description,
+.page-list-item .page-list-item-date-edited span {
+  color: var(--font-faded-color);
 }
 
 .page-list-item .page-list-item-date-edited {
   margin-left: auto;
+}
+
+/* behavioural styling */
+.page-list-item:hover {
+  background-color: var(--page-list-item-hover-background-color);
+  cursor: pointer;
+  box-shadow: 3px 3px 3px #00000045;
+}
+
+/* theme styling */
+[data-theme="dark"] #pages-list {
+  scrollbar-color: var(--button-background-color) transparent;
 }

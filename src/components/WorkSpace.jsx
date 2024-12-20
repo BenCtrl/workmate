@@ -15,12 +15,7 @@ const WorkSpace = () => {
   const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const setAppTheme = () => {
-    document.documentElement.setAttribute("data-theme", SETTINGS.DARKMODE ? "dark" : "white");
-    // if (SETTINGS.DARKMODE) {
-    //   document.documentElement.setAttribute("data-theme", SETTINGS.DARKMODE ? "dark" : "white");
-    // } else {
-    //   document.documentElement.setAttribute("data-theme", "light");
-    // }
+    document.documentElement.setAttribute("data-theme", SETTINGS.DARKMODE ? "dark" : "light");
   }
 
   const router = createBrowserRouter(createRoutesFromElements(
