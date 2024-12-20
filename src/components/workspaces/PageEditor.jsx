@@ -56,7 +56,6 @@ const PageEditor = () => {
 
   const submitPage = async (buttonEvent) => {
     const buttonId = buttonEvent.currentTarget.id;
-    console.log(`Save button clicked: ${buttonId}`);
 
     const newPageData = {
       title: pageHeader,
