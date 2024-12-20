@@ -56,14 +56,19 @@ const PageEditor = () => {
 
   const submitPage = async (buttonEvent) => {
     const buttonId = buttonEvent.currentTarget.id;
+    console.log(`Save button clicked: ${buttonId}`);
 
     const newPageData = {
-      id: page && page.id,
       title: pageHeader,
       description: "",
       dateTimeCreated: page ? page.dateTimeCreated : Date.now(),
       dateTimeEdited: Date.now(),
       pageContent: editor.getJSON()
+    }
+
+    // Crude solution for embedding existing page ID into request body, more elegant solution should be found
+    if (buttonId !== 'page-save-as' && page) {
+      newPageData.id = page.id
     }
 
     try {
