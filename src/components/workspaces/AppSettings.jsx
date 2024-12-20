@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import Button from '../Button';
 import { AppSettingsContext } from '../../App';
-import '../../styling/appsettings.css';
+import Alert from '../Alert';
 
 const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);
@@ -62,7 +62,7 @@ const AppSettings = () => {
           </div>
         </fieldset>
         <Button style={{margin: '12px 0'}} children={'Save'} disabled={!changesMade}/>
-        {changesMade && <span class="unsaved-changes-message">Unsaved changes!</span>}
+        {changesMade && <Alert alertType="warning" message="Unsaved Changes!" />}
       </form>
     </>
   )

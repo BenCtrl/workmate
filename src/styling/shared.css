@@ -173,6 +173,23 @@ fieldset legend {
   padding: 0 0.4rem;
 }
 
+.alert {
+  background-color: var(--button-active-accent-color);
+  transition: 0.2s;
+  border: none;
+  margin: 1rem;
+  font-size: 1rem;
+  box-shadow: 4px 4px 0px 0px var(--button-accent-color);
+  transition: 0.1s;
+  padding: 0.3rem 0.6rem;
+  position: relative;
+  border-radius: 0.3rem;
+}
+
+.alert.warning {
+  background-color: orange;
+}
+
 /* behavioural styling */
 .text-input:focus-within {
   box-shadow: 0px 0px 0px 3px var(--button-active-accent-color);
