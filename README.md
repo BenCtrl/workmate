@@ -2,8 +2,10 @@
 
 Simple work planner app, designed for ease of use & convenience over power.
 
-![workmate page editor](demo/screenshots/1.JPG)
 ![workmate sticky notes](demo/screenshots/2.JPG)
+![workmate page editor](demo/screenshots/1.JPG)
+![workmate calendar](demo/screenshots/3.JPG)
+![workmate app settings](demo/screenshots/4.JPG)
 
 ## Development Installation
 1. Install the nodejs dependencies then, in two separate terminals run the following commands:
