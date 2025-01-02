@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react'
 import Button from '../Button';
 import { AppSettingsContext } from '../../App';
 import Alert from '../Alert';
+import CheckBoxSlider from '../CheckBoxSlider';
+import '../../styling/appsettings.css'
 
 const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);
@@ -44,23 +46,15 @@ const AppSettings = () => {
       <form onSubmit={updateSettings} onChange={() => {!changesMade && setChangesMade(!changesMade)}}>
         <fieldset>
           <legend>Accessibility</legend>
-          <div>
-            <input type="checkbox" id="toggle-tooltips" name="toggle-tooltips" checked={toolTipsEnabled} onChange={() => {setTooltipsEnabled((state) => !state)}} />
-            <label htmlFor="toggle-tooltips">Tooltips</label>
-          </div>
-          <div>
-            <input type="checkbox" id="toggle-darkmode" name="toggle-tooltips" checked={darkModeEnabled} onChange={() => {setDarkModeEnabled((state) => !state)}} />
-            <label htmlFor="toggle-tooltips">Darkmode</label>
-          </div>
+          <CheckBoxSlider labelContent="Tooltips" checkBoxID="toggle-tooltips" checked={toolTipsEnabled} onChange={() => {setTooltipsEnabled((state) => !state)}} />
+          <CheckBoxSlider labelContent="Dark Mode" checkBoxID="toggle-darkmode" checked={darkModeEnabled} onChange={() => {setDarkModeEnabled((state) => !state)}} />
         </fieldset>
 
         <fieldset>
           <legend>Page Editor</legend>
-          <div>
-            <input type="checkbox" id="toggle-page-editor-word-count" name="toggle-page-editor-word-count" checked={wordCounterEnabled} onChange={() => {setWordCounterEnabled((state) => !state)}} />
-            <label htmlFor="toggle-page-editor-word-count">Word Counter</label>
-          </div>
+          <CheckBoxSlider labelContent="Word Counter" checkBoxID="toggle-page-editor-word-count" checked={wordCounterEnabled} onChange={() => {setWordCounterEnabled((state) => !state)}} />
         </fieldset>
+
         <Button style={{margin: '12px 0'}} children={'Save'} disabled={!changesMade}/>
         {changesMade && <Alert alertType="warning" message="Unsaved Changes!" />}
       </form>
