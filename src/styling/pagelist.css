@@ -58,7 +58,7 @@
 .page-list-item:hover {
   background-color: var(--page-list-item-hover-background-color);
   cursor: pointer;
-  box-shadow: 3px 3px 3px #00000045;
+  box-shadow: 0.2rem 0.2rem 0.2rem #00000045;
 }
 
 /* theme styling */
