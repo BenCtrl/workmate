@@ -196,7 +196,6 @@ fieldset legend {
   justify-content: space-between;
 }
 
-/* The switch - the box around the slider */
 .checkbox-switch {
   position: relative;
   display: inline-block;
@@ -204,14 +203,12 @@ fieldset legend {
   height: 24px;
 }
 
-/* Hide default HTML checkbox */
 .checkbox-switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -219,7 +216,6 @@ fieldset legend {
   left: 0;
   right: 0;
   bottom: 0;
-  /* background-color: #ccc; */
   background-color: var(--button-background-color);
   -webkit-transition: .4s;
   transition: .4s;
