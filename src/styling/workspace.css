@@ -29,7 +29,7 @@
   align-self: center;
   color: var(--page-background-watermark-color);
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
 }
 
 #workspace h1 {

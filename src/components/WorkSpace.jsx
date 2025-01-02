@@ -5,7 +5,7 @@ import '../styling/workspace.css'
 import NotesList from './workspaces/StickyNotes'
 import Pages from './workspaces/Pages'
 import WorkspaceLayout from '../layouts/WorkspaceLayout'
-import Calendar from './workspaces/Calendar'
+import CalendarPlanner from './workspaces/CalendarPlanner'
 import AppSettings from './workspaces/AppSettings'
 import WorkspaceNotFound from './workspaces/WorkspaceNotFound'
 import PageEditor, { pageLoader } from './workspaces/PageEditor'
@@ -24,7 +24,7 @@ const WorkSpace = () => {
       <Route path='/pages' element={<Pages />} />
       <Route path='/pages/editor' element={<PageEditor />} />
       <Route path='/pages/editor/:id' element={<PageEditor />} loader={pageLoader}/>
-      <Route path='/calendar' element={<Calendar />} />
+      <Route path='/calendar' element={<CalendarPlanner />} />
       <Route path='/settings' element={<AppSettings />} />
       <Route path='*' element={<WorkspaceNotFound />} />
     </Route>

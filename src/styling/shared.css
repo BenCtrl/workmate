@@ -15,6 +15,10 @@ body {
   flex:1;
 }
 
+abbr {
+  text-decoration: none;
+}
+
 .search-input .search-input-icon {
   margin: 0.2rem;
 }
