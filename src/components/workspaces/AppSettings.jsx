@@ -43,7 +43,7 @@ const AppSettings = () => {
   return (
     <>
       <h1>Settings</h1>
-      <form onSubmit={updateSettings} onChange={() => {!changesMade && setChangesMade(!changesMade)}}>
+      <form id="app-settings-form" onSubmit={updateSettings} onChange={() => {!changesMade && setChangesMade(!changesMade)}}>
         <fieldset>
           <legend>Accessibility</legend>
           <CheckBoxSlider labelContent="Tooltips" checkBoxID="toggle-tooltips" checked={toolTipsEnabled} onChange={() => {setTooltipsEnabled((state) => !state)}} />
