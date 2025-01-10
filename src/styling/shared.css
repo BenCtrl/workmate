@@ -260,6 +260,9 @@ fieldset legend {
   border-radius: 0;
 }
 
+[data-theme="dark"] .time-input-container select {
+  background-color: unset;
+}
 
 .time-input-container select:first-child {
   border-top-right-radius: 0;
