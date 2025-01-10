@@ -55,8 +55,8 @@ const AppSettings = () => {
           <CheckBoxSlider labelContent="Word Counter" checkBoxID="toggle-page-editor-word-count" checked={wordCounterEnabled} onChange={() => {setWordCounterEnabled((state) => !state)}} />
         </fieldset>
 
-        <Button style={{margin: '12px 0'}} children={'Save'} disabled={!changesMade}/>
         {changesMade && <Alert alertType="warning" message="Unsaved Changes!" />}
+        <Button id="app-settings-save" children={'Save'} disabled={!changesMade}/>
       </form>
     </>
   )
