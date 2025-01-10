@@ -3,7 +3,6 @@
   src: url('../assets/fonts/Euro-Technic-Extended-Bold.ttf');
 }
 
-
 /* base styling */
 html {
   display: flex;
@@ -98,6 +97,7 @@ button, .navlink-button, select {
 
 button svg {
   display: flex;
+  font-size: 1rem;
 }
 
 button:disabled, button[disabled] {
@@ -243,6 +243,34 @@ fieldset legend {
   margin-left: 0.4rem;
 }
 
+.time-input-container {
+  display: inline-flex;
+  margin: 1rem;
+  align-items: center;
+  box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
+  background-color: var(--button-background-color);
+  border-radius: 0.3rem;
+  width: max-content;
+  transition: 0.2s;
+}
+
+.time-input-container select {
+  background-color: unset;
+  box-shadow: unset;
+  border-radius: 0;
+}
+
+
+.time-input-container select:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.time-input-container select:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
 /* behavioural styling */
 .text-input:focus-within {
   box-shadow: 0 0 0 0.2rem var(--button-active-accent-color);
@@ -293,6 +321,16 @@ input:checked + .slider:before {
   -webkit-transform: translateX(16px);
   -ms-transform: translateX(16px);
   transform: translateX(16px);
+}
+
+.time-input-container:hover,
+.time-input-container:focus-within {
+  box-shadow: 0 0 0 0.2rem var(--button-active-accent-color);
+  color: var(--button-active-accent-color);
+}
+
+.time-input-container select:focus {
+  box-shadow: none;
 }
 
 /* theme styling */
