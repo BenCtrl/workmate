@@ -123,7 +123,7 @@ const PageEditor = () => {
 
         <span style={{marginLeft: 'auto'}} className="page-editor-nodes-divider"></span>
 
-        <Button id="page-save-as" children={<LuSaveAll />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+        <Button id="page-save-as" children={<LuSaveAll />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
         <Button id="page-save" children={<LuSave />} toolTip={"Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
       </div>
 
