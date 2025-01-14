@@ -18,34 +18,33 @@ abbr {
   text-decoration: none;
 }
 
-.search-input .search-input-icon {
-  margin: 0.2rem;
-}
-
-.text-input.search-input {
-  display: flex;
-  flex-direction: row;
+.text-input {
+  color: var(--font-color);
+  border: 0.15rem solid var(--fieldset-outline-color);
+  background-color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s;
+  display: inline-flex;
   align-items: center;
 }
 
-.text-input {
-  margin: 1rem;
-  transition: 0.2s;
-  box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
-  background-color: var(--button-background-color);
+.text-input svg {
+  margin: 0.2rem;
 }
 
 .text-input input {
+  margin: 0;
   border: none;
-  background-color: transparent;
-}
-
-.text-input input:focus {
-  outline: none;
 }
 
 input {
+  border: 0.15rem solid var(--fieldset-outline-color);
   color: var(--font-color);
+  padding: 0.4rem;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s;
 }
 
 input,
@@ -71,11 +70,6 @@ button,
 select,
 option {
   font-family: "Euro Technic", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-}
-
-input {
-  padding: 0.6rem;
-  border: 0.1rem solid black;
 }
 
 textarea {
@@ -275,10 +269,6 @@ fieldset legend {
 }
 
 /* behavioural styling */
-.text-input:focus-within {
-  box-shadow: 0 0 0 0.2rem var(--button-active-accent-color);
-}
-
 button:hover, .navlink-button:hover {
   background-color: none;
   box-shadow: 0 0 0 0.2rem var(--button-active-accent-color);
@@ -297,9 +287,12 @@ button.cancel:hover {
 
 button:active, 
 .navlink-button:active,
-.text-input:focus-within,
 select:focus {
   background-color: #0000002c;
+}
+
+.text-input:focus-within, input:focus {
+  border-color: var(--button-active-accent-color);
 }
 
 select:focus {

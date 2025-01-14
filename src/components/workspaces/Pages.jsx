@@ -5,6 +5,7 @@ import { HiOutlineDocumentPlus, HiMiniMagnifyingGlass } from "react-icons/hi2";
 import '../../styling/pagelist.css'
 import Button from '../Button';
 import PageListItem from '../PageListItem';
+import Input from '../Input';
 
 const Pages = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,11 +43,7 @@ const Pages = () => {
     <>
       <div id="pages-controls">
         <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto', fontSize: '1.4rem'}} children={<HiOutlineDocumentPlus />} toolTip={"Create New Page"} onClick={() => {navigateTo("/pages/editor")}}/>
-
-        <div id="pages-search" className="search-input text-input page-control">
-          <HiMiniMagnifyingGlass  className="search-input-icon" />
-          <input placeholder="Search..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}}/>
-        </div>
+        <Input icon={<HiMiniMagnifyingGlass />} id="pages-search" className="search-input page-control" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
       </div>
 
       <ul id="pages-list">
