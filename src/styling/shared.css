@@ -20,8 +20,8 @@ abbr {
 
 .text-input {
   color: var(--font-color);
-  border: 0.15rem solid var(--fieldset-outline-color);
-  background-color: white;
+  border: 0.15rem solid var(--item-outline-color);
+  background-color: var(--item-background-color);
   font-size: 1rem;
   outline: none;
   transition: 0.2s;
@@ -36,6 +36,7 @@ abbr {
 .text-input input {
   margin: 0;
   border: none;
+  background-color: transparent;
 }
 
 input {
