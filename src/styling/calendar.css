@@ -147,9 +147,6 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-}
-
-.current-day-summary .current-day-no-events {
   align-items: center;
   justify-content: center;
   color: var(--font-faded-color);

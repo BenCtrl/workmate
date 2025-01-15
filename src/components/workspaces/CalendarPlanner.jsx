@@ -77,19 +77,24 @@ const CalendarPlanner = () => {
           <Button children={<MdEvent />} toolTip={"Create New Event"} onClick={() => {setShowModal(true)}}/>
         </div>
         <div className="current-day-summary">
-          <ul className="current-day-events-list">
-            {calendarEvents.map((event) => {
-              if (dateSelected.setHours(0,0,0,0) === new Date(event.timestamp).setHours(0,0,0,0)) {
-                return <li key={event.id} className="current-day-event">
-                  <span>
-                    <span className="current-day-event-timestamp">{new Date(event.timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
-                    {event.title}
-                  </span>
-                  <Button className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<HiOutlineTrash />} toolTip="Delete Page" />
-                </li>
-              }
-            })}
-          </ul>
+          {
+            getEventCount(dateSelected) > 0 ?
+            <ul className="current-day-events-list">
+              {calendarEvents.map((event) => {
+                if (dateSelected.setHours(0,0,0,0) === new Date(event.timestamp).setHours(0,0,0,0)) {
+                  return <li key={event.id} className="current-day-event">
+                    <span>
+                      <span className="current-day-event-timestamp">{new Date(event.timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
+                      {event.title}
+                    </span>
+                    <Button className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<HiOutlineTrash />} toolTip="Delete Page" />
+                  </li>
+                }
+              })}
+            </ul>
+            :
+            <div className="current-day-no-events">Nothing to report</div>
+          }
         </div>
       </div>
 
