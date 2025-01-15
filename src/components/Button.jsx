@@ -5,7 +5,7 @@ const Button = ({
   children,
   onClick,
   toolTip,
-  toolTipPos = '',
+  // toolTipPos = '',
   className = '',
   id,
   style = {},
@@ -16,12 +16,14 @@ const Button = ({
 
   const processComponentClasses = () => {
     if (toolTip || className || toolTipPos) {
-      return `${toolTip && SETTINGS.TOOLTIPS ? 'tooltip' : ''} ${className} ${toolTipPos}`.trim().replace('  ', ' ');
+      // return `${toolTip && SETTINGS.TOOLTIPS ? 'tooltip' : ''} ${className} ${toolTipPos}`.trim().replace('  ', ' ');
+      return `${className}`.trim().replace('  ', ' ');
     } else {
       return undefined;
     }
   }
 
+  // **TODO - Temporarily disabled custom tooltips due to many styling issues
   // TODO - interface of button types when refactored to typescript
   return (
     <button
@@ -29,7 +31,8 @@ const Button = ({
       className={processComponentClasses()}
       id={id}
       style={style}
-      data-text={toolTip}
+      // data-text={toolTip}
+      title={toolTip}
       onClick={onClick}
       disabled={disabled}>
       {children}
