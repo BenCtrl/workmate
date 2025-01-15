@@ -171,11 +171,6 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   margin: 0 0 0 1rem;
 }
 
-#new-event-title {
-  border: 0.15rem solid var(--page-background-accent-color);
-  transition: 0.2s;
-}
-
 #create-new-event {
   float: right;
 }

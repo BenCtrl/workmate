@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HiOutlineClock } from "react-icons/hi2";
 import Button from './Button';
+import Input from './Input';
 
 const NewEventModal = ({eventDate, onNewEventSubmit}) => {
   const [eventTitle, setEventTitle] = useState('');
@@ -37,7 +38,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
     <>
       <form className="new-event-form" onSubmit={createEvent} action="">
         <div className="new-event-form-input">
-          <input type="text" name="new-event-title" id="new-event-title" placeholder='Title of Event' value={eventTitle} onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}}/>
+          <Input name="new-event-title" id="new-event-title" placeholder='Title of Event' value={eventTitle} onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}} /> 
 
           <div className="new-event-time-select">
             <span class="time-input-container">
