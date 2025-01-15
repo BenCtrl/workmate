@@ -57,19 +57,8 @@ const CalendarPlanner = () => {
   }, [])
 
   return (
-    <>
-      <Calendar
-      onChange={(value, event) => {
-        setDate();
-        setDateSelected(value);
-      }}
-      value={date}
-      nextLabel={<HiChevronRight/>}
-      next2Label={<HiChevronDoubleRight/>}
-      prevLabel={<HiChevronLeft />}
-      prev2Label={<HiChevronDoubleLeft/>}
-      />
-      <div className="calendar-day-summary-container">
+    <div className="calendar-wrapper">
+            <div className="calendar-day-summary-container">
         <div className='calendar-day-summary-header'>
           <h2>{new Intl.DateTimeFormat("en-GB", dateFormattingOptions).format(dateSelected === null ? date : dateSelected)}</h2>
           <Button children={<MdEvent />} toolTip={"Create New Event"} onClick={() => {setShowModal(true)}}/>
@@ -84,7 +73,8 @@ const CalendarPlanner = () => {
 
                 return <li key={event.id} className="current-day-event">
                   <span>
-                    <span className="current-day-event-timestamp">{`${eventHours < 10 ? '0' : ''}${eventHours}`}:{`${eventMinutes < 10 ? '0' : ''}${eventMinutes}`}</span>{event.title}
+                    <span className="current-day-event-timestamp">{`${eventHours < 10 ? '0' : ''}${eventHours}`}:{`${eventMinutes < 10 ? '0' : ''}${eventMinutes}`}</span>
+                    {event.title}
                   </span>
                   <Button className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<HiOutlineTrash />} toolTip="Delete Page" />
                 </li>
@@ -93,6 +83,18 @@ const CalendarPlanner = () => {
           </ul>
         </div>
       </div>
+
+      <Calendar
+      onChange={(value, event) => {
+        setDate();
+        setDateSelected(value);
+      }}
+      value={date}
+      nextLabel={<HiChevronRight/>}
+      next2Label={<HiChevronDoubleRight/>}
+      prevLabel={<HiChevronLeft />}
+      prev2Label={<HiChevronDoubleLeft/>}
+      />
 
       <style>
         {`${calendarEvents.map((event) => {
@@ -117,7 +119,7 @@ const CalendarPlanner = () => {
           document.body
         )
       }
-    </>
+    </div>
   )
 }
 
