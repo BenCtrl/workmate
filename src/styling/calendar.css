@@ -143,7 +143,7 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   align-self: start;
 }
 
-.current-day-summary, .current-day-no-events {
+.current-day-summary .current-day-no-events {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
