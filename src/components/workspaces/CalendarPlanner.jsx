@@ -73,7 +73,7 @@ const CalendarPlanner = () => {
 
                 return <li key={event.id} className="current-day-event">
                   <span>
-                    <span className="current-day-event-timestamp">{`${eventHours < 10 ? '0' : ''}${eventHours}`}:{`${eventMinutes < 10 ? '0' : ''}${eventMinutes}`}</span>
+                    <span className="current-day-event-timestamp">{new Date(event.timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
                     {event.title}
                   </span>
                   <Button className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<HiOutlineTrash />} toolTip="Delete Page" />
