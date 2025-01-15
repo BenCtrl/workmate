@@ -15,7 +15,8 @@ const Button = ({
   const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const processComponentClasses = () => {
-    if (toolTip || className || toolTipPos) {
+    // if (toolTip || className || toolTipPos) {
+    if (toolTip || className) {
       // return `${toolTip && SETTINGS.TOOLTIPS ? 'tooltip' : ''} ${className} ${toolTipPos}`.trim().replace('  ', ' ');
       return `${className}`.trim().replace('  ', ' ');
     } else {
@@ -32,7 +33,7 @@ const Button = ({
       id={id}
       style={style}
       // data-text={toolTip}
-      title={toolTip}
+      title={SETTINGS.TOOLTIPS && toolTip}
       onClick={onClick}
       disabled={disabled}>
       {children}
