@@ -52,25 +52,34 @@ const CalendarPlanner = () => {
     return;
   }
 
+  const getEventCount = (date) => {
+    let eventCount = 0;
+
+    calendarEvents.forEach((event) => {
+      date.setHours(0,0,0,0) === new Date(event.timestamp).setHours(0,0,0,0) && eventCount++;
+    })
+
+    return eventCount;
+  }
+
   useEffect(() => {
     fetchEvents();
   }, [])
 
   return (
     <div className="calendar-wrapper">
-            <div className="calendar-day-summary-container">
+      <div className="calendar-day-summary-container">
         <div className='calendar-day-summary-header'>
-          <h2>{new Intl.DateTimeFormat("en-GB", dateFormattingOptions).format(dateSelected === null ? date : dateSelected)}</h2>
+          <div>
+            <h2>Events</h2>
+            <div className="calendar-day-summary-date">{new Intl.DateTimeFormat("en-GB", dateFormattingOptions).format(dateSelected === null ? date : dateSelected)}</div>
+          </div>
           <Button children={<MdEvent />} toolTip={"Create New Event"} onClick={() => {setShowModal(true)}}/>
         </div>
         <div className="current-day-summary">
           <ul className="current-day-events-list">
             {calendarEvents.map((event) => {
               if (dateSelected.setHours(0,0,0,0) === new Date(event.timestamp).setHours(0,0,0,0)) {
-                const eventHours = new Date(event.timestamp).getHours();
-                const eventMinutes = new Date(event.timestamp).getMinutes();
-                console.log(`Event Minutes: ${eventMinutes}`);
-
                 return <li key={event.id} className="current-day-event">
                   <span>
                     <span className="current-day-event-timestamp">{new Date(event.timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
@@ -94,24 +103,11 @@ const CalendarPlanner = () => {
       next2Label={<HiChevronDoubleRight/>}
       prevLabel={<HiChevronLeft />}
       prev2Label={<HiChevronDoubleLeft/>}
+      formatDay={(locale, date) => <div>
+        {getEventCount(date) > 0 && <span className="event-indicator">{getEventCount(date)}</span>}
+        <span class="date-of-month">{date.getDate()}</span>
+      </div>}
       />
-
-      <style>
-        {`${calendarEvents.map((event) => {
-          return `button:has(abbr[aria-label="${new Intl.DateTimeFormat("en-GB", {month: 'long'}).format(new Date(event.timestamp))} ${new Intl.DateTimeFormat("en-GB", {day: 'numeric'}).format(new Date(event.timestamp))}, ${new Intl.DateTimeFormat("en-GB", {year: 'numeric'}).format(new Date(event.timestamp))}"])::after\n`
-        })}
-          {
-            content: '';
-            width: 1rem;
-            height: 1rem;
-            position: absolute;
-            background-color: var(--button-active-accent-color);
-            top: 0.4rem;
-            left: 0.4rem;
-            border-radius: 25%;
-          }
-        `}
-      </style>
 
       {showModal &&
         createPortal(

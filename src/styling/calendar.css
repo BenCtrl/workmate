@@ -39,7 +39,6 @@ button.react-calendar__navigation__prev-button {
   flex-grow: 1;
   align-items: unset;
 }
-
 /* end of horrible hacky stuff :) */
 
 .react-calendar__month-view__days {
@@ -68,14 +67,9 @@ button.react-calendar__tile {
   padding: 2rem;
 }
 
-.react-calendar .react-calendar__viewContainer button.react-calendar__tile--now {
-  color: white;
-  background-color: var(--button-active-accent-color);
-}
-
 .react-calendar button.react-calendar__tile--active {
   color: var(--button-active-accent-color);
-  border: 0.2rem solid var(--button-active-accent-color);
+  border: 0.15rem solid var(--button-active-accent-color);
   font-weight: bold;
 }
 
@@ -85,6 +79,37 @@ button.react-calendar__tile--active.react-calendar__tile--now {
 
 .react-calendar__month-view__days__day--neighboringMonth {
   color: var(--button-disabled-accent-color);
+}
+
+.react-calendar .react-calendar__viewContainer button abbr .event-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  color: white;
+  font-size: 0.8rem;
+  position: absolute;
+  background-color: var(--button-active-accent-color);
+  top: 0.4rem;
+  left: 0.4rem;
+  border-radius: 25%;
+}
+
+.react-calendar .react-calendar__viewContainer button .date-of-month {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.2rem;
+  border-radius: 50%;
+}
+
+.react-calendar .react-calendar__viewContainer button.react-calendar__tile--now .date-of-month {
+  color: white;
+  background-color: var(--button-active-accent-color);
 }
 
 .calendar-day-summary-container {
@@ -108,8 +133,14 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   margin: 0;
 }
 
+.calendar-day-summary-header .calendar-day-summary-date {
+  color: var(--font-faded-color);
+  font-weight: bold;
+}
+
 .calendar-day-summary-header button {
   margin: 0;
+  align-self: start;
 }
 
 .current-day-summary, .current-day-no-events {
@@ -152,7 +183,7 @@ button.react-calendar__tile--active.react-calendar__tile--now {
 }
 
 .current-day-event-delete {
-  margin: 0 0 0 2rem;
+  margin: 0 0.25rem 0.25rem 2rem;
 }
 
 .new-event-form-input {
