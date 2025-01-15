@@ -9,7 +9,7 @@ import Input from '../Input';
 
 const Pages = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [rootPages, setRootPages] = useState([]);
+  const [pages, setPages] = useState([]);
   const navigate = useNavigate();
 
   const navigateTo = (path) => {
@@ -20,7 +20,7 @@ const Pages = () => {
     try {
         const response = await fetch('/api/pages');
         const data = await response.json();
-        setRootPages(data);
+        setPages(data);
     } catch(error) {
         console.log('Error fetching data', error);
     }
@@ -49,7 +49,7 @@ const Pages = () => {
       <ul id="pages-list">
         {
           // TODO - Don't really like duplication of return line
-          rootPages.map((page) => {
+          pages.map((page) => {
             if (searchQuery.length <= 0) {
               return <PageListItem key={page.id} page={page} deletePage={deletePage} />
             }
