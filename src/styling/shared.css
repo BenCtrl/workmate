@@ -238,6 +238,49 @@ fieldset legend {
   margin-left: 0.4rem;
 }
 
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 0.15rem solid var(--fieldset-outline-color);
+  border-radius: 0.3rem;
+  transition: 0.2s;
+}
+
+.checkbox-container .checkbox .checkbox-icon {
+  display: none;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox-container.outline .checkbox .checkbox-icon {
+  color: var(--font-color);
+}
+
 .time-input-container {
   display: inline-flex;
   margin: 1rem;
@@ -318,6 +361,26 @@ input:checked + .slider:before {
   -webkit-transform: translateX(16px);
   -ms-transform: translateX(16px);
   transform: translateX(16px);
+}
+
+.checkbox-container input:checked ~ .checkbox {
+  background-color: var(--button-active-accent-color);
+}
+
+.checkbox-container input:checked ~ .checkbox:after {
+  display: block;
+}
+
+.checkbox-container input:checked ~ .checkbox .checkbox-icon {
+  display: flex;
+}
+
+.checkbox-container.outline input:checked ~ .checkbox {
+  background-color: transparent;
+}
+
+.checkbox-container.outline input:checked ~ .checkbox {
+  border-color: var(--font-color);
 }
 
 .time-input-container:hover,
