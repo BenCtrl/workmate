@@ -7,7 +7,7 @@ import Pages from './workspaces/Pages'
 import WorkspaceLayout from '../layouts/WorkspaceLayout'
 import CalendarPlanner from './workspaces/CalendarPlanner'
 import AppSettings from './workspaces/AppSettings'
-import WorkspaceNotFound from './workspaces/WorkspaceNotFound'
+import WorkspaceError from './workspaces/WorkspaceError'
 import PageEditor, { pageLoader } from './workspaces/PageEditor'
 import { AppSettingsContext } from '../App'
 
@@ -26,7 +26,7 @@ const WorkSpace = () => {
       <Route path='/pages/editor/:id' element={<PageEditor />} loader={pageLoader}/>
       <Route path='/calendar' element={<CalendarPlanner />} />
       <Route path='/settings' element={<AppSettings />} />
-      <Route path='*' element={<WorkspaceNotFound />} />
+      <Route path='*' element={<WorkspaceError errorCode={'404'} errorMessage={'Error - Workspace not found!'}/>} />
     </Route>
   ));
 
