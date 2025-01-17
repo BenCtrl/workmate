@@ -4,12 +4,15 @@ import { AppSettingsContext } from '../../App';
 import Alert from '../Alert';
 import CheckBoxSlider from '../CheckBoxSlider';
 import '../../styling/appsettings.css'
+import { FaCheck } from "react-icons/fa6";
+import Checkbox from '../Checkbox';
 
 const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);
   const [toolTipsEnabled, setTooltipsEnabled] = useState(appSettings.TOOLTIPS);
   const [darkModeEnabled, setDarkModeEnabled] = useState(appSettings.DARKMODE);
   const [wordCounterEnabled, setWordCounterEnabled] = useState(appSettings.WORD_COUNTER);
+  const [hideCompletedNotes, setHideCompletedNotes] = useState(appSettings.HIDE_COMPLETED_NOTES);
   const [changesMade, setChangesMade] = useState(false);
 
   const updateSettings = async (event) => {
@@ -18,7 +21,8 @@ const AppSettings = () => {
     const newSettings = {
       TOOLTIPS: toolTipsEnabled,
       DARKMODE: darkModeEnabled,
-      WORD_COUNTER: wordCounterEnabled
+      WORD_COUNTER: wordCounterEnabled,
+      HIDE_COMPLETED_NOTES: hideCompletedNotes
     }
 
     try {
@@ -48,6 +52,11 @@ const AppSettings = () => {
           <legend>Accessibility</legend>
           <CheckBoxSlider labelContent="Tooltips" checkBoxID="toggle-tooltips" checked={toolTipsEnabled} onChange={() => {setTooltipsEnabled((state) => !state)}} />
           <CheckBoxSlider labelContent="Dark Mode" checkBoxID="toggle-darkmode" checked={darkModeEnabled} onChange={() => {setDarkModeEnabled((state) => !state)}} />
+        </fieldset>
+
+        <fieldset>
+          <legend>Sticky Notes</legend>
+          <CheckBoxSlider labelContent="Hide completed notes" checkBoxID="toggle-completed-sticky-note-archiving" checked={hideCompletedNotes} onChange={() => {setHideCompletedNotes((state) => !state)}} />
         </fieldset>
 
         <fieldset>

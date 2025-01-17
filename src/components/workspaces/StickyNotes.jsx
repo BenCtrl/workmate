@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import '../../styling/noteslist.css'
 import StickyNote from '../StickyNote'
 import NewStickyNote from '../NewStickyNote';
+import { AppSettingsContext } from '../../App';
 
 const NotesList = () => {
   const [stickyNotes, setStickyNotes] = useState([]);
+  const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const fetchStickyNotes = async () => {
       try {
@@ -60,7 +62,15 @@ const NotesList = () => {
     <>
       <div id='notes-list'>
         {stickyNotes.map((stickyNote) => {
-          return <StickyNote key={stickyNote.id} stickyNote={stickyNote} updateNoteSubmit={updateNote} deleteNote={deleteNote} />
+          const stickyNoteComponent = <StickyNote key={stickyNote.id} stickyNote={stickyNote} updateNoteSubmit={updateNote} deleteNote={deleteNote} />;
+
+          if (SETTINGS.HIDE_COMPLETED_NOTES) {
+            if (!stickyNote.completed) {
+              return stickyNoteComponent
+            }
+          } else {
+            return stickyNoteComponent
+          }
         })}
         <NewStickyNote addNoteSubmit={addNote}/>
       </div>
