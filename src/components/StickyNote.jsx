@@ -17,7 +17,9 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote}) => {
     const newNote = {
       id: stickyNote.id,
       noteContent: stickyNote.noteContent,
-      completed: noteCompleted
+      completed: noteCompleted,
+      dateTimeCreated: stickyNote.dateTimeCreated,
+      dateTimeEdited: Date.now()
     }
 
     updateNoteSubmit(newNote);
