@@ -70,7 +70,7 @@
 
 .sticky-note.completed > .content {
   text-decoration: line-through;
-  color: var(--font-faded-color);
+  color: var(--stickynote-font-faded-text);
 }
 
 .sticky-note > .content {
@@ -96,6 +96,14 @@
 
 .sticky-note > .note-completed-checkbox:has(> input:checked) {
   opacity: 1;
+}
+
+.sticky-note .checkbox-container.outline input:checked ~ .checkbox {
+  border-color: unset;
+}
+
+.sticky-note .checkbox-container input:checked ~ .checkbox .checkbox-icon {
+  color: unset;
 }
 
 /* behavioural styling */

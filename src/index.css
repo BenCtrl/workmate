@@ -19,6 +19,7 @@
   --item-outline-color: #cecece;
   --item-background-color: #fff;
   --calendar-button-background-color: var(--button-background-color);
+  --stickynote-font-faded-text: #0000003f;
 }
 
 /* Dark theming variables */
