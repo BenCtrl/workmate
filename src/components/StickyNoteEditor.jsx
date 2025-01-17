@@ -8,6 +8,7 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote}) => {
 
   const [id, setId] = useState(null);
   const [stickyNoteContent, setStickyNoteContent] = useState('');
+  const [noteCompleted, setNoteCompleted] = useState(false);
 
   useEffect(() => {
     textAreaRef.current.focus();
@@ -15,6 +16,7 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote}) => {
     if(existingStickyNote) {
       setId(existingStickyNote.id);
       setStickyNoteContent(existingStickyNote.noteContent);
+      setNoteCompleted(existingStickyNote.completed);
     }
   }, []);
 
@@ -23,8 +25,12 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote}) => {
   
     const newNote = id ? {
       id,
-      noteContent: stickyNoteContent
-    } : {noteContent: stickyNoteContent}
+      noteContent: stickyNoteContent,
+      completed: noteCompleted
+    } : {
+      noteContent: stickyNoteContent,
+      completed: noteCompleted
+    }
 
     noteSubmit(newNote);
     editorEnabled((state) => !state); 

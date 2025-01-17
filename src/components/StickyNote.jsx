@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styling/stickynote.css'
 import { HiOutlineTrash } from "react-icons/hi2";
 import StickyNoteEditor from './StickyNoteEditor';
 import Button from './Button';
+import Checkbox from './Checkbox';
 
 const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote}) => {
   const [updatingNote, setUpdatingNote] = useState(false);
+  const [noteCompleted, setNoteCompleted] = useState(false);
+
+  useEffect(() => {
+    setNoteCompleted(stickyNote.completed);
+  }, [])
+
+  useEffect(() => {
+    const newNote = {
+      id: stickyNote.id,
+      noteContent: stickyNote.noteContent,
+      completed: noteCompleted
+    }
+
+    updateNoteSubmit(newNote);
+  }, [noteCompleted])
 
   return (
     <>
@@ -15,9 +31,10 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote}) => {
             <StickyNoteEditor noteSubmit={updateNoteSubmit} editorEnabled={setUpdatingNote} existingStickyNote={stickyNote} />
           </div>
             :
-          <div onClick={() => {setUpdatingNote((state) => !state);}} className='sticky-note'>
-            <div className='content'>{stickyNote.noteContent}</div>
+          <div className={`sticky-note ${noteCompleted && 'completed'}`}>
+            <div onClick={() => {setUpdatingNote((state) => !state);}} className='content'>{stickyNote.noteContent}</div>
 
+            <Checkbox id="note-completed-checkbox" className="outline note-completed-checkbox" onChange={() => {setNoteCompleted((state) => !state)}} checked={noteCompleted} />
             <div className='delete-note'>
               <Button children={<HiOutlineTrash />} onClick={() => {deleteNote(stickyNote.id)}} className={'cancel'} toolTip={'Delete Note'}/>
             </div>

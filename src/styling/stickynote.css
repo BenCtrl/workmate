@@ -68,15 +68,23 @@
   width: 100%;
 }
 
+.sticky-note.completed > .content {
+  text-decoration: line-through;
+  color: var(--font-faded-color);
+}
+
 .sticky-note > .content {
   white-space: pre-line;
   overflow-wrap: break-word;
   flex-grow: 1;
 }
 
-.sticky-note .delete-note {
+.sticky-note > .delete-note, .note-completed-checkbox {
   opacity: 0;
   transition: 0.1s;
+}
+
+.sticky-note .delete-note {
   display: flex;
   justify-content: end;
   justify-self: flex-end;
@@ -84,6 +92,10 @@
 
 .sticky-note .delete-note button {
   margin: 0;
+}
+
+.sticky-note > .note-completed-checkbox:has(> input:checked) {
+  opacity: 1;
 }
 
 /* behavioural styling */
@@ -97,7 +109,7 @@
   z-index: 1000;
 }
 
-.sticky-note:hover > .delete-note {
+.sticky-note:hover > .delete-note, .sticky-note:hover > .note-completed-checkbox {
   opacity: 1;
 }
 
