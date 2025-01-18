@@ -3,8 +3,6 @@ import { createPortal } from 'react-dom';
 import { HiOutlineRectangleStack } from "react-icons/hi2";
 
 import '../../styling/noteslist.css'
-import StickyNote from '../StickyNote'
-import NewStickyNote from '../NewStickyNote';
 import { AppSettingsContext } from '../../App';
 import StickyNoteGroup from '../StickyNoteGroup';
 import Modal from '../Modal';
@@ -15,7 +13,6 @@ const NotesList = () => {
   const [stickyNotes, setStickyNotes] = useState([]);
   const [groups, setGroups] = useState([]);
   const [showGroupModal, setShowGroupModal] = useState(false);
-  const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const fetchNotesAndGroups = async () => {
     fetchStickyNotes();
@@ -90,7 +87,7 @@ const NotesList = () => {
         {/* Default group that will always be present and cannot be deleted */}
         <StickyNoteGroup group={{title: 'Sticky Notes', color: 'yellow', id: 0}} stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} collapsed={true} isDefault={true} />
         {groups.map((group) => {
-          return <StickyNoteGroup fetchNotesAndGroups={fetchNotesAndGroups} group={group} stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} />
+          return <StickyNoteGroup key={group.id} fetchNotesAndGroups={fetchNotesAndGroups} group={group} stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} />
         })}
       </div>
 

@@ -9,9 +9,9 @@ const Checkbox = ({
   checked
 }) => {
   return (
-    <label htmlfor={id} className={`checkbox-container ${className}`}>{label}
+    <label htmlFor={id} className={`checkbox-container ${className}`}>{label}
       <input id={id} type="checkbox" onChange={onChange} checked={checked} />
-      <span class="checkbox"><div className="checkbox-icon"><FaCheck /></div></span>
+      <span className="checkbox"><div className="checkbox-icon"><FaCheck /></div></span>
     </label>
   )
 }
