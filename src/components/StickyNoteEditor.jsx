@@ -38,8 +38,6 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
       group: groupID
     }
 
-    console.log(JSON.stringify(newNote));
-
     noteSubmit(newNote);
     editorEnabled((state) => !state); 
     setStickyNoteContent('');

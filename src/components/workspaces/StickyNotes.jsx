@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom';
 import { HiOutlineRectangleStack } from "react-icons/hi2";
 
 import '../../styling/noteslist.css'
-import { AppSettingsContext } from '../../App';
 import StickyNoteGroup from '../StickyNoteGroup';
 import Modal from '../Modal';
 import Button from '../Button';
