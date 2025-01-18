@@ -31,7 +31,7 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
       {
         updatingNote ?
           <div className='sticky-note new-sticky-note'>
-            <StickyNoteEditor noteSubmit={updateNoteSubmit} editorEnabled={setUpdatingNote} existingStickyNote={stickyNote} />
+            <StickyNoteEditor noteSubmit={updateNoteSubmit} editorEnabled={setUpdatingNote} existingStickyNote={stickyNote} groupID={groupID} />
           </div>
             :
           <div className={`sticky-note ${noteCompleted && 'completed'}`}>
