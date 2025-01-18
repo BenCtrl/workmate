@@ -1,4 +1,112 @@
-#notes-list {
+#notes-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-color: var(--scrollbar-thumb-color) transparent;
+  scrollbar-width: thin;
+}
+
+.sticky-notes-list {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.sticky-notes-controls {
+  margin: 0 0.6rem 1rem 0.6rem;
+}
+
+.sticky-notes-controls button {
+  margin: 0;
+}
+
+.sticky-notes-group .group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--page-background-accent-color);
+  border-radius: 0.3rem;
+  font-weight: bold;
+  margin: 0 0.6rem 1rem 0.6rem;
+  position: relative;
+  padding: 0.3rem 1rem;
+}
+
+.sticky-notes-group .group-header.collapsed {
+  margin-bottom: 0;
+}
+
+.sticky-notes-group .group-header::after {
+  transition: 0.2s;
+  content: '';
+  display: block;
+  background-color: var(--button-active-accent-color);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.4%;
+  height: 100%;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
+.sticky-notes-group .group-header .group-title {
+  display: flex;
+  flex-direction: row;
+  padding: 0.2rem 0;
+}
+
+.sticky-notes-group .toggle-group-collapsible {
+  cursor: pointer;
+  margin-right: 0.6rem;
+  transition: 0.2s;
+}
+
+.sticky-notes-group .toggle-group-collapsible:hover {
+  color: var(--button-active-accent-color);
+}
+
+.sticky-notes-group.yellow .group-header::after,
+.sticky-notes-group.yellow .sticky-note {
+  background-color: var(--sticky-note-yellow);
+}
+
+.sticky-notes-group.pink .group-header::after,
+.sticky-notes-group.pink .sticky-note {
+  background-color: var(--sticky-note-pink);
+}
+
+.sticky-notes-group.green .group-header::after,
+.sticky-notes-group.green .sticky-note {
+  background-color: var(--sticky-note-green);
+}
+
+.sticky-notes-group.blue .group-header::after,
+.sticky-notes-group.blue .sticky-note {
+  background-color: var(--sticky-note-blue);
+}
+
+.sticky-notes-group .group-header .toggle-group-collapsible {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#new-sticky-note-group-form button,
+#new-sticky-note-group-form select {
+  margin: 0;
+}
+
+#new-sticky-note-group-form #create-new-sticky-notes-group {
+  float: right;
+}
+
+.new-sticky-note-group-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }

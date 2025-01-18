@@ -5,7 +5,7 @@ import StickyNoteEditor from './StickyNoteEditor';
 import Button from './Button';
 import Checkbox from './Checkbox';
 
-const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote}) => {
+const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
   const [updatingNote, setUpdatingNote] = useState(false);
   const [noteCompleted, setNoteCompleted] = useState(false);
 
@@ -19,7 +19,8 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote}) => {
       noteContent: stickyNote.noteContent,
       completed: noteCompleted,
       dateTimeCreated: stickyNote.dateTimeCreated,
-      dateTimeEdited: Date.now()
+      dateTimeEdited: Date.now(),
+      group: groupID
     }
 
     updateNoteSubmit(newNote);

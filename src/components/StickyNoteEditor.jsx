@@ -3,7 +3,7 @@ import { HiXMark } from "react-icons/hi2";
 import { FaRegFloppyDisk } from "react-icons/fa6";
 import Button from './Button';
 
-const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote}) => {
+const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupID}) => {
   const textAreaRef = useRef(null);
 
   const [id, setId] = useState(null);
@@ -28,13 +28,17 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote}) => {
       noteContent: stickyNoteContent,
       completed: noteCompleted,
       dateTimeCreated: existingStickyNote.dateTimeCreated,
-      dateTimeEdited: Date.now()
+      dateTimeEdited: Date.now(),
+      group: groupID
     } : {
       noteContent: stickyNoteContent,
       completed: noteCompleted,
       dateTimeCreated: Date.now(),
-      dateTimeEdited: Date.now()
+      dateTimeEdited: Date.now(),
+      group: groupID
     }
+
+    console.log(JSON.stringify(newNote));
 
     noteSubmit(newNote);
     editorEnabled((state) => !state); 

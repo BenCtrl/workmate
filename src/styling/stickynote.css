@@ -84,6 +84,10 @@
   transition: 0.1s;
 }
 
+.sticky-note .checkbox {
+  border-color: var(--stickynote-font-faded-text);
+}
+
 .sticky-note .delete-note {
   display: flex;
   justify-content: end;

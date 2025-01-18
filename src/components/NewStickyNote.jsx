@@ -3,7 +3,7 @@ import '../styling/stickynote.css';
 import { HiMiniPlus } from "react-icons/hi2";
 import StickyNoteEditor from './StickyNoteEditor';
 
-const NewStickyNote = ({addNoteSubmit}) => {
+const NewStickyNote = ({addNoteSubmit, groupID}) => {
   const [creatingNewNote, setCreatingNewNote] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ const NewStickyNote = ({addNoteSubmit}) => {
       {
         creatingNewNote ?
           <div className='sticky-note new-sticky-note'>
-            <StickyNoteEditor noteSubmit={addNoteSubmit} editorEnabled={setCreatingNewNote} />
+            <StickyNoteEditor noteSubmit={addNoteSubmit} editorEnabled={setCreatingNewNote} groupID={groupID} />
           </div>
             :
           <div onClick={() => {setCreatingNewNote((state) => !state);}} className='sticky-note new-sticky-note'>
