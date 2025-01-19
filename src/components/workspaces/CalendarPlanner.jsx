@@ -11,10 +11,10 @@ import {
 
 import Calendar from 'react-calendar';
 
-import Button from '../Button';
-import Modal from '../Modal';
+import Button from '../common/Button';
+import Modal from '../common/Modal';
 import '../../styling/calendar.css'
-import NewEventModal from '../NewEventModal';
+import NewEventModal from '../calendar/NewEventModal';
 
 const CalendarPlanner = () => {
   const dateObject = new Date();

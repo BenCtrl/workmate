@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { HiOutlineDocumentPlus, HiMiniMagnifyingGlass } from "react-icons/hi2";
 
 import '../../styling/pagelist.css'
-import Button from '../Button';
-import PageListItem from '../PageListItem';
-import Input from '../Input';
+import Button from '../common/Button';
+import PageListItem from '../pages/PageListItem';
+import Input from '../common/Input';
 
 const Pages = () => {
   const [searchQuery, setSearchQuery] = useState('');

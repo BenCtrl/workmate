@@ -1,5 +1,4 @@
 import React from 'react'
-import '../styling/shared.css'
 
 const Alert = ({alertType, message}) => {
   return (

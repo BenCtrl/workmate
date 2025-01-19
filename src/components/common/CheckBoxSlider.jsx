@@ -1,5 +1,4 @@
 import React from 'react'
-import '../styling/shared.css'
 
 const CheckBoxSlider = ({labelContent, checkBoxID, checked, onChange}) => {
   return (

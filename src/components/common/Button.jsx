@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppSettingsContext } from '../App';
+import { AppSettingsContext } from '../../App';
 
 const Button = ({
   children,

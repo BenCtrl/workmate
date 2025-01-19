@@ -1,7 +1,7 @@
 import React from 'react'
 import { HiOutlineTrash } from "react-icons/hi2";
 import { NavLink } from 'react-router-dom';
-import Button from './Button';
+import Button from '../common/Button';
 
 const PageListItem = ({page, deletePage}) => {
   return (

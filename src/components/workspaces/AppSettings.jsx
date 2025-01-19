@@ -1,11 +1,9 @@
 import React, { useState, useContext } from 'react'
-import Button from '../Button';
+import Button from '../common/Button';
 import { AppSettingsContext } from '../../App';
-import Alert from '../Alert';
-import CheckBoxSlider from '../CheckBoxSlider';
+import Alert from '../common/Alert';
+import CheckBoxSlider from '../common/CheckBoxSlider';
 import '../../styling/appsettings.css'
-import { FaCheck } from "react-icons/fa6";
-import Checkbox from '../Checkbox';
 
 const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);

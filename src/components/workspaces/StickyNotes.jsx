@@ -3,10 +3,10 @@ import { createPortal } from 'react-dom';
 import { HiOutlineRectangleStack } from "react-icons/hi2";
 
 import '../../styling/noteslist.css'
-import StickyNoteGroup from '../StickyNoteGroup';
-import Modal from '../Modal';
-import Button from '../Button';
-import NewStickyNotesGroupModal from '../NewStickyNotesGroupModal';
+import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
+import Modal from '../common/Modal';
+import Button from '../common/Button';
+import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
 
 const NotesList = () => {
   const [stickyNotes, setStickyNotes] = useState([]);

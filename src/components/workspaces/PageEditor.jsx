@@ -20,7 +20,7 @@ import StarterKit from '@tiptap/starter-kit';
 import CodeBlock from '@tiptap/extension-code-block';
 import TextStyle from '@tiptap/extension-text-style';
 
-import Button from '../Button';
+import Button from '../common/Button';
 import { AppSettingsContext } from '../../App';
 import { addPageLoader, updatePageLoader } from './Pages';
 import '../../styling/page-editor.css';
