@@ -8,13 +8,7 @@ const WorkspaceTab = ({icon, pageTitle, style, onClick, to}) => {
         {icon}
         <div className="workspace-tab-title">{pageTitle}</div>
       </div>
-      {/* {to ? <h1></h1> : <h1></h1>} */}
     </NavLink>
-
-    // <div style={style} onClick={onClick} className="workspace-tab">
-    //   {icon}
-    //   <div className="workspace-tab-title">{pageTitle}</div>
-    // </div>
   )
 }
 
