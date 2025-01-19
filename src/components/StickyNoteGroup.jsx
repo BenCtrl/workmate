@@ -48,7 +48,7 @@ const StickyNoteGroup = ({
             {group.title}
           </div>
 
-          {!isDefault && <Button className='delete-group mini' children={<HiOutlineTrash />} onClick={() => {deleteGroup()}} toolTip={'Delete Group'}/>}
+          {!isDefault && <Button className='delete-group mini' children={<HiOutlineTrash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>}
       </div>
 
       {groupCollapsed && <StickyNotesList stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />}

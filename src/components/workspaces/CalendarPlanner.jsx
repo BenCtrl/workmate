@@ -74,7 +74,7 @@ const CalendarPlanner = () => {
             <h2>Events</h2>
             <div className="calendar-day-summary-date">{new Intl.DateTimeFormat("en-GB", dateFormattingOptions).format(dateSelected === null ? date : dateSelected)}</div>
           </div>
-          <Button children={<MdEvent />} toolTip={"Create New Event"} onClick={() => {setShowModal(true)}}/>
+          <Button children={<MdEvent />} toolTip={"Create new event"} onClick={() => {setShowModal(true)}}/>
         </div>
         <div className="current-day-summary">
           {
@@ -87,7 +87,7 @@ const CalendarPlanner = () => {
                       <span className="current-day-event-timestamp">{new Date(event.timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
                       {event.title}
                     </span>
-                    <Button className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<HiOutlineTrash />} toolTip="Delete Page" />
+                    <Button className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<HiOutlineTrash />} toolTip="Delete event" />
                   </li>
                 }
               })}

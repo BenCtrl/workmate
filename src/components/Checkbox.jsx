@@ -6,10 +6,11 @@ const Checkbox = ({
   label,
   onChange,
   id,
-  checked
+  checked,
+  toolTip
 }) => {
   return (
-    <label htmlFor={id} className={`checkbox-container ${className}`}>{label}
+    <label htmlFor={id} title={toolTip} className={`checkbox-container ${className}`}>{label}
       <input id={id} type="checkbox" onChange={onChange} checked={checked} />
       <span className="checkbox"><div className="checkbox-icon"><FaCheck /></div></span>
     </label>

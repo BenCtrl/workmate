@@ -37,9 +37,9 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
           <div className={`sticky-note ${noteCompleted && 'completed'}`}>
             <div onClick={() => {setUpdatingNote((state) => !state);}} className='content'>{stickyNote.noteContent}</div>
 
-            <Checkbox className="outline note-completed-checkbox" onChange={() => {setNoteCompleted((state) => !state)}} checked={noteCompleted} />
+            <Checkbox className="outline note-completed-checkbox" onChange={() => {setNoteCompleted((state) => !state)}} checked={noteCompleted} toolTip={'Mark note as completed'} />
             <div className='delete-note'>
-              <Button children={<HiOutlineTrash />} onClick={() => {deleteNote(stickyNote.id)}} toolTip={'Delete Note'}/>
+              <Button children={<HiOutlineTrash />} onClick={() => {deleteNote(stickyNote.id)}} toolTip={'Delete note'}/>
             </div>
           </div>
       }

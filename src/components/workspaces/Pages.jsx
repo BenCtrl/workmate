@@ -42,7 +42,7 @@ const Pages = () => {
   return (
     <>
       <div id="pages-controls">
-        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto', fontSize: '1.4rem'}} children={<HiOutlineDocumentPlus />} toolTip={"Create New Page"} onClick={() => {navigateTo("/pages/editor")}}/>
+        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto', fontSize: '1.4rem'}} children={<HiOutlineDocumentPlus />} toolTip={"Create new page"} onClick={() => {navigateTo("/pages/editor")}}/>
         <Input icon={<HiMiniMagnifyingGlass />} id="pages-search" className="search-input page-control" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
       </div>
 

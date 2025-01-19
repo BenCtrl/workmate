@@ -101,15 +101,15 @@ const PageEditor = () => {
         <Button toolTip="Italic" children={<FiItalic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
         <Button toolTip="Strikethrough" children={<AiOutlineStrikethrough  />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
         <Button toolTip="Code" children={<HiCodeBracket />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
-        <Button toolTip="Code Block" children={<HiCodeBracketSquare />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
-        <Button toolTip="Block Quote" children={<GrBlockQuote />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
-        <Button toolTip="Horizontal Rule" children={<MdOutlineHorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
-        <Button toolTip="Bullet List" children={<HiListBullet />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
-        <Button toolTip="Bullet List" children={<GoListOrdered />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
+        <Button toolTip="Code block" children={<HiCodeBracketSquare />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
+        <Button toolTip="Block quote" children={<GrBlockQuote />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
+        <Button toolTip="Horizontal rule" children={<MdOutlineHorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
+        <Button toolTip="Bullet list" children={<HiListBullet />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
+        <Button toolTip="Ordered list" children={<GoListOrdered />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
 
         <span className="page-editor-nodes-divider"></span>
 
-        <Button toolTip="Apply Heading" children={<GoHeading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run()}}/>
+        <Button toolTip="Apply heading" children={<GoHeading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run()}}/>
         {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
         <select onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value))}} id="heading-select">
         {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}

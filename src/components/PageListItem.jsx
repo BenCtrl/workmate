@@ -11,7 +11,7 @@ const PageListItem = ({page, deletePage}) => {
         <span className="page-list-item-description">{page.description}</span>
         <span className="page-list-item-date-edited"><span>Last Edited: </span>{new Date(page.dateTimeEdited).toLocaleDateString()} | {new Date(page.dateTimeEdited).toLocaleTimeString([], {timeStyle: 'short'})}</span>
       </NavLink>
-      <Button className="page-list-item-options" onClick={() => {deletePage(page.id)}} children={<HiOutlineTrash />} toolTip="Delete Page" />
+      <Button className="page-list-item-options" onClick={() => {deletePage(page.id)}} children={<HiOutlineTrash />} toolTip="Delete page" />
     </li>
   )
 }
