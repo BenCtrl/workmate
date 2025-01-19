@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom';
 import { HiOutlineRectangleStack } from "react-icons/hi2";
 
-import '../../styling/noteslist.css'
-import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
-import Modal from '../common/Modal';
-import Button from '../common/Button';
+import { Button, Modal } from '../common/CommonComponents'
 import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
+import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
+import '../../styling/noteslist.css'
 
 const NotesList = () => {
   const [stickyNotes, setStickyNotes] = useState([]);

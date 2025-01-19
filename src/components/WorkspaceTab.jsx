@@ -1,5 +1,5 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const WorkspaceTab = ({icon, pageTitle, style, onClick, to}) => {
   return (

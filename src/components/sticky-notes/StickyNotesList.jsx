@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 
-import '../../styling/noteslist.css';
-import StickyNote from './StickyNote'
-import NewStickyNote from './NewStickyNote';
 import { AppSettingsContext } from '../../App';
+import StickyNote from './StickyNote';
+import NewStickyNote from './NewStickyNote';
+import '../../styling/noteslist.css';
 
 const StickyNotesList = ({stickyNotes, addNote, updateNote, deleteNote, group}) => {
   const SETTINGS = useContext(AppSettingsContext).appSettings;

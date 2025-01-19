@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiOutlineDocumentPlus, HiMiniMagnifyingGlass } from "react-icons/hi2";
 
-import '../../styling/pagelist.css'
-import Button from '../common/Button';
+import { Button, Input } from '../common/CommonComponents'
 import PageListItem from '../pages/PageListItem';
-import Input from '../common/Input';
+import '../../styling/pagelist.css';
 
 const Pages = () => {
   const [searchQuery, setSearchQuery] = useState('');

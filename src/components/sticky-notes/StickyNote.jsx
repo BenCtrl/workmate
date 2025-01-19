@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import '../../styling/stickynote.css'
+import React, { useEffect, useState } from 'react';
 import { HiOutlineTrash } from "react-icons/hi2";
+
+import { Button, Checkbox } from '../common/CommonComponents';
 import StickyNoteEditor from './StickyNoteEditor';
-import Button from '../common/Button';
-import Checkbox from '../common/Checkbox';
+import '../../styling/stickynote.css';
 
 const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
   const [updatingNote, setUpdatingNote] = useState(false);

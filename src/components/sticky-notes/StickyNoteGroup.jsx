@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { FaChevronRight, FaChevronDown  } from "react-icons/fa";
 import { HiOutlineTrash } from 'react-icons/hi2';
+
+import { Button } from '../common/CommonComponents';
 import StickyNotesList from './StickyNotesList';
-import Button from '../common/Button';
 
 /**
  * @prop {string} noteColor - The color of the sticky notes [yellow (default), pink, green or blue]

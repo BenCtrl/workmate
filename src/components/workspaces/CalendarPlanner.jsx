@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { MdEvent } from "react-icons/md";
 import {
@@ -9,12 +9,10 @@ import {
   HiOutlineTrash 
 } from "react-icons/hi2";
 
+import { Button, Modal } from '../common/CommonComponents'
 import Calendar from 'react-calendar';
-
-import Button from '../common/Button';
-import Modal from '../common/Modal';
-import '../../styling/calendar.css'
 import NewEventModal from '../calendar/NewEventModal';
+import '../../styling/calendar.css';
 
 const CalendarPlanner = () => {
   const dateObject = new Date();

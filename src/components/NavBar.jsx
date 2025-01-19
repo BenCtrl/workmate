@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { ImCheckmark } from "react-icons/im";
-import '../styling/navbar.css'
+
+import '../styling/navbar.css';
 
 const NavBar = () => {
   return (

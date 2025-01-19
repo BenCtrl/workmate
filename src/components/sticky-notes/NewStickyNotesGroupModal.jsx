@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import Button from '../common/Button';
-import Input from '../common/Input';
+import React, { useState } from 'react';
+
+import { Button, Input } from '../common/CommonComponents';
 
 /**
  * * @prop {function} onNewGroupSubmit - Function to be called once the modal for has been submitted

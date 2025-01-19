@@ -1,7 +1,8 @@
-import React from 'react'
-import Button from './Button'
-import '../../styling/modal.css'
+import React from 'react';
 import { HiXMark } from "react-icons/hi2";
+
+import { Button } from './CommonComponents';
+import '../../styling/modal.css';
 
 const Modal = ({ onClose, children, modalHeading }) => {
   return (

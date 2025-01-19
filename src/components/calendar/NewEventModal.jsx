@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HiOutlineClock } from "react-icons/hi2";
-import Button from '../common/Button';
-import Input from '../common/Input';
+
+import {Button, Input} from '../common/CommonComponents';
 
 const NewEventModal = ({eventDate, onNewEventSubmit}) => {
   const [eventTitle, setEventTitle] = useState('');

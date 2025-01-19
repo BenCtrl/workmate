@@ -19,12 +19,12 @@ import { GoHeading, GoListOrdered } from "react-icons/go";
 import StarterKit from '@tiptap/starter-kit';
 import CodeBlock from '@tiptap/extension-code-block';
 import TextStyle from '@tiptap/extension-text-style';
+import CharacterCount from '@tiptap/extension-character-count';
 
-import Button from '../common/Button';
+import { Button } from '../common/CommonComponents';
 import { AppSettingsContext } from '../../App';
 import { addPageLoader, updatePageLoader } from './Pages';
 import '../../styling/page-editor.css';
-import CharacterCount from '@tiptap/extension-character-count';
 
 const extensions = [
   StarterKit,
