@@ -1,79 +1,73 @@
 {
   "stickynotes": [
-    {
-      "id": "6610",
-      "noteContent": "TODO\n - Complete this app\n - Make it not break all the time\n - Something else :D"
-    }
+  ],
+  "stickyNoteGroups": [
   ],
   "pages": [
     {
-      "id": "2c36",
-      "title": "Workmate Introduction",
+      "title": "My First Page in workmate! - updates",
       "description": "",
-      "dateTimeCreated": 1734118130790,
-      "dateTimeEdited": 1734118130790,
+      "dateTimeCreated": 1734033213315,
+      "dateTimeEdited": 1736955168108,
       "pageContent": {
         "type": "doc",
         "content": [
           {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "This is a page created in the workmate editor"
+              }
+            ]
+          },
+          {
             "type": "heading",
             "attrs": {
-              "level": 1
+              "level": 3
             },
             "content": [
               {
                 "type": "text",
-                "text": "Welcome to workmate"
+                "text": "I'm using the Tip Tap editor for users to build documents they can save and edit later :D"
               }
             ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 3
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "It's pretty cool!!!! 😎 "
+              }
+            ]
+          },
+          {
+            "type": "paragraph"
           },
           {
             "type": "paragraph",
             "content": [
               {
                 "type": "text",
-                "text": "This is a simple to use note taking application designed for ease of use and convenience. Though similar applications provide more illustrious features & tools, "
-              },
-              {
-                "type": "text",
-                "marks": [
-                  {
-                    "type": "bold"
-                  },
-                  {
-                    "type": "italic"
-                  }
-                ],
-                "text": "workmate"
-              },
-              {
-                "type": "text",
-                "text": "' design philsophy is to be 'ready to use'"
-              },
-              {
-                "type": "hardBreak"
-              },
-              {
-                "type": "text",
-                "text": "and easily accessible for note taking."
-              }
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "However, in-depth & annotated documentation can also be created using this environment."
+                "text": "something new"
               }
             ]
           }
         ]
-      }
+      },
+      "id": "b053"
     }
+  ],
+  "events": [
   ],
   "settings": {
     "TOOLTIPS": true,
-    "DARKMODE": false
+    "DARKMODE": false,
+    "WORD_COUNTER": false,
+    "HIDE_COMPLETED_NOTES": false
   }
 }
