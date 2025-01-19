@@ -42,6 +42,7 @@ const PageEditor = () => {
   const [pageHeader, setPageHeader] = useState(page ? page.title : 'New Page');
   const [selectedHeading, setSelectedHeading] = useState(1);
   const [changesMade, setChangesMade] = useState(false);
+  const [confirmHeading, setConfirmHeading] = useState(false);
 
   const content = page ? page.pageContent : '<p style="color: #9d9d9d">Start your new page!</p>';
   const SETTINGS = useContext(AppSettingsContext).appSettings;
@@ -109,9 +110,9 @@ const PageEditor = () => {
 
         <span className="page-editor-nodes-divider"></span>
 
-        <Button toolTip="Apply heading" children={<GoHeading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run()}}/>
+        <Button toolTip="Apply heading" className={`${confirmHeading ? 'warning' : ''}`} children={<GoHeading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run(); setConfirmHeading(false)}}/>
         {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
-        <select onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value))}} id="heading-select">
+        <select onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value)); setConfirmHeading(true)}} id="heading-select">
         {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}
           <option value="1">Heading 1</option>
           <option value="2">Heading 2</option>

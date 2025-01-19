@@ -108,6 +108,10 @@ button:disabled, button[disabled] {
   color: var(--button-disabled-accent-color) !important;
 }
 
+button.warning {
+  box-shadow: 0 0 0 0.2rem orange;
+}
+
 .input {
   display: flex;
   flex-direction: column;
