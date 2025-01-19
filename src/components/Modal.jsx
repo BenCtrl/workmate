@@ -9,7 +9,7 @@ const Modal = ({ onClose, children, modalHeading }) => {
       <div className='modal'>
         <div className='modal-heading'>
           <h3>{modalHeading}</h3>
-          <Button children={<HiXMark />} onClick={onClose} className={'cancel'}/>
+          <Button children={<HiXMark />} onClick={onClose} />
         </div>
         {children}
       </div>
