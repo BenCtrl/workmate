@@ -25,3 +25,4 @@ dist-ssr
 
 src/appdata.json
 workmate.db
+queries.sql
