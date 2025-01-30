@@ -26,17 +26,19 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
   
     const newNote = id ? {
       id,
-      noteContent: stickyNoteContent,
+      // noteContent: stickyNoteContent,
+      content: stickyNoteContent,
       completed: noteCompleted,
       dateTimeCreated: existingStickyNote.dateTimeCreated,
       dateTimeEdited: Date.now(),
-      group: groupID
+      group_id: groupID
     } : {
-      noteContent: stickyNoteContent,
+      // noteContent: stickyNoteContent,
+      content: stickyNoteContent,
       completed: noteCompleted,
       dateTimeCreated: Date.now(),
       dateTimeEdited: Date.now(),
-      group: groupID
+      group_id: groupID
     }
 
     noteSubmit(newNote);

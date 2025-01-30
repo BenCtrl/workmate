@@ -17,7 +17,7 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
       color: groupColor
     }
 
-    const response = await fetch('/api/stickyNoteGroups', {
+    const response = await fetch('/api/stickynote_groups', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

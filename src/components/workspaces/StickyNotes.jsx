@@ -8,63 +8,13 @@ import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
 import '../../styling/noteslist.css'
 
 const NotesList = () => {
-  const [stickyNotes, setStickyNotes] = useState([]);
   const [groups, setGroups] = useState([]);
+  const [defaultGroup, setDefaultGroup] = useState({});
   const [showGroupModal, setShowGroupModal] = useState(false);
-
-  const fetchNotesAndGroups = async () => {
-    fetchStickyNotes();
-    fetchGroups();
-  };
-
-  const fetchStickyNotes = async () => {
-    try {
-        const response = await fetch('/api/stickynotes');
-        const data = await response.json();
-        setStickyNotes(data);
-    } catch(error) {
-        console.log('Error fetching data', error);
-    }
-  };
-
-  const addNote = async (newNote) => {
-    const response = await fetch('/api/stickynotes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newNote)
-    });
-
-    fetchStickyNotes();
-    return;
-  }
-
-  const updateNote = async (note) => {
-    const response = await fetch(`/api/stickynotes/${note.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(note)
-    });
-
-    fetchStickyNotes();
-    return;
-  }
-
-  const deleteNote = async (id) => {
-    const res = await fetch(`/api/stickynotes/${id}`, {
-      method: 'DELETE'
-    });
-
-    fetchStickyNotes();
-    return;
-  }
 
   const fetchGroups = async () => {
     try {
-        const response = await fetch('/api/stickyNoteGroups');
+        const response = await fetch('/api/stickynote_groups');
         const data = await response.json();
         setGroups(data);
     } catch(error) {
@@ -72,8 +22,19 @@ const NotesList = () => {
     }
   };
 
+  const fetchDefaultGroup = async (groupID) => {
+    try {
+        const response = await fetch(`/api/stickynote_groups/${groupID}`);
+        const data = await response.json();
+        setDefaultGroup(data);
+    } catch(error) {
+        console.log('Error fetching data', error);
+    }
+  }
+
   useEffect(() => {
-    fetchNotesAndGroups();
+    fetchGroups();
+    fetchDefaultGroup(1); // Fetches the permanent default group that cannot be deleted
   }, []);
 
   return (
@@ -82,10 +43,11 @@ const NotesList = () => {
         <Button children={<HiOutlineRectangleStack />} toolTip={'Create new group'} onClick={() => {setShowGroupModal((state) => !state)}} />
       </div>
       <div id="notes-list-wrapper">
-        {/* Default group that will always be present and cannot be deleted */}
-        <StickyNoteGroup group={{title: 'Sticky Notes', color: 'yellow', id: 0}} stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} collapsed={true} isDefault={true} />
+        <StickyNoteGroup group={defaultGroup} collapsed={true} isDefault={true} />
+
         {groups.map((group) => {
-          return <StickyNoteGroup key={group.id} fetchNotesAndGroups={fetchNotesAndGroups} group={group} stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} />
+          // Skip over default group to avoid duplicate render of group
+          return group.id > 1 && <StickyNoteGroup key={group.id} getGroups={fetchGroups} group={group} />
         })}
       </div>
 

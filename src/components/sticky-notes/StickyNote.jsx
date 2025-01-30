@@ -16,11 +16,11 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
   useEffect(() => {
     const newNote = {
       id: stickyNote.id,
-      noteContent: stickyNote.noteContent,
+      content: stickyNote.content,
       completed: noteCompleted,
       dateTimeCreated: stickyNote.dateTimeCreated,
       dateTimeEdited: Date.now(),
-      group: groupID
+      group_id: groupID
     }
 
     updateNoteSubmit(newNote);
@@ -35,7 +35,7 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
           </div>
             :
           <div className={`sticky-note ${noteCompleted && 'completed'}`}>
-            <div onClick={() => {setUpdatingNote((state) => !state);}} className='content'>{stickyNote.noteContent}</div>
+            <div onClick={() => {setUpdatingNote((state) => !state);}} className='content'>{stickyNote.content}</div>
 
             <Checkbox className="outline note-completed-checkbox" onChange={() => {setNoteCompleted((state) => !state)}} checked={noteCompleted} toolTip={'Mark note as completed'} />
             <div className='delete-note'>

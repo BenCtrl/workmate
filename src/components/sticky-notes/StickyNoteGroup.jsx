@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaChevronRight, FaChevronDown  } from "react-icons/fa";
 import { HiOutlineTrash } from 'react-icons/hi2';
 
@@ -10,34 +10,71 @@ import StickyNotesList from './StickyNotesList';
  */
 const StickyNoteGroup = ({
   group,
-  stickyNotes,
-  fetchNotesAndGroups,
-  addNote,
-  updateNote,
-  deleteNote,
+  getGroups,
   collapsed = false,
   isDefault = false
 }) => {
+  const [notes, setNotes] = useState([]);
   const [groupCollapsed, setGroupCollapsed] = useState(collapsed);
   const [groupID, setGroupID] = useState(group.id);
 
+  const getNotesForGroup = async () => {
+    try {
+      const response = await fetch(`/api/stickynotes?group_id=${groupID}`);
+      const data = await response.json();
+      setNotes(data);
+    } catch(error) {
+        console.log('Error fetching data', error);
+    }
+  }
+
   const deleteGroup = async () => {
-    const groupDeleteResponse = await fetch(`/api/stickyNoteGroups/${groupID}`, {
+    const response = await fetch(`/api/stickynote_groups/${groupID}`, {
       method: 'DELETE'
     });
 
-    // Loop through all sticky notes and delete notes associated with deleted group
-    stickyNotes.map(async (note) => {
-      if (note.group === groupID) {
-        const stickyNotesFromGroupDeleteResponse = await fetch(`/api/stickynotes/${note.id}`, {
-          method: 'DELETE'
-        });
-      }
-    })
-
-    fetchNotesAndGroups();
+    getGroups();
     return;
   }
+
+  const addNote = async (newNote) => {
+    const response = await fetch('/api/stickynotes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newNote)
+    });
+
+    getNotesForGroup();
+    return;
+  }
+
+  const updateNote = async (note) => {
+    const response = await fetch(`/api/stickynotes/${note.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(note)
+    });
+
+    getNotesForGroup();
+    return;
+  }
+
+  const deleteNote = async (id) => {
+    const res = await fetch(`/api/stickynotes/${id}`, {
+      method: 'DELETE'
+    });
+
+    getNotesForGroup();
+    return;
+  }
+
+  useEffect(() => {
+    getNotesForGroup();
+  }, [])
 
   return (
     <div className={`sticky-notes-group ${group.color}`} id={groupID}>
@@ -52,7 +89,8 @@ const StickyNoteGroup = ({
           {!isDefault && <Button className='delete-group mini' children={<HiOutlineTrash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>}
       </div>
 
-      {groupCollapsed && <StickyNotesList stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />}
+      {/* {groupCollapsed && <StickyNotesList stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />} */}
+      {groupCollapsed && <StickyNotesList stickyNotes={notes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />}
     </div>
   )
 }
