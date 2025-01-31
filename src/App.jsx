@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react"
-import NavBar from "./components/NavBar"
-import WorkSpace from "./components/WorkSpace"
+import NavBar from "./components/core/NavBar"
+import WorkSpace from "./components/core/WorkSpace"
 import './styling/shared.css'
 
 export const AppSettingsContext = createContext(null);

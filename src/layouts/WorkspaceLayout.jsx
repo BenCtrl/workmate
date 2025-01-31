@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { WorkspaceTabs } from '../components/WorkspaceTabs';
+import { WorkspaceTabs } from '../components/core/WorkspaceTabs';
 
 const WorkspaceLayout = () => {
   return (

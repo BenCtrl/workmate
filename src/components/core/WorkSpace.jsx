@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from 'react';
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 
-import AppSettings from './workspaces/AppSettings';
-import CalendarPlanner from './workspaces/CalendarPlanner';
-import NotesList from './workspaces/StickyNotes';
-import PageEditor, { pageLoader } from './workspaces/PageEditor';
-import Pages from './workspaces/Pages';
-import WorkspaceLayout from '../layouts/WorkspaceLayout';
-import WorkspaceError from './workspaces/WorkspaceError';
-import { AppSettingsContext } from '../App';
-import '../styling/workspace.css';
+import AppSettings from '../workspaces/AppSettings';
+import CalendarPlanner from '../workspaces/CalendarPlanner';
+import NotesList from '../workspaces/StickyNotes';
+import PageEditor, { pageLoader } from '../workspaces/PageEditor';
+import Pages from '../workspaces/Pages';
+import WorkspaceLayout from '../../layouts/WorkspaceLayout';
+import WorkspaceError from '../workspaces/WorkspaceError';
+import { AppSettingsContext } from '../../App';
+import '../../styling/workspace.css';
 
 const WorkSpace = () => {
   const SETTINGS = useContext(AppSettingsContext).appSettings;
