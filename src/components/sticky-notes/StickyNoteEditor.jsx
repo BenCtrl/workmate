@@ -16,7 +16,7 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
 
     if(existingStickyNote) {
       setId(existingStickyNote.id);
-      setStickyNoteContent(existingStickyNote.noteContent);
+      setStickyNoteContent(existingStickyNote.content);
       setNoteCompleted(existingStickyNote.completed);
     }
   }, []);
@@ -26,14 +26,12 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
   
     const newNote = id ? {
       id,
-      // noteContent: stickyNoteContent,
       content: stickyNoteContent,
       completed: noteCompleted,
       dateTimeCreated: existingStickyNote.dateTimeCreated,
       dateTimeEdited: Date.now(),
       group_id: groupID
     } : {
-      // noteContent: stickyNoteContent,
       content: stickyNoteContent,
       completed: noteCompleted,
       dateTimeCreated: Date.now(),
