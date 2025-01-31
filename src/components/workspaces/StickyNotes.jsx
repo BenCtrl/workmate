@@ -9,7 +9,6 @@ import '../../styling/noteslist.css'
 
 const NotesList = () => {
   const [groups, setGroups] = useState([]);
-  const [defaultGroup, setDefaultGroup] = useState({});
   const [showGroupModal, setShowGroupModal] = useState(false);
 
   const fetchGroups = async () => {
@@ -22,19 +21,8 @@ const NotesList = () => {
     }
   };
 
-  const fetchDefaultGroup = async (groupID) => {
-    try {
-        const response = await fetch(`/api/stickynote_groups/${groupID}`);
-        const data = await response.json();
-        setDefaultGroup(data);
-    } catch(error) {
-        console.log('Error fetching data', error);
-    }
-  }
-
   useEffect(() => {
     fetchGroups();
-    fetchDefaultGroup(1); // Fetches the permanent default group that cannot be deleted
   }, []);
 
   return (
@@ -43,11 +31,9 @@ const NotesList = () => {
         <Button children={<HiOutlineRectangleStack />} toolTip={'Create new group'} onClick={() => {setShowGroupModal((state) => !state)}} />
       </div>
       <div id="notes-list-wrapper">
-        <StickyNoteGroup group={defaultGroup} collapsed={true} isDefault={true} />
-
         {groups.map((group) => {
-          // Skip over default group to avoid duplicate render of group
-          return group.id > 1 && <StickyNoteGroup key={group.id} getGroups={fetchGroups} group={group} />
+          // Skip over default group to avoid duplicate render of group (ID is always assumed as 1 as should be primary group)
+          return group.id <= 1 ? <StickyNoteGroup group={group} collapsed={true} isDefault={true} /> : <StickyNoteGroup key={group.id} getGroups={fetchGroups} group={group} />
         })}
       </div>
 

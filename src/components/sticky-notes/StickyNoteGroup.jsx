@@ -16,11 +16,10 @@ const StickyNoteGroup = ({
 }) => {
   const [notes, setNotes] = useState([]);
   const [groupCollapsed, setGroupCollapsed] = useState(collapsed);
-  const [groupID, setGroupID] = useState(group.id);
 
   const getNotesForGroup = async () => {
     try {
-      const response = await fetch(`/api/stickynotes?group_id=${groupID}`);
+      const response = await fetch(`/api/stickynotes?group_id=${group.id}`);
       const data = await response.json();
       setNotes(data);
     } catch(error) {
@@ -29,7 +28,7 @@ const StickyNoteGroup = ({
   }
 
   const deleteGroup = async () => {
-    const response = await fetch(`/api/stickynote_groups/${groupID}`, {
+    const response = await fetch(`/api/stickynote_groups/${group.id}`, {
       method: 'DELETE'
     });
 
@@ -73,11 +72,12 @@ const StickyNoteGroup = ({
   }
 
   useEffect(() => {
+    console.log('group render');
     getNotesForGroup();
   }, [])
 
   return (
-    <div className={`sticky-notes-group ${group.color}`} id={groupID}>
+    <div className={`sticky-notes-group ${group.color}`} id={group.id}>
       <div className={`group-header ${groupCollapsed ? 'collapsed' : ''}`}>
           <div className="group-title">
             <div onClick={() => {setGroupCollapsed((state) => !state)}} className="toggle-group-collapsible">
