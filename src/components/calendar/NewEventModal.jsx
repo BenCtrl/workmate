@@ -12,9 +12,8 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
     event.preventDefault();
 
     const newEvent = {
-      "title": eventTitle,
-      "timestamp": Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHour}:${eventMinute}`),
-      "dateCreated": new Date().now
+      title: eventTitle,
+      event_timestamp: Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHour}:${eventMinute}`)
     }
 
     try {

@@ -54,7 +54,7 @@ const CalendarPlanner = () => {
     let eventCount = 0;
 
     calendarEvents.forEach((event) => {
-      date.setHours(0,0,0,0) === new Date(event.timestamp).setHours(0,0,0,0) && eventCount++;
+      date.setHours(0,0,0,0) === new Date(event.event_timestamp).setHours(0,0,0,0) && eventCount++;
     })
 
     return eventCount;
@@ -79,10 +79,10 @@ const CalendarPlanner = () => {
             getEventCount(dateSelected) > 0 ?
             <ul className="current-day-events-list">
               {calendarEvents.map((event) => {
-                if (dateSelected.setHours(0,0,0,0) === new Date(event.timestamp).setHours(0,0,0,0)) {
+                if (dateSelected.setHours(0,0,0,0) === new Date(event.event_timestamp).setHours(0,0,0,0)) {
                   return <li key={event.id} className="current-day-event">
                     <span>
-                      <span className="current-day-event-timestamp">{new Date(event.timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
+                      <span className="current-day-event-timestamp">{new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
                       {event.title}
                     </span>
                     <Button className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<HiOutlineTrash />} toolTip="Delete event" />
