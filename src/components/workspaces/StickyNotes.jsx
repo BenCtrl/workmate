@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom';
 import { HiOutlineRectangleStack } from "react-icons/hi2";
 
-import { Button, Modal } from '../common/CommonComponents'
+import { Button, Modal } from '../CommonComponents'
 import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
 import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
 import '../../styling/noteslist.css'

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import { Alert, Button, CheckBoxSlider } from '../common/CommonComponents';
+import { Alert, Button, CheckBoxSlider } from '../CommonComponents';
 import { AppSettingsContext } from '../../App';
 import '../../styling/appsettings.css';
 

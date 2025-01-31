@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { HiOutlineTrash } from "react-icons/hi2";
 
-import { Button, Checkbox } from '../common/CommonComponents';
+import { Button, Checkbox } from '../CommonComponents';
 import StickyNoteEditor from './StickyNoteEditor';
 import '../../styling/stickynote.css';
 

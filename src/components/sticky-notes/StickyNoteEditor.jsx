@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { HiXMark } from "react-icons/hi2";
 import { FaRegFloppyDisk } from "react-icons/fa6";
 
-import { Button } from '../common/CommonComponents';
+import { Button } from '../CommonComponents';
 
 const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupID}) => {
   const textAreaRef = useRef(null);

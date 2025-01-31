@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaChevronRight, FaChevronDown  } from "react-icons/fa";
 import { HiOutlineTrash } from 'react-icons/hi2';
 
-import { Button } from '../common/CommonComponents';
+import { Button } from '../CommonComponents';
 import StickyNotesList from './StickyNotesList';
 
 /**

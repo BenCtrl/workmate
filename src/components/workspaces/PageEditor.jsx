@@ -21,7 +21,7 @@ import CodeBlock from '@tiptap/extension-code-block';
 import TextStyle from '@tiptap/extension-text-style';
 import CharacterCount from '@tiptap/extension-character-count';
 
-import { Button } from '../common/CommonComponents';
+import { Button } from '../CommonComponents';
 import { AppSettingsContext } from '../../App';
 import { addPageLoader, updatePageLoader } from './Pages';
 import '../../styling/page-editor.css';

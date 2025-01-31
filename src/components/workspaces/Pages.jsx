@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiOutlineDocumentPlus, HiMiniMagnifyingGlass } from "react-icons/hi2";
 
-import { Button, Input } from '../common/CommonComponents'
+import { Button, Input } from '../CommonComponents'
 import PageListItem from '../pages/PageListItem';
 import '../../styling/pagelist.css';
 

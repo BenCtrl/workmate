@@ -9,7 +9,7 @@ import {
   HiOutlineTrash 
 } from "react-icons/hi2";
 
-import { Button, Modal } from '../common/CommonComponents'
+import { Button, Modal } from '../CommonComponents'
 import Calendar from 'react-calendar';
 import NewEventModal from '../calendar/NewEventModal';
 import '../../styling/calendar.css';
