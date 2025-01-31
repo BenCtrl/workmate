@@ -29,8 +29,7 @@ server.get('/api/app_settings', (request, response) => {
       return;
     }
 
-    const app_data = JSON.parse(data)
-    response.send(app_data.settings);
+    response.send(JSON.parse(data));
   });
 })
 
