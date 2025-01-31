@@ -13,8 +13,6 @@ const StickyNotesList = ({stickyNotes, addNote, updateNote, deleteNote, group}) 
         {stickyNotes.map((stickyNote) => {
           const stickyNoteComponent = <StickyNote key={stickyNote.id} groupID={group.id} stickyNote={stickyNote} updateNoteSubmit={updateNote} deleteNote={deleteNote} />;
 
-          return stickyNoteComponent;
-
           if (SETTINGS.HIDE_COMPLETED_NOTES) {
             if (!stickyNote.completed) {
               return stickyNoteComponent

@@ -23,6 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-src/appdata.json
+src/app_settings.json
 workmate.db
 queries.sql

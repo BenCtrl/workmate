@@ -10,7 +10,7 @@ function App() {
 
   const fetchAppSettings = async () => {
     try {
-      const response = await fetch('/api/settings');
+      const response = await fetch('/api/app_settings');
       const data = await response.json();
       setAppSettings(data);
     } catch(error) {

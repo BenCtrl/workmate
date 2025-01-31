@@ -6,6 +6,7 @@ import pageRoutes from './routes/pages.js'
 import eventRoutes from './routes/events.js'
 import logger from './middleware/logger.js';
 import errorHandler from './middleware/error.js';
+import fs from 'fs';
 
 const server = express();
 const port = 8080;
@@ -20,6 +21,31 @@ server.use('/api/stickynotes', noteRoutes);
 server.use('/api/stickynote_groups', noteGroups);
 server.use('/api/pages', pageRoutes);
 server.use('/api/events', eventRoutes);
+
+server.get('/api/app_settings', (request, response) => {
+  fs.readFile('./src/app_settings.json', 'utf8', (error, data) => {
+    if (error) {
+      response.status(500).send(error);
+      return;
+    }
+
+    const app_data = JSON.parse(data)
+    response.send(app_data.settings);
+  });
+})
+
+server.put('/api/app_settings', (request, response) => {
+  const app_settings = request.body;
+
+  fs.writeFile('./src/app_settings.json', JSON.stringify(app_settings), 'utf8', (error) => {
+    if (error) {
+      response.status(500).send(error);
+      return;
+    }
+    response.send('Data updated successfully');
+  });
+});
+
 
 server.use(errorHandler);
 

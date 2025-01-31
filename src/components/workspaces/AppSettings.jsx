@@ -23,7 +23,7 @@ const AppSettings = () => {
     }
 
     try {
-      await fetch(`/api/settings`, {
+      await fetch(`/api/app_settings`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
