@@ -9,8 +9,7 @@ const PageListItem = ({page, deletePage}) => {
     <li className="page-list-item">
       <NavLink to={`/pages/editor/${page.id}`}>
         <span className="page-list-item-title"><b>{page.title}</b></span>
-        <span className="page-list-item-description">{page.description}</span>
-        <span className="page-list-item-date-edited"><span>Last Edited: </span>{new Date(page.dateTimeEdited).toLocaleDateString()} | {new Date(page.dateTimeEdited).toLocaleTimeString([], {timeStyle: 'short'})}</span>
+        <span className="page-list-item-date-edited"><span>Last Edited: </span>{new Date(page.edited_timestamp).toLocaleDateString()} | {new Date(page.edited_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
       </NavLink>
       <Button className="page-list-item-options" onClick={() => {deletePage(page.id)}} children={<HiOutlineTrash />} toolTip="Delete page" />
     </li>

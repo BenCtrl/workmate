@@ -44,7 +44,7 @@ const PageEditor = () => {
   const [changesMade, setChangesMade] = useState(false);
   const [confirmHeading, setConfirmHeading] = useState(false);
 
-  const content = page ? page.pageContent : '<p style="color: #9d9d9d">Start your new page!</p>';
+  const content = page ? JSON.parse(page.page_content) : '<p style="color: #9d9d9d">Start your new page!</p>';
   const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const editor = useEditor({
@@ -60,10 +60,9 @@ const PageEditor = () => {
 
     const newPageData = {
       title: pageHeader,
-      description: "",
-      dateTimeCreated: page ? page.dateTimeCreated : Date.now(),
-      dateTimeEdited: Date.now(),
-      pageContent: editor.getJSON()
+      page_content: JSON.stringify(editor.getJSON()),
+      created_timestamp: page ? page.created_timestamp : Date.now(),
+      edited_timestamp: Date.now()
     }
 
     // Crude solution for embedding existing page ID into request body, more elegant solution should be found
