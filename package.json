@@ -26,7 +26,8 @@
     "react-calendar": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.2.5",
