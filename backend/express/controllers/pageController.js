@@ -1,58 +1,70 @@
 import Database from "better-sqlite3";
-const database = new Database('workmate.db', {});
+import { getLogger } from "../../../src/features/logging/logging.js";
 
-export const getPages = (request, response, nextMiddleWare) => {
+const database = new Database('workmate.db', {});
+const apiLogger = getLogger('workmate_api');
+
+export const getPages = (request, response, errorHandlerMiddleware) => {
   try {
-    response.json(database.prepare('SELECT * FROM pages;').all());
+    const pages = database.prepare('SELECT * FROM pages;').all();
+    apiLogger.info('Successfully retrieved all pages');
+
+    response.json(pages);
   } catch (error) {
-    return nextMiddleWare(new Error(error));
+    return errorHandlerMiddleware(new Error(error));
   }
 }
 
-export const getPage = (request, response, nextMiddleWare) => {
+export const getPage = (request, response, errorHandlerMiddleware) => {
   try {
     const pageID = request.params.id;
-    response.status(200).json(database.prepare('SELECT * FROM pages WHERE id = ?').get(pageID));
+    const page = database.prepare('SELECT * FROM pages WHERE id = ?').get(pageID);
+    apiLogger.info(`Successfully retrieved page with ID '${pageID}'`);
+
+    response.status(200).json(page);
   } catch (error) {
-    return nextMiddleWare(new Error(error));
+    return errorHandlerMiddleware(new Error(error));
   }
 }
 
-export const createPage = (request, response, nextMiddleWare) => {
+export const createPage = (request, response, errorHandlerMiddleware) => {
   try {
-    console.log(request.body);
     const pageTitle = request.body.title;
     const pageContent = request.body.page_content;
 
-    const preparedStatement = database.prepare('INSERT INTO pages (title, page_content) VALUES (?, ?) RETURNING id');
+    const page = database.prepare('INSERT INTO pages (title, page_content) VALUES (?, ?) RETURNING id').get(pageTitle, pageContent);
+    apiLogger.info(`Successfully created new page with ID '${page.id}'`);
 
-    response.status(201).json(preparedStatement.get(pageTitle, pageContent));
+    response.status(201).json(page);
   } catch (error) {
-    return nextMiddleWare(new Error(error));
+    return errorHandlerMiddleware(new Error(error));
   }
 }
 
-export const updatePage = (request, response, nextMiddleWare) => {
+export const updatePage = (request, response, errorHandlerMiddleware) => {
   try {
     const pageID = request.params.id;
     const pageTitle = request.body.title;
     const pageContent = request.body.page_content;
     const pageEditedTimeStamp = request.body.edited_timestamp;
 
-    const preparedStatement = database.prepare('UPDATE pages SET title = ?, page_content = ?, edited_timestamp = ? WHERE id = ?');
-    response.status(204).json(preparedStatement.run(pageTitle, pageContent, pageEditedTimeStamp, pageID));
+    const updatedPage = database.prepare('UPDATE pages SET title = ?, page_content = ?, edited_timestamp = ? WHERE id = ?').run(pageTitle, pageContent, pageEditedTimeStamp, pageID);
+    apiLogger.info(`Successfully updated page with ID '${pageID}'`);
+
+    response.status(204).json(updatedPage);
   } catch (error) {
-    return nextMiddleWare(new Error(error));
+    return errorHandlerMiddleware(new Error(error));
   }
 }
 
-export const deletePage = (request, response, nextMiddleWare) => {
+export const deletePage = (request, response, errorHandlerMiddleware) => {
   try {
     const pageID = request.params.id;
-    const preparedStatement = database.prepare('DELETE FROM pages WHERE id = ?');
+    const deletePage = database.prepare('DELETE FROM pages WHERE id = ?').run(pageID);
+    apiLogger.info(`Successfully deleted page with ID '${pageID}'`);
 
-    response.status(200).json(preparedStatement.run(pageID));
+    response.status(200).json(deletePage);
   } catch (error) {
-    return nextMiddleWare(new Error(error));
+    return errorHandlerMiddleware(new Error(error));
   }
 }
