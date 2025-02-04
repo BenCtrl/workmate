@@ -7,24 +7,21 @@ import '../../styling/stickynote.css';
 
 const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
   const [updatingNote, setUpdatingNote] = useState(false);
-  const [noteCompleted, setNoteCompleted] = useState(false);
+  const [noteCompleted, setNoteCompleted] = useState(stickyNote.completed);
 
-  useEffect(() => {
-    setNoteCompleted(stickyNote.completed);
-  }, [])
-
-  useEffect(() => {
+  const updateNote = () => {
     const newNote = {
       id: stickyNote.id,
       content: stickyNote.content,
-      completed: noteCompleted,
+      completed: !noteCompleted,
       dateTimeCreated: stickyNote.dateTimeCreated,
       dateTimeEdited: Date.now(),
       group_id: groupID
     }
 
     updateNoteSubmit(newNote);
-  }, [noteCompleted])
+    setNoteCompleted((state) => !state);
+  }
 
   return (
     <>
@@ -37,7 +34,7 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
           <div className={`sticky-note ${noteCompleted && 'completed'}`}>
             <div onClick={() => {setUpdatingNote((state) => !state);}} className='content'>{stickyNote.content}</div>
 
-            <Checkbox className="outline note-completed-checkbox" onChange={() => {setNoteCompleted((state) => !state)}} checked={noteCompleted} toolTip={'Mark note as completed'} />
+            <Checkbox className="outline note-completed-checkbox" onChange={() => {updateNote()}} checked={noteCompleted} toolTip={'Mark note as completed'} />
             <div className='delete-note'>
               <Button children={<HiOutlineTrash />} onClick={() => {deleteNote(stickyNote.id)}} toolTip={'Delete note'}/>
             </div>
