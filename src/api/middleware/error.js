@@ -1,4 +1,4 @@
-import { getLogger } from "../../../src/features/logging/logging.js";
+import { getLogger } from "../../logging/logging.js";
 
 const apiLogger = getLogger('workmate_api');
 

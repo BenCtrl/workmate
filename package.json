@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "json-server": "json-server --watch src/appdata.json --port 8000",
-    "server": "node --watch backend/express/server.js",
+    "server": "node --watch src/api/server.js",
     "dev-desktop": "npm run server & npx tauri dev"
   },
   "dependencies": {

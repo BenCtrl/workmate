@@ -1,6 +1,6 @@
 // import database from '../server.js';
 import Database from "better-sqlite3";
-import { getLogger } from "../../../src/features/logging/logging.js";
+import { getLogger } from "../../logging/logging.js";
 
 const database = new Database('workmate.db', {});
 const apiLogger = getLogger('workmate_api');

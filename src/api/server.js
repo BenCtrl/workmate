@@ -7,7 +7,7 @@ import eventRoutes from './routes/events.js'
 import logger from './middleware/logger.js';
 import errorHandler from './middleware/error.js';
 import fs from 'fs';
-import { getLogger } from '../../src/features/logging/logging.js';
+import { getLogger } from '../logging/logging.js';
 
 const server = express();
 const port = 8080;
