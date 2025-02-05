@@ -33,7 +33,7 @@ const NotesList = () => {
       <div id="notes-list-wrapper">
         {groups.map((group) => {
           // Skip over default group to avoid duplicate render of group (ID is always assumed as 1 as should be primary group)
-          return group.id <= 1 ? <StickyNoteGroup group={group} collapsed={true} isDefault={true} /> : <StickyNoteGroup key={group.id} getGroups={fetchGroups} group={group} />
+          return group.id <= 1 ? <StickyNoteGroup key={group.id} group={group} collapsed={true} isDefault={true} /> : <StickyNoteGroup key={group.id} getGroups={fetchGroups} group={group} />
         })}
       </div>
 

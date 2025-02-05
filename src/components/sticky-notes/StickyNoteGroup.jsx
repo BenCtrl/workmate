@@ -72,7 +72,6 @@ const StickyNoteGroup = ({
   }
 
   useEffect(() => {
-    console.log('group render');
     getNotesForGroup();
   }, [])
 
