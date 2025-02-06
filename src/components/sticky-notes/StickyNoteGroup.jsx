@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaChevronRight, FaChevronDown  } from "react-icons/fa";
 import { HiOutlineTrash } from 'react-icons/hi2';
 
+import database from '../../database/database';
 import { Button } from '../CommonComponents';
 import StickyNotesList from './StickyNotesList';
 
@@ -19,56 +20,54 @@ const StickyNoteGroup = ({
 
   const getNotesForGroup = async () => {
     try {
-      const response = await fetch(`/api/stickynotes?group_id=${group.id}`);
-      const data = await response.json();
-      setNotes(data);
+      const result = await database.select('SELECT notes.* FROM notes INNER JOIN note_groups ON notes.group_id = note_groups.id WHERE note_groups.id = $1', [group.id]);
+      setNotes(result);
     } catch(error) {
-        console.log('Error fetching data', error);
+      console.log(`Error while retrieving notes for group with ID '${group.id}'`, error);
     }
   }
 
   const deleteGroup = async () => {
-    const response = await fetch(`/api/stickynote_groups/${group.id}`, {
-      method: 'DELETE'
-    });
+    try {
+      const deleteGroupNotes = await database.execute('DELETE FROM notes WHERE group_id IN (SELECT group_id FROM notes INNER JOIN note_groups ON notes.group_id = note_groups.id WHERE note_groups.id = $1)', [group.id]);
+      const deleteGroup = await database.execute('DELETE FROM note_groups WHERE id = $1', [group.id]);
 
-    getGroups();
-    return;
+      getGroups();
+    } catch(error) {
+      console.log(`Error while deleting group with ID '${group.id}'`, error);
+    }
   }
 
   const addNote = async (newNote) => {
-    const response = await fetch('/api/stickynotes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newNote)
-    });
+    try {
+      const noteCompleted = (newNote.completed) ?  1 : 0;
 
-    getNotesForGroup();
-    return;
+      const result = await database.execute('INSERT INTO notes (content, completed, group_id) VALUES ($1, $2, $3)', [newNote.content, noteCompleted, newNote.group_id]);
+      getNotesForGroup();
+    } catch(error) {
+      console.log('Error while creating new note', error);
+    }
   }
 
   const updateNote = async (note) => {
-    const response = await fetch(`/api/stickynotes/${note.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(note)
-    });
+    try {
+      const noteCompleted = (note.completed) ?  1 : 0;
+      const result = await database.execute('UPDATE notes SET content = $1, completed = $2, edited_timestamp = $3 WHERE id = $4', [note.content, noteCompleted, note.dateTimeEdited, note.id]);
+      console.log(result);
 
-    getNotesForGroup();
-    return;
+      getNotesForGroup();
+    } catch(error) {
+      console.log(`Error while updating note with ID '${note.id}'`, error);
+    }
   }
 
   const deleteNote = async (id) => {
-    const res = await fetch(`/api/stickynotes/${id}`, {
-      method: 'DELETE'
-    });
-
-    getNotesForGroup();
-    return;
+    try {
+      const result = await database.execute('DELETE FROM notes WHERE id = $1', [id]);
+      getNotesForGroup();
+    } catch(error) {
+      console.log(`Error while deleting note with ID '${id}'`, error);
+    }
   }
 
   useEffect(() => {

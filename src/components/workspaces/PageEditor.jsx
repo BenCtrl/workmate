@@ -21,6 +21,7 @@ import CodeBlock from '@tiptap/extension-code-block';
 import TextStyle from '@tiptap/extension-text-style';
 import CharacterCount from '@tiptap/extension-character-count';
 
+import database from '../../database/database';
 import { Button } from '../CommonComponents';
 import { AppSettingsContext } from '../../App';
 import { addPageLoader, updatePageLoader } from './Pages';
@@ -72,8 +73,8 @@ const PageEditor = () => {
 
     try {
       if (buttonId === 'page-save-as' || buttonId === 'page-save' && !page) {
-        const newPage = await addPageLoader(newPageData);
-        navigate(`/pages/editor/${newPage.id}`);
+        const newPageID = await addPageLoader(newPageData);
+        navigate(`/pages/editor/${newPageID}`);
       } else {
         updatePageLoader(newPageData);
       }
@@ -134,8 +135,12 @@ const PageEditor = () => {
 }
 
 const pageLoader = async ({params}) => {
-  const response = await fetch(`/api/pages/${params.id}`);
-  return await response.json();
+  try {
+    const pages = await database.select('SELECT * FROM pages WHERE id = $1;', [params.id]);
+    return pages[0];
+  } catch(error) {
+    console.log(`Error while retrieving page with ID '${params.id}'`, error);
+  }
 }
 
 export { PageEditor as default, pageLoader };

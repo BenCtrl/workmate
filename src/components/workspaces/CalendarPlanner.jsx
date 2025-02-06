@@ -9,6 +9,7 @@ import {
   HiOutlineTrash 
 } from "react-icons/hi2";
 
+import database from '../../database/database';
 import { Button, Modal } from '../CommonComponents'
 import Calendar from 'react-calendar';
 import NewEventModal from '../calendar/NewEventModal';
@@ -31,23 +32,20 @@ const CalendarPlanner = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch('/api/events');
-      const data = await response.json();
-
-      setCalendarEvents(data);
-      console.log('Successfully fetched events!');
+      const events = await database.select('SELECT * FROM events;');
+      setCalendarEvents(events);
     } catch(error) {
-        console.log('Error fetching calendar events...', error);
+      console.log('Error while retrieving all events', error);
     }
   }
 
   const deleteEvent = async (id) => {
-    const res = await fetch(`/api/events/${id}`, {
-      method: 'DELETE'
-    });
-
-    fetchEvents();
-    return;
+    try {
+      const result = await database.execute('DELETE FROM events WHERE id = $1;', [id]);
+      fetchEvents();
+    } catch(error) {
+      console.log(`Error while deleting event with ID '${id}'`, error);
+    }
   }
 
   const getEventCount = (date) => {
@@ -108,7 +106,7 @@ const CalendarPlanner = () => {
       prev2Label={<HiChevronDoubleLeft/>}
       formatDay={(locale, date) => <div>
         {getEventCount(date) > 0 && <span className="event-indicator">{getEventCount(date)}</span>}
-        <span class="date-of-month">{date.getDate()}</span>
+        <span className="date-of-month">{date.getDate()}</span>
       </div>}
       />
 

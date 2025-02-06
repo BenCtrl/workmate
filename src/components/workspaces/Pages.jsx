@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HiOutlineDocumentPlus, HiMiniMagnifyingGlass } from "react-icons/hi2";
 
+import database from '../../database/database';
 import { Button, Input } from '../CommonComponents'
 import PageListItem from '../pages/PageListItem';
 import '../../styling/pagelist.css';
@@ -17,18 +18,19 @@ const Pages = () => {
 
   const fetchPages = async () => {
     try {
-        const response = await fetch('/api/pages');
-        const data = await response.json();
-        setPages(data);
+      const pages = await database.select('SELECT * FROM pages;');
+      setPages(pages);
     } catch(error) {
-        console.log('Error fetching data', error);
+      console.log('Error while retrieving pages', error);
     }
   };
 
   const deletePage = async (id) => {
-    const res = await fetch(`/api/pages/${id}`, {
-      method: 'DELETE'
-    });
+    try {
+      const results = await database.execute('DELETE FROM pages WHERE id = $1;', [id]);
+    } catch(error) {
+      console.log(`Error while deleting page with ID '${id}'`, error);
+    }
 
     fetchPages();
     return;
@@ -63,28 +65,21 @@ const Pages = () => {
 }
 
 const addPageLoader = async (newPage) => {
-  const response = await fetch('/api/pages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(newPage)
-  });
-
-  const newPageData = await response.json();
-  return newPageData;
+  try {
+    const res = await database.select('INSERT INTO pages (title, page_content) VALUES ($1, $2) RETURNING id;', [newPage.title, newPage.page_content]);
+    return res[0].id;
+  } catch(error) {
+    console.log('Error while creating new page', error);
+  }
 }
 
 const updatePageLoader = async (page) => {
-  const response = await fetch(`/api/pages/${page.id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(page)
-  });
-
-  return;
+  try {
+    const response = await database.select('UPDATE pages SET title = $1, page_content = $2, edited_timestamp = $3 WHERE id = $4;', [page.title, page.page_content, page.edited_timestamp, page.id]);
+    return response;
+  } catch(error) {
+    console.log(`Error while updating page with ID '${page.id}'`, error);
+  }
 }
 
 export {Pages as default, addPageLoader, updatePageLoader}

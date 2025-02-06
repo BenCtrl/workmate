@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import database from '../../database/database';
 import { Button, Input } from '../CommonComponents';
 
 /**
@@ -12,21 +13,12 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
   const addGroup = async (submitEvent) => {
     submitEvent.preventDefault();
 
-    const newGroup = {
-      title: groupTitle,
-      color: groupColor
+    try {
+      const result = await database.execute('INSERT INTO note_groups (title, color) VALUES ($1, $2);', [groupTitle, groupColor]);
+      onNewGroupSubmit();
+    } catch(error) {
+      console.log('Error while creating new note group', error);
     }
-
-    const response = await fetch('/api/stickynote_groups', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newGroup)
-    });
-
-    onNewGroupSubmit();
-    return;
   }
 
   return (

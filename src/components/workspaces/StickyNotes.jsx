@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom';
 import { HiOutlineRectangleStack } from "react-icons/hi2";
 
+import database from '../../database/database';
 import { Button, Modal } from '../CommonComponents'
 import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
 import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
@@ -13,11 +14,10 @@ const NotesList = () => {
 
   const fetchGroups = async () => {
     try {
-        const response = await fetch('/api/stickynote_groups');
-        const data = await response.json();
-        setGroups(data);
+      const groups = await database.select('SELECT * FROM note_groups;');
+      setGroups(groups);
     } catch(error) {
-        console.log('Error fetching data', error);
+      console.log('Error while retrieving note groups', error);
     }
   };
 

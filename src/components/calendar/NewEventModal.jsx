@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HiOutlineClock } from "react-icons/hi2";
 
+import database from '../../database/database';
 import {Button, Input} from '../CommonComponents';
 
 const NewEventModal = ({eventDate, onNewEventSubmit}) => {
@@ -11,26 +12,12 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
   const createEvent = async (event) => {
     event.preventDefault();
 
-    const newEvent = {
-      title: eventTitle,
-      event_timestamp: Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHour}:${eventMinute}`)
-    }
-
     try {
-      await fetch(`/api/events`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newEvent)
-      });
-      console.log('Successfully created new event!');
+      const result = await database.execute('INSERT INTO events (title, event_timestamp) VALUES ($1, $2) RETURNING id;', [eventTitle, Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHour}:${eventMinute}`)]);
+      onNewEventSubmit();
     } catch(error) {
-        console.log('Error while creating new event', error);
+      console.log('Error while creating new calendar event', error);
     }
-
-    onNewEventSubmit();
-    return;
   }
 
   return (
