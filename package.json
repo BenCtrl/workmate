@@ -13,6 +13,7 @@
     "dev-desktop": "npm run server & npx tauri dev"
   },
   "dependencies": {
+    "@tauri-apps/plugin-sql": "^2.2.0",
     "@tiptap/extension-character-count": "^2.10.4",
     "@tiptap/extension-code-block": "^2.10.3",
     "@tiptap/extension-hard-break": "^2.10.3",
