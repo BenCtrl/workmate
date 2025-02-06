@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Workmate",
-  "version": "1.0.0-SNAPSHOT",
+  "version": "1.0.0",
   "identifier": "com.bentrl.workmate",
   "build": {
     "frontendDist": "../dist",
@@ -26,6 +26,6 @@
   "bundle": {
     "active": true,
     "targets": "all",
-    "icon": ["icons/logo-test-32.png"]
+    "icon": ["icons/logo.ico"]
   }
 }
