@@ -9,10 +9,10 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "json-server": "json-server --watch src/appdata.json --port 8000",
-    "server": "node --watch src/api/server.js",
-    "dev-desktop": "npm run server & npx tauri dev"
+    "dev-desktop": "npx tauri dev"
   },
   "dependencies": {
+    "@tauri-apps/plugin-fs": "^2.2.0",
     "@tauri-apps/plugin-sql": "^2.2.0",
     "@tiptap/extension-character-count": "^2.10.4",
     "@tiptap/extension-code-block": "^2.10.3",

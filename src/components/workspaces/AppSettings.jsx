@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { writeTextFile, BaseDirectory } from '@tauri-apps/plugin-fs';
 
 import { Alert, Button, CheckBoxSlider } from '../CommonComponents';
 import { AppSettingsContext } from '../../App';
@@ -23,13 +24,7 @@ const AppSettings = () => {
     }
 
     try {
-      await fetch(`/api/app_settings`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newSettings)
-      });
+      await writeTextFile('app_settings.json', JSON.stringify(newSettings), {baseDir: BaseDirectory.AppData});
 
       setAppSettings(newSettings);
       setChangesMade(false);
@@ -37,8 +32,6 @@ const AppSettings = () => {
     } catch(error) {
         console.log('Error while saving settings', error);
     }
-
-    return;
   }
 
   return (
