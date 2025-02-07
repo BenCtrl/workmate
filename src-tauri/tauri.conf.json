@@ -15,8 +15,12 @@
         "title": "Workmate",
         "width": 1280,
         "height": 720,
+        "minWidth": 720,
+        "minHeight": 480,
+        "maximized": true,
         "resizable": true,
-        "fullscreen": false
+        "fullscreen": false,
+        "decorations": false
       }
     ],
     "security": {
@@ -26,6 +30,6 @@
   "bundle": {
     "active": true,
     "targets": "all",
-    "icon": ["icons/logo.ico"]
+    "icon": ["icons/workmate-logo.ico"]
   }
 }

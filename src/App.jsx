@@ -3,6 +3,7 @@ import { create, exists, BaseDirectory, readTextFile } from "@tauri-apps/plugin-
 import NavBar from "./components/core/NavBar"
 import WorkSpace from "./components/core/WorkSpace"
 import './styling/shared.css'
+import TitleBar from "./components/core/TitleBar";
 
 export const AppSettingsContext = createContext(null);
 
@@ -41,6 +42,7 @@ function App() {
       appSettings,
       setAppSettings
     }}>
+      <TitleBar />
       <NavBar />
       <WorkSpace />
     </AppSettingsContext.Provider>
