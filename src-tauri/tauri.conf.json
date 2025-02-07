@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Workmate",
   "version": "1.0.0",
-  "identifier": "com.bentrl.workmate",
+  "identifier": "com.benctrl.workmate",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",

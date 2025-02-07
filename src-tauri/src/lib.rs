@@ -26,7 +26,13 @@ pub fn run() {
       description: "create events groups table",
       sql: "CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, title TEXT NOT NULL, event_timestamp INTEGER DEFAULT(unixepoch('subsec') * 1000) NOT NULL);",
       kind: MigrationKind::Up,
-    }
+    },
+    Migration {
+      version: 5,
+      description: "create default note group",
+      sql: "INSERT INTO note_groups (title, color) VALUES ('Sticky Notes', 'yellow');",
+      kind: MigrationKind::Up,
+    },
   ];
 
   tauri::Builder::default()
