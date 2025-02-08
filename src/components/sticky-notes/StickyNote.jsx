@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { HiOutlineTrash } from "react-icons/hi2";
+import React, { useState } from 'react';
 
 import { Button, Checkbox } from '../CommonComponents';
+import { Trash } from '../Icons';
+
 import StickyNoteEditor from './StickyNoteEditor';
 import '../../styling/stickynote.css';
 
@@ -36,7 +37,7 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
 
             <Checkbox className="outline note-completed-checkbox" onChange={() => {updateNote()}} checked={noteCompleted} toolTip={'Mark note as completed'} />
             <div className='delete-note'>
-              <Button children={<HiOutlineTrash />} onClick={() => {deleteNote(stickyNote.id)}} toolTip={'Delete note'}/>
+              <Button children={<Trash />} onClick={() => {deleteNote(stickyNote.id)}} toolTip={'Delete note'}/>
             </div>
           </div>
       }

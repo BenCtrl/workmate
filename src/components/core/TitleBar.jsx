@@ -1,9 +1,8 @@
 import React from 'react'
 import { getCurrentWindow } from '@tauri-apps/api/window';
 
+import { X, Square, Minus } from '../Icons';
 import '../../styling/titlebar.css'
-import { HiMiniMinusSmall, HiMiniXMark } from "react-icons/hi2";
-import { MdOutlineCropSquare } from "react-icons/md";
 
 /**
  * Component used for desktop distributions of application, features app logo & window controls.
@@ -17,13 +16,13 @@ const TitleBar = () => {
 
       <div>
         <div class="titlebar-button" id="titlebar-minimize" onClick={() => {appWindow.minimize()}}>
-          <HiMiniMinusSmall />
+          <Minus />
         </div>
         <div class="titlebar-button" id="titlebar-maximize" onClick={() => {appWindow.toggleMaximize()}}>
-          <MdOutlineCropSquare />
+          <Square />
         </div>
         <div class="titlebar-button" id="titlebar-close" onClick={() => {appWindow.close()}}>
-          <HiMiniXMark />
+          <X />
         </div>
       </div>
     </div>

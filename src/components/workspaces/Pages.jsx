@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HiOutlineDocumentPlus, HiMiniMagnifyingGlass } from "react-icons/hi2";
 
 import database from '../../database/database';
+import { FileAdd, Search } from '../Icons';
 import { Button, Input } from '../CommonComponents'
 import PageListItem from '../pages/PageListItem';
 import '../../styling/pagelist.css';
@@ -43,8 +43,8 @@ const Pages = () => {
   return (
     <>
       <div id="pages-controls">
-        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto', fontSize: '1.4rem'}} children={<HiOutlineDocumentPlus />} toolTip={"Create new page"} onClick={() => {navigateTo("/pages/editor")}}/>
-        <Input icon={<HiMiniMagnifyingGlass />} id="pages-search" className="search-input page-control" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
+        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto', fontSize: '1.4rem'}} children={<FileAdd />} toolTip={"Create new page"} onClick={() => {navigateTo("/pages/editor")}}/>
+        <Input icon={<Search />} id="pages-search" className="search-input page-control" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
       </div>
 
       <ul id="pages-list">

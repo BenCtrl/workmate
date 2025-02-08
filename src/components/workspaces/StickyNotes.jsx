@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom';
-import { HiOutlineRectangleStack } from "react-icons/hi2";
+
+import { Button, Modal } from '../CommonComponents'
+import { Stack } from '../Icons';
 
 import database from '../../database/database';
-import { Button, Modal } from '../CommonComponents'
 import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
 import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
 import '../../styling/noteslist.css'
@@ -28,7 +29,7 @@ const NotesList = () => {
   return (
     <>
       <div className='sticky-notes-controls'>
-        <Button children={<HiOutlineRectangleStack />} toolTip={'Create new group'} onClick={() => {setShowGroupModal((state) => !state)}} />
+        <Button children={<Stack />} toolTip={'Create new group'} onClick={() => {setShowGroupModal((state) => !state)}} />
       </div>
       <div id="notes-list-wrapper">
         {groups.map((group) => {

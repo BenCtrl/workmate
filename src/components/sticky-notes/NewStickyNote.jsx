@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { HiMiniPlus } from "react-icons/hi2";
 
+import { Plus } from '../Icons';
 import StickyNoteEditor from './StickyNoteEditor';
 import '../../styling/stickynote.css';
 
@@ -17,7 +17,7 @@ const NewStickyNote = ({addNoteSubmit, groupID}) => {
             :
           <div onClick={() => {setCreatingNewNote((state) => !state);}} className='sticky-note new-sticky-note'>
             <div className='backing' />
-            <div className='new-note-icon'><HiMiniPlus/></div>
+            <div className='new-note-icon'><Plus /></div>
             <div className='content'>Create a new note...</div>
           </div>
       }

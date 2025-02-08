@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { HiXMark } from "react-icons/hi2";
-import { FaRegFloppyDisk } from "react-icons/fa6";
 
 import { Button } from '../CommonComponents';
+import { X, Save } from '../Icons';
 
 const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupID}) => {
   const textAreaRef = useRef(null);
@@ -57,8 +56,8 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
         className='new-note-input'
       />
       <div className="sticky-note-editing-controls">
-        <Button children={<HiXMark />} onClick={() => {editorEnabled((state) => !state); setStickyNoteContent('')}} toolTip={'Cancel note changes'}/>
-        <Button children={<FaRegFloppyDisk />} type="submit" toolTip={'Save note changes'}/>
+        <Button children={<X />} onClick={() => {editorEnabled((state) => !state); setStickyNoteContent('')}} toolTip={'Cancel note changes'}/>
+        <Button children={<Save />} type="submit" toolTip={'Save note changes'}/>
       </div>
     </form>
   )

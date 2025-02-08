@@ -1,7 +1,8 @@
 import React from 'react';
-import { HiXMark } from "react-icons/hi2";
 
 import { Button } from '../CommonComponents';
+import { X } from '../Icons';
+
 import '../../styling/modal.css';
 
 const Modal = ({ onClose, children, modalHeading }) => {
@@ -10,7 +11,7 @@ const Modal = ({ onClose, children, modalHeading }) => {
       <div className='modal'>
         <div className='modal-heading'>
           <h3>{modalHeading}</h3>
-          <Button children={<HiXMark />} onClick={onClose} toolTip={'Close modal'} />
+          <Button children={<X />} onClick={onClose} toolTip={'Close modal'} />
         </div>
         {children}
       </div>

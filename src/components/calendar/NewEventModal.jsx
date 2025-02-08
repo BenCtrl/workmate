@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { HiOutlineClock } from "react-icons/hi2";
+
+import {Button, Input} from '../CommonComponents';
+import { Clock } from '../Icons';
 
 import database from '../../database/database';
-import {Button, Input} from '../CommonComponents';
 
 const NewEventModal = ({eventDate, onNewEventSubmit}) => {
   const [eventTitle, setEventTitle] = useState('');
@@ -28,7 +29,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
 
           <div className="new-event-time-select">
             <span class="time-input-container">
-              <HiOutlineClock style={{marginLeft: '0.4rem'}}/>
+              <Clock style={{marginLeft: '0.4rem'}}/>
               <select value={eventHour} name="new-event-hour-select" id="new-event-hour-select" onChange={(changeEvent) => {setEventHour(changeEvent.target.value)}}>
                 <option value="00">00</option>
                 <option value="01">01</option>

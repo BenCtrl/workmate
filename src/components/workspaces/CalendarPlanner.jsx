@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { MdEvent } from "react-icons/md";
+import Calendar from 'react-calendar';
+
+import { Button, Modal } from '../CommonComponents'
 import {
-  HiChevronRight,
-  HiChevronDoubleRight,
-  HiChevronLeft,
-  HiChevronDoubleLeft,
-  HiOutlineTrash 
-} from "react-icons/hi2";
+  CalendarCheck,
+  ChevronLeft,
+  ChevronRight,
+  DoubleChevronLeft,
+  DoubleChevronRight,
+  Trash
+} from '../Icons';
 
 import database from '../../database/database';
-import { Button, Modal } from '../CommonComponents'
-import Calendar from 'react-calendar';
 import NewEventModal from '../calendar/NewEventModal';
 import '../../styling/calendar.css';
 
@@ -70,7 +71,7 @@ const CalendarPlanner = () => {
             <h2>Events</h2>
             <div className="calendar-day-summary-date">{new Intl.DateTimeFormat("en-GB", dateFormattingOptions).format(dateSelected === null ? date : dateSelected)}</div>
           </div>
-          <Button children={<MdEvent />} toolTip={"Create new event"} onClick={() => {setShowModal(true)}}/>
+          <Button children={<CalendarCheck />} toolTip={"Create new event"} onClick={() => {setShowModal(true)}}/>
         </div>
         <div className="current-day-summary">
           {
@@ -83,7 +84,7 @@ const CalendarPlanner = () => {
                       <span className="current-day-event-timestamp">{new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
                       {event.title}
                     </span>
-                    <Button className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<HiOutlineTrash />} toolTip="Delete event" />
+                    <Button className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<Trash />} toolTip="Delete event" />
                   </li>
                 }
               })}
@@ -100,10 +101,10 @@ const CalendarPlanner = () => {
         setDateSelected(value);
       }}
       value={date}
-      nextLabel={<HiChevronRight/>}
-      next2Label={<HiChevronDoubleRight/>}
-      prevLabel={<HiChevronLeft />}
-      prev2Label={<HiChevronDoubleLeft/>}
+      nextLabel={<ChevronRight/>}
+      next2Label={<DoubleChevronRight/>}
+      prevLabel={<ChevronLeft />}
+      prev2Label={<DoubleChevronLeft/>}
       formatDay={(locale, date) => <div>
         {getEventCount(date) > 0 && <span className="event-indicator">{getEventCount(date)}</span>}
         <span className="date-of-month">{date.getDate()}</span>

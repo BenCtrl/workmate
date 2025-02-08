@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { FaChevronRight, FaChevronDown  } from "react-icons/fa";
-import { HiOutlineTrash } from 'react-icons/hi2';
+
+import { Button } from '../CommonComponents';
+import { ChevronDown, ChevronRight, Trash } from '../Icons';
 
 import database from '../../database/database';
-import { Button } from '../CommonComponents';
 import StickyNotesList from './StickyNotesList';
 
 /**
@@ -78,13 +78,13 @@ const StickyNoteGroup = ({
     <div className={`sticky-notes-group ${group.color}`} id={group.id}>
       <div className={`group-header ${groupCollapsed ? 'collapsed' : ''}`}>
           <div className="group-title">
-            <div onClick={() => {setGroupCollapsed((state) => !state)}} className="toggle-group-collapsible">
-              {groupCollapsed ? <FaChevronDown /> : <FaChevronRight />}
+            <div style={{fontSize: '1.2rem'}} onClick={() => {setGroupCollapsed((state) => !state)}} className="toggle-group-collapsible">
+              {groupCollapsed ? <ChevronDown /> : <ChevronRight />}
             </div>
             {group.title}
           </div>
 
-          {!isDefault && <Button className='delete-group mini' children={<HiOutlineTrash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>}
+          {!isDefault && <Button className='delete-group mini' children={<Trash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>}
       </div>
 
       {/* {groupCollapsed && <StickyNotesList stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />} */}

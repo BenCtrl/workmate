@@ -2,24 +2,27 @@ import React, { useCallback, useState, useContext } from 'react';
 import { useLoaderData, useBeforeUnload, useNavigate } from 'react-router-dom';
 import { EditorContent, useEditor } from '@tiptap/react';
 
-import {
-  HiCodeBracket,
-  HiArrowUturnLeft,
-  HiArrowUturnRight,
-  HiCodeBracketSquare,
-  HiListBullet
-} from "react-icons/hi2";
-import { FiBold, FiItalic } from "react-icons/fi";
-import { LuSave, LuSaveAll  } from "react-icons/lu";
-import { AiOutlineStrikethrough } from "react-icons/ai";
-import { GrBlockQuote } from "react-icons/gr";
-import { MdOutlineHorizontalRule } from "react-icons/md";
-import { GoHeading, GoListOrdered } from "react-icons/go";
-
 import StarterKit from '@tiptap/starter-kit';
 import CodeBlock from '@tiptap/extension-code-block';
 import TextStyle from '@tiptap/extension-text-style';
 import CharacterCount from '@tiptap/extension-character-count';
+
+import {
+  ArrowLeft,
+  ArrowRight,
+  Bold,
+  Italic,
+  Strikethrough,
+  Code,
+  Codeblock,
+  QuoteBlock,
+  OrderedList,
+  UnorderedList,
+  HorizontalRule,
+  Heading,
+  FileText,
+  FileAdd
+} from '../Icons';
 
 import database from '../../database/database';
 import { Button } from '../CommonComponents';
@@ -93,24 +96,24 @@ const PageEditor = () => {
     <>
       <input value={pageHeader} onChange={(changeEvent) => {setPageHeader(changeEvent.target.value); setChangesMade(true)}} class="page-editor-title"></input>
       <div class="page-editor-nodes">
-        <Button toolTip="Undo" children={<HiArrowUturnLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
-        <Button toolTip="Redo" children={<HiArrowUturnRight />} onClick={() => {editor.chain().focus().redo().run()}}/>
+        <Button toolTip="Undo" children={<ArrowLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
+        <Button toolTip="Redo" children={<ArrowRight />} onClick={() => {editor.chain().focus().redo().run()}}/>
 
         <span className="page-editor-nodes-divider"></span>
 
-        <Button toolTip="Bold" children={<FiBold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
-        <Button toolTip="Italic" children={<FiItalic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
-        <Button toolTip="Strikethrough" children={<AiOutlineStrikethrough  />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
-        <Button toolTip="Code" children={<HiCodeBracket />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
-        <Button toolTip="Code block" children={<HiCodeBracketSquare />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
-        <Button toolTip="Block quote" children={<GrBlockQuote />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
-        <Button toolTip="Horizontal rule" children={<MdOutlineHorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
-        <Button toolTip="Bullet list" children={<HiListBullet />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
-        <Button toolTip="Ordered list" children={<GoListOrdered />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
+        <Button toolTip="Bold" children={<Bold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
+        <Button toolTip="Italic" children={<Italic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
+        <Button toolTip="Strikethrough" children={<Strikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
+        <Button toolTip="Code" children={<Code />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
+        <Button toolTip="Code block" children={<Codeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
+        <Button toolTip="Block quote" children={<QuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
+        <Button toolTip="Horizontal rule" children={<HorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
+        <Button toolTip="Bullet list" children={<UnorderedList />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
+        <Button toolTip="Ordered list" children={<OrderedList />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
 
         <span className="page-editor-nodes-divider"></span>
 
-        <Button toolTip="Apply heading" className={`${confirmHeading ? 'warning' : ''}`} children={<GoHeading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run(); setConfirmHeading(false)}}/>
+        <Button toolTip="Apply heading" className={`${confirmHeading ? 'warning' : ''}`} children={<Heading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run(); setConfirmHeading(false)}}/>
         {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
         <select onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value)); setConfirmHeading(true)}} id="heading-select">
         {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}
@@ -124,8 +127,8 @@ const PageEditor = () => {
 
         <span style={{marginLeft: 'auto'}} className="page-editor-nodes-divider"></span>
 
-        <Button id="page-save-as" children={<LuSaveAll />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
-        <Button id="page-save" children={<LuSave />} toolTip={"Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+        <Button id="page-save-as" children={<FileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
+        <Button id="page-save" children={<FileText />} toolTip={"Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
       </div>
 
       <EditorContent editor={editor} className='page-editor' />
