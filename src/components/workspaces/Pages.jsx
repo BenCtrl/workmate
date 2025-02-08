@@ -43,7 +43,7 @@ const Pages = () => {
   return (
     <>
       <div id="pages-controls">
-        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto', fontSize: '1.4rem'}} children={<FileAdd />} toolTip={"Create new page"} onClick={() => {navigateTo("/pages/editor")}}/>
+        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto'}} children={<FileAdd />} toolTip={"Create new page"} onClick={() => {navigateTo("/pages/editor")}}/>
         <Input icon={<Search />} id="pages-search" className="search-input page-control" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
       </div>
 

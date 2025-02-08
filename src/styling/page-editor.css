@@ -8,7 +8,15 @@
 .page-editor-nodes {
   display: flex;
   background-color: var(--page-background-accent-color);
-  padding: 1rem;
+  padding: 0.6rem;
+}
+
+.page-editor-nodes button:first-child {
+  margin: 0 0.5rem 0 0;
+}
+
+.page-editor-nodes button:last-child {
+  margin: 0 0 0 0.5rem;
 }
 
 .page-editor-nodes button,

@@ -19,6 +19,7 @@
 
 .react-calendar__navigation button {
   margin: 0;
+  height: unset;
 }
 
 button.react-calendar__navigation__next-button,
@@ -54,13 +55,13 @@ button.react-calendar__navigation__prev-button {
 }
 
 .react-calendar .react-calendar__viewContainer button {
-/* .react-calendar button { */
   margin: 0;
   box-shadow: none;
   border-radius: 0;
   border: 0.15rem solid var(--page-background-accent-color);
   background-color: var(--calendar-button-background-color);
   flex-grow: 1 !important;
+  height: unset;
 }
 
 button.react-calendar__tile {

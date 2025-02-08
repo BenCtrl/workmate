@@ -11,17 +11,17 @@ const TitleBar = () => {
   const appWindow = getCurrentWindow();
 
   return (
-    <div data-tauri-drag-region class="titlebar">
+    <div data-tauri-drag-region className="titlebar">
       <i className="app-identifier">workmate</i>
 
       <div>
-        <div class="titlebar-button" id="titlebar-minimize" onClick={() => {appWindow.minimize()}}>
+        <div className="titlebar-button" id="titlebar-minimize" title="Minimize" onClick={() => {appWindow.minimize()}}>
           <Minus />
         </div>
-        <div class="titlebar-button" id="titlebar-maximize" onClick={() => {appWindow.toggleMaximize()}}>
+        <div className="titlebar-button" id="titlebar-maximize" title="Toggle Maximize" onClick={() => {appWindow.toggleMaximize()}}>
           <Square />
         </div>
-        <div class="titlebar-button" id="titlebar-close" onClick={() => {appWindow.close()}}>
+        <div className="titlebar-button" id="titlebar-close" title="Close" onClick={() => {appWindow.close()}}>
           <X />
         </div>
       </div>

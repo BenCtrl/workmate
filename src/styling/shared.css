@@ -85,6 +85,7 @@ button, .navlink-button, select {
   transition: 0.1s;
   cursor: pointer;
   padding: 0.3rem 0.6rem;
+  height: fit-content;
   background-color: var(--button-background-color);
   color: var(--font-color);
   position: relative;
@@ -92,13 +93,11 @@ button, .navlink-button, select {
 
 button.mini {
   margin: 0.2rem;
-  padding: 0.2rem 0.4rem;
-  box-shadow: 0.20rem 0.20rem 0 0 var(--button-accent-color);
+  padding: 0.3rem 0.6rem;
 }
 
 button svg {
   display: flex;
-  font-size: 1rem;
 }
 
 button:disabled, button[disabled] {
