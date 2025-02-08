@@ -24,7 +24,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
   return (
     <>
       <form className="new-event-form" onSubmit={createEvent} action="">
-        <div className="new-event-form-input">
+        <div className="new-event-form-input modal-input">
           <Input name="new-event-title" id="new-event-title" placeholder='Title of Event' value={eventTitle} onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}} /> 
 
           <div className="new-event-time-select">

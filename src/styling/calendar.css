@@ -191,7 +191,6 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
 .new-event-form button,
