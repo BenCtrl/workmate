@@ -8,7 +8,7 @@
 #workspace {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1.5rem;
   flex-grow: 1;
 
   /* TODO - DELETE THIS BEFORE FIXING TOOLTIP OVERFLOW PROPERLY */
@@ -17,7 +17,7 @@
 
 #workspace::after {
   content: "workmate";
-  font-family: 'EuroTechnicExtendedBold';
+  font-family: 'Square';
   cursor: default;
   user-select: none;
   font-style: italic;

@@ -43,7 +43,6 @@ function App() {
       setAppSettings
     }}>
       <TitleBar />
-      <NavBar />
       <WorkSpace />
     </AppSettingsContext.Provider>
   )
