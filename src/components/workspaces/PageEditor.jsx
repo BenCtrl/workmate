@@ -64,7 +64,7 @@ const PageEditor = () => {
   const submitPage = async (buttonEvent) => {
     const buttonId = buttonEvent.currentTarget.id;
     
-    if (!pageHeader) {
+    if (!pageHeader.trim()) {
       toast.error('Page title cannot be empty');
       return;
     } else if (pageHeader.length > 64) {

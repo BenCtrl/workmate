@@ -18,7 +18,7 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
   const addGroup = async (submitEvent) => {
     submitEvent.preventDefault();
 
-    if (!groupTitle) {
+    if (!groupTitle.trim()) {
       handleIncomingAlert(true, 'Group title cannot be empty')
       return;
     } else if (await database.select('SELECT * FROM note_groups WHERE title = $1', [groupTitle]).then(result => {return result.length}) > 0) {

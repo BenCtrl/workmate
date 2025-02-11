@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { Button } from '../CommonComponents';
 import { X, Save } from '../Icons';
+import { toast } from 'react-toastify';
 
 const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupID}) => {
   const textAreaRef = useRef(null);
@@ -36,6 +37,11 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
       dateTimeCreated: Date.now(),
       dateTimeEdited: Date.now(),
       group_id: groupID
+    }
+
+    if (!stickyNoteContent.trim()) {
+      toast.error('Note content cannot be empty');
+      return;
     }
 
     noteSubmit(newNote);

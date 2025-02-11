@@ -19,7 +19,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
     event.preventDefault();
 
     try {
-      if (!eventTitle) {
+      if (!eventTitle.trim()) {
         handleIncomingAlert(true, 'Event title cannot be empty')
         return;
       }
