@@ -9,6 +9,7 @@ Simple work planner app, designed for ease of use & convenience over power. For 
  ## Demonstration Screenshots
 
 ![workmate sticky notes](demo/screenshots/stickynotes.png)
+![workmate page list](demo/screenshots/page-list.png)
 ![workmate page editor](demo/screenshots/page-editor.png)
 ![workmate calendar](demo/screenshots/calendar.png)
 ![workmate app settings](demo/screenshots/settings.png)
