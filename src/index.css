@@ -25,6 +25,10 @@
   --sticky-note-pink: #ff72ba;
   --sticky-note-green: #88ff72;
   --sticky-note-blue: #72beff;
+
+  --component-error: #ff4f4f;
+  --component-warning: #ffb121;
+  --component-success: #56d356;
 }
 
 /* Dark theming variables */

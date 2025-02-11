@@ -188,14 +188,19 @@ fieldset legend {
   padding: 0.3rem 0.6rem;
   position: relative;
   border-radius: 0.3rem;
+  font-weight: bold;
+}
+
+.alert.success {
+  background-color: var(--component-success);
 }
 
 .alert.warning {
-  background-color: #ffc04c;
+  background-color: var(--component-warning);
 }
 
 .alert.error {
-  background-color: #ff4f4f;
+  background-color: var(--component-error);
 }
 
 .checkbox-switch-container {

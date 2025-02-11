@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import {Button, Input} from '../CommonComponents';
+import {Alert, Button, Input} from '../CommonComponents';
 import { Clock } from '../Icons';
 
 import database from '../../database/database';
@@ -10,20 +10,38 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
   const [eventHour, setEventHour] = useState('00');
   const [eventMinute, setEventMinute] = useState('00');
 
+  // Alert state
+  const [showAlert, setShowAlert] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [alertType, sertAlertType] = useState('');
+
   const createEvent = async (event) => {
     event.preventDefault();
 
     try {
+      if (!eventTitle) {
+        handleIncomingAlert(true, 'Event title cannot be empty')
+        return;
+      }
+
       const result = await database.execute('INSERT INTO events (title, event_timestamp) VALUES ($1, $2) RETURNING id;', [eventTitle, Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHour}:${eventMinute}`)]);
+      handleIncomingAlert(false, `Event '${eventTitle}' successfully created`);
       onNewEventSubmit();
     } catch(error) {
       console.log('Error while creating new calendar event', error);
     }
   }
 
+  const handleIncomingAlert = (isError, errorMessage) => {
+    isError ? sertAlertType('error') : sertAlertType('success');
+    setErrorMessage(errorMessage);
+    setShowAlert(true);
+  }
+
   return (
     <>
       <form className="new-event-form" onSubmit={createEvent} action="">
+        {showAlert && <Alert alertType={alertType} message={errorMessage} />}
         <div className="new-event-form-input modal-input">
           <Input name="new-event-title" id="new-event-title" placeholder='Title of Event' value={eventTitle} onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}} /> 
 

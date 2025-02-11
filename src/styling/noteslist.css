@@ -111,3 +111,8 @@
   align-items: center;
   justify-content: space-between;
 }
+
+#new-sticky-note-group-form .alert {
+  display: block;
+  margin: 0 0 1rem 0;
+}
