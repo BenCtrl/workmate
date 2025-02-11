@@ -326,6 +326,10 @@ fieldset legend {
   border-bottom-left-radius: 0;
 }
 
+.Toastify__close-button {
+  box-shadow: none;
+}
+
 /* behavioural styling */
 button:hover, .navlink-button:hover {
   background-color: none;
@@ -409,6 +413,10 @@ input:checked + .slider:before {
 }
 
 .time-input-container select:focus {
+  box-shadow: none;
+}
+
+.Toastify__close-button:hover {
   box-shadow: none;
 }
 

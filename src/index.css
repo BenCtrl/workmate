@@ -29,6 +29,11 @@
   --component-error: #ff4f4f;
   --component-warning: #ffb121;
   --component-success: #56d356;
+
+  /* Toastify override */
+  --toastify-color-success: var(--component-success);
+  --toastify-color-warning: var(--component-warning);
+  --toastify-color-error: var(--component-error);
 }
 
 /* Dark theming variables */
@@ -47,6 +52,9 @@
   --item-outline-color: #0e0e0e;
   --item-background-color: #232433;
   --calendar-button-background-color: #ffffff08;
+
+  /* Toastify styling */
+  --toastify-color-dark: var(--page-background-accent-color);
 }
 
 :root {

@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useContext } from 'react';
 import { useLoaderData, useBeforeUnload, useNavigate } from 'react-router-dom';
 import { EditorContent, useEditor } from '@tiptap/react';
+import { toast } from 'react-toastify';
 
 import StarterKit from '@tiptap/starter-kit';
 import CodeBlock from '@tiptap/extension-code-block';
@@ -58,9 +59,18 @@ const PageEditor = () => {
       setChangesMade(true);
     }
   });
-
+  
+  
   const submitPage = async (buttonEvent) => {
     const buttonId = buttonEvent.currentTarget.id;
+    
+    if (!pageHeader) {
+      toast.error('Page title cannot be empty');
+      return;
+    } else if (pageHeader.length > 64) {
+      toast.error('Page title too long (no more than 64 characters)');
+      return;
+    }
 
     const newPageData = {
       title: pageHeader,
@@ -78,8 +88,10 @@ const PageEditor = () => {
       if (buttonId === 'page-save-as' || buttonId === 'page-save' && !page) {
         const newPageID = await addPageLoader(newPageData);
         navigate(`/pages/editor/${newPageID}`);
+        toast.success('New page successfully created')
       } else {
         updatePageLoader(newPageData);
+        toast.success('Page successfully saved')
       }
 
       setChangesMade(false);
