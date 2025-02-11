@@ -94,8 +94,8 @@ const PageEditor = () => {
 
   return (
     <>
-      <input value={pageHeader} onChange={(changeEvent) => {setPageHeader(changeEvent.target.value); setChangesMade(true)}} class="page-editor-title"></input>
-      <div class="page-editor-nodes">
+      <input value={pageHeader} onChange={(changeEvent) => {setPageHeader(changeEvent.target.value); setChangesMade(true)}} className="page-editor-title"></input>
+      <div className="page-editor-nodes">
         <Button toolTip="Undo" children={<ArrowLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
         <Button toolTip="Redo" children={<ArrowRight />} onClick={() => {editor.chain().focus().redo().run()}}/>
 

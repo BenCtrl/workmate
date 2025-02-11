@@ -56,11 +56,6 @@ select {
   border-radius: 0.3rem;
 }
 
-select,
-option {
-  font-size: 0.8rem !important;
-}
-
 option {
   background-color: var(--page-background-color);
   color: var(--font-color);
