@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Button, Checkbox } from '../CommonComponents';
+import { Button, Checkbox, DeleteConfirmButton } from '../CommonComponents';
 import { Trash } from '../Icons';
 
 import StickyNoteEditor from './StickyNoteEditor';
@@ -37,7 +37,7 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
 
             <Checkbox className="outline note-completed-checkbox" onChange={() => {updateNote()}} checked={noteCompleted} toolTip={'Mark note as completed'} />
             <div className='delete-note'>
-              <Button children={<Trash />} onClick={() => {deleteNote(stickyNote.id)}} toolTip={'Delete note'}/>
+              <DeleteConfirmButton children={<Trash />} onClick={() => {deleteNote(stickyNote.id)}} toolTip={'Delete note'}/>
             </div>
           </div>
       }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Calendar from 'react-calendar';
 
-import { Button, Modal } from '../CommonComponents'
+import { Button, DeleteConfirmButton, Modal } from '../CommonComponents'
 import {
   CalendarCheck,
   ChevronLeft,
@@ -84,7 +84,7 @@ const CalendarPlanner = () => {
                       <span className="current-day-event-timestamp">{new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
                       {event.title}
                     </span>
-                    <Button className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<Trash />} toolTip="Delete event" />
+                    <DeleteConfirmButton className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<Trash />} toolTip="Delete event" />
                   </li>
                 }
               })}

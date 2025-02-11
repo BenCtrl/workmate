@@ -11,6 +11,7 @@ const AppSettings = () => {
   const [darkModeEnabled, setDarkModeEnabled] = useState(appSettings.DARKMODE);
   const [wordCounterEnabled, setWordCounterEnabled] = useState(appSettings.WORD_COUNTER);
   const [hideCompletedNotes, setHideCompletedNotes] = useState(appSettings.HIDE_COMPLETED_NOTES);
+  const [confirmBeforeDelete, setConfirmBeforeDelete] = useState(appSettings.CONFIRM_BEFORE_DELETE);
   const [changesMade, setChangesMade] = useState(false);
 
   const updateSettings = async (event) => {
@@ -20,7 +21,8 @@ const AppSettings = () => {
       TOOLTIPS: toolTipsEnabled,
       DARKMODE: darkModeEnabled,
       WORD_COUNTER: wordCounterEnabled,
-      HIDE_COMPLETED_NOTES: hideCompletedNotes
+      HIDE_COMPLETED_NOTES: hideCompletedNotes,
+      CONFIRM_BEFORE_DELETE: confirmBeforeDelete
     }
 
     try {
@@ -39,9 +41,10 @@ const AppSettings = () => {
       <h1>Settings</h1>
       <form id="app-settings-form" onSubmit={updateSettings} onChange={() => {!changesMade && setChangesMade(!changesMade)}}>
         <fieldset>
-          <legend>Accessibility</legend>
+          <legend>General</legend>
           <CheckBoxSlider labelContent="Tooltips" checkBoxID="toggle-tooltips" checked={toolTipsEnabled} onChange={() => {setTooltipsEnabled((state) => !state)}} />
           <CheckBoxSlider labelContent="Dark Mode" checkBoxID="toggle-darkmode" checked={darkModeEnabled} onChange={() => {setDarkModeEnabled((state) => !state)}} />
+          <CheckBoxSlider labelContent="Ask to confirm delete" checkBoxID="toggle-confirm-before-delete" checked={confirmBeforeDelete} onChange={() => {setConfirmBeforeDelete((state) => !state)}} />
         </fieldset>
 
         <fieldset>

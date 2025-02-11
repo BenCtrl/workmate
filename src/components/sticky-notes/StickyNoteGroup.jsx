@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Button } from '../CommonComponents';
+import { Button, DeleteConfirmButton } from '../CommonComponents';
 import { ChevronDown, ChevronRight, Trash } from '../Icons';
 
 import database from '../../database/database';
@@ -84,7 +84,7 @@ const StickyNoteGroup = ({
             {group.title}
           </div>
 
-          {!isDefault && <Button className='delete-group mini' children={<Trash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>}
+          {!isDefault && <DeleteConfirmButton className='delete-group mini' children={<Trash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>}
       </div>
 
       {/* {groupCollapsed && <StickyNotesList stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />} */}

@@ -98,6 +98,7 @@ button.mini {
 
 button svg {
   display: flex;
+  font-size: 1.33rem;
 }
 
 button:disabled, button[disabled] {
@@ -195,7 +196,11 @@ fieldset legend {
 }
 
 .alert.warning {
-  background-color: orange;
+  background-color: #ffc04c;
+}
+
+.alert.error {
+  background-color: #ff4f4f;
 }
 
 .checkbox-switch-container {

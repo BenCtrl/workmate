@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 
 import { AppSettingsContext } from '../../App';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 const Button = ({
   children,
@@ -13,6 +14,8 @@ const Button = ({
   type,
   disabled}) => {
 
+  const buttonRef = useRef();
+  const [askConfirm, setAskConfirm] = useState(false);
   const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const processComponentClasses = () => {
@@ -25,19 +28,23 @@ const Button = ({
     }
   }
 
+  useClickOutside(buttonRef, () => {setAskConfirm(false)});
+
   // **TODO - Temporarily disabled custom tooltips due to many styling issues
   // TODO - interface of button types when refactored to typescript
   return (
     <button
+      ref={buttonRef}
       type={type}
       className={processComponentClasses()}
       id={id}
       style={style}
       // data-text={toolTip}
       title={SETTINGS.TOOLTIPS && toolTip}
-      onClick={onClick}
-      disabled={disabled}>
-      {children}
+      onClick={SETTINGS.CONFIRM_BEFORE_DELETE & type === 'delete' ? askConfirm ? onClick : () => {setAskConfirm(true)} : onClick}
+      disabled={disabled}
+    >
+      {askConfirm ? 'Are you sure?' : children}
     </button>
   )
 }
