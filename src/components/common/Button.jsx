@@ -22,7 +22,7 @@ const Button = ({
     // if (toolTip || className || toolTipPos) {
     if (toolTip || className) {
       // return `${toolTip && SETTINGS.TOOLTIPS ? 'tooltip' : ''} ${className} ${toolTipPos}`.trim().replace('  ', ' ');
-      return `${className}`.trim().replace('  ', ' ');
+      return `${className} ${askConfirm && 'warning'}`.trim().replace('  ', ' ');
     } else {
       return undefined;
     }

@@ -333,14 +333,19 @@ button:hover, .navlink-button:hover {
   color: var(--button-active-accent-color);
 }
 
-button.confirm:hover {
-  box-shadow: 0 0 0 0.2rem rgba(42, 207, 42, 0.75);
-  color: rgb(42, 207, 42);
+button.warning:hover {
+  box-shadow: 0 0 0 0.2rem var(--component-warning);
+  color: var(--component-warning);
 }
 
-button.cancel:hover {
-  box-shadow: 0 0 0 0.2rem rgba(255, 74, 74, 0.75);
-  color: rgba(255, 74, 74);
+button.success:hover {
+  box-shadow: 0 0 0 0.2rem var(--component-success);
+  color: var(--component-success);
+}
+
+button.error:hover {
+  box-shadow: 0 0 0 0.2rem var(--component-error);
+  color: var(--component-error);
 }
 
 button:active, 
