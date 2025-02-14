@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { info, warn, error } from '@tauri-apps/plugin-log';
 
 import {Alert, Button, Input} from '../CommonComponents';
 import { Clock } from '../Icons';
@@ -20,15 +21,23 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
 
     try {
       if (!eventTitle.trim()) {
-        handleIncomingAlert(true, 'Event title cannot be empty')
+        error('Event cannot be created - Title is empty');
+        handleIncomingAlert(true, 'Event title cannot be empty');
         return;
       }
 
-      const result = await database.execute('INSERT INTO events (title, event_timestamp) VALUES ($1, $2) RETURNING id;', [eventTitle, Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHour}:${eventMinute}`)]);
-      handleIncomingAlert(false, `Event '${eventTitle}' successfully created`);
+      const createEventResult = await database.execute('INSERT INTO events (title, event_timestamp) VALUES ($1, $2) RETURNING id;', [eventTitle, Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHour}:${eventMinute}`)]);
+
+      if (createEventResult.length > 0) {
+        info(`Event '${eventTitle}' was created with ID '${createEventResult[0].id}'`);
+        handleIncomingAlert(false, `Event '${eventTitle}' successfully created`);
+      } else {
+        warn('Unable to validate if note group was created - No ID was returned');
+      }
+
       onNewEventSubmit();
     } catch(error) {
-      console.log('Error while creating new calendar event', error);
+      console.error(`Error while creating new calendar event: '${error}'`);
     }
   }
 
