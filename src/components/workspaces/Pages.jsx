@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { info, warn } from '@tauri-apps/plugin-log';
 
 import database from '../../database/database';
 import { FileAdd, Search } from '../Icons';
 import { Button, Input } from '../CommonComponents'
 import PageListItem from '../pages/PageListItem';
+
 import '../../styling/pagelist.css';
 
 const Pages = () => {
@@ -19,21 +21,27 @@ const Pages = () => {
   const fetchPages = async () => {
     try {
       const pages = await database.select('SELECT * FROM pages;');
-      setPages(pages);
+
+      if (pages.length > 0) {
+        info('Successfully retrieved all pages');
+        setPages(pages);
+      } else {
+        warn('No pages returned');
+      }
     } catch(error) {
-      console.log('Error while retrieving pages', error);
+      console.error(`Error while retrieving pages: ${error}`);
     }
   };
 
   const deletePage = async (id) => {
     try {
       const results = await database.execute('DELETE FROM pages WHERE id = $1;', [id]);
-    } catch(error) {
-      console.log(`Error while deleting page with ID '${id}'`, error);
-    }
 
-    fetchPages();
-    return;
+      info(`Successfully deleted page with ID '${id}'`);
+      fetchPages();
+    } catch(error) {
+      console.error(`Error while deleting page with ID '${id}': ${error}`);
+    }
   }
 
   useEffect(() => {
@@ -67,18 +75,27 @@ const Pages = () => {
 const addPageLoader = async (newPage) => {
   try {
     const res = await database.select('INSERT INTO pages (title, page_content) VALUES ($1, $2) RETURNING id;', [newPage.title, newPage.page_content]);
-    return res[0].id;
+
+    if (res.length > 0) {
+      info(`Successfully created new page with ID '${res[0].id}'`);
+      return res[0].id;
+    } else {
+      warn('Attempted to create new page but no ID was returned');
+      return;
+    }
   } catch(error) {
-    console.log('Error while creating new page', error);
+    console.error(`Error while creating new page: ${error}`);
   }
 }
 
 const updatePageLoader = async (page) => {
   try {
     const response = await database.select('UPDATE pages SET title = $1, page_content = $2, edited_timestamp = $3 WHERE id = $4;', [page.title, page.page_content, page.edited_timestamp, page.id]);
+
+    info(`Successfully upated page with ID '${page.id}'`);
     return response;
   } catch(error) {
-    console.log(`Error while updating page with ID '${page.id}'`, error);
+    console.error(`Error while updating page with ID '${page.id}': ${error}`);
   }
 }
 
