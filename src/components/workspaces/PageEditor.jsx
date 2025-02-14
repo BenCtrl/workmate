@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext } from 'react';
+import React, { useCallback, useState, useContext, useEffect } from 'react';
 import { useLoaderData, useBeforeUnload, useNavigate } from 'react-router-dom';
 import { EditorContent, useEditor } from '@tiptap/react';
 import { toast } from 'react-toastify';
@@ -23,7 +23,9 @@ import {
   HorizontalRule,
   Heading,
   FileText,
-  FileAdd
+  FileAdd,
+  FileDone,
+  Pencil
 } from '../Icons';
 
 import database from '../../database/database';
@@ -49,6 +51,7 @@ const PageEditor = () => {
   const [selectedHeading, setSelectedHeading] = useState(1);
   const [changesMade, setChangesMade] = useState(false);
   const [confirmHeading, setConfirmHeading] = useState(false);
+  const [isEditing, setIsEditing] = useState(page ? false : true);
 
   const content = page ? JSON.parse(page.page_content) : '<p style="color: #9d9d9d">Start your new page!</p>';
   const SETTINGS = useContext(AppSettingsContext).appSettings;
@@ -111,44 +114,53 @@ const PageEditor = () => {
     changesMade && unloadEvent.preventDefault();
   }));
 
+  useEffect(() => {
+    editor.setEditable(isEditing);
+  }, [isEditing]);
+
   return (
     <>
-      <input value={pageHeader} placeholder={'Page Title...'} onChange={(changeEvent) => {setPageHeader(changeEvent.target.value); setChangesMade(true)}} className="page-editor-title"></input>
-      <div className="page-editor-nodes">
-        <Button toolTip="Undo" children={<ArrowLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
-        <Button toolTip="Redo" children={<ArrowRight />} onClick={() => {editor.chain().focus().redo().run()}}/>
-
-        <span className="page-editor-nodes-divider"></span>
-
-        <Button toolTip="Bold" children={<Bold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
-        <Button toolTip="Italic" children={<Italic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
-        <Button toolTip="Strikethrough" children={<Strikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
-        <Button toolTip="Code" children={<Code />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
-        <Button toolTip="Code block" children={<Codeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
-        <Button toolTip="Block quote" children={<QuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
-        <Button toolTip="Horizontal rule" children={<HorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
-        <Button toolTip="Bullet list" children={<UnorderedList />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
-        <Button toolTip="Ordered list" children={<OrderedList />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
-
-        <span className="page-editor-nodes-divider"></span>
-
-        <Button toolTip="Apply heading" className={`${confirmHeading ? 'warning' : ''}`} children={<Heading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run(); setConfirmHeading(false)}}/>
-        {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
-        <select onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value)); setConfirmHeading(true)}} id="heading-select">
-        {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}
-          <option value="1">Heading 1</option>
-          <option value="2">Heading 2</option>
-          <option value="3">Heading 3</option>
-          <option value="4">Heading 4</option>
-          <option value="5">Heading 5</option>
-          <option value="6">Heading 6</option>
-        </select>
-
-        <span style={{marginLeft: 'auto'}} className="page-editor-nodes-divider"></span>
-
-        <Button id="page-save-as" children={<FileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
-        <Button id="page-save" children={<FileText />} toolTip={"Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+      <div className="page-editor-header">
+        <input value={pageHeader} placeholder={'Page Title...'} onChange={(changeEvent) => {setPageHeader(changeEvent.target.value); setChangesMade(true)}} className="page-editor-title" disabled={!isEditing}></input>
+        {!isEditing ? <Button toolTip="Edit Page" children={<Pencil />} onClick={() => {setIsEditing((state) => !state)}}/> : <Button toolTip="View Page" children={<FileText />} onClick={() => {setIsEditing((state) => !state)}}/>}
       </div>
+      {isEditing &&
+        <div className="page-editor-nodes">
+          <Button toolTip="Undo" children={<ArrowLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
+          <Button toolTip="Redo" children={<ArrowRight />} onClick={() => {editor.chain().focus().redo().run()}}/>
+
+          <span className="page-editor-nodes-divider"></span>
+
+          <Button toolTip="Bold" children={<Bold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
+          <Button toolTip="Italic" children={<Italic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
+          <Button toolTip="Strikethrough" children={<Strikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
+          <Button toolTip="Code" children={<Code />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
+          <Button toolTip="Code block" children={<Codeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
+          <Button toolTip="Block quote" children={<QuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
+          <Button toolTip="Horizontal rule" children={<HorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
+          <Button toolTip="Bullet list" children={<UnorderedList />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
+          <Button toolTip="Ordered list" children={<OrderedList />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
+
+          <span className="page-editor-nodes-divider"></span>
+
+          <Button toolTip="Apply heading" className={`${confirmHeading ? 'warning' : ''}`} children={<Heading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run(); setConfirmHeading(false)}}/>
+          {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
+          <select onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value)); setConfirmHeading(true)}} id="heading-select">
+          {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}
+            <option value="1">Heading 1</option>
+            <option value="2">Heading 2</option>
+            <option value="3">Heading 3</option>
+            <option value="4">Heading 4</option>
+            <option value="5">Heading 5</option>
+            <option value="6">Heading 6</option>
+          </select>
+
+          <span style={{marginLeft: 'auto'}} className="page-editor-nodes-divider"></span>
+
+          <Button id="page-save-as" children={<FileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
+          <Button id="page-save" children={<FileDone />} toolTip={"Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+        </div>
+      }
 
       <EditorContent editor={editor} className='page-editor' />
       {SETTINGS.WORD_COUNTER && <div className="page-editor-word-count">Words: {editor.storage.characterCount.words()}</div>}

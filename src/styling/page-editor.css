@@ -29,10 +29,23 @@
   margin: 0 0.5rem;
 }
 
+.page-editor-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.67rem;
+}
+
+.page-editor-header button {
+  margin: 0;
+}
+
 .page-editor-title {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
   font-size: 2em;
-  margin-block-end: 0.67em;
   margin-inline-start: 0;
   margin-inline-end: 0;
   font-weight: bold;
@@ -44,6 +57,7 @@
   padding: 0;
   transition: 0.2s;
   border-radius: 0;
+  width: fit-content;
 }
 
 .page-editor {

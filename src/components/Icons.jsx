@@ -23,10 +23,12 @@ export {
   AiOutlineCarryOut as CalendarCheck,
   AiOutlineFileText as FileText,
   AiOutlineFileAdd as FileAdd,
+  AiOutlineFileDone as FileDone,
   AiOutlineSave as Save,
   AiOutlineSetting as Cog,
   AiOutlineDelete as Trash,
-  AiOutlineStrikethrough as Strikethrough
+  AiOutlineStrikethrough as Strikethrough,
+  AiOutlineEdit as Pencil
 } from "react-icons/ai";
 
 export {
