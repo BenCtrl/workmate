@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { info, warn, error } from '@tauri-apps/plugin-log';
 
 import database from '../../database/database';
 import { Alert, Button, Input } from '../CommonComponents';
@@ -18,20 +19,29 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
   const addGroup = async (submitEvent) => {
     submitEvent.preventDefault();
 
-    if (!groupTitle.trim()) {
-      handleIncomingAlert(true, 'Group title cannot be empty')
-      return;
-    } else if (await database.select('SELECT * FROM note_groups WHERE title = $1', [groupTitle]).then(result => {return result.length}) > 0) {
-      handleIncomingAlert(true, `Group with title '${groupTitle}' already exists`);
-      return;
-    }
-
     try {
-      const result = await database.execute('INSERT INTO note_groups (title, color) VALUES ($1, $2);', [groupTitle, groupColor]);
-      handleIncomingAlert(false, `Group '${groupTitle}' successfully created`);
+      if (!groupTitle.trim()) {
+        error('Note group cannot be created - Title is empty');
+        handleIncomingAlert(true, 'Group title cannot be empty');
+        return;
+      } else if (await database.select('SELECT * FROM note_groups WHERE title = $1', [groupTitle]).then(result => {return result.length}) > 0) {
+        error(`Note group cannot be created - Group with title '${groupTitle}' already exists`);
+        handleIncomingAlert(true, `Group with title '${groupTitle}' already exists`);
+        return;
+      }
+
+      const createNoteGroupResult = await database.select('INSERT INTO note_groups (title, color) VALUES ($1, $2) RETURNING id;', [groupTitle, groupColor]);
+
+      if (createNoteGroupResult.length > 0) {
+        info(`Group '${groupTitle}' was successfully created with ID '${createNoteGroupResult[0].id}'`);
+        handleIncomingAlert(false, `Group '${groupTitle}' successfully created`);
+      } else {
+        warn('Unable to validate if note group was created - No ID was returned');
+      }
+
       onNewGroupSubmit();
     } catch(error) {
-      console.log('Error while creating new note group', error);
+      console.error(`Error while creating new note group: ${error}`);
     }
   }
 

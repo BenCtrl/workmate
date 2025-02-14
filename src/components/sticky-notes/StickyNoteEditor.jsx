@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
+import { debug, error } from '@tauri-apps/plugin-log';
 
 import { Button } from '../CommonComponents';
 import { X, Save } from '../Icons';
-import { toast } from 'react-toastify';
 
 const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupID}) => {
   const textAreaRef = useRef(null);
@@ -15,6 +16,8 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
     textAreaRef.current.focus();
 
     if(existingStickyNote) {
+      debug(`Attempting to load existing content of note '${existingStickyNote.id}' into editor...`);
+
       setId(existingStickyNote.id);
       setStickyNoteContent(existingStickyNote.content);
       setNoteCompleted(existingStickyNote.completed);
@@ -40,6 +43,7 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
     }
 
     if (!stickyNoteContent.trim()) {
+      error('Note cannot be saved - Note content cannot be empty');
       toast.error('Note content cannot be empty');
       return;
     }

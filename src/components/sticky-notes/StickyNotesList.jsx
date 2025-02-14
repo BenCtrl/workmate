@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { debug } from '@tauri-apps/plugin-log';
 
 import { AppSettingsContext } from '../../App';
 import StickyNote from './StickyNote';
@@ -16,6 +17,8 @@ const StickyNotesList = ({stickyNotes, addNote, updateNote, deleteNote, group}) 
           if (SETTINGS.HIDE_COMPLETED_NOTES) {
             if (!stickyNote.completed) {
               return stickyNoteComponent
+            } else {
+              debug(`Hiding note with ID '${stickyNote.id}' - Marked as complete`);
             }
           } else {
             return stickyNoteComponent
