@@ -66,20 +66,33 @@ const PageEditor = () => {
   
   
   const submitPage = async (buttonEvent) => {
+    let finalPageHeader = pageHeader;
     const buttonId = buttonEvent.currentTarget.id;
-    
-    if (!pageHeader.trim()) {
+
+    if (buttonId === 'page-save-as') {
+      if (await database.select('SELECT * FROM pages WHERE title = $1', [pageHeader]).then(result => {return result.length}) > 0) {
+        if (SETTINGS.PREVENT_DUPLICATES) {
+          error(`Page cannot be created - Page with title '${pageHeader}' already exists`);
+          toast.error(`Page with title '${pageHeader}' already exists`);
+          return;
+        } else {
+          finalPageHeader = `${finalPageHeader}-Copy`;
+        }
+      }
+    }
+
+    if (!finalPageHeader.trim()) {
       error('Page cannot be saved - Title is empty');
       toast.error('Page title cannot be empty');
       return;
-    } else if (pageHeader.length > 64) {
+    } else if (finalPageHeader.length > 64) {
       error('Page cannot be saved - Character count of title is greater than limit (64 characters)');
       toast.error('Page title too long (no more than 64 characters)');
       return;
     }
 
     const newPageData = {
-      title: pageHeader,
+      title: finalPageHeader,
       page_content: JSON.stringify(editor.getJSON()),
       created_timestamp: page ? page.created_timestamp : Date.now(),
       edited_timestamp: Date.now()

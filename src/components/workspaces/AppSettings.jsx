@@ -13,6 +13,7 @@ const AppSettings = () => {
   const [wordCounterEnabled, setWordCounterEnabled] = useState(appSettings.WORD_COUNTER);
   const [hideCompletedNotes, setHideCompletedNotes] = useState(appSettings.HIDE_COMPLETED_NOTES);
   const [confirmBeforeDelete, setConfirmBeforeDelete] = useState(appSettings.CONFIRM_BEFORE_DELETE);
+  const [preventDuplicates, setPreventDuplicates] = useState(appSettings.PREVENT_DUPLICATES);
   const [changesMade, setChangesMade] = useState(false);
 
   const updateSettings = async (event) => {
@@ -23,7 +24,8 @@ const AppSettings = () => {
       DARKMODE: darkModeEnabled,
       WORD_COUNTER: wordCounterEnabled,
       HIDE_COMPLETED_NOTES: hideCompletedNotes,
-      CONFIRM_BEFORE_DELETE: confirmBeforeDelete
+      CONFIRM_BEFORE_DELETE: confirmBeforeDelete,
+      PREVENT_DUPLICATES: preventDuplicates
     }
 
     try {
@@ -47,6 +49,7 @@ const AppSettings = () => {
           <CheckBoxSlider labelContent="Tooltips" checkBoxID="toggle-tooltips" checked={toolTipsEnabled} onChange={() => {setTooltipsEnabled((state) => !state)}} />
           <CheckBoxSlider labelContent="Dark Mode" checkBoxID="toggle-darkmode" checked={darkModeEnabled} onChange={() => {setDarkModeEnabled((state) => !state)}} />
           <CheckBoxSlider labelContent="Ask to confirm delete" checkBoxID="toggle-confirm-before-delete" checked={confirmBeforeDelete} onChange={() => {setConfirmBeforeDelete((state) => !state)}} />
+          <CheckBoxSlider labelContent="Prevent duplicates" checkBoxID="toggle-prevent-duplicates" checked={preventDuplicates} onChange={() => {setPreventDuplicates((state) => !state)}} />
         </fieldset>
 
         <fieldset>

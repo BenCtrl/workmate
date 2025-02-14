@@ -29,7 +29,9 @@ function App() {
           "TOOLTIPS":false,
           "DARKMODE":false,
           "WORD_COUNTER":false,
-          "HIDE_COMPLETED_NOTES":false
+          "HIDE_COMPLETED_NOTES":false,
+          "CONFIRM_BEFORE_DELETE":false,
+          "PREVENT_DUPLICATES":false
         })));
         await file.close();
 
