@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom';
+import { info, warn } from '@tauri-apps/plugin-log';
 
 import { Button, Modal } from '../CommonComponents'
 import { Stack } from '../Icons';
@@ -16,9 +17,15 @@ const NotesList = () => {
   const fetchGroups = async () => {
     try {
       const groups = await database.select('SELECT * FROM note_groups;');
-      setGroups(groups);
+
+      if (groups.length > 0) {
+        info('Successfully retrieved all note groups');
+        setGroups(groups);
+      } else {
+        warn('No note groups returned');
+      }
     } catch(error) {
-      console.log('Error while retrieving note groups', error);
+      console.error(`Error while retrieving note groups: ${error}`);
     }
   };
 
