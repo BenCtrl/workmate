@@ -4,6 +4,7 @@ import { writeTextFile, BaseDirectory } from '@tauri-apps/plugin-fs';
 import { Alert, Button, CheckBoxSlider } from '../CommonComponents';
 import { AppSettingsContext } from '../../App';
 import '../../styling/appsettings.css';
+import { info } from '@tauri-apps/plugin-log';
 
 const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);
@@ -30,9 +31,10 @@ const AppSettings = () => {
 
       setAppSettings(newSettings);
       setChangesMade(false);
-      console.log('Successfully updated app settings!');
+
+      info('Successfully updated application settings')
     } catch(error) {
-        console.log('Error while saving settings', error);
+        console.error(`Error while updating settings: ${error}`);
     }
   }
 
