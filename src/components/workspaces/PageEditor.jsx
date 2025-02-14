@@ -2,6 +2,7 @@ import React, { useCallback, useState, useContext } from 'react';
 import { useLoaderData, useBeforeUnload, useNavigate } from 'react-router-dom';
 import { EditorContent, useEditor } from '@tiptap/react';
 import { toast } from 'react-toastify';
+import { info, warn, error } from '@tauri-apps/plugin-log';
 
 import StarterKit from '@tiptap/starter-kit';
 import CodeBlock from '@tiptap/extension-code-block';
@@ -65,9 +66,11 @@ const PageEditor = () => {
     const buttonId = buttonEvent.currentTarget.id;
     
     if (!pageHeader.trim()) {
+      error('Page cannot be saved - Title is empty');
       toast.error('Page title cannot be empty');
       return;
     } else if (pageHeader.length > 64) {
+      error('Page cannot be saved - Character count of title is greater than limit (64 characters)');
       toast.error('Page title too long (no more than 64 characters)');
       return;
     }
@@ -88,10 +91,14 @@ const PageEditor = () => {
       if (buttonId === 'page-save-as' || buttonId === 'page-save' && !page) {
         const newPageID = await addPageLoader(newPageData);
         navigate(`/pages/editor/${newPageID}`);
-        toast.success('New page successfully created')
+
+        info(`New page with ID '${newPageID}' was successfully created`);
+        toast.success(`New page successfully created`);
       } else {
         updatePageLoader(newPageData);
-        toast.success('Page successfully saved')
+
+        toast.success('Page successfully saved');
+        info(`Page with ID '${newPageData.id}' successfully updated`);
       }
 
       setChangesMade(false);
@@ -151,10 +158,18 @@ const PageEditor = () => {
 
 const pageLoader = async ({params}) => {
   try {
-    const pages = await database.select('SELECT * FROM pages WHERE id = $1;', [params.id]);
-    return pages[0];
+    const pageID = params.id;
+    const pages = await database.select('SELECT * FROM pages WHERE id = $1;', [pageID]);
+
+    if (pages.length > 0) {
+      info(`Successfully retrieved page with ID '${pageID}'`);
+      return pages[0];
+    } else {
+      warn(`No page found with ID '${pageID}'`);
+      return;
+    }
   } catch(error) {
-    console.log(`Error while retrieving page with ID '${params.id}'`, error);
+    console.error(`Error while retrieving page with ID '${pageID}': ${error}`);
   }
 }
 
