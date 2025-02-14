@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Calendar from 'react-calendar';
+import { debug, info } from '@tauri-apps/plugin-log';
 
 import { Button, DeleteConfirmButton, Modal } from '../CommonComponents'
 import {
@@ -35,8 +36,10 @@ const CalendarPlanner = () => {
     try {
       const events = await database.select('SELECT * FROM events;');
       setCalendarEvents(events);
+
+      info('Successfully retrieved all events');
     } catch(error) {
-      console.log('Error while retrieving all events', error);
+      console.error(`Error while retrieving all events: ${error}`);
     }
   }
 
@@ -44,8 +47,10 @@ const CalendarPlanner = () => {
     try {
       const result = await database.execute('DELETE FROM events WHERE id = $1;', [id]);
       fetchEvents();
+
+      info(`Successfully deleted event with ID '${id}'`);
     } catch(error) {
-      console.log(`Error while deleting event with ID '${id}'`, error);
+      console.error(`Error while deleting event with ID '${id}': ${error}`);
     }
   }
 
@@ -53,10 +58,20 @@ const CalendarPlanner = () => {
     let eventCount = 0;
 
     calendarEvents.forEach((event) => {
-      date.setHours(0,0,0,0) === new Date(event.event_timestamp).setHours(0,0,0,0) && eventCount++;
+      doesEventTimestampMatchDate(date, event) && eventCount++;
     })
 
+    debug(`Identified '${eventCount}' event${eventCount > 1 ? 's' : ''} for '${date.toDateString()}'`);
     return eventCount;
+  }
+
+  /**
+   * Compares a given calendar `Date` object against a given calendar Event `event_timestamp` property and returns whether the date matches
+   * @param {Date} calendarDate - `Date` object
+   * @param {any} calendarEvent - Event object
+   */
+  const doesEventTimestampMatchDate = (calendarDate, calendarEvent) => {
+    return calendarDate.setHours(0,0,0,0) === new Date(calendarEvent.event_timestamp).setHours(0,0,0,0) ? true : false;
   }
 
   useEffect(() => {
@@ -78,7 +93,9 @@ const CalendarPlanner = () => {
             getEventCount(dateSelected) > 0 ?
             <ul className="current-day-events-list">
               {calendarEvents.map((event) => {
-                if (dateSelected.setHours(0,0,0,0) === new Date(event.event_timestamp).setHours(0,0,0,0)) {
+                if (doesEventTimestampMatchDate(dateSelected, event)) {
+                  debug(`Rendering event '${event.title}' for date '${dateSelected.toDateString()}'`);
+
                   return <li key={event.id} className="current-day-event">
                     <span>
                       <span className="current-day-event-timestamp">{new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
@@ -105,10 +122,14 @@ const CalendarPlanner = () => {
       next2Label={<DoubleChevronRight/>}
       prevLabel={<ChevronLeft />}
       prev2Label={<DoubleChevronLeft/>}
-      formatDay={(locale, date) => <div>
-        {getEventCount(date) > 0 && <span className="event-indicator">{getEventCount(date)}</span>}
-        <span className="date-of-month">{date.getDate()}</span>
-      </div>}
+      formatDay={(locale, date) => {
+        const eventCount = getEventCount(date);
+
+        return <div>
+          {eventCount > 0 && <span className="event-indicator">{eventCount}</span>}
+          <span className="date-of-month">{date.getDate()}</span>
+        </div>
+      }}
       />
 
       {showModal &&
