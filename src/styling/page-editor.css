@@ -107,6 +107,17 @@
   padding-left: 0.4rem;
 }
 
+.unsaved-changes-icon {
+  color: var(--component-warning);
+  font-size: 2rem;
+  margin-right: 0.25rem;
+  transition: 0.2s;
+}
+
+.unsaved-changes-icon.hidden {
+  font-size: 0;
+}
+
 /* behavioural styling */
 .page-editor .tiptap:focus {
   outline: none;

@@ -25,7 +25,8 @@ import {
   FileText,
   FileAdd,
   FileDone,
-  Pencil
+  Pencil,
+  WarningTriangle
 } from '../Icons';
 
 import database from '../../database/database';
@@ -128,12 +129,13 @@ const PageEditor = () => {
   }));
 
   useEffect(() => {
-    editor.setEditable(isEditing);
+    editor.setEditable(isEditing, false);
   }, [isEditing]);
 
   return (
     <>
       <div className="page-editor-header">
+        <WarningTriangle className={`unsaved-changes-icon ${!changesMade && 'hidden'}`} title="Unsaved Changes!" />
         <input value={pageHeader} placeholder={'Page Title...'} onChange={(changeEvent) => {setPageHeader(changeEvent.target.value); setChangesMade(true)}} className="page-editor-title" disabled={!isEditing}></input>
         {!isEditing ? <Button toolTip="Edit Page" children={<Pencil />} onClick={() => {setIsEditing((state) => !state)}}/> : <Button toolTip="View Page" children={<FileText />} onClick={() => {setIsEditing((state) => !state)}}/>}
       </div>
@@ -171,7 +173,7 @@ const PageEditor = () => {
           <span style={{marginLeft: 'auto'}} className="page-editor-nodes-divider"></span>
 
           <Button id="page-save-as" children={<FileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
-          <Button id="page-save" children={<FileDone />} toolTip={"Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+          <Button id="page-save" children={<FileDone />} toolTip={changesMade ? "Save (Unsaved Changes)" : "Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
         </div>
       }
 

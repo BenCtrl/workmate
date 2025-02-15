@@ -28,7 +28,9 @@ export {
   AiOutlineSetting as Cog,
   AiOutlineDelete as Trash,
   AiOutlineStrikethrough as Strikethrough,
-  AiOutlineEdit as Pencil
+  AiOutlineEdit as Pencil,
+  AiOutlineInfoCircle as InfoCircle,
+  AiOutlineWarning as WarningTriangle,
 } from "react-icons/ai";
 
 export {

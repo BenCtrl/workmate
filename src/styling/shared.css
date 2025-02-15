@@ -104,7 +104,8 @@ button:disabled, button[disabled] {
 }
 
 button.warning {
-  box-shadow: 0 0 0 0.2rem orange;
+  box-shadow: 0 0 0 0.2rem var(--component-warning);
+  color: var(--component-warning);
 }
 
 .input {
