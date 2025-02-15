@@ -30,7 +30,7 @@ import {
 } from '../Icons';
 
 import database from '../../database/database';
-import { Button } from '../CommonComponents';
+import { Button, ButtonGroup } from '../CommonComponents';
 import { AppSettingsContext } from '../../App';
 import { addPageLoader, updatePageLoader } from './Pages';
 import '../../styling/page-editor.css';
@@ -141,39 +141,41 @@ const PageEditor = () => {
       </div>
       {isEditing &&
         <div className="page-editor-nodes">
-          <Button toolTip="Undo" children={<ArrowLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
-          <Button toolTip="Redo" children={<ArrowRight />} onClick={() => {editor.chain().focus().redo().run()}}/>
+          <ButtonGroup>
+            <Button className='mini' toolTip="Undo" children={<ArrowLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
+            <Button className='mini' toolTip="Redo" children={<ArrowRight />} onClick={() => {editor.chain().focus().redo().run()}}/>
+          </ButtonGroup>
 
-          <span className="page-editor-nodes-divider"></span>
+          <ButtonGroup style={{marginLeft: '1rem'}}>
+            <Button className='mini' toolTip="Bold" children={<Bold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
+            <Button className='mini' toolTip="Italic" children={<Italic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
+            <Button className='mini' toolTip="Strikethrough" children={<Strikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
+            <Button className='mini' toolTip="Code" children={<Code />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
+            <Button className='mini' toolTip="Code block" children={<Codeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
+            <Button className='mini' toolTip="Block quote" children={<QuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
+            <Button className='mini' toolTip="Horizontal rule" children={<HorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
+            <Button className='mini' toolTip="Bullet list" children={<UnorderedList />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
+            <Button className='mini' toolTip="Ordered list" children={<OrderedList />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
+          </ButtonGroup>
 
-          <Button toolTip="Bold" children={<Bold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
-          <Button toolTip="Italic" children={<Italic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
-          <Button toolTip="Strikethrough" children={<Strikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
-          <Button toolTip="Code" children={<Code />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
-          <Button toolTip="Code block" children={<Codeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
-          <Button toolTip="Block quote" children={<QuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
-          <Button toolTip="Horizontal rule" children={<HorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
-          <Button toolTip="Bullet list" children={<UnorderedList />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
-          <Button toolTip="Ordered list" children={<OrderedList />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
+          <ButtonGroup style={{marginLeft: '1rem'}}>
+            <Button toolTip="Apply heading" className={`mini ${confirmHeading ? 'warning' : ''}`} children={<Heading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run(); setConfirmHeading(false)}}/>
+            {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
+            <select className='mini' onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value)); setConfirmHeading(true)}} id="heading-select">
+            {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}
+              <option value="1">Heading 1</option>
+              <option value="2">Heading 2</option>
+              <option value="3">Heading 3</option>
+              <option value="4">Heading 4</option>
+              <option value="5">Heading 5</option>
+              <option value="6">Heading 6</option>
+            </select>
+          </ButtonGroup>
 
-          <span className="page-editor-nodes-divider"></span>
-
-          <Button toolTip="Apply heading" className={`${confirmHeading ? 'warning' : ''}`} children={<Heading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run(); setConfirmHeading(false)}}/>
-          {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
-          <select onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value)); setConfirmHeading(true)}} id="heading-select">
-          {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}
-            <option value="1">Heading 1</option>
-            <option value="2">Heading 2</option>
-            <option value="3">Heading 3</option>
-            <option value="4">Heading 4</option>
-            <option value="5">Heading 5</option>
-            <option value="6">Heading 6</option>
-          </select>
-
-          <span style={{marginLeft: 'auto'}} className="page-editor-nodes-divider"></span>
-
-          <Button id="page-save-as" children={<FileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
-          <Button id="page-save" children={<FileDone />} toolTip={changesMade ? "Save (Unsaved Changes)" : "Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+          <ButtonGroup style={{marginLeft: 'auto'}}>
+            <Button className='mini' id="page-save-as" children={<FileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
+            <Button className='mini' id="page-save" children={<FileDone />} toolTip={changesMade ? "Save (Unsaved Changes)" : "Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+          </ButtonGroup>
         </div>
       }
 

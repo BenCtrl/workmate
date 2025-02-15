@@ -11,17 +11,18 @@
   padding: 0.6rem;
 }
 
-.page-editor-nodes button:first-child {
+/* .page-editor-nodes button:first-child {
   margin: 0 0.5rem 0 0;
 }
 
 .page-editor-nodes button:last-child {
   margin: 0 0 0 0.5rem;
-}
+} */
 
-.page-editor-nodes button,
-.page-editor-nodes select {
-  margin: 0 0.5rem;
+.page-editor-nodes button.mini,
+.page-editor-nodes select.mini {
+  /* margin: 0 0.3rem; */
+  margin: 0rem;
 }
 
 .page-editor-nodes .page-editor-nodes-divider {

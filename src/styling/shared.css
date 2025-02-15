@@ -52,7 +52,8 @@ input,
 button,
 .navlink-button,
 .text-input,
-select {
+select,
+.button-group {
   border-radius: 0.3rem;
 }
 
@@ -86,14 +87,22 @@ button, .navlink-button, select {
   position: relative;
 }
 
-button.mini {
-  margin: 0.2rem;
-  padding: 0.3rem 0.6rem;
-}
-
 button svg {
   display: flex;
   font-size: 1.33rem;
+}
+
+button.mini {
+  margin: 0.2rem;
+}
+
+button.mini svg {
+  font-size: 1.1rem;
+}
+
+select.mini {
+  font-size: 0.9rem;
+  padding: 0.2rem 0.6rem;
 }
 
 button:disabled, button[disabled] {
@@ -116,6 +125,36 @@ button.warning {
 
 .input input{
   margin-top: 0.2rem;
+}
+
+.button-group {
+  display: inline-flex;
+  box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
+  transition: 0.1s;
+  background-color: var(--button-background-color);
+  color: var(--font-color);
+  height: fit-content;
+}
+
+.button-group *:first-child {
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
+.button-group *:last-child {
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.button-group button, select {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.button-group .divider {
+  border-right: 0.06rem solid var(--font-faded-color);
 }
 
 .tooltip:before {
@@ -332,10 +371,14 @@ fieldset legend {
 }
 
 /* behavioural styling */
-button:hover, .navlink-button:hover {
+button:hover, .navlink-button:hover, .button-group:hover {
   background-color: none;
   box-shadow: 0 0 0 0.2rem var(--button-active-accent-color);
   color: var(--button-active-accent-color);
+}
+
+.button-group button:hover, .button-group select:focus {
+  box-shadow: none;
 }
 
 button.warning:hover {
