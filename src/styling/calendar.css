@@ -211,6 +211,11 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   margin: 0 0 1rem 0;
 }
 
+/* Navigation controls styling overload replicating ButtonGroup styling - Kept separate */
+.react-calendar__navigation {
+  border-radius: 0.3rem;
+}
+
 /* behavioural styling */
 .react-calendar .react-calendar__viewContainer button:hover {
   box-shadow: none;

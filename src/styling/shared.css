@@ -126,7 +126,7 @@ button.warning {
 .input input{
   margin-top: 0.2rem;
 }
-
+.react-calendar__navigation,
 .button-group {
   display: inline-flex;
   box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
@@ -136,16 +136,19 @@ button.warning {
   height: fit-content;
 }
 
+.react-calendar__navigation *:first-child,
 .button-group *:first-child {
   border-top-left-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
 }
 
+.react-calendar__navigation *:last-child,
 .button-group *:last-child {
   border-top-right-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
 }
 
+.react-calendar__navigation button,
 .button-group button, select {
   margin: 0;
   border-radius: 0;
@@ -371,14 +374,15 @@ fieldset legend {
 }
 
 /* behavioural styling */
-button:hover, .navlink-button:hover, .button-group:hover {
+button:hover, .navlink-button:hover, .button-group:hover, .react-calendar__navigation:hover {
   background-color: none;
   box-shadow: 0 0 0 0.2rem var(--button-active-accent-color);
   color: var(--button-active-accent-color);
 }
 
-.button-group button:hover, .button-group select:focus {
+.button-group button:hover, .button-group select:focus, .react-calendar__navigation button:hover {
   box-shadow: none;
+  background-color: var(--component-alternate-background-color);
 }
 
 button.warning:hover {

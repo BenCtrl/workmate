@@ -73,7 +73,7 @@
 #workspace-tabs a.selected-workspace-tab {
   position: relative;
   font-weight: bold;
-  background-color: var(--workspace-tab-selected-color);
+  background-color: var(--component-alternate-background-color);
 }
 
 #workspace-tabs a.selected-workspace-tab::before {

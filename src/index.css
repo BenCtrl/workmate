@@ -9,12 +9,12 @@
   --button-active-background-color: #0000002c;
   --button-accent-color: #000000bf;
   --button-disabled-accent-color: #676767bf;
+  --component-alternate-background-color: #0000001c;
   --fieldset-outline-color: #cecece;
   --font-faded-color: #0000004f;
   --page-list-item-hover-background-color: #00000021;
   --item-standard-box-shadow-color: #444444;
   --page-background-watermark-color: #3d3d3d0d;
-  --workspace-tab-selected-color: #0000001c;
   --navbar-background-color: #ffffff;
   --item-outline-color: #cecece;
   --item-background-color: #fff;
@@ -42,12 +42,12 @@
   --page-background-color: #1e202d;
   --page-background-accent-color: #191a29;
   --button-background-color: #ffffff17;
+  --component-alternate-background-color: #cfcfcf14;
   --fieldset-outline-color: #757575;
   --font-faded-color: #ffffff4f;
   --page-list-item-hover-background-color: #ffffff17;
   --item-standard-box-shadow-color: #000000;
   --page-background-watermark-color: #3d3d3d1c;
-  --workspace-tab-selected-color: #cfcfcf14;
   --navbar-background-color: #161821;
   --item-outline-color: #0e0e0e;
   --item-background-color: #232433;
