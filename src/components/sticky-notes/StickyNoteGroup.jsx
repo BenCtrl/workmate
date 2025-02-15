@@ -25,10 +25,11 @@ const StickyNoteGroup = ({
 
       if (notesForGroup.length > 0) {
         info(`Retrieved '${notesForGroup.length}' notes for note group with ID '${group.id}'`);
-        setNotes(notesForGroup);
       } else {
         warn(`No notes returned for note group with ID '${group.id}'`);
       }
+
+      setNotes(notesForGroup);
     } catch(error) {
       console.error(`Error while retrieving notes for group with ID '${group.id}': ${error}`);
     }
