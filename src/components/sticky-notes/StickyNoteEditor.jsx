@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import { debug, error } from '@tauri-apps/plugin-log';
+import { debug, warn, error } from '@tauri-apps/plugin-log';
 
 import { Button } from '../CommonComponents';
 import { X, Save } from '../Icons';
@@ -53,13 +53,23 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
     setStickyNoteContent('');
   }
 
+  const processStickyNoteContent = (content) => {
+    if (content.length > 126) {
+      warn(`Character limit reached while editing note${id ? ` with ID '${id}'` : ''}`)
+    } else if ((content.match(/\n/g)||[]).length > 6) {
+      warn(`New line limit reached while editing note${id ? ` with ID '${id}'` : ''}`);
+    } else {
+      setStickyNoteContent(content);
+    }
+  }
+
   return (
     <form onSubmit={submitForm}>
-      <textarea 
+      <textarea
+        id='sticky-note-textarea'
         ref={textAreaRef} 
         value={stickyNoteContent}
-        maxLength={127} // TODO - Move this verification to client side
-        onChange={(changeEvent) => setStickyNoteContent(changeEvent.target.value)}
+        onChange={(changeEvent) => processStickyNoteContent(changeEvent.target.value)}
         onKeyDown={(keyEvent) => {
           keyEvent.code === "Escape" && editorEnabled((state) => !state);
         }} 

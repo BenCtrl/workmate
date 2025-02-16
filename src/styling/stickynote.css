@@ -2,7 +2,7 @@
 .sticky-note {
   display: flex;
   flex-direction: column;
-  background-color: #fff672;
+  background-color: var(--sticky-note-yellow);
   box-shadow: 0.3rem 0.3rem 0.625rem var(--item-standard-box-shadow-color);
   width: 190px;
   height: 190px;
@@ -25,7 +25,6 @@
 }
 
 .new-sticky-note .new-note-input {
-  flex-grow: 1;
   white-space: pre-wrap;
   resize: none;
   background-color: transparent;
@@ -34,8 +33,6 @@
   padding: 0;
   height: 80%;
   width: 100%;
-  max-height: 100%;
-  max-width: 100%;
 }
 
 .new-sticky-note .new-note-in-progress {
