@@ -45,7 +45,6 @@
 
 .new-sticky-note .sticky-note-editing-controls {
   display: flex;
-  font-size: 1.6rem;
   justify-content: space-between;
 }
 
