@@ -480,5 +480,4 @@ input:checked + .slider:before {
 
 [data-theme="dark"] select {
   color: #ebebeb;
-  background-color: var(--button-background-color);
 }
