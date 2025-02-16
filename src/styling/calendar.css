@@ -183,8 +183,8 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   color: var(--font-faded-color);
 }
 
-.current-day-event-delete {
-  margin: 0 0.25rem 0.25rem 2rem;
+button.mini.current-day-event-delete {
+  margin: 0;
 }
 
 .new-event-form-input {

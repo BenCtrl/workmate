@@ -101,7 +101,7 @@ const CalendarPlanner = () => {
                       <span className="current-day-event-timestamp">{new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
                       {event.title}
                     </span>
-                    <DeleteConfirmButton className="current-day-event-delete" onClick={() => {deleteEvent(event.id)}} children={<Trash />} toolTip="Delete event" />
+                    <DeleteConfirmButton className="current-day-event-delete mini" onClick={() => {deleteEvent(event.id)}} children={<Trash />} toolTip="Delete event" />
                   </li>
                 }
               })}
