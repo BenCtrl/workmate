@@ -58,7 +58,6 @@ const PageEditor = () => {
   const [pageHeader, setPageHeader] = useState(page ? page.title : 'New Page');
   const [selectedHeading, setSelectedHeading] = useState(1);
   const [changesMade, setChangesMade] = useState(false);
-  const [confirmHeading, setConfirmHeading] = useState(false);
   const [isEditing, setIsEditing] = useState(page ? false : true);
 
   const content = page ? JSON.parse(page.page_content) : '';
@@ -154,22 +153,22 @@ const PageEditor = () => {
           </ButtonGroup>
 
           <ButtonGroup style={{marginLeft: '1rem'}}>
-            <Button className='mini' toolTip="Bold" children={<Bold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
-            <Button className='mini' toolTip="Italic" children={<Italic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
-            <Button className='mini' toolTip="Strikethrough" children={<Strikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
-            <Button className='mini' toolTip="Underline" children={<Underline />} onClick={() => {editor.chain().focus().toggleUnderline().run()}}/>
-            <Button className='mini' toolTip="Code" children={<Code />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
-            <Button className='mini' toolTip="Code block" children={<Codeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
-            <Button className='mini' toolTip="Block quote" children={<QuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
+            <Button className={`mini ${editor.isActive('bold') ? 'active' : ''}`} toolTip="Bold" children={<Bold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
+            <Button className={`mini ${editor.isActive('italic') ? 'active' : ''}`} toolTip="Italic" children={<Italic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
+            <Button className={`mini ${editor.isActive('strike') ? 'active' : ''}`} toolTip="Strikethrough" children={<Strikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
+            <Button className={`mini ${editor.isActive('underline') ? 'active' : ''}`} toolTip="Underline" children={<Underline />} onClick={() => {editor.chain().focus().toggleUnderline().run()}}/>
+            <Button className={`mini ${editor.isActive('code') ? 'active' : ''}`} toolTip="Code" children={<Code />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
+            <Button className={`mini ${editor.isActive('codeBlock') ? 'active' : ''}`} toolTip="Code block" children={<Codeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
+            <Button className={`mini ${editor.isActive('blockquote') ? 'active' : ''}`} toolTip="Block quote" children={<QuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
             <Button className='mini' toolTip="Horizontal rule" children={<HorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
-            <Button className='mini' toolTip="Bullet list" children={<UnorderedList />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
-            <Button className='mini' toolTip="Ordered list" children={<OrderedList />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
+            <Button className={`mini ${editor.isActive('bulletList') ? 'active' : ''}`} toolTip="Bullet list" children={<UnorderedList />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
+            <Button className={`mini ${editor.isActive('orderedList') ? 'active' : ''}`} toolTip="Ordered list" children={<OrderedList />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
           </ButtonGroup>
 
           <ButtonGroup style={{marginLeft: '1rem'}}>
-            <Button toolTip="Apply heading" className={`mini ${confirmHeading ? 'warning' : ''}`} children={<Heading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run(); setConfirmHeading(false)}}/>
+            <Button toolTip="Apply heading" className={`mini ${editor.isActive('heading') ? 'active' : ''}`} children={<Heading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run()}}/>
             {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
-            <select className='mini' onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value)); setConfirmHeading(true)}} id="heading-select">
+            <select className='mini' onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value))}} id="heading-select">
             {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}
               <option value="1">Heading 1</option>
               <option value="2">Heading 2</option>
@@ -181,8 +180,8 @@ const PageEditor = () => {
           </ButtonGroup>
 
           <ButtonGroup style={{marginLeft: 'auto'}}>
-            <Button className='mini' id="page-save-as" children={<FileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
             <Button className='mini' id="page-save" children={<FileDone />} toolTip={changesMade ? "Save (Unsaved Changes)" : "Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+            <Button className='mini' id="page-save-as" children={<FileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
           </ButtonGroup>
         </div>
       }
