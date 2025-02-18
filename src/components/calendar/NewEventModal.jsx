@@ -32,7 +32,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
         info(`Event '${eventTitle}' was created with ID '${createEventResult[0].id}'`);
         handleIncomingAlert(false, `Event '${eventTitle}' successfully created`);
       } else {
-        warn('Unable to validate if note group was created - No ID was returned');
+        warn('Unable to validate if event was created - No ID was returned');
       }
 
       onNewEventSubmit();
