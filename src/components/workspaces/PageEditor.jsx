@@ -8,6 +8,8 @@ import StarterKit from '@tiptap/starter-kit';
 import CodeBlock from '@tiptap/extension-code-block';
 import TextStyle from '@tiptap/extension-text-style';
 import CharacterCount from '@tiptap/extension-character-count';
+import {Underline as tiptapUnderline} from '@tiptap/extension-underline';
+import Placeholder from '@tiptap/extension-placeholder';
 
 import {
   ArrowLeft,
@@ -26,7 +28,8 @@ import {
   FileAdd,
   FileDone,
   Pencil,
-  WarningTriangle
+  WarningTriangle,
+  Underline
 } from '../Icons';
 
 import database from '../../database/database';
@@ -39,6 +42,10 @@ const extensions = [
   StarterKit,
   CodeBlock,
   TextStyle,
+  tiptapUnderline,
+  Placeholder.configure({
+    placeholder: 'Start your new page...'
+  }),
   CharacterCount.configure({
     wordCounter: (text) => text.split(/\s+/).filter((word) => word !== '').length,
   })
@@ -54,7 +61,7 @@ const PageEditor = () => {
   const [confirmHeading, setConfirmHeading] = useState(false);
   const [isEditing, setIsEditing] = useState(page ? false : true);
 
-  const content = page ? JSON.parse(page.page_content) : '<p style="color: #9d9d9d">Start your new page!</p>';
+  const content = page ? JSON.parse(page.page_content) : '';
   const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const editor = useEditor({
@@ -150,6 +157,7 @@ const PageEditor = () => {
             <Button className='mini' toolTip="Bold" children={<Bold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
             <Button className='mini' toolTip="Italic" children={<Italic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
             <Button className='mini' toolTip="Strikethrough" children={<Strikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
+            <Button className='mini' toolTip="Underline" children={<Underline />} onClick={() => {editor.chain().focus().toggleUnderline().run()}}/>
             <Button className='mini' toolTip="Code" children={<Code />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
             <Button className='mini' toolTip="Code block" children={<Codeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
             <Button className='mini' toolTip="Block quote" children={<QuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>

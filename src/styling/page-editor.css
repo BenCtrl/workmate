@@ -119,6 +119,13 @@
   font-size: 0;
 }
 
+.tiptap p.is-editor-empty:first-child:before {
+  content: attr(data-placeholder);
+  color: #0000004f;
+  float: left;
+  height: 0;
+}
+
 /* behavioural styling */
 .page-editor .tiptap:focus {
   outline: none;
