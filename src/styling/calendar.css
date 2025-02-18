@@ -167,7 +167,7 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   padding: 0;
 }
 
-.current-day-events-list .current-day-event {
+.current-day-events-list .event {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -178,12 +178,45 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   background-color: var(--item-background-color);
 }
 
-.current-day-event-timestamp {
+.event-details {
+  display: flex;
+  flex-grow: 1;
+}
+
+.event {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.event.updating {
+  border-color: var(--component-warning);
+}
+
+.event-timestamp {
   margin-right: 0.6rem;
   color: var(--font-faded-color);
 }
 
-button.mini.current-day-event-delete {
+.event-title {
+  flex-grow: 1;
+}
+
+.event-title-input {
+  margin: 0;
+  padding: 0;
+  border: none;
+  flex-grow: 1;
+  background: transparent;
+  border-radius: 0;
+}
+
+.event > button,
+.event > .button-group {
+  opacity: 0;
+  transition: 0.1s;
+}
+
+button.mini.event-button {
   margin: 0;
 }
 
@@ -234,4 +267,9 @@ button.mini.current-day-event-delete {
 #new-event-title:focus {
   border-color: var(--button-active-accent-color);
   outline: none;
+}
+
+.event:hover > button,
+.event:hover > .button-group {
+  opacity: 1;
 }

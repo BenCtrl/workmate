@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import Calendar from 'react-calendar';
 import { debug, info } from '@tauri-apps/plugin-log';
+import Calendar from 'react-calendar';
 
-import { Button, DeleteConfirmButton, Modal } from '../CommonComponents'
+import { Button, Modal } from '../CommonComponents'
 import {
   CalendarCheck,
   ChevronLeft,
   ChevronRight,
   DoubleChevronLeft,
-  DoubleChevronRight,
-  Trash
+  DoubleChevronRight
 } from '../Icons';
 
 import database from '../../database/database';
 import NewEventModal from '../calendar/NewEventModal';
+import CalendarEvent from '../calendar/CalendarEvent';
 import '../../styling/calendar.css';
 
 const CalendarPlanner = () => {
@@ -40,17 +40,6 @@ const CalendarPlanner = () => {
       info('Successfully retrieved all events');
     } catch(error) {
       console.error(`Error while retrieving all events: ${error}`);
-    }
-  }
-
-  const deleteEvent = async (id) => {
-    try {
-      const result = await database.execute('DELETE FROM events WHERE id = $1;', [id]);
-      fetchEvents();
-
-      info(`Successfully deleted event with ID '${id}'`);
-    } catch(error) {
-      console.error(`Error while deleting event with ID '${id}': ${error}`);
     }
   }
 
@@ -96,13 +85,7 @@ const CalendarPlanner = () => {
                 if (doesEventTimestampMatchDate(dateSelected, event)) {
                   debug(`Rendering event '${event.title}' for date '${dateSelected.toDateString()}'`);
 
-                  return <li key={event.id} className="current-day-event">
-                    <span>
-                      <span className="current-day-event-timestamp">{new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
-                      {event.title}
-                    </span>
-                    <DeleteConfirmButton className="current-day-event-delete mini" onClick={() => {deleteEvent(event.id)}} children={<Trash />} toolTip="Delete event" />
-                  </li>
+                  return <CalendarEvent event={event} fetchEvents={fetchEvents}/>
                 }
               })}
             </ul>
