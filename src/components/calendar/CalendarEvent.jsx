@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { info } from '@tauri-apps/plugin-log';
 
 import { DeleteConfirmButton, Button, ButtonGroup } from '../CommonComponents';
 import { Save, Trash, X } from '../Icons';
+import { AppSettingsContext } from '../../App';
 
 import database from '../../database/database';
 import CalendarEventEditor from './CalendarEventEditor';
 
 const CalendarEvent = ({event, fetchEvents}) => {
+  const SETTINGS = useContext(AppSettingsContext).appSettings;
   const [updatingEvent, setUpdatingEvent] = useState(false);
 
   const deleteEvent = async (id) => {
@@ -29,7 +31,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
         <>
           <span className="event-details">
           <span className="event-timestamp">{new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
-            <span className="event-title" onClick={() => {setUpdatingEvent((state) => !state)}}>{event.title}</span>
+            <span title={`${SETTINGS.TOOLTIPS ? 'Edit event title':''}`} className="event-title" onClick={() => {setUpdatingEvent((state) => !state)}}>{event.title}</span>
           </span>
           <DeleteConfirmButton className="event-button mini" onClick={() => {deleteEvent(event.id)}} children={<Trash />} toolTip="Delete event" />
         </>

@@ -199,6 +199,7 @@ button.react-calendar__tile--active.react-calendar__tile--now {
 
 .event-title {
   flex-grow: 1;
+  margin-right: 0.6rem;
 }
 
 .event-title-input {
@@ -269,7 +270,15 @@ button.mini.event-button {
   outline: none;
 }
 
+.event:hover {
+  border-color: var(--button-active-accent-color);
+}
+
 .event:hover > button,
 .event:hover > .button-group {
   opacity: 1;
+}
+
+.event-title:hover {
+  cursor: text;
 }

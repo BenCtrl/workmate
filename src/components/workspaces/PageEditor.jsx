@@ -179,7 +179,7 @@ const PageEditor = () => {
     <>
       <div className="page-editor-header">
         <WarningTriangle className={`unsaved-changes-icon ${!changesMade && 'hidden'}`} title="Unsaved Changes!" />
-        <input value={pageHeader} placeholder={'Page Title...'} onChange={(changeEvent) => {setPageHeader(changeEvent.target.value); setChangesMade(true)}} className="page-editor-title" disabled={!isEditing}></input>
+        <input title={`${isEditing && SETTINGS.TOOLTIPS ? 'Edit page title':''}`} value={pageHeader} placeholder={'Page Title...'} onChange={(changeEvent) => {setPageHeader(changeEvent.target.value); setChangesMade(true)}} className="page-editor-title" disabled={!isEditing}></input>
         {!isEditing ? <Button toolTip="Edit Page" children={<Pencil />} onClick={() => {setIsEditing((state) => !state)}}/> : <Button toolTip="View Page" children={<FileText />} onClick={() => {setIsEditing((state) => !state)}}/>}
       </div>
       {isEditing &&
