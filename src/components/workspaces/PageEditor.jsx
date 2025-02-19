@@ -8,7 +8,11 @@ import StarterKit from '@tiptap/starter-kit';
 import CodeBlock from '@tiptap/extension-code-block';
 import TextStyle from '@tiptap/extension-text-style';
 import CharacterCount from '@tiptap/extension-character-count';
-import {Underline as tiptapUnderline} from '@tiptap/extension-underline';
+import { Table as tiptapTable } from '@tiptap/extension-table';
+import TableRow from '@tiptap/extension-table-row';
+import TableHeader from '@tiptap/extension-table-header';
+import TableCell from '@tiptap/extension-table-cell';
+import { Underline as tiptapUnderline } from '@tiptap/extension-underline';
 import Placeholder from '@tiptap/extension-placeholder';
 
 import {
@@ -29,7 +33,19 @@ import {
   FileDone,
   Pencil,
   WarningTriangle,
-  Underline
+  Underline,
+  Table,
+  InsertRowLeft,
+  InsertRowRight,
+  InsertRowAbove,
+  InsertRowBelow,
+  MergeCells,
+  TableHeaderRow,
+  TableHeaderCell,
+  TableDeleteColumn,
+  TableDeleteRow,
+  SplitCell,
+  Trash
 } from '../Icons';
 
 import database from '../../database/database';
@@ -43,6 +59,12 @@ const extensions = [
   CodeBlock,
   TextStyle,
   tiptapUnderline,
+  tiptapTable.configure({
+    resizable: true,
+  }),
+  TableRow,
+  TableHeader,
+  TableCell,
   Placeholder.configure({
     placeholder: 'Start your new page...'
   }),
@@ -59,6 +81,7 @@ const PageEditor = () => {
   const [selectedHeading, setSelectedHeading] = useState(1);
   const [changesMade, setChangesMade] = useState(false);
   const [isEditing, setIsEditing] = useState(page ? false : true);
+  const [editingTable, setEditableTable] = useState(false);
 
   const content = page ? JSON.parse(page.page_content) : '';
   const SETTINGS = useContext(AppSettingsContext).appSettings;
@@ -68,9 +91,23 @@ const PageEditor = () => {
     content,
     onUpdate: (updateEvent) => {
       setChangesMade(true);
+    },
+    onSelectionUpdate: (editorUpdate) => {
+      const selectionPath = editor.state.selection.$anchor.path;
+      let tableFound = false;
+
+      selectionPath.forEach((path) => {
+        if (isNaN(path)) {
+          if (path.type.name === 'table') {
+            tableFound = true;
+            return;
+          }
+        }
+      });
+
+      setEditableTable(tableFound);
     }
   });
-  
   
   const submitPage = async (buttonEvent) => {
     let finalPageHeader = pageHeader;
@@ -177,6 +214,73 @@ const PageEditor = () => {
               <option value="5">Heading 5</option>
               <option value="6">Heading 6</option>
             </select>
+          </ButtonGroup>
+
+          <ButtonGroup style={{marginLeft: '1rem'}}>
+            <Button
+              className='mini'
+              toolTip="Insert Table" children={<Table />}
+              onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+            />
+            {editingTable &&
+              <>
+                <Button
+                  className='mini'
+                  toolTip="Insert column before" children={<InsertRowLeft />}
+                  onClick={() => editor.chain().focus().addColumnBefore().run()}
+                />
+                <Button
+                  className='mini'
+                  toolTip="Insert column after" children={<InsertRowRight />}
+                  onClick={() => editor.chain().focus().addColumnAfter().run()}
+                />
+                <Button
+                  className='mini'
+                  toolTip="Insert row before" children={<InsertRowAbove />}
+                  onClick={() => editor.chain().focus().addRowBefore().run()}
+                />
+                <Button
+                  className='mini'
+                  toolTip="Insert row after" children={<InsertRowBelow />}
+                  onClick={() => editor.chain().focus().addRowAfter().run()}
+                />
+                <Button
+                  className='mini'
+                  toolTip="Delete row" children={<TableDeleteRow />}
+                  onClick={() => editor.chain().focus().deleteRow().run()}
+                />
+                <Button
+                  className='mini'
+                  toolTip="Delete column" children={<TableDeleteColumn />}
+                  onClick={() => editor.chain().focus().deleteColumn().run()}
+                />
+                <Button
+                  className='mini'
+                  toolTip="Header row" children={<TableHeaderRow />}
+                  onClick={() => editor.chain().focus().toggleHeaderRow().run()}
+                />
+                <Button
+                  className='mini'
+                  toolTip="Header cell" children={<TableHeaderCell />}
+                  onClick={() => editor.chain().focus().toggleHeaderCell().run()}
+                />
+                <Button
+                  className='mini'
+                  toolTip="Merge cells" children={<MergeCells />}
+                  onClick={() => editor.chain().focus().mergeCells().run()}
+                />
+                <Button
+                  className='mini'
+                  toolTip="Split cell" children={<SplitCell />}
+                  onClick={() => editor.chain().focus().splitCell().run()}
+                />
+                <Button
+                  className='mini'
+                  toolTip="Split cell" children={<Trash />}
+                  onClick={() => editor.chain().focus().deleteTable().run()}
+                />
+              </>
+            }
           </ButtonGroup>
 
           <ButtonGroup style={{marginLeft: 'auto'}}>

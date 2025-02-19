@@ -31,6 +31,15 @@ export {
   AiOutlineEdit as Pencil,
   AiOutlineInfoCircle as InfoCircle,
   AiOutlineWarning as WarningTriangle,
+  AiOutlineTable as Table,
+  AiOutlineInsertRowAbove as InsertRowAbove,
+  AiOutlineInsertRowBelow as InsertRowBelow,
+  AiOutlineInsertRowLeft as InsertRowLeft,
+  AiOutlineInsertRowRight as InsertRowRight,
+  AiOutlineMergeCells as MergeCells,
+  AiOutlineSplitCells as SplitCell,
+  AiOutlineDeleteRow as TableDeleteRow,
+  AiOutlineDeleteColumn as TableDeleteColumn
 } from "react-icons/ai";
 
 export {
@@ -47,3 +56,8 @@ export {
   GoNote as Note,
   GoPlus as Plus
 } from "react-icons/go";
+
+export {
+  PiTableFill as TableHeaderRow,
+  PiTableDuotone as TableHeaderCell
+} from "react-icons/pi"

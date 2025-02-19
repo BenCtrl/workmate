@@ -131,6 +131,70 @@
   color: var(--page-background-accent-color);
 }
 
+table {
+  border-radius: 0.3rem;
+}
+
+table tr:first-child > th:first-child,
+table tr:first-child > td:first-child {
+  border-top-left-radius: 0.3rem;
+}
+
+table tr:first-child > th:last-child,
+table tr:first-child > td:last-child {
+  border-top-right-radius: 0.3rem;
+}
+
+table tr:last-child > th:first-child,
+table tr:last-child > td:first-child {
+  border-bottom-left-radius: 0.3rem;
+}
+
+table tr:last-child > th:last-child,
+table tr:last-child > td:last-child {
+  border-bottom-right-radius: 0.3rem;
+}
+
+table, th, td {
+  border: 1px solid #3d3d3d;
+  border-spacing: 0;
+  position: relative;
+}
+
+th {
+  background-color: #d7d7d7;
+}
+
+th p,
+td p {
+  margin: 0.4rem 0;
+}
+
+table .selectedCell:after {
+  background-color: var(--table-highlight-color);
+  content: '';
+  left: 0; right: 0; top: 0; bottom: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.column-resize-handle {
+  background-color: var(--button-active-accent-color);
+  bottom: -2px;
+  pointer-events: none;
+  position: absolute;
+  right: -3px;
+  top: 0;
+  width: 4px;
+  z-index: 4;
+}
+
+.tiptap.resize-cursor {
+  cursor: ew-resize;
+  cursor: col-resize;
+}
+
 /* behavioural styling */
 .page-editor .tiptap:focus {
   outline: none;
