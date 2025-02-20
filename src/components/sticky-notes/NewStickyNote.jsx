@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import StickyNoteEditor from './StickyNoteEditor';
-import { Plus } from '../Icons';
+import { IconPlus } from '../Icons';
 import '../../styling/stickynote.css';
 
 const NewStickyNote = ({addNoteSubmit, groupID}) => {
@@ -17,7 +17,7 @@ const NewStickyNote = ({addNoteSubmit, groupID}) => {
             :
           <div onClick={() => {setCreatingNewNote((state) => !state);}} className='sticky-note new-sticky-note'>
             <div className='backing' />
-            <div className='new-note-icon'><Plus /></div>
+            <div className='new-note-icon'><IconPlus /></div>
             <div className='content'>Create a new note...</div>
           </div>
       }

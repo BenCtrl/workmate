@@ -1,7 +1,7 @@
 import React from 'react'
 import { getCurrentWindow } from '@tauri-apps/api/window';
 
-import { Minus, Square, X } from '../Icons';
+import { IconMinus, IconSquare, IconX } from '../Icons';
 import '../../styling/titlebar.css'
 
 /**
@@ -16,13 +16,13 @@ const TitleBar = () => {
 
       <div>
         <div className="titlebar-button" id="titlebar-minimize" title="Minimize" onClick={() => {appWindow.minimize()}}>
-          <Minus />
+          <IconMinus />
         </div>
         <div className="titlebar-button" id="titlebar-maximize" title="Toggle Maximize" onClick={() => {appWindow.toggleMaximize()}}>
-          <Square />
+          <IconSquare />
         </div>
         <div className="titlebar-button" id="titlebar-close" title="Close" onClick={() => {appWindow.close()}}>
-          <X />
+          <IconX />
         </div>
       </div>
     </div>

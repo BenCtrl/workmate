@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button } from '../CommonComponents';
-import { X } from '../Icons';
+import { IconX } from '../Icons';
 import '../../styling/modal.css';
 
 const Modal = ({ onClose, children, modalHeading }) => {
@@ -10,7 +10,7 @@ const Modal = ({ onClose, children, modalHeading }) => {
       <div className='modal'>
         <div className='modal-heading'>
           <h3>{modalHeading}</h3>
-          <Button children={<X />} onClick={onClose} toolTip={'Close modal'} />
+          <Button children={<IconX />} onClick={onClose} toolTip={'Close modal'} />
         </div>
         {children}
       </div>

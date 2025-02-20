@@ -4,7 +4,7 @@ import { info, warn } from '@tauri-apps/plugin-log';
 
 import { Button, Input } from '../CommonComponents'
 import PageListItem from '../pages/PageListItem';
-import { FileAdd, Search } from '../Icons';
+import { IconFileAdd, IconSearch } from '../Icons';
 
 import '../../styling/pagelist.css';
 
@@ -52,8 +52,8 @@ const Pages = () => {
   return (
     <>
       <div id="pages-controls">
-        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto'}} children={<FileAdd />} toolTip={"Create new page"} onClick={() => {navigateTo("/pages/editor")}}/>
-        <Input icon={<Search />} id="pages-search" className="search-input page-control" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
+        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto'}} children={<IconFileAdd />} toolTip={"Create new page"} onClick={() => {navigateTo("/pages/editor")}}/>
+        <Input icon={<IconSearch />} id="pages-search" className="search-input page-control" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
       </div>
 
       <ul id="pages-list">

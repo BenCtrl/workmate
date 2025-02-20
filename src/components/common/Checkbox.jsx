@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Check } from '../Icons';
+import { IconCheck } from '../Icons';
 
 const Checkbox = ({
   className,
@@ -13,7 +13,7 @@ const Checkbox = ({
   return (
     <label htmlFor={id} title={toolTip} className={`checkbox-container ${className}`}>{label}
       <input id={id} type="checkbox" onChange={onChange} checked={checked} />
-      <span className="checkbox"><div className="checkbox-icon"><Check /></div></span>
+      <span className="checkbox"><div className="checkbox-icon"><IconCheck /></div></span>
     </label>
   )
 }

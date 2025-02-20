@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { error, debug, warn } from '@tauri-apps/plugin-log';
 
 import { Button } from '../CommonComponents';
-import { Save, X } from '../Icons';
+import { IconSave, IconX } from '../Icons';
 
 const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupID}) => {
   const textAreaRef = useRef(null);
@@ -76,8 +76,8 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
         className='new-note-input'
       />
       <div className="sticky-note-editing-controls">
-        <Button children={<X />} onClick={() => {editorEnabled((state) => !state); setStickyNoteContent('')}} toolTip={'Cancel note changes'}/>
-        <Button children={<Save />} type="submit" toolTip={'Save note changes'}/>
+        <Button children={<IconX />} onClick={() => {editorEnabled((state) => !state); setStickyNoteContent('')}} toolTip={'Cancel note changes'}/>
+        <Button children={<IconSave />} type="submit" toolTip={'Save note changes'}/>
       </div>
     </form>
   )

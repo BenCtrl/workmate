@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { DeleteConfirmButton } from '../CommonComponents';
-import { Trash } from '../Icons';
+import { IconTrash } from '../Icons';
 
 const PageListItem = ({page, deletePage}) => {
   return (
@@ -11,7 +11,7 @@ const PageListItem = ({page, deletePage}) => {
         <span className="page-list-item-title"><b>{page.title}</b></span>
         <span className="page-list-item-date-edited"><span>Last Edited: </span>{new Date(page.edited_timestamp).toLocaleDateString()} | {new Date(page.edited_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
       </NavLink>
-      <DeleteConfirmButton className="page-list-item-options" onClick={() => {deletePage(page.id)}} children={<Trash />} toolTip="Delete Page" />
+      <DeleteConfirmButton className="page-list-item-options" onClick={() => {deletePage(page.id)}} children={<IconTrash />} toolTip="Delete Page" />
     </li>
   )
 }

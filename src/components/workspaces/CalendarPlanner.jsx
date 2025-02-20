@@ -8,11 +8,11 @@ import NewEventModal from '../calendar/NewEventModal';
 import CalendarEvent from '../calendar/CalendarEvent';
 
 import {
-  CalendarCheck,
-  ChevronLeft,
-  ChevronRight,
-  DoubleChevronLeft,
-  DoubleChevronRight
+  IconCalendarCheck,
+  IconChevronLeft,
+  IconChevronRight,
+  IconDoubleChevronLeft,
+  IconDoubleChevronRight
 } from '../Icons';
 
 import '../../styling/calendar.css';
@@ -77,7 +77,7 @@ const CalendarPlanner = () => {
             <h2>Events</h2>
             <div className="calendar-day-summary-date">{new Intl.DateTimeFormat("en-GB", dateFormattingOptions).format(dateSelected === null ? date : dateSelected)}</div>
           </div>
-          <Button children={<CalendarCheck />} toolTip={"Create new event"} onClick={() => {setShowModal(true)}}/>
+          <Button children={<IconCalendarCheck />} toolTip={"Create new event"} onClick={() => {setShowModal(true)}}/>
         </div>
         <div className="current-day-summary">
           {
@@ -103,10 +103,10 @@ const CalendarPlanner = () => {
         setDateSelected(value);
       }}
       value={date}
-      nextLabel={<ChevronRight/>}
-      next2Label={<DoubleChevronRight/>}
-      prevLabel={<ChevronLeft />}
-      prev2Label={<DoubleChevronLeft/>}
+      nextLabel={<IconChevronRight/>}
+      next2Label={<IconDoubleChevronRight/>}
+      prevLabel={<IconChevronLeft />}
+      prev2Label={<IconDoubleChevronLeft/>}
       formatDay={(locale, date) => {
         const eventCount = getEventCount(date);
 

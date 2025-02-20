@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Checkbox, DeleteConfirmButton } from '../CommonComponents';
 import StickyNoteEditor from './StickyNoteEditor';
-import { Trash } from '../Icons';
+import { IconTrash } from '../Icons';
 
 import '../../styling/stickynote.css';
 
@@ -37,7 +37,7 @@ const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
 
             <Checkbox className="outline note-completed-checkbox" onChange={() => {updateNote()}} checked={noteCompleted} toolTip={'Mark note as completed'} />
             <div className='delete-note'>
-              <DeleteConfirmButton children={<Trash />} onClick={() => {deleteNote(stickyNote.id)}} toolTip={'Delete note'}/>
+              <DeleteConfirmButton children={<IconTrash />} onClick={() => {deleteNote(stickyNote.id)}} toolTip={'Delete note'}/>
             </div>
           </div>
       }

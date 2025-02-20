@@ -5,7 +5,7 @@ import { info, warn } from '@tauri-apps/plugin-log';
 import { Button, Modal } from '../CommonComponents'
 import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
 import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
-import { Stack } from '../Icons';
+import { IconStack } from '../Icons';
 
 import '../../styling/noteslist.css'
 
@@ -37,7 +37,7 @@ const NotesList = () => {
   return (
     <>
       <div className='sticky-notes-controls'>
-        <Button children={<Stack />} toolTip={'Create new group'} onClick={() => {setShowGroupModal((state) => !state)}} />
+        <Button children={<IconStack />} toolTip={'Create new group'} onClick={() => {setShowGroupModal((state) => !state)}} />
       </div>
       <div id="notes-list-wrapper">
         {groups.map((group) => {

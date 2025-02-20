@@ -3,7 +3,7 @@ import { info, warn } from '@tauri-apps/plugin-log';
 
 import { Button, ButtonGroup, DeleteConfirmButton } from '../CommonComponents';
 import StickyNotesList from './StickyNotesList';
-import { ChevronDown, ChevronRight, Trash, Save, X } from '../Icons';
+import { IconChevronDown, IconChevronRight, IconSave, IconTrash, IconX } from '../Icons';
 
 import database from '../../database/database';
 
@@ -111,7 +111,7 @@ const StickyNoteGroup = ({
       <div className={`group-header ${groupCollapsed ? 'collapsed' : ''} ${updatingGroup ? 'updating' : ''}`}>
           <div className="group-title">
             <div style={{fontSize: '1.2rem'}} onClick={() => {setGroupCollapsed((state) => !state)}} className="toggle-group-collapsible">
-              {groupCollapsed ? <ChevronDown /> : <ChevronRight />}
+              {groupCollapsed ? <IconChevronDown /> : <IconChevronRight />}
             </div>
             {updatingGroup && !isDefault ?
               <input
@@ -137,12 +137,12 @@ const StickyNoteGroup = ({
 
           {updatingGroup ?
             <ButtonGroup>
-              <Button className='mini' onClick={() => {setUpdatingGroup((state) => !state)}} children={<X />} toolTip="Cancel edit"/>
-              <Button className='mini' onClick={() => {updateGroup()}} children={<Save />} toolTip="Save group"/>
+              <Button className='mini' onClick={() => {setUpdatingGroup((state) => !state)}} children={<IconX />} toolTip="Cancel edit"/>
+              <Button className='mini' onClick={() => {updateGroup()}} children={<IconSave />} toolTip="Save group"/>
             </ButtonGroup>
           :
             !isDefault &&
-            <DeleteConfirmButton className='delete-group mini' children={<Trash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>
+            <DeleteConfirmButton className='delete-group mini' children={<IconTrash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>
           }
       </div>
 

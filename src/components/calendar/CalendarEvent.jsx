@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { info } from '@tauri-apps/plugin-log';
 
 import { Button, ButtonGroup, DeleteConfirmButton } from '../CommonComponents';
-import { Save, Trash, X } from '../Icons';
+import { IconSave, IconTrash, IconX } from '../Icons';
 import { AppSettingsContext } from '../../App';
 
 import database from '../../database/database';
@@ -61,11 +61,11 @@ const CalendarEvent = ({event, fetchEvents}) => {
       </span>
       {updatingEvent ?
       <ButtonGroup>
-        <Button className='event-button mini' onClick={() => {setUpdatingEvent((state) => !state)}} children={<X />} toolTip="Cancel edit"/>
-        <Button className='event-button mini' onClick={() => {updateEvent()}} children={<Save />} toolTip="Save event"/>
+        <Button className='event-button mini' onClick={() => {setUpdatingEvent((state) => !state)}} children={<IconX />} toolTip="Cancel edit"/>
+        <Button className='event-button mini' onClick={() => {updateEvent()}} children={<IconSave />} toolTip="Save event"/>
       </ButtonGroup>
       :
-      <DeleteConfirmButton className="event-button mini" onClick={() => {deleteEvent(event.id)}} children={<Trash />} toolTip="Delete event" />
+      <DeleteConfirmButton className="event-button mini" onClick={() => {deleteEvent(event.id)}} children={<IconTrash />} toolTip="Delete event" />
       }
     </li>
   )

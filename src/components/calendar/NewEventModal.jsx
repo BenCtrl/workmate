@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { error, info, warn } from '@tauri-apps/plugin-log';
 
 import { Alert, Button, Input } from '../CommonComponents';
-import { Clock } from '../Icons';
+import { IconClock } from '../Icons';
 
 import database from '../../database/database';
 
@@ -56,7 +56,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
 
           <div className="new-event-time-select">
             <span class="time-input-container">
-              <Clock style={{marginLeft: '0.4rem'}}/>
+              <IconClock style={{marginLeft: '0.4rem'}}/>
               <select value={eventHour} name="new-event-hour-select" id="new-event-hour-select" onChange={(changeEvent) => {setEventHour(changeEvent.target.value)}}>
                 <option value="00">00</option>
                 <option value="01">01</option>
