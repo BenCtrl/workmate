@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 import { Checkbox, DeleteConfirmButton } from '../CommonComponents';
+import StickyNoteEditor from './StickyNoteEditor';
 import { Trash } from '../Icons';
 
-import StickyNoteEditor from './StickyNoteEditor';
 import '../../styling/stickynote.css';
 
 const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {

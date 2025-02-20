@@ -1,58 +1,65 @@
-import React, { useCallback, useState, useContext, useEffect } from 'react';
-import { useLoaderData, useBeforeUnload, useNavigate } from 'react-router-dom';
-import { EditorContent, useEditor } from '@tiptap/react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useState
+} from 'react';
+import { useBeforeUnload, useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { info, warn, error } from '@tauri-apps/plugin-log';
+import { error, info, warn } from '@tauri-apps/plugin-log';
 
-import StarterKit from '@tiptap/starter-kit';
-import CodeBlock from '@tiptap/extension-code-block';
-import TextStyle from '@tiptap/extension-text-style';
 import CharacterCount from '@tiptap/extension-character-count';
+import CodeBlock from '@tiptap/extension-code-block';
+import { EditorContent, useEditor } from '@tiptap/react';
+import Placeholder from '@tiptap/extension-placeholder';
+import StarterKit from '@tiptap/starter-kit';
+import TextStyle from '@tiptap/extension-text-style';
 import { Table as tiptapTable } from '@tiptap/extension-table';
 import TableRow from '@tiptap/extension-table-row';
 import TableHeader from '@tiptap/extension-table-header';
 import TableCell from '@tiptap/extension-table-cell';
 import { Underline as tiptapUnderline } from '@tiptap/extension-underline';
-import Placeholder from '@tiptap/extension-placeholder';
+
+import { Button, ButtonGroup } from '../CommonComponents';
 
 import {
   ArrowLeft,
   ArrowRight,
   Bold,
-  Italic,
-  Strikethrough,
   Code,
   Codeblock,
-  QuoteBlock,
-  OrderedList,
-  UnorderedList,
-  HorizontalRule,
-  Heading,
   FileText,
   FileAdd,
   FileDone,
+  HorizontalRule,
+  Heading,
   Pencil,
-  WarningTriangle,
-  Underline,
-  Table,
   InsertRowLeft,
   InsertRowRight,
   InsertRowAbove,
   InsertRowBelow,
+  Italic,
   MergeCells,
+  OrderedList,
+  QuoteBlock,
+  Strikethrough,
+  SplitCell,
   TableHeaderRow,
   TableHeaderCell,
   TableDeleteColumn,
   TableDeleteRow,
-  SplitCell,
-  Trash
+  Trash,
+  Table,
+  Underline,
+  UnorderedList,
+  WarningTriangle,
 } from '../Icons';
 
+import '../../styling/page-editor.css';
+
 import database from '../../database/database';
-import { Button, ButtonGroup } from '../CommonComponents';
 import { AppSettingsContext } from '../../App';
 import { addPageLoader, updatePageLoader } from './Pages';
-import '../../styling/page-editor.css';
 
 const extensions = [
   StarterKit,

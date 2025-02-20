@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom';
 import { info, warn } from '@tauri-apps/plugin-log';
 
 import { Button, Modal } from '../CommonComponents'
-import { Stack } from '../Icons';
-
-import database from '../../database/database';
 import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
 import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
+import { Stack } from '../Icons';
+
 import '../../styling/noteslist.css'
+
+import database from '../../database/database';
 
 const NotesList = () => {
   const [groups, setGroups] = useState([]);

@@ -7,4 +7,4 @@ import CheckBoxSlider from './common/CheckBoxSlider';
 import Input from './common/Input';
 import Modal from './common/Modal';
 
-export {Alert, Button, ButtonGroup, DeleteConfirmButton, Checkbox, CheckBoxSlider, Input, Modal};
+export { Alert, Button, ButtonGroup, DeleteConfirmButton, Checkbox, CheckBoxSlider, Input, Modal };

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { info } from '@tauri-apps/plugin-log';
 
-import { DeleteConfirmButton, Button, ButtonGroup } from '../CommonComponents';
+import { Button, ButtonGroup, DeleteConfirmButton } from '../CommonComponents';
 import { Save, Trash, X } from '../Icons';
 import { AppSettingsContext } from '../../App';
 

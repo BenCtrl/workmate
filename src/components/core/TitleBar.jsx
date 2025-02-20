@@ -1,7 +1,7 @@
 import React from 'react'
 import { getCurrentWindow } from '@tauri-apps/api/window';
 
-import { X, Square, Minus } from '../Icons';
+import { Minus, Square, X } from '../Icons';
 import '../../styling/titlebar.css'
 
 /**

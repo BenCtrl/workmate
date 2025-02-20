@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { info, warn } from '@tauri-apps/plugin-log';
 
 import { Button, ButtonGroup, DeleteConfirmButton } from '../CommonComponents';
-import { ChevronDown, ChevronRight, Trash, X, Save } from '../Icons';
+import StickyNotesList from './StickyNotesList';
+import { ChevronDown, ChevronRight, Trash, Save, X } from '../Icons';
 
 import database from '../../database/database';
-import StickyNotesList from './StickyNotesList';
 
 /**
  * @prop {string} noteColor - The color of the sticky notes [yellow (default), pink, green or blue]

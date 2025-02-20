@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
-import { info, warn, error } from '@tauri-apps/plugin-log';
+import React, { useContext, useState } from 'react';
+import { error, info, warn } from '@tauri-apps/plugin-log';
 
-import database from '../../database/database';
 import { Alert, Button, Input } from '../CommonComponents';
+
 import { AppSettingsContext } from '../../App';
+import database from '../../database/database';
 
 /**
  * * @prop {function} onNewGroupSubmit - Function to be called once the modal for has been submitted

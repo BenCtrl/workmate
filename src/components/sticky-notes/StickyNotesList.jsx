@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { debug } from '@tauri-apps/plugin-log';
 
-import { AppSettingsContext } from '../../App';
-import StickyNote from './StickyNote';
 import NewStickyNote from './NewStickyNote';
+import StickyNote from './StickyNote';
+
 import '../../styling/noteslist.css';
+
+import { AppSettingsContext } from '../../App';
 
 const StickyNotesList = ({stickyNotes, addNote, updateNote, deleteNote, group}) => {
   const SETTINGS = useContext(AppSettingsContext).appSettings;

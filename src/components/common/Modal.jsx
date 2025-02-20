@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Button } from '../CommonComponents';
 import { X } from '../Icons';
-
 import '../../styling/modal.css';
 
 const Modal = ({ onClose, children, modalHeading }) => {

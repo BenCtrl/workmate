@@ -4,6 +4,9 @@ import { debug, info } from '@tauri-apps/plugin-log';
 import Calendar from 'react-calendar';
 
 import { Button, Modal } from '../CommonComponents'
+import NewEventModal from '../calendar/NewEventModal';
+import CalendarEvent from '../calendar/CalendarEvent';
+
 import {
   CalendarCheck,
   ChevronLeft,
@@ -12,10 +15,9 @@ import {
   DoubleChevronRight
 } from '../Icons';
 
-import database from '../../database/database';
-import NewEventModal from '../calendar/NewEventModal';
-import CalendarEvent from '../calendar/CalendarEvent';
 import '../../styling/calendar.css';
+
+import database from '../../database/database';
 
 const CalendarPlanner = () => {
   const dateObject = new Date();

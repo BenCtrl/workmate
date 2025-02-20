@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import { debug, warn, error } from '@tauri-apps/plugin-log';
+import { error, debug, warn } from '@tauri-apps/plugin-log';
 
 import { Button } from '../CommonComponents';
-import { X, Save } from '../Icons';
+import { Save, X } from '../Icons';
 
 const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupID}) => {
   const textAreaRef = useRef(null);

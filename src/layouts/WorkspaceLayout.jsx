@@ -1,11 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { getVersion, getName } from '@tauri-apps/api/app';
+import { getName, getVersion } from '@tauri-apps/api/app';
 
 import { WorkspaceTabs } from '../components/core/WorkspaceTabs';
-import { AppSettingsContext } from '../App';
+
 import 'react-toastify/dist/ReactToastify.css'
+
+import { AppSettingsContext } from '../App';
 
 const WorkspaceLayout = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);

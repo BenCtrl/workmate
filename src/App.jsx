@@ -1,13 +1,13 @@
 import { createContext, useEffect, useState } from "react"
-import { create, exists, BaseDirectory, readTextFile } from "@tauri-apps/plugin-fs";
+import { BaseDirectory, create, exists, readTextFile } from "@tauri-apps/plugin-fs";
 import { debug, info } from "@tauri-apps/plugin-log";
-import { bindLoggers } from "./log/logging";
 
-import NavBar from "./components/core/NavBar"
 import WorkSpace from "./components/core/WorkSpace"
 import TitleBar from "./components/core/TitleBar";
 
 import './styling/shared.css'
+
+import { bindLoggers } from "./log/logging";
 
 const appSettingsFileName = 'app_settings.json';
 export const AppSettingsContext = createContext(null);

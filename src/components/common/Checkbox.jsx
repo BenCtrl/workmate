@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Check } from '../Icons';
 
 const Checkbox = ({

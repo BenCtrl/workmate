@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { Plus } from '../Icons';
 import StickyNoteEditor from './StickyNoteEditor';
+import { Plus } from '../Icons';
 import '../../styling/stickynote.css';
 
 const NewStickyNote = ({addNoteSubmit, groupID}) => {

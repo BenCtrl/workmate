@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { writeTextFile, BaseDirectory } from '@tauri-apps/plugin-fs';
+import React, { useContext, useState } from 'react';
+import { BaseDirectory, writeTextFile } from '@tauri-apps/plugin-fs';
+import { info } from '@tauri-apps/plugin-log';
 
 import { Alert, Button, CheckBoxSlider } from '../CommonComponents';
-import { AppSettingsContext } from '../../App';
 import '../../styling/appsettings.css';
-import { info } from '@tauri-apps/plugin-log';
+
+import { AppSettingsContext } from '../../App';
 
 const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);

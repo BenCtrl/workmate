@@ -1,8 +1,8 @@
 import {
   Calendar,
-  Note,
+  Cog,
   FileText,
-  Cog
+  Note
 } from "../Icons";
 
 import WorkspaceTab from './WorkspaceTab';

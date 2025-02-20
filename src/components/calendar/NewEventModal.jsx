@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { info, warn, error } from '@tauri-apps/plugin-log';
+import { error, info, warn } from '@tauri-apps/plugin-log';
 
-import {Alert, Button, Input} from '../CommonComponents';
+import { Alert, Button, Input } from '../CommonComponents';
 import { Clock } from '../Icons';
 
 import database from '../../database/database';

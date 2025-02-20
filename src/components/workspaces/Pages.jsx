@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { info, warn } from '@tauri-apps/plugin-log';
 
-import database from '../../database/database';
-import { FileAdd, Search } from '../Icons';
 import { Button, Input } from '../CommonComponents'
 import PageListItem from '../pages/PageListItem';
+import { FileAdd, Search } from '../Icons';
 
 import '../../styling/pagelist.css';
+
+import database from '../../database/database';
 
 const Pages = () => {
   const [searchQuery, setSearchQuery] = useState('');
