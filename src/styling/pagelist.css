@@ -60,6 +60,7 @@
 /* behavioural styling */
 .page-list-item:hover {
   background-color: var(--page-list-item-hover-background-color);
+  border-color: var(--button-active-accent-color);
   cursor: pointer;
 }
 
