@@ -74,6 +74,16 @@ textarea {
   font-size: 1rem;
 }
 
+.inline-title-input {
+  margin: 0;
+  padding: 0;
+  border: none;
+  flex-grow: 1;
+  background: transparent;
+  border-radius: 0;
+  margin-right: 0.6rem;
+}
+
 button, .navlink-button, select {
   border: none;
   margin: 1rem;

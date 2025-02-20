@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { info, warn } from '@tauri-apps/plugin-log';
 
-import { Button, DeleteConfirmButton } from '../CommonComponents';
-import { ChevronDown, ChevronRight, Trash } from '../Icons';
+import { Button, ButtonGroup, DeleteConfirmButton } from '../CommonComponents';
+import { ChevronDown, ChevronRight, Trash, X, Save } from '../Icons';
 
 import database from '../../database/database';
 import StickyNotesList from './StickyNotesList';
@@ -18,6 +18,8 @@ const StickyNoteGroup = ({
 }) => {
   const [notes, setNotes] = useState([]);
   const [groupCollapsed, setGroupCollapsed] = useState(collapsed);
+  const [groupTitle, setGroupTitle] = useState(group.title);
+  const [updatingGroup, setUpdatingGroup] = useState(false);
 
   const getNotesForGroup = async () => {
     try {
@@ -32,6 +34,19 @@ const StickyNoteGroup = ({
       setNotes(notesForGroup);
     } catch(error) {
       console.error(`Error while retrieving notes for group with ID '${group.id}': ${error}`);
+    }
+  }
+
+  const updateGroup = async () => {
+    try {
+      await database.execute('UPDATE note_groups SET title = $1 WHERE id = $2', [groupTitle, group.id]);
+
+      info(`Updated group '${groupTitle}' with ID '${group.id}'`);
+
+      getGroups();
+      setUpdatingGroup((state) => !state);
+    } catch(error) {
+      console.error(`Error while updating group with ID '${group.id}': ${error}`);
     }
   }
 
@@ -93,15 +108,43 @@ const StickyNoteGroup = ({
 
   return (
     <div className={`sticky-notes-group ${group.color}`} id={group.id}>
-      <div className={`group-header ${groupCollapsed ? 'collapsed' : ''}`}>
+      <div className={`group-header ${groupCollapsed ? 'collapsed' : ''} ${updatingGroup ? 'updating' : ''}`}>
           <div className="group-title">
             <div style={{fontSize: '1.2rem'}} onClick={() => {setGroupCollapsed((state) => !state)}} className="toggle-group-collapsible">
               {groupCollapsed ? <ChevronDown /> : <ChevronRight />}
             </div>
-            {group.title}
+            {updatingGroup && !isDefault ?
+              <input
+                className='inline-title-input'
+                style={{fontWeight:'bold'}}
+                autoFocus
+                value={groupTitle}
+                onChange={(changeEvent) => {setGroupTitle(changeEvent.target.value)}}
+                type='text'
+                onKeyDown={(keyEvent) => {
+                  if (keyEvent.code === "Escape") {
+                    setUpdatingGroup((state) => !state);
+                    setGroupTitle(group.title);
+                  }
+
+                  keyEvent.code === "Enter" && updateGroup();
+                }}
+              />
+            :
+              <span style={{flexGrow:'1'}} title={!isDefault && "Edit group title"} onClick={() => {!isDefault && setUpdatingGroup((state) => !state)}}>{group.title}</span>
+            }
           </div>
 
-          {!isDefault && <DeleteConfirmButton className='delete-group mini' children={<Trash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>}
+          {/* {!isDefault && <DeleteConfirmButton className='delete-group mini' children={<Trash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>} */}
+          {updatingGroup ?
+            <ButtonGroup>
+              <Button className='mini' onClick={() => {setUpdatingGroup((state) => !state)}} children={<X />} toolTip="Cancel edit"/>
+              <Button className='mini' onClick={() => {updateGroup()}} children={<Save />} toolTip="Save group"/>
+            </ButtonGroup>
+          :
+            !isDefault &&
+            <DeleteConfirmButton className='delete-group mini' children={<Trash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>
+          }
       </div>
 
       {/* {groupCollapsed && <StickyNotesList stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />} */}

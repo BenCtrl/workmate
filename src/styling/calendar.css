@@ -202,15 +202,6 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   margin-right: 0.6rem;
 }
 
-.event-title-input {
-  margin: 0;
-  padding: 0;
-  border: none;
-  flex-grow: 1;
-  background: transparent;
-  border-radius: 0;
-}
-
 .event > button,
 .event > .button-group {
   opacity: 0;

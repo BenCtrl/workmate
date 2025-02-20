@@ -32,7 +32,7 @@ const CalendarEventEditor = ({setUpdatingEvent, event, fetchEvents}) => {
       <span className="event-details">
         <span className="event-timestamp">{new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
           <input
-            className='event-title-input'
+            className='inline-title-input'
             ref={inputRef}
             value={eventTitle}
             onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}}

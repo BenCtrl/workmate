@@ -27,13 +27,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--page-background-accent-color);
+  /* background-color: var(--page-background-accent-color); */
+  background-color: var(--item-background-color);
   border-radius: 0.3rem;
   font-weight: bold;
   /* margin: 0 0.6rem 1rem 0.6rem; */
   margin-bottom: 1rem;
   position: relative;
   padding: 0.3rem 1rem;
+  border: 0.15rem solid var(--item-outline-color);
+  transition: 0.2s;
 }
 
 .sticky-notes-group .group-header.collapsed {
@@ -50,14 +53,15 @@
   top: 0;
   width: 0.4%;
   height: 100%;
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem;
+  border-top-left-radius: 0.2rem;
+  border-bottom-left-radius: 0.2rem;
 }
 
 .sticky-notes-group .group-header .group-title {
   display: flex;
   flex-direction: row;
   padding: 0.2rem 0;
+  flex-grow: 1;
 }
 
 .sticky-notes-group .toggle-group-collapsible {
@@ -94,6 +98,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.sticky-notes-group .button-group {
+  margin: 0.2rem;
+}
+
+.sticky-notes-group .group-header.updating {
+  border-color: var(--component-warning);
 }
 
 #new-sticky-note-group-form button,
