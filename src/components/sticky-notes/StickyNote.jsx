@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Button, Checkbox, DeleteConfirmButton } from '../CommonComponents';
+import { Checkbox, DeleteConfirmButton } from '../CommonComponents';
 import { Trash } from '../Icons';
 
 import StickyNoteEditor from './StickyNoteEditor';

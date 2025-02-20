@@ -15,7 +15,6 @@
 }
 
 .sticky-notes-controls {
-  /* margin: 0 0.6rem 1rem 0.6rem; */
   margin-bottom: 1rem;
 }
 
@@ -27,11 +26,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: var(--page-background-accent-color); */
   background-color: var(--item-background-color);
   border-radius: 0.3rem;
   font-weight: bold;
-  /* margin: 0 0.6rem 1rem 0.6rem; */
   margin-bottom: 1rem;
   position: relative;
   padding: 0.3rem 1rem;

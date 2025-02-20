@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { info } from '@tauri-apps/plugin-log';
 
 import { DeleteConfirmButton, Button, ButtonGroup } from '../CommonComponents';

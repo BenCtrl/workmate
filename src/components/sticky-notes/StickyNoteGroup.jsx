@@ -135,7 +135,6 @@ const StickyNoteGroup = ({
             }
           </div>
 
-          {/* {!isDefault && <DeleteConfirmButton className='delete-group mini' children={<Trash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>} */}
           {updatingGroup ?
             <ButtonGroup>
               <Button className='mini' onClick={() => {setUpdatingGroup((state) => !state)}} children={<X />} toolTip="Cancel edit"/>
@@ -147,7 +146,6 @@ const StickyNoteGroup = ({
           }
       </div>
 
-      {/* {groupCollapsed && <StickyNotesList stickyNotes={stickyNotes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />} */}
       {groupCollapsed && <StickyNotesList stickyNotes={notes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />}
     </div>
   )
