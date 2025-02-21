@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { info, warn } from '@tauri-apps/plugin-log';
+import React, { useContext, useEffect, useState } from 'react';
+import { error, info, warn } from '@tauri-apps/plugin-log';
+import { toast } from 'react-toastify';
 
 import { Button, ButtonGroup, DeleteConfirmButton } from '../CommonComponents';
 import StickyNotesList from './StickyNotesList';
 import { IconChevronDown, IconChevronRight, IconSave, IconTrash, IconX } from '../Icons';
 
 import database from '../../database/database';
+import { AppSettingsContext } from '../../App';
 
 /**
  * @prop {string} noteColor - The color of the sticky notes [yellow (default), pink, green or blue]
@@ -20,6 +22,7 @@ const StickyNoteGroup = ({
   const [groupCollapsed, setGroupCollapsed] = useState(collapsed);
   const [groupTitle, setGroupTitle] = useState(group.title);
   const [updatingGroup, setUpdatingGroup] = useState(false);
+  const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const getNotesForGroup = async () => {
     try {
@@ -39,6 +42,18 @@ const StickyNoteGroup = ({
 
   const updateGroup = async () => {
     try {
+      if (!groupTitle.trim()) {
+        error('Note group cannot be updated - Title is empty');
+        toast.error('Group title cannot be empty')
+        return;
+      } else if (await database.select('SELECT * FROM note_groups WHERE title = $1', [groupTitle]).then(result => {return result.length}) > 0) {
+        if (SETTINGS.PREVENT_DUPLICATES) {
+          error(`Note group cannot be updated - Group with title '${groupTitle}' already exists`);
+          toast.error(`Group with title '${groupTitle}' already exists`)
+          return;
+        }
+      }
+
       await database.execute('UPDATE note_groups SET title = $1 WHERE id = $2', [groupTitle, group.id]);
 
       info(`Updated group '${groupTitle}' with ID '${group.id}'`);
