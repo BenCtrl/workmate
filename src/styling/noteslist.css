@@ -22,6 +22,11 @@
   margin: 0;
 }
 
+.sticky-notes-group .group-title svg,
+.sticky-notes-group .group-color svg {
+  font-size: 1.5rem;
+}
+
 .sticky-notes-group .group-header {
   display: flex;
   justify-content: space-between;
@@ -31,62 +36,73 @@
   font-weight: bold;
   margin-bottom: 1rem;
   position: relative;
-  padding: 0.3rem 1rem;
   border: 0.15rem solid var(--item-outline-color);
   transition: 0.2s;
+  padding-right: 0.4rem;
 }
 
 .sticky-notes-group .group-header.collapsed {
   margin-bottom: 0;
 }
 
-.sticky-notes-group .group-header::after {
-  transition: 0.2s;
-  content: '';
-  display: block;
+.sticky-notes-group .group-color {
+  transition: 0.1s;
   background-color: var(--button-active-accent-color);
-  position: absolute;
   left: 0;
   top: 0;
-  width: 0.4%;
-  height: 100%;
+  width: 0.4rem;
+  align-self: stretch;
   border-top-left-radius: 0.2rem;
   border-bottom-left-radius: 0.2rem;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.sticky-notes-group .group-color.visible {
+  width: 7rem;
 }
 
 .sticky-notes-group .group-header .group-title {
   display: flex;
   flex-direction: row;
-  padding: 0.2rem 0;
   flex-grow: 1;
+  align-items: center;
 }
 
 .sticky-notes-group .toggle-group-collapsible {
   cursor: pointer;
-  margin-right: 0.6rem;
+  margin: 0 0.4rem;
   transition: 0.2s;
+  align-self: stretch;
 }
 
 .sticky-notes-group .toggle-group-collapsible:hover {
   color: var(--button-active-accent-color);
 }
 
-.sticky-notes-group.yellow .group-header::after,
+.sticky-notes-group.yellow .group-color,
+.sticky-notes-group.yellow .group-color select {
+  color: #a9a9a9;
+}
+
+.sticky-notes-group.yellow .group-color,
 .sticky-notes-group.yellow .sticky-note {
   background-color: var(--sticky-note-yellow);
 }
 
-.sticky-notes-group.pink .group-header::after,
+.sticky-notes-group.pink .group-color,
 .sticky-notes-group.pink .sticky-note {
   background-color: var(--sticky-note-pink);
 }
 
-.sticky-notes-group.green .group-header::after,
+.sticky-notes-group.green .group-color,
 .sticky-notes-group.green .sticky-note {
   background-color: var(--sticky-note-green);
 }
 
-.sticky-notes-group.blue .group-header::after,
+.sticky-notes-group.blue .group-color,
 .sticky-notes-group.blue .sticky-note {
   background-color: var(--sticky-note-blue);
 }
@@ -97,8 +113,21 @@
   align-items: center;
 }
 
+.sticky-notes-group .group-color-select {
+  box-shadow: none;
+  background-color: transparent;
+  margin: 0;
+  color: white;
+  appearance: none;
+}
+
+.sticky-notes-group .group-color svg {
+  padding: 0 0.4rem;
+  transition: 0.1s;
+}
+
 .sticky-notes-group .button-group {
-  margin: 0.2rem;
+  margin: 0.3rem;
 }
 
 .sticky-notes-group .group-header.updating {
@@ -124,4 +153,22 @@
 #new-sticky-note-group-form .alert {
   display: block;
   margin: 0 0 1rem 0;
+}
+
+/* behavioural styling */
+.sticky-notes-group .group-color:hover {
+  width: 1rem;
+  cursor: pointer;
+}
+
+.sticky-notes-group .group-color.visible:hover {
+  width: 7rem;
+}
+
+.sticky-notes-group .group-color svg:hover {
+  color: var(--button-active-accent-color);
+}
+
+.sticky-notes-group select.group-color-select:hover {
+  color: var(--button-active-accent-color);
 }

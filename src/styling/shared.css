@@ -107,6 +107,17 @@ button.mini {
   margin: 0.2rem;
 }
 
+button.mini-2 {
+  margin: 0.3rem;
+  box-shadow: 0.2rem 0.2rem 0 0 var(--button-accent-color);
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+button.mini-2 svg {
+  font-size: 1rem;
+}
+
 button.mini svg {
   font-size: 1.1rem;
 }

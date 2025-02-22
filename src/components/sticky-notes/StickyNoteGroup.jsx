@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import { Button, ButtonGroup, DeleteConfirmButton } from '../CommonComponents';
 import StickyNotesList from './StickyNotesList';
-import { IconChevronDown, IconChevronRight, IconSave, IconTrash, IconX } from '../Icons';
+import { IconChevronDown, IconChevronLeft, IconChevronRight, IconSave, IconTrash, IconX } from '../Icons';
 
 import database from '../../database/database';
 import { AppSettingsContext } from '../../App';
@@ -21,7 +21,11 @@ const StickyNoteGroup = ({
   const [notes, setNotes] = useState([]);
   const [groupCollapsed, setGroupCollapsed] = useState(collapsed);
   const [groupTitle, setGroupTitle] = useState(group.title);
+  const [groupColor, setGroupColor] = useState(group.color);
+
   const [updatingGroup, setUpdatingGroup] = useState(false);
+  const [updatingColor, setUpdatingColor] = useState(false);
+
   const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const getNotesForGroup = async () => {
@@ -60,6 +64,19 @@ const StickyNoteGroup = ({
 
       getGroups();
       setUpdatingGroup((state) => !state);
+    } catch(error) {
+      console.error(`Error while updating group with ID '${group.id}': ${error}`);
+    }
+  }
+
+  const updateGroupColor = async (color) => {
+    try {
+      await database.execute('UPDATE note_groups SET color = $1 WHERE id = $2', [color, group.id]);
+
+      info(`Updated group '${groupTitle}' [ID: ${group.id}] color to '${color}'`);
+      setGroupColor(color);
+
+      getGroups();
     } catch(error) {
       console.error(`Error while updating group with ID '${group.id}': ${error}`);
     }
@@ -122,10 +139,25 @@ const StickyNoteGroup = ({
   }, [])
 
   return (
-    <div className={`sticky-notes-group ${group.color}`} id={group.id}>
+    <div className={`sticky-notes-group ${groupColor}`} id={group.id}>
       <div className={`group-header ${groupCollapsed ? 'collapsed' : ''} ${updatingGroup ? 'updating' : ''}`}>
+          <div title={`${SETTINGS.TOOLTIPS ? 'Change group color':''}`} className={`group-color ${updatingColor && 'visible'}`} onClick={() => {setUpdatingColor((state) => !state);}}>
+            {updatingColor &&
+              <>
+                <select value={groupColor} class="group-color-select" onChange={(changeEvent) => {updateGroupColor(changeEvent.target.value)}} onClick={(event) => {
+                  event.stopPropagation();
+                }} >
+                  <option value="yellow">Yellow</option>
+                  <option value="pink">Pink</option>
+                  <option value="green">Green</option>
+                  <option value="blue">Blue</option>
+                </select>
+                <IconChevronLeft />
+              </>
+            }
+          </div>
           <div className="group-title">
-            <div style={{fontSize: '1.2rem'}} onClick={() => {setGroupCollapsed((state) => !state)}} className="toggle-group-collapsible">
+            <div onClick={() => {setGroupCollapsed((state) => !state)}} className="toggle-group-collapsible">
               {groupCollapsed ? <IconChevronDown /> : <IconChevronRight />}
             </div>
             {updatingGroup && !isDefault ?
@@ -152,12 +184,12 @@ const StickyNoteGroup = ({
 
           {updatingGroup ?
             <ButtonGroup>
-              <Button className='mini' onClick={() => {setUpdatingGroup((state) => !state)}} children={<IconX />} toolTip="Cancel edit"/>
-              <Button className='mini' onClick={() => {updateGroup()}} children={<IconSave />} toolTip="Save group"/>
+              <Button className='mini-2' onClick={() => {setUpdatingGroup((state) => !state)}} children={<IconX />} toolTip="Cancel edit"/>
+              <Button className='mini-2' onClick={() => {updateGroup()}} children={<IconSave />} toolTip="Save group"/>
             </ButtonGroup>
           :
             !isDefault &&
-            <DeleteConfirmButton className='delete-group mini' children={<IconTrash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>
+            <DeleteConfirmButton className='delete-group mini-2' children={<IconTrash />} onClick={() => {deleteGroup()}} toolTip={'Delete group'}/>
           }
       </div>
 
