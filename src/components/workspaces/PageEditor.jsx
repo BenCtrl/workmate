@@ -1,10 +1,9 @@
 import React, {
-  useCallback,
   useContext,
   useEffect,
   useState
 } from 'react';
-import { useBeforeUnload, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { error, info, warn } from '@tauri-apps/plugin-log';
 
@@ -59,7 +58,6 @@ import '../../styling/page-editor.css';
 
 import database from '../../database/database';
 import { AppSettingsContext } from '../../App';
-import { addPageLoader, updatePageLoader } from './Pages';
 
 const extensions = [
   StarterKit,
@@ -84,11 +82,12 @@ const PageEditor = () => {
   const page = useLoaderData();
   const navigate = useNavigate();
 
-  const [pageHeader, setPageHeader] = useState(page ? page.title : 'New Page');
+  const [pageTitle, setPageTitle] = useState(page ? page.title : 'New Page');
   const [selectedHeading, setSelectedHeading] = useState(1);
+
   const [changesMade, setChangesMade] = useState(false);
-  const [isEditing, setIsEditing] = useState(page ? false : true);
-  const [editingTable, setEditableTable] = useState(false);
+  const [editingPage, setIsEditing] = useState(page ? false : true);
+  const [editingTable, setEditingTable] = useState(false);
 
   const content = page ? JSON.parse(page.page_content) : '';
   const SETTINGS = useContext(AppSettingsContext).appSettings;
@@ -100,10 +99,10 @@ const PageEditor = () => {
       setChangesMade(true);
     },
     onSelectionUpdate: (editorUpdate) => {
-      const selectionPath = editor.state.selection.$anchor.path;
+      const cursorSelectionPath = editor.state.selection.$anchor.path;
       let tableFound = false;
 
-      selectionPath.forEach((path) => {
+      cursorSelectionPath.forEach((path) => {
         if (isNaN(path)) {
           if (path.type.name === 'table') {
             tableFound = true;
@@ -112,84 +111,87 @@ const PageEditor = () => {
         }
       });
 
-      setEditableTable(tableFound);
+      setEditingTable(tableFound);
     }
   });
-  
+
   const submitPage = async (buttonEvent) => {
-    let finalPageHeader = pageHeader;
-    const buttonId = buttonEvent.currentTarget.id;
+    const isNewPage = buttonEvent.currentTarget.id === 'page-save-as' ? true : false;
 
-    if (buttonId === 'page-save-as') {
-      if (await database.select('SELECT * FROM pages WHERE title = $1', [pageHeader]).then(result => {return result.length}) > 0) {
-        if (SETTINGS.PREVENT_DUPLICATES) {
-          error(`Page cannot be created - Page with title '${pageHeader}' already exists`);
-          toast.error(`Page with title '${pageHeader}' already exists`);
-          return;
-        } else {
-          finalPageHeader = `${finalPageHeader}-Copy`;
-        }
-      }
-    }
-
-    if (!finalPageHeader.trim()) {
+    if (!pageTitle.trim()) {
       error('Page cannot be saved - Title is empty');
       toast.error('Page title cannot be empty');
       return;
-    } else if (finalPageHeader.length > 64) {
+    } else if (pageTitle.length > 64) {
       error('Page cannot be saved - Character count of title is greater than limit (64 characters)');
       toast.error('Page title too long (no more than 64 characters)');
       return;
     }
 
     const newPageData = {
-      title: finalPageHeader,
+      title: pageTitle,
       page_content: JSON.stringify(editor.getJSON()),
       created_timestamp: page ? page.created_timestamp : Date.now(),
       edited_timestamp: Date.now()
     }
 
-    // Crude solution for embedding existing page ID into request body, more elegant solution should be found
-    if (buttonId !== 'page-save-as' && page) {
-      newPageData.id = page.id
-    }
-
     try {
-      if (buttonId === 'page-save-as' || buttonId === 'page-save' && !page) {
-        const newPageID = await addPageLoader(newPageData);
-        navigate(`/pages/editor/${newPageID}`);
+      if (isNewPage || !isNewPage && !page) {
+        if (await database.select('SELECT * FROM pages WHERE title = $1', [pageTitle]).then(result => {return result.length}) > 0) {
+          if (SETTINGS.PREVENT_DUPLICATES) {
+            error(`Page cannot be created - Page with title '${pageTitle}' already exists`);
+            toast.error(`Page with title '${pageTitle}' already exists`);
+            return;
+          } else {
+            newPageData.title = `${newPageData.title}-Copy`;
+          }
+        }
 
-        info(`New page with ID '${newPageID}' was successfully created`);
-        toast.success(`New page successfully created`);
+        const response = await database.select(
+          'INSERT INTO pages (title, page_content) VALUES ($1, $2) RETURNING id;',
+          [newPageData.title, newPageData.page_content]
+        );
+
+        if (response.length > 0) {
+          const newPageID = response[0].id;
+          navigate(`/pages/editor/${newPageID}`);
+
+          info(`New page with ID '${newPageID}' was successfully created`);
+          toast.success(`New page '${newPageData.title}' successfully created`);
+        } else {
+          error('Attempted to create new page but no ID was returned');
+          return;
+        }
       } else {
-        updatePageLoader(newPageData);
+        await database.select(
+          'UPDATE pages SET title = $1, page_content = $2, edited_timestamp = $3 WHERE id = $4;',
+          [newPageData.title, newPageData.page_content, newPageData.edited_timestamp, page.id]
+        );
 
-        toast.success('Page successfully saved');
-        info(`Page with ID '${newPageData.id}' successfully updated`);
+        navigate(`/pages/editor/${page.id}`);
+
+        toast.success(`Page '${page.title}' successfully saved`);
+        info(`Page '${page.title}' with ID '${page.id}' successfully updated`);
       }
 
       setChangesMade(false);
     } catch (error) {
-      console.error(`Error while attempting to save page: ${error}`);
+      console.error(`Error while attempting to submit page${page && ` with ID '${page.id}'`}: ${error}`);
     }
   }
 
-  useBeforeUnload(useCallback((unloadEvent) => {
-    changesMade && unloadEvent.preventDefault();
-  }));
-
   useEffect(() => {
-    editor.setEditable(isEditing, false);
-  }, [isEditing]);
+    editor.setEditable(editingPage, false);
+  }, [editingPage]);
 
   return (
     <>
       <div className="page-editor-header">
         <IconWarningTriangle className={`unsaved-changes-icon ${!changesMade && 'hidden'}`} title="Unsaved Changes!" />
-        <input title={`${isEditing && SETTINGS.TOOLTIPS ? 'Edit page title':''}`} value={pageHeader} placeholder={'Page Title...'} onChange={(changeEvent) => {setPageHeader(changeEvent.target.value); setChangesMade(true)}} className="page-editor-title" disabled={!isEditing}></input>
-        {!isEditing ? <Button toolTip="Edit Page" children={<IconPencil />} onClick={() => {setIsEditing((state) => !state)}}/> : <Button toolTip="View Page" children={<IconFileText />} onClick={() => {setIsEditing((state) => !state)}}/>}
+        <input title={`${editingPage && SETTINGS.TOOLTIPS ? 'Edit page title':''}`} value={pageTitle} placeholder={'Page Title...'} onChange={(changeEvent) => {setPageTitle(changeEvent.target.value); setChangesMade(true)}} className="page-editor-title" disabled={!editingPage}></input>
+        {!editingPage ? <Button toolTip="Edit Page" children={<IconPencil />} onClick={() => {setIsEditing((state) => !state)}}/> : <Button toolTip="View Page" children={<IconFileText />} onClick={() => {setIsEditing((state) => !state)}}/>}
       </div>
-      {isEditing &&
+      {editingPage &&
         <div className="page-editor-nodes">
           <ButtonGroup>
             <Button className='small' toolTip="Undo" children={<IconArrowLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
