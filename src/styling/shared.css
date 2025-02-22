@@ -103,26 +103,26 @@ button svg {
   font-size: 1.33rem;
 }
 
-button.mini {
+button.small {
   margin: 0.2rem;
 }
 
-button.mini-2 {
+button.mini  {
   margin: 0.3rem;
   box-shadow: 0.2rem 0.2rem 0 0 var(--button-accent-color);
   font-size: 0.7rem;
   font-weight: bold;
 }
 
-button.mini-2 svg {
+button.mini  svg {
   font-size: 1rem;
 }
 
-button.mini svg {
+button.small svg {
   font-size: 1.1rem;
 }
 
-select.mini {
+select.small {
   font-size: 0.9rem;
   padding: 0.2rem 0.6rem;
 }

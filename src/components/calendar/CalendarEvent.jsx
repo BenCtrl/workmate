@@ -61,11 +61,11 @@ const CalendarEvent = ({event, fetchEvents}) => {
       </span>
       {updatingEvent ?
       <ButtonGroup>
-        <Button className='event-button mini' onClick={() => {setUpdatingEvent((state) => !state)}} children={<IconX />} toolTip="Cancel edit"/>
-        <Button className='event-button mini' onClick={() => {updateEvent()}} children={<IconSave />} toolTip="Save event"/>
+        <Button className='event-button small' onClick={() => {setUpdatingEvent((state) => !state)}} children={<IconX />} toolTip="Cancel edit"/>
+        <Button className='event-button small' onClick={() => {updateEvent()}} children={<IconSave />} toolTip="Save event"/>
       </ButtonGroup>
       :
-      <DeleteConfirmButton className="event-button mini" onClick={() => {deleteEvent(event.id)}} children={<IconTrash />} toolTip="Delete event" />
+      <DeleteConfirmButton className="event-button small" onClick={() => {deleteEvent(event.id)}} children={<IconTrash />} toolTip="Delete event" />
       }
     </li>
   )
