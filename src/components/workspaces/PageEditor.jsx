@@ -211,9 +211,8 @@ const PageEditor = () => {
 
           <ButtonGroup style={{marginLeft: '1rem'}}>
             <Button toolTip="Apply heading" className={`small ${editor.isActive('heading') ? 'active' : ''}`} children={<IconHeading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run()}}/>
-            {/* TODO - Review if heading apply button is better solution than setting heading styling on selection of heading as implemented below */}
+
             <select className='small' onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value))}} id="heading-select">
-            {/* <select onChange={(changeEvent) => {console.log('heading selected'); editor.chain().focus().toggleHeading({ level: parseInt(changeEvent.target.value) }).run()}} id="heading-select"> */}
               <option value="1">Heading 1</option>
               <option value="2">Heading 2</option>
               <option value="3">Heading 3</option>
