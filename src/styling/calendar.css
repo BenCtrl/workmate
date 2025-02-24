@@ -165,6 +165,13 @@ button.react-calendar__tile--active.react-calendar__tile--now {
 .current-day-events-list {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-color: var(--scrollbar-thumb-color) transparent;
+  scrollbar-width: thin;
 }
 
 .current-day-events-list .event {
@@ -272,4 +279,9 @@ button.mini.event-button {
 
 .event-title:hover {
   cursor: text;
+}
+
+/* theme styling */
+[data-theme="dark"] .current-day-events-list {
+  scrollbar-color: var(--button-background-color) transparent;
 }
