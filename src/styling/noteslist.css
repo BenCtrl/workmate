@@ -172,3 +172,8 @@
 .sticky-notes-group select.group-color-select:hover {
   color: var(--button-active-accent-color);
 }
+
+/* theme styling */
+[data-theme="dark"] #notes-list-wrapper {
+  scrollbar-color: var(--button-background-color) transparent;
+}
