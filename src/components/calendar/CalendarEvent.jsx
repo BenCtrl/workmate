@@ -36,6 +36,11 @@ const CalendarEvent = ({event, fetchEvents}) => {
     }
   }
 
+  const cancelEventTitleEdits = () => {
+    setUpdatingEvent((state) => !state);
+    setEventTitle(event.title);
+  }
+
   return (
     <li key={event.id} className={`event ${updatingEvent ? 'updating' : ''}`}>
       <span className="event-details">
@@ -49,8 +54,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
           type='text'
           onKeyDown={(keyEvent) => {
             if (keyEvent.code === "Escape") {
-              setUpdatingEvent((state) => !state);
-              setEventTitle(event.title);
+              cancelEventTitleEdits()
             }
             keyEvent.code === "Enter" && updateEvent();
           }}
@@ -61,7 +65,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
       </span>
       {updatingEvent ?
       <ButtonGroup>
-        <Button className='event-button small' onClick={() => {setUpdatingEvent((state) => !state)}} children={<IconX />} toolTip="Cancel edit"/>
+        <Button className='event-button small' onClick={() => {cancelEventTitleEdits()}} children={<IconX />} toolTip="Cancel edit"/>
         <Button className='event-button small' onClick={() => {updateEvent()}} children={<IconSave />} toolTip="Save event"/>
       </ButtonGroup>
       :

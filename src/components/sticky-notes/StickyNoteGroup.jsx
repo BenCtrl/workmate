@@ -134,6 +134,11 @@ const StickyNoteGroup = ({
     }
   }
 
+  const cancelTitleEdits = () => {
+    setUpdatingGroup((state) => !state);
+    setGroupTitle(group.title);
+  }
+
   useEffect(() => {
     getNotesForGroup();
   }, [])
@@ -170,8 +175,7 @@ const StickyNoteGroup = ({
                 type='text'
                 onKeyDown={(keyEvent) => {
                   if (keyEvent.code === "Escape") {
-                    setUpdatingGroup((state) => !state);
-                    setGroupTitle(group.title);
+                    cancelTitleEdits();
                   }
 
                   keyEvent.code === "Enter" && updateGroup();
@@ -184,7 +188,7 @@ const StickyNoteGroup = ({
 
           {updatingGroup ?
             <ButtonGroup>
-              <Button className='mini' onClick={() => {setUpdatingGroup((state) => !state)}} children={<IconX />} toolTip="Cancel edit"/>
+              <Button className='mini' onClick={() => {cancelTitleEdits()}} children={<IconX />} toolTip="Cancel edit"/>
               <Button className='mini' onClick={() => {updateGroup()}} children={<IconSave />} toolTip="Save group"/>
             </ButtonGroup>
           :
