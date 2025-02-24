@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BaseDirectory, writeTextFile } from '@tauri-apps/plugin-fs';
 import { info } from '@tauri-apps/plugin-log';
 
@@ -9,13 +9,18 @@ import { AppSettingsContext } from '../../App';
 
 const AppSettings = () => {
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);
-  const [toolTipsEnabled, setTooltipsEnabled] = useState(appSettings.TOOLTIPS);
-  const [darkModeEnabled, setDarkModeEnabled] = useState(appSettings.DARKMODE);
-  const [wordCounterEnabled, setWordCounterEnabled] = useState(appSettings.WORD_COUNTER);
-  const [hideCompletedNotes, setHideCompletedNotes] = useState(appSettings.HIDE_COMPLETED_NOTES);
-  const [confirmBeforeDelete, setConfirmBeforeDelete] = useState(appSettings.CONFIRM_BEFORE_DELETE);
-  const [preventDuplicates, setPreventDuplicates] = useState(appSettings.PREVENT_DUPLICATES);
+
+  // App settings checkbox states
+  const [toolTipsEnabled, setTooltipsEnabled] = useState(false);
+  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
+  const [wordCounterEnabled, setWordCounterEnabled] = useState(false);
+  const [hideCompletedNotes, setHideCompletedNotes] = useState(false);
+  const [confirmBeforeDelete, setConfirmBeforeDelete] = useState(false);
+  const [preventDuplicates, setPreventDuplicates] = useState(false);
+
   const [changesMade, setChangesMade] = useState(false);
+
+  info(`${appSettings.DARKMODE}`)
 
   const updateSettings = async (event) => {
     event.preventDefault();
@@ -40,6 +45,15 @@ const AppSettings = () => {
         console.error(`Error while updating settings: ${error}`);
     }
   }
+
+  useEffect(() => {
+    setTooltipsEnabled(appSettings.TOOLTIPS);
+    setDarkModeEnabled(appSettings.DARKMODE);
+    setWordCounterEnabled(appSettings.WORD_COUNTER);
+    setHideCompletedNotes(appSettings.HIDE_COMPLETED_NOTES);
+    setConfirmBeforeDelete(appSettings.CONFIRM_BEFORE_DELETE);
+    setPreventDuplicates(appSettings.PREVENT_DUPLICATES);
+  })
 
   return (
     <>
