@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { debug, info } from '@tauri-apps/plugin-log';
+import { debug, info, warn } from '@tauri-apps/plugin-log';
 import Calendar from 'react-calendar';
 
 import { Button, Modal } from '../CommonComponents'
@@ -37,9 +37,14 @@ const CalendarPlanner = () => {
   const fetchEvents = async () => {
     try {
       const events = await database.select('SELECT * FROM events;');
-      setCalendarEvents(events);
 
-      info('Successfully retrieved all events');
+      if (events.length > 0) {
+        info('Successfully retrieved all events');
+      } else {
+        warn('Request for calendar events successfully sent, however no events returned');
+      }
+
+      setCalendarEvents(events);
     } catch(error) {
       console.error(`Error while retrieving all events: ${error}`);
     }
