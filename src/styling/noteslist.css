@@ -44,6 +44,7 @@
   border: 0.15rem solid var(--item-outline-color);
   transition: 0.2s;
   padding-right: 0.4rem;
+  min-height: 2.2rem;
 }
 
 .sticky-notes-group .group-header.collapsed {
