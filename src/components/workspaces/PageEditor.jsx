@@ -284,7 +284,7 @@ const PageEditor = () => {
                 />
                 <Button
                   className='small'
-                  toolTip="Split cell" children={<IconTrash />}
+                  toolTip="Delete table" children={<IconTrash />}
                   onClick={() => editor.chain().focus().deleteTable().run()}
                 />
               </>
