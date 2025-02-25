@@ -42,7 +42,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
   }
 
   return (
-    <li key={event.id} className={`event ${updatingEvent ? 'updating' : ''}`}>
+    <li className={`event ${updatingEvent ? 'updating' : ''}`}>
       <span className="event-details">
       <span className="event-timestamp">{new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
         {updatingEvent ?

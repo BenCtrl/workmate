@@ -92,7 +92,7 @@ const CalendarPlanner = () => {
                 if (doesEventTimestampMatchDate(dateSelected, event)) {
                   debug(`Rendering event '${event.title}' for date '${dateSelected.toDateString()}'`);
 
-                  return <CalendarEvent event={event} fetchEvents={fetchEvents}/>
+                  return <CalendarEvent key={event.id} event={event} fetchEvents={fetchEvents}/>
                 }
               })}
             </ul>
