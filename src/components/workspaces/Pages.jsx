@@ -37,7 +37,7 @@ const Pages = () => {
 
   const deletePage = async (id) => {
     try {
-      const results = await database.execute('DELETE FROM pages WHERE id = $1;', [id]);
+      await database.execute('DELETE FROM pages WHERE id = $1;', [id]);
 
       info(`Successfully deleted page with ID '${id}'`);
       getPages();
