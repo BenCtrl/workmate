@@ -145,7 +145,7 @@ const StickyNoteGroup = ({
 
   return (
     <div className={`sticky-notes-group ${groupColor}`} id={group.id}>
-      <div className={`group-header ${groupCollapsed ? 'collapsed' : ''} ${updatingGroup ? 'updating' : ''}`}>
+      <div className={`group-header ${groupCollapsed ? 'collapsed' : ''}`}>
           <div title={`${SETTINGS.TOOLTIPS ? 'Change group color':''}`} className={`group-color ${updatingColor && 'visible'}`} onClick={() => {setUpdatingColor((state) => !state);}}>
             {updatingColor &&
               <>

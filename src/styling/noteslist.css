@@ -136,7 +136,7 @@
   margin: 0.3rem;
 }
 
-.sticky-notes-group .group-header.updating {
+.sticky-notes-group .group-header:focus-within {
   border-color: var(--component-warning);
 }
 

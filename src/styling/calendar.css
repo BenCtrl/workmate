@@ -195,7 +195,7 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   transition: 0.2s;
 }
 
-.event.updating {
+li.event:focus-within {
   border-color: var(--component-warning);
 }
 
