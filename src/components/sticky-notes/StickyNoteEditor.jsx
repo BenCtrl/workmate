@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { error, debug, warn } from '@tauri-apps/plugin-log';
 
-import { Button } from '../CommonComponents';
+import { Button, ButtonGroup } from '../CommonComponents';
 import { IconSave, IconX } from '../Icons';
 
 const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupID}) => {
@@ -76,8 +76,10 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
         className='new-note-input'
       />
       <div className="sticky-note-editing-controls">
-        <Button children={<IconX />} onClick={() => {editorEnabled((state) => !state); setStickyNoteContent('')}} toolTip={'Cancel note changes'}/>
-        <Button children={<IconSave />} type="submit" toolTip={'Save note changes'}/>
+        <ButtonGroup>
+          <Button children={<IconX />} onClick={() => {editorEnabled((state) => !state); setStickyNoteContent('')}} toolTip={'Cancel note changes'}/>
+          <Button children={<IconSave />} type="submit" toolTip={'Save note changes'}/>
+        </ButtonGroup>
       </div>
     </form>
   )

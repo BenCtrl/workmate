@@ -15,11 +15,11 @@ import { AppSettingsContext } from '../../App';
 const StickyNoteGroup = ({
   group,
   getGroups,
-  collapsed = false,
+  expanded = false,
   isDefault = false
 }) => {
   const [notes, setNotes] = useState([]);
-  const [groupCollapsed, setGroupCollapsed] = useState(collapsed);
+  const [groupExpanded, setGroupExpanded] = useState(expanded);
   const [groupTitle, setGroupTitle] = useState(group.title);
   const [groupColor, setGroupColor] = useState(group.color);
 
@@ -144,8 +144,8 @@ const StickyNoteGroup = ({
   }, [])
 
   return (
-    <div className={`sticky-notes-group ${groupColor}`} id={group.id}>
-      <div className={`group-header ${groupCollapsed ? 'collapsed' : ''}`}>
+    <div className={`sticky-note-group ${groupColor}`} id={group.id}>
+      <div className={`group-header ${groupExpanded ? 'expanded' : ''}`}>
           <div title={`${SETTINGS.TOOLTIPS ? 'Change group color':''}`} className={`group-color ${updatingColor && 'visible'}`} onClick={() => {setUpdatingColor((state) => !state);}}>
             {updatingColor &&
               <>
@@ -162,8 +162,8 @@ const StickyNoteGroup = ({
             }
           </div>
           <div className="group-title">
-            <div onClick={() => {setGroupCollapsed((state) => !state)}} className="toggle-group-collapsible">
-              {groupCollapsed ? <IconChevronDown /> : <IconChevronRight />}
+            <div onClick={() => {setGroupExpanded((state) => !state)}} className="toggle-group-collapsible">
+              {groupExpanded ? <IconChevronDown /> : <IconChevronRight />}
             </div>
             {updatingGroup && !isDefault ?
               <input
@@ -197,7 +197,7 @@ const StickyNoteGroup = ({
           }
       </div>
 
-      {groupCollapsed && <StickyNotesList stickyNotes={notes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />}
+      {groupExpanded && <StickyNotesList stickyNotes={notes} addNote={addNote} updateNote={updateNote} deleteNote={deleteNote} group={group} />}
     </div>
   )
 }

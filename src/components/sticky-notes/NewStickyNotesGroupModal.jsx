@@ -73,7 +73,7 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
         </select>
       </div>
 
-      <Button id="create-new-sticky-notes-group" children={'Create Group'} />
+      <Button id="create-new-sticky-note-group" children={'Create Group'} />
     </form>
   )
 }

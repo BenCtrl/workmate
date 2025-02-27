@@ -8,14 +8,14 @@
   height: 190px;
   margin: 12px;
   padding: 18px;
-  transition: transform 0.5s, background-color var(--component-standard-transition);
+  transition: transform 0.5s, background-color var(--component-standard-transition), color var(--component-standard-transition);
   cursor: pointer;
   position: relative;
   color: #3d3d3d;
 }
 
 .new-sticky-note {
-  color: #0000003f;
+  color: #0000004f;
 }
 
 .new-sticky-note form {
@@ -33,27 +33,20 @@
   padding: 0;
   height: 80%;
   width: 100%;
-}
-
-.new-sticky-note .new-note-in-progress {
-  color: #4a7aff;
-  font-size: 2rem;
-  position: absolute;
-  left: 93%;
-  top: -8%;
+  color: #3d3d3d;
 }
 
 .new-sticky-note .sticky-note-editing-controls {
   display: flex;
   margin-top: auto;
-  justify-content: space-between;
+  justify-content: end;
 }
 
 .new-sticky-note .sticky-note-editing-controls button {
   margin: 0;
 }
 
-.sticky-note .new-note-icon {
+.new-sticky-note .new-note-icon {
   position: absolute;
   display: flex;
   place-items: center;
@@ -65,18 +58,19 @@
   width: 100%;
 }
 
-.sticky-note.completed > .content {
+.sticky-note.completed .content {
   text-decoration: line-through;
   color: var(--stickynote-font-faded-text);
 }
 
-.sticky-note > .content {
+.sticky-note .content {
   white-space: pre-line;
   overflow-wrap: break-word;
   flex-grow: 1;
 }
 
-.sticky-note > .delete-note, .note-completed-checkbox {
+.sticky-note .delete-note,
+.sticky-note .note-completed-checkbox {
   opacity: 0;
   transition: var(--button-transition);
 }
@@ -95,16 +89,8 @@
   margin: 0;
 }
 
-.sticky-note > .note-completed-checkbox:has(> input:checked) {
+.sticky-note .note-completed-checkbox:has(> input:checked) {
   opacity: 1;
-}
-
-.sticky-note .checkbox-container.outline input:checked ~ .checkbox {
-  border-color: unset;
-}
-
-.sticky-note .checkbox-container input:checked ~ .checkbox .checkbox-icon {
-  color: unset;
 }
 
 /* behavioural styling */
@@ -123,5 +109,25 @@
 }
 
 .new-sticky-note:hover {
-  color: black;
+  color: #3d3d3d;
+}
+
+/* Theming overrides - stops dark mode font color affecting sticky notes */
+.sticky-note .button-group,
+.sticky-note button {
+  background-color: #0000001c;
+}
+
+.sticky-note button:hover,
+.sticky-note .button-group button:hover {
+  background-color: #0000002c;
+}
+
+.sticky-note .checkbox-container.outline input:checked ~ .checkbox {
+  border-color: unset;
+}
+
+.sticky-note button,
+.sticky-note .checkbox-container input:checked ~ .checkbox .checkbox-icon {
+  color: #3d3d3d;
 }

@@ -39,10 +39,10 @@ const NotesList = () => {
       <div className='sticky-notes-controls'>
         <Button children={<IconStack />} toolTip={'Create new group'} onClick={() => {setShowGroupModal((state) => !state)}} />
       </div>
-      <div id="notes-list-wrapper">
+      <div id="sticky-notes-list-container">
         {groups.map((group) => {
           // Skip over default group to avoid duplicate render of group (ID is always assumed as 1 as should be primary group)
-          return group.id <= 1 ? <StickyNoteGroup key={group.id} group={group} collapsed={true} isDefault={true} /> : <StickyNoteGroup key={group.id} getGroups={fetchGroups} group={group} />
+          return group.id <= 1 ? <StickyNoteGroup key={group.id} group={group} expanded={true} isDefault={true} /> : <StickyNoteGroup key={group.id} getGroups={fetchGroups} group={group} />
         })}
       </div>
 
