@@ -54,7 +54,7 @@ button,
 .text-input,
 select,
 .button-group {
-  border-radius: 0.3rem;
+  border-radius: var(--component-standard-border-radius);
 }
 
 option {
@@ -114,7 +114,7 @@ button.mini  {
   font-weight: bold;
 }
 
-button.mini  svg {
+button.mini svg {
   font-size: 1rem;
 }
 
@@ -160,14 +160,14 @@ button.warning {
 
 .react-calendar__navigation *:first-child,
 .button-group *:first-child {
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem;
+  border-top-left-radius: var(--component-standard-border-radius);
+  border-bottom-left-radius: var(--component-standard-border-radius);
 }
 
 .react-calendar__navigation *:last-child,
 .button-group *:last-child {
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
+  border-top-right-radius: var(--component-standard-border-radius);
+  border-bottom-right-radius: var(--component-standard-border-radius);
 }
 
 .react-calendar__navigation button,
@@ -234,7 +234,7 @@ button.warning {
 
 fieldset {
   border: 0.15rem solid var(--fieldset-outline-color);
-  border-radius: 0.4rem;
+  border-radius: var(--component-standard-border-radius);
   margin: 0 0 1rem 0;
 }
 
@@ -244,15 +244,15 @@ fieldset legend {
 
 .alert {
   background-color: var(--button-active-accent-color);
+  box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
+  border-radius: var(--component-standard-border-radius);
   transition: 0.2s;
   border: none;
   margin: 1rem;
   font-size: 1rem;
-  box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
   transition: 0.1s;
   padding: 0.3rem 0.6rem;
   position: relative;
-  border-radius: 0.3rem;
   font-weight: bold;
 }
 
@@ -337,6 +337,8 @@ fieldset legend {
 }
 
 .checkbox {
+  border: 0.15rem solid var(--fieldset-outline-color);
+  border-radius: var(--component-standard-border-radius);
   display: flex;
   justify-content: center;
   position: absolute;
@@ -344,8 +346,6 @@ fieldset legend {
   left: 0;
   height: 20px;
   width: 20px;
-  border: 0.15rem solid var(--fieldset-outline-color);
-  border-radius: 0.3rem;
   transition: 0.2s;
 }
 
@@ -361,12 +361,12 @@ fieldset legend {
 }
 
 .time-input-container {
+  box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
+  background-color: var(--button-background-color);
+  border-radius: var(--component-standard-border-radius);
   display: inline-flex;
   margin: 1rem;
   align-items: center;
-  box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
-  background-color: var(--button-background-color);
-  border-radius: 0.3rem;
   width: max-content;
   transition: 0.2s;
 }

@@ -1,6 +1,7 @@
 /* THEMING VARIABLES */
 /* Default theming variables */
 :root {
+  /* Colors */
   --font-color: #3d3d3d;
   --page-background-color: #ebebeb;
   --page-background-accent-color: #d7d7d7;
@@ -35,10 +36,14 @@
   --toastify-color-success: var(--component-success);
   --toastify-color-warning: var(--component-warning);
   --toastify-color-error: var(--component-error);
+
+  /* Common styling */
+  --component-standard-border-radius: 0.3rem;
 }
 
 /* Dark theming variables */
 [data-theme="dark"]:root {
+  /* Colors */
   --font-color: #ebebeb;
   --page-background-color: #1e202d;
   --page-background-accent-color: #191a29;

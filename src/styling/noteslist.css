@@ -33,15 +33,15 @@
 }
 
 .sticky-notes-group .group-header {
+  background-color: var(--item-background-color);
+  border-radius: var(--component-standard-border-radius);
+  border: 0.15rem solid var(--item-outline-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--item-background-color);
-  border-radius: 0.3rem;
   font-weight: bold;
   margin-bottom: 1rem;
   position: relative;
-  border: 0.15rem solid var(--item-outline-color);
   transition: 0.2s;
   padding-right: 0.4rem;
   min-height: 2.2rem;

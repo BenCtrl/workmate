@@ -180,7 +180,7 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   justify-content: space-between;
   padding: 0.6rem;
   margin-bottom: 0.6rem;
-  border-radius: 0.3rem;
+  border-radius: var(--component-standard-border-radius);
   border: 0.15rem solid var(--item-outline-color);
   background-color: var(--item-background-color);
 }
@@ -246,7 +246,7 @@ button.mini.event-button {
 
 /* Navigation controls styling overload replicating ButtonGroup styling - Kept separate */
 .react-calendar__navigation {
-  border-radius: 0.3rem;
+  border-radius: var(--component-standard-border-radius);
 }
 
 /* behavioural styling */
