@@ -44,32 +44,38 @@ const CalendarEvent = ({event, fetchEvents}) => {
   return (
     <li className="event">
       <span className="event-details">
-      <span className="event-timestamp">{new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}</span>
+        <span className="event-timestamp">
+          {new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}
+        </span>
+
         {updatingEvent ?
-        <input
-          className='inline-title-input'
-          autoFocus
-          value={eventTitle}
-          onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}}
-          type='text'
-          onKeyDown={(keyEvent) => {
-            if (keyEvent.code === "Escape") {
-              cancelEventTitleEdits()
-            }
-            keyEvent.code === "Enter" && updateEvent();
-          }}
-        />
+          <input
+            className='inline-title-input'
+            autoFocus
+            value={eventTitle}
+            type='text'
+            onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}}
+            onKeyDown={(keyEvent) => {
+              if (keyEvent.code === "Escape") {
+                cancelEventTitleEdits()
+              }
+              keyEvent.code === "Enter" && updateEvent();
+            }}
+          />
         :
-        <span title={`${SETTINGS.TOOLTIPS ? 'Edit event title':''}`} className="event-title" onClick={() => {setUpdatingEvent((state) => !state)}}>{event.title}</span>
+          <span title={`${SETTINGS.TOOLTIPS ? 'Edit event title':''}`} className="event-title" onClick={() => {setUpdatingEvent((state) => !state)}}>
+            {event.title}
+          </span>
         }
       </span>
+
       {updatingEvent ?
-      <ButtonGroup>
-        <Button className='event-button small' onClick={() => {cancelEventTitleEdits()}} children={<IconX />} toolTip="Cancel edit"/>
-        <Button className='event-button small' onClick={() => {updateEvent()}} children={<IconSave />} toolTip="Save event"/>
-      </ButtonGroup>
+        <ButtonGroup>
+          <Button className='event-button small' onClick={() => {cancelEventTitleEdits()}} children={<IconX />} toolTip="Cancel edit"/>
+          <Button className='event-button small' onClick={() => {updateEvent()}} children={<IconSave />} toolTip="Save event"/>
+        </ButtonGroup>
       :
-      <DeleteConfirmButton className="event-button small" onClick={() => {deleteEvent(event.id)}} children={<IconTrash />} toolTip="Delete event" />
+        <DeleteConfirmButton className="event-button small" onClick={() => {deleteEvent(event.id)}} children={<IconTrash />} toolTip="Delete event" />
       }
     </li>
   )

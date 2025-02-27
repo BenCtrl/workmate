@@ -57,7 +57,7 @@ const CalendarPlanner = () => {
       doesEventTimestampMatchDate(date, event) && eventCount++;
     })
 
-    debug(`Identified '${eventCount}' event${eventCount > 1 ? 's' : ''} for '${date.toDateString()}'`);
+    debug(`Identified '${eventCount}' event${eventCount > 1 || eventCount === 0 ? 's' : ''} for '${date.toDateString()}'`);
     return eventCount;
   }
 
@@ -76,50 +76,54 @@ const CalendarPlanner = () => {
 
   return (
     <div className="calendar-wrapper">
-      <div className="calendar-day-summary-container">
-        <div className='calendar-day-summary-header'>
-          <div>
+      <div className="selected-day-summary-container">
+        <div className='selected-day-summary-header'>
+          <div className='selected-day-summary-details'>
             <h2>Events</h2>
-            <div className="calendar-day-summary-date">{new Intl.DateTimeFormat("en-GB", dateFormattingOptions).format(dateSelected === null ? date : dateSelected)}</div>
+
+            <div className="selected-day-summary-date">
+              {new Intl.DateTimeFormat("en-GB", dateFormattingOptions).format(dateSelected === null ? date : dateSelected)}
+            </div>
           </div>
+
           <Button children={<IconCalendarCheck />} toolTip={"Create new event"} onClick={() => {setShowModal(true)}}/>
         </div>
-        <div className="current-day-summary">
+
+        <div className="selected-day-summary">
           {
             getEventCount(dateSelected) > 0 ?
-            <ul className="current-day-events-list">
-              {calendarEvents.map((event) => {
-                if (doesEventTimestampMatchDate(dateSelected, event)) {
-                  debug(`Rendering event '${event.title}' for date '${dateSelected.toDateString()}'`);
-
-                  return <CalendarEvent key={event.id} event={event} fetchEvents={fetchEvents}/>
-                }
-              })}
-            </ul>
+              <ul className="selected-day-events-list">
+                {calendarEvents.map((event) => {
+                  if (doesEventTimestampMatchDate(dateSelected, event)) {
+                    debug(`Rendering event '${event.title}' for date '${dateSelected.toDateString()}'`);
+                    return <CalendarEvent key={event.id} event={event} fetchEvents={fetchEvents}/>
+                  }
+                })}
+              </ul>
             :
-            <div className="current-day-no-events">Nothing to report</div>
+              <div className="selected-day-no-events">Nothing to report</div>
           }
         </div>
       </div>
 
       <Calendar
-      onChange={(value, event) => {
-        setDate();
-        setDateSelected(value);
-      }}
-      value={date}
-      nextLabel={<IconChevronRight/>}
-      next2Label={<IconDoubleChevronRight/>}
-      prevLabel={<IconChevronLeft />}
-      prev2Label={<IconDoubleChevronLeft/>}
-      formatDay={(locale, date) => {
-        const eventCount = getEventCount(date);
+        onChange={(value, event) => {
+          setDate();
+          setDateSelected(value);
+        }}
+        value={date}
+        nextLabel={<IconChevronRight/>}
+        next2Label={<IconDoubleChevronRight/>}
+        prevLabel={<IconChevronLeft />}
+        prev2Label={<IconDoubleChevronLeft/>}
+        formatDay={(locale, date) => {
+          const eventCount = getEventCount(date);
 
-        return <div>
-          {eventCount > 0 && <span className="event-indicator">{eventCount}</span>}
-          <span className="date-of-month">{date.getDate()}</span>
-        </div>
-      }}
+          return <div>
+            {eventCount > 0 && <span className="event-indicator">{eventCount}</span>}
+            <span className="date-of-month">{date.getDate()}</span>
+          </div>
+        }}
       />
 
       {showModal &&
