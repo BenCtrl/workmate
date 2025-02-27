@@ -64,7 +64,6 @@
 #workspace-tabs a {
   color: inherit;
   text-decoration: none;
-  transition: 0.2s;
 }
 
 #workspace-tabs .workspace-tab {
@@ -72,7 +71,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: 0.1s;
+  transition: var(--component-standard-transition);
 }
 
 #workspace-tabs .workspace-tab .workspace-tab-title {
@@ -89,7 +88,6 @@
 #workspace-tabs a.selected-workspace-tab::before {
   background-color: var(--button-active-accent-color);
   border-radius: var(--component-standard-border-radius);
-  transition: 0.2s;
   content: '';
   display: block;
   z-index: -1;

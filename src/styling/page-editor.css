@@ -46,7 +46,6 @@
   outline: none;
   border: none;
   padding: 0;
-  transition: 0.2s;
   border-radius: 0;
   width: fit-content;
 }
@@ -102,7 +101,7 @@
   color: var(--component-warning);
   font-size: 2rem;
   margin-right: 0.25rem;
-  transition: 0.2s;
+  transition: var(--component-standard-transition);
 }
 
 .unsaved-changes-icon.hidden {

@@ -36,13 +36,13 @@
   background-color: var(--item-background-color);
   border-radius: var(--component-standard-border-radius);
   border: 0.15rem solid var(--item-outline-color);
+  transition: var(--component-standard-transition);
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
   margin-bottom: 1rem;
   position: relative;
-  transition: 0.2s;
   padding-right: 0.4rem;
   min-height: 2.2rem;
 }
@@ -52,7 +52,7 @@
 }
 
 .sticky-notes-group .group-color {
-  transition: 0.1s;
+  transition: inherit;
   background-color: var(--button-active-accent-color);
   left: 0;
   top: 0;
@@ -80,7 +80,7 @@
 .sticky-notes-group .toggle-group-collapsible {
   cursor: pointer;
   margin: 0 0.4rem;
-  transition: 0.2s;
+  transition: var(--component-standard-transition);
   align-self: stretch;
 }
 
@@ -125,7 +125,7 @@
 
 .sticky-notes-group .group-color svg {
   padding: 0 0.4rem;
-  transition: 0.1s;
+  transition: var(--button-transition);
 }
 
 .sticky-notes-group .group-header button,

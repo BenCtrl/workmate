@@ -18,7 +18,7 @@
   padding: 0.4rem 0.8rem;
   user-select: none;
   -webkit-user-select: none;
-  transition: 0.2s;
+  transition: var(--component-standard-transition);
 }
 
 .titlebar-button:hover {

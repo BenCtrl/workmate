@@ -22,8 +22,8 @@
   background-color: var(--item-background-color);
   border-radius: var(--component-standard-border-radius);
   border: 0.15rem solid var(--item-outline-color);
+  transition: var(--component-standard-transition);
   display: flex;
-  transition: 0.2s;
   margin: 0 0 0.5rem 0;
 }
 

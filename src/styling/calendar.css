@@ -192,7 +192,7 @@ button.react-calendar__tile--active.react-calendar__tile--now {
 
 .event {
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--component-standard-transition);
 }
 
 li.event:focus-within {
@@ -212,7 +212,7 @@ li.event:focus-within {
 .current-day-events-list .event > button,
 .current-day-events-list .event > .button-group {
   opacity: 0;
-  transition: 0.1s;
+  transition: var(--button-transition);
   margin: 0;
 }
 

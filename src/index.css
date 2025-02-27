@@ -39,6 +39,8 @@
 
   /* Common styling */
   --component-standard-border-radius: 0.3rem;
+  --component-standard-transition: 0.2s;
+  --button-transition: 0.1s;
 }
 
 /* Dark theming variables */

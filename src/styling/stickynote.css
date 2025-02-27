@@ -8,7 +8,7 @@
   height: 190px;
   margin: 12px;
   padding: 18px;
-  transition: all 0.5s;
+  transition: transform 0.5s, background-color var(--component-standard-transition);
   cursor: pointer;
   position: relative;
   color: #3d3d3d;
@@ -78,7 +78,7 @@
 
 .sticky-note > .delete-note, .note-completed-checkbox {
   opacity: 0;
-  transition: 0.1s;
+  transition: var(--button-transition);
 }
 
 .sticky-note .checkbox {
