@@ -4,8 +4,6 @@
   flex: 1 0 0;
   min-height: 0;
   overflow-y: auto;
-  scrollbar-color: var(--scrollbar-thumb-color) transparent;
-  scrollbar-width: thin;
 }
 
 .sticky-notes-list {
@@ -189,9 +187,4 @@
 
 .sticky-note-group .group-header:focus-within {
   border-color: var(--component-warning);
-}
-
-/* theme styling */
-[data-theme="dark"] #sticky-notes-list-containers {
-  scrollbar-color: var(--button-background-color) transparent;
 }

@@ -5,8 +5,6 @@
   flex: 1 0 0;
   min-height: 0;
   overflow-y: auto;
-  scrollbar-color: var(--scrollbar-thumb-color) transparent;
-  scrollbar-width: thin;
 }
 
 #pages-controls {
@@ -62,9 +60,4 @@
   background-color: var(--page-list-item-hover-background-color);
   border-color: var(--button-active-accent-color);
   cursor: pointer;
-}
-
-/* theme styling */
-[data-theme="dark"] #pages-list {
-  scrollbar-color: var(--button-background-color) transparent;
 }

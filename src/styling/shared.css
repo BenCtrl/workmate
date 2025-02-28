@@ -400,6 +400,11 @@ fieldset legend {
   box-shadow: none;
 }
 
+.scrollable {
+  scrollbar-color: var(--scrollbar-thumb-color) transparent;
+  scrollbar-width: thin;
+}
+
 /* behavioural styling */
 button:hover, .navlink-button:hover, .button-group:hover, .react-calendar__navigation:hover {
   background-color: none;
@@ -500,4 +505,8 @@ input:checked + .slider:before {
 
 [data-theme="dark"] select {
   color: #ebebeb;
+}
+
+[data-theme="dark"] .scrollable {
+  scrollbar-color: var(--button-background-color) transparent;
 }

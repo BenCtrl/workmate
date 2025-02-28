@@ -92,7 +92,7 @@ const CalendarPlanner = () => {
         <div className="selected-day-summary">
           {
             getEventCount(dateSelected) > 0 ?
-              <ul className="selected-day-events-list">
+              <ul className="selected-day-events-list scrollable">
                 {calendarEvents.map((event) => {
                   if (doesEventTimestampMatchDate(dateSelected, event)) {
                     debug(`Rendering event '${event.title}' for date '${dateSelected.toDateString()}'`);

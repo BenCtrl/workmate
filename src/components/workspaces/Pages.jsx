@@ -57,7 +57,7 @@ const Pages = () => {
         <Input icon={<IconSearch />} id="pages-search" className="search-input page-control" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
       </div>
 
-      <ul id="pages-list">
+      <ul id="pages-list" className="scrollable">
         {
           // TODO - Don't really like duplication of return line
           pages.map((page) => {

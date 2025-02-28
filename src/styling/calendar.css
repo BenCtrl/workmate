@@ -169,8 +169,6 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   flex: 1 0 0;
   min-height: 0;
   overflow-y: auto;
-  scrollbar-color: var(--scrollbar-thumb-color) transparent;
-  scrollbar-width: thin;
 }
 
 .selected-day-events-list .event {
@@ -257,9 +255,4 @@ button.react-calendar__tile--active.react-calendar__tile--now {
 
 .selected-day-events-list .event:focus-within {
   border-color: var(--component-warning);
-}
-
-/* theme styling */
-[data-theme="dark"] .selected-day-events-list {
-  scrollbar-color: var(--button-background-color) transparent;
 }
