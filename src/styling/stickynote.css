@@ -39,11 +39,21 @@
 .new-sticky-note .sticky-note-editing-controls {
   display: flex;
   margin-top: auto;
-  justify-content: end;
+  justify-content: space-between;
 }
 
 .new-sticky-note .sticky-note-editing-controls button {
   margin: 0;
+}
+
+.new-sticky-note .unsaved-changes-icon {
+  transition: var(--component-standard-transition);
+  color: var(--component-warning);
+  font-size: 2rem;
+}
+
+.new-sticky-note .unsaved-changes-icon.hidden {
+  font-size: 0;
 }
 
 .new-sticky-note .new-note-icon {

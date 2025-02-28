@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { error, debug, warn } from '@tauri-apps/plugin-log';
 
 import { Button, ButtonGroup } from '../CommonComponents';
-import { IconSave, IconX } from '../Icons';
+import { IconSave, IconWarningTriangle, IconX } from '../Icons';
 
 const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupID}) => {
   const textAreaRef = useRef(null);
@@ -11,6 +11,7 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
   const [id, setId] = useState(null);
   const [stickyNoteContent, setStickyNoteContent] = useState('');
   const [noteCompleted, setNoteCompleted] = useState(false);
+  const [changesMade, setChangesMade] = useState(false);
 
   useEffect(() => {
     textAreaRef.current.focus();
@@ -54,6 +55,8 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
   }
 
   const processStickyNoteContent = (content) => {
+    !changesMade && setChangesMade(true);
+
     if (content.length > 126) {
       warn(`Character limit reached while editing note${id ? ` with ID '${id}'` : ''}`)
     } else if ((content.match(/\n/g)||[]).length > 6) {
@@ -76,6 +79,8 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
         className='new-note-input'
       />
       <div className="sticky-note-editing-controls">
+        <IconWarningTriangle title="Unsaved Changes!" className={`unsaved-changes-icon ${!changesMade && 'hidden'}`} />
+
         <ButtonGroup>
           <Button children={<IconX />} onClick={() => {editorEnabled((state) => !state); setStickyNoteContent('')}} toolTip={'Cancel note changes'}/>
           <Button children={<IconSave />} type="submit" toolTip={'Save note changes'}/>
