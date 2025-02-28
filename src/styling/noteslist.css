@@ -16,8 +16,12 @@
   margin-bottom: 1rem;
 }
 
+.sticky-notes-controls button:first-child {
+  margin-left: 0;
+}
+
 .sticky-notes-controls button {
-  margin: 0;
+  margin: 0 0.6rem;
 }
 
 .sticky-note-group .group-title svg,

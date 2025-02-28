@@ -39,7 +39,9 @@ export {
   AiOutlineMergeCells as IconMergeCells,
   AiOutlineSplitCells as IconSplitCell,
   AiOutlineDeleteRow as IconTableDeleteRow,
-  AiOutlineDeleteColumn as IconTableDeleteColumn
+  AiOutlineDeleteColumn as IconTableDeleteColumn,
+  AiOutlineShrink as IconCollapse,
+  AiOutlineArrowsAlt as IconExpand
 } from "react-icons/ai";
 
 export {

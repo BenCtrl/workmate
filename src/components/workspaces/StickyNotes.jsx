@@ -5,7 +5,7 @@ import { info, warn } from '@tauri-apps/plugin-log';
 import { Button, Modal } from '../CommonComponents'
 import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
 import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
-import { IconStack } from '../Icons';
+import { IconCollapse, IconExpand, IconStack } from '../Icons';
 
 import '../../styling/noteslist.css'
 
@@ -14,6 +14,7 @@ import database from '../../database/database';
 const NotesList = () => {
   const [groups, setGroups] = useState([]);
   const [showGroupModal, setShowGroupModal] = useState(false);
+  const [allGroupsExpanded, setAllGroupsExpanded] = useState(false);
 
   const fetchGroups = async () => {
     try {
@@ -30,6 +31,12 @@ const NotesList = () => {
     }
   };
 
+  const toggleGroupExpansion = () => {
+    setAllGroupsExpanded((state) => !state);
+    setGroups([]);
+    fetchGroups();
+  }
+
   useEffect(() => {
     fetchGroups();
   }, []);
@@ -38,11 +45,17 @@ const NotesList = () => {
     <>
       <div className='sticky-notes-controls'>
         <Button children={<IconStack />} toolTip={'Create new group'} onClick={() => {setShowGroupModal((state) => !state)}} />
+        {
+          allGroupsExpanded ?
+            <Button children={<IconCollapse />} toolTip="Collapse groups" onClick={() => {toggleGroupExpansion()}} />
+            :
+            <Button children={<IconExpand />} toolTip="Expand groups" onClick={() => {toggleGroupExpansion()}} />
+        }
       </div>
       <div id="sticky-notes-list-container" className="scrollable">
         {groups.map((group) => {
           // Skip over default group to avoid duplicate render of group (ID is always assumed as 1 as should be primary group)
-          return group.id <= 1 ? <StickyNoteGroup key={group.id} group={group} expanded={true} isDefault={true} /> : <StickyNoteGroup key={group.id} getGroups={fetchGroups} group={group} />
+          return group.id <= 1 ? <StickyNoteGroup key={group.id} group={group} expanded={true} isDefault={true} /> : <StickyNoteGroup key={group.id} expanded={allGroupsExpanded} getGroups={fetchGroups} group={group} />
         })}
       </div>
 
