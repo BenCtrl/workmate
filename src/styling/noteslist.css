@@ -124,6 +124,7 @@
   margin: 0;
   color: white;
   appearance: none;
+  border: none;
 }
 
 .sticky-note-group .group-color svg {
