@@ -51,13 +51,17 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
     <>
       <form className="new-event-form" onSubmit={createEvent} action="">
         {showAlert && <Alert alertType={alertType} message={errorMessage} />}
-        <div className="new-event-form-input modal-input">
-          <Input name="new-event-title" id="new-event-title" placeholder='Title of Event' value={eventTitle} onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}} /> 
+        <div className="new-event-form-input modal-input-container">
+          <div className="modal-input">
+            <label htmlFor="new-event-title">Event Title</label>
+            <Input name="new-event-title" id="new-event-title" placeholder='Title of Event' value={eventTitle} onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}} /> 
+          </div>
 
-          <div className="new-event-time-select">
-            <span class="time-input-container">
+          <div className="modal-input">
+            <label htmlFor="new-event-time">Event Time</label>
+            <span class="time-input-container" id="new-event-time" name="new-event-time">
               <IconClock style={{marginLeft: '0.4rem'}}/>
-              <select value={eventHour} name="new-event-hour-select" id="new-event-hour-select" onChange={(changeEvent) => {setEventHour(changeEvent.target.value)}}>
+              <select title="Hour" value={eventHour} name="new-event-hour-select" id="new-event-hour-select" onChange={(changeEvent) => {setEventHour(changeEvent.target.value)}}>
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -84,7 +88,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
                 <option value="23">23</option>
               </select>
 
-              <select value={eventMinute} name="new-event-minute-select" id="new-event-minute-select" onChange={(changeEvent) => {setEventMinute(changeEvent.target.value)}} >
+              <select title="Minute" value={eventMinute} name="new-event-minute-select" id="new-event-minute-select" onChange={(changeEvent) => {setEventMinute(changeEvent.target.value)}} >
                 <option value="00">00</option>
                 <option value="15">15</option>
                 <option value="30">30</option>

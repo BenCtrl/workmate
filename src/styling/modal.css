@@ -11,13 +11,36 @@
   justify-content: space-between;
 }
 
-.modal-input {
-  margin-bottom: 2rem;
-}
-
 .modal-heading h3,
 .modal-heading button {
+  margin: 0;
+}
+
+.modal-content .alert {
+  display: block;
+  margin: 2rem 0;
+}
+
+.modal-input-container {
+  margin: 2rem 0;
+}
+
+.modal-input-container .modal-input {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+}
+
+.modal-input-container .modal-input:first-child {
   margin-top: 0;
+}
+
+.modal-input-container .modal-input:last-child {
+  margin-bottom: 0;
+}
+
+.modal-input-container .modal-input label {
+  margin-bottom: 0.2rem;
 }
 
 .modal-heading button {
@@ -30,7 +53,7 @@
   box-shadow: 0px 7px 29px 0px var(--item-standard-box-shadow-color);
   border: 0.15rem solid var(--item-outline-color);
   background-color: var(--item-background-color);
-  border-radius: 12px;
+  border-radius: var(--component-standard-border-radius);
   position:  absolute;
   top:40%;
   transform:translateY(-50%);

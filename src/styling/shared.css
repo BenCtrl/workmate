@@ -18,6 +18,10 @@ abbr {
   text-decoration: none;
 }
 
+label {
+  color: var(--font-faded-color);
+}
+
 .text-input {
   color: var(--font-color);
   border: 0.15rem solid var(--item-outline-color);
@@ -39,6 +43,7 @@ abbr {
   background-color: transparent;
 }
 
+select,
 input {
   border: 0.15rem solid var(--fieldset-outline-color);
   color: var(--font-color);
@@ -58,7 +63,7 @@ select,
 }
 
 option {
-  background-color: var(--page-background-color);
+  border-radius: var(--component-standard-border-radius);
   color: var(--font-color);
 }
 
@@ -84,7 +89,7 @@ textarea {
   margin-right: 0.6rem;
 }
 
-button, .navlink-button, select {
+button, .navlink-button {
   border: none;
   margin: 1rem;
   font-size: 1rem;
@@ -176,6 +181,7 @@ button.warning {
   border-radius: 0;
   box-shadow: none;
   background-color: transparent;
+  border: none;
 }
 
 .button-group .divider {
@@ -360,12 +366,11 @@ fieldset legend {
 }
 
 .time-input-container {
-  box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
-  background-color: var(--button-background-color);
+  border: 0.15rem solid var(--fieldset-outline-color);
+  color: var(--font-color);
   border-radius: var(--component-standard-border-radius);
   transition: var(--component-standard-transition);
   display: inline-flex;
-  margin: 1rem;
   align-items: center;
   width: max-content;
 }
@@ -374,6 +379,7 @@ fieldset legend {
   background-color: unset;
   box-shadow: unset;
   border-radius: 0;
+  border: none;
 }
 
 [data-theme="dark"] .time-input-container select {
@@ -422,8 +428,7 @@ button.error:hover {
 }
 
 button:active, 
-.navlink-button:active,
-select:focus {
+.navlink-button:active {
   background-color: #0000002c;
 }
 
@@ -432,7 +437,8 @@ select:focus {
 }
 
 select:focus {
-  box-shadow: 0 0 0 0.2rem var(--button-active-accent-color);
+  border-color: var(--button-active-accent-color);
+  color: var(--button-active-accent-color);
   outline: none;
 }
 
@@ -474,12 +480,13 @@ input:checked + .slider:before {
 
 .time-input-container:hover,
 .time-input-container:focus-within {
-  box-shadow: 0 0 0 0.2rem var(--button-active-accent-color);
+  border-color: var(--button-active-accent-color);
   color: var(--button-active-accent-color);
 }
 
 .time-input-container select:focus {
   box-shadow: none;
+  color: var(--button-active-accent-color);
 }
 
 .Toastify__close-button:hover {

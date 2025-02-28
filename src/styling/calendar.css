@@ -214,8 +214,7 @@ button.react-calendar__tile--active.react-calendar__tile--now {
 
 .new-event-form-input {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
 }
 
 .new-event-form button,
@@ -223,17 +222,8 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   margin: 0;
 }
 
-.new-event-form .new-event-time-select .time-input-container {
-  margin: 0 0 0 1rem;
-}
-
 #create-new-event {
   float: right;
-}
-
-.new-event-form .alert {
-  display: block;
-  margin: 0 0 1rem 0;
 }
 
 /* behavioural styling */

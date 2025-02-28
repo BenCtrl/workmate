@@ -134,20 +134,30 @@
   margin: 0;
 }
 
-#new-sticky-note-group-form #create-new-sticky-note-group {
+#new-sticky-note-group-form button#create-new-sticky-note-group {
   float: right;
 }
 
 .new-sticky-note-group-input {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
 }
 
-#new-sticky-note-group-form .alert {
-  display: block;
-  margin: 0 0 1rem 0;
+#new-sticky-note-group-color option[value=yellow] {
+  background-color: var(--sticky-note-yellow);
+}
+
+#new-sticky-note-group-color option[value=pink] {
+  background-color: var(--sticky-note-pink);
+}
+
+#new-sticky-note-group-color option[value=green] {
+  background-color: var(--sticky-note-green);
+}
+
+#new-sticky-note-group-color option[value=blue] {
+  background-color: var(--sticky-note-blue);
 }
 
 /* behavioural styling */

@@ -63,14 +63,21 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
   return (
     <form id="new-sticky-note-group-form" onSubmit={addGroup}>
       {showAlert && <Alert alertType={alertType} message={errorMessage} />}
-      <div className="new-sticky-note-group-input modal-input">
-        <Input name="new-sticky-note-group-title" id="new-sticky-note-group-title" placeholder='Title' value={groupTitle} onChange={(changeEvent) => {setGroupTitle(changeEvent.target.value)}} />
-        <select value={groupColor} name="new-sticky-note-group-color" id="new-sticky-note-group-color" onChange={(changeEvent) => {setGroupColor(changeEvent.target.value)}}>
-          <option value="yellow">Yellow</option>
-          <option value="pink">Pink</option>
-          <option value="green">Green</option>
-          <option value="blue">Blue</option>
-        </select>
+      <div className="new-sticky-note-group-input modal-input-container">
+        <div className="modal-input">
+          <label htmlFor="new-sticky-note-group-title">Group Title</label>
+          <Input name="new-sticky-note-group-title" id="new-sticky-note-group-title" placeholder='Title' value={groupTitle} onChange={(changeEvent) => {setGroupTitle(changeEvent.target.value)}} />
+        </div>
+
+        <div className="modal-input">
+          <label htmlFor="new-sticky-note-group-color">Sticky Note Color</label>
+          <select value={groupColor} name="new-sticky-note-group-color" id="new-sticky-note-group-color" onChange={(changeEvent) => {setGroupColor(changeEvent.target.value)}}>
+            <option value="yellow">Yellow</option>
+            <option value="pink">Pink</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+          </select>
+        </div>
       </div>
 
       <Button id="create-new-sticky-note-group" children={'Create Group'} />

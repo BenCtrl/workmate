@@ -12,7 +12,9 @@ const Modal = ({ onClose, children, modalHeading }) => {
           <h3>{modalHeading}</h3>
           <Button children={<IconX />} onClick={onClose} toolTip={'Close modal'} />
         </div>
-        {children}
+        <div className="modal-content">
+          {children}
+        </div>
       </div>
     </div>
   )
