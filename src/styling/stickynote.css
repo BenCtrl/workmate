@@ -134,7 +134,7 @@
 }
 
 .sticky-note .checkbox-container.outline input:checked ~ .checkbox {
-  border-color: unset;
+  border-color: #3d3d3d;
 }
 
 .sticky-note button,
