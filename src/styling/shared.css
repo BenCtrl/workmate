@@ -22,15 +22,10 @@ label {
   color: var(--font-faded-color);
 }
 
-.text-input {
-  color: var(--font-color);
-  border: 0.15rem solid var(--item-outline-color);
-  background-color: var(--item-background-color);
-  transition: var(--component-standard-transition);
-  font-size: 1rem;
-  outline: none;
+div.text-input {
   display: inline-flex;
   align-items: center;
+  padding: 0;
 }
 
 .text-input svg {
@@ -43,9 +38,11 @@ label {
   background-color: transparent;
 }
 
+.text-input,
 select,
 input {
-  border: 0.15rem solid var(--fieldset-outline-color);
+  border: 0.15rem solid var(--item-outline-color);
+  background-color: var(--item-background-color);
   color: var(--font-color);
   transition: var(--component-standard-transition);
   padding: 0.4rem;
