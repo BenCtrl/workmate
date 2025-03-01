@@ -79,13 +79,16 @@
   text-align: center;
 }
 
-#workspace-tabs a.selected-workspace-tab {
+#workspace-tabs a {
   position: relative;
+}
+
+#workspace-tabs a.selected-workspace-tab {
   font-weight: bold;
   background-color: var(--component-alternate-background-color);
 }
 
-#workspace-tabs a.selected-workspace-tab::before {
+#workspace-tabs a::before {
   background-color: var(--button-active-accent-color);
   border-radius: var(--component-standard-border-radius);
   content: '';
@@ -93,8 +96,13 @@
   z-index: -1;
   position: absolute;
   left: 0.5rem;
-  width: 100%;
+  width: 90%;
   height: 100%;
+  transition: 0.2s;
+}
+
+#workspace-tabs a.selected-workspace-tab::before {
+  width: 100%;
 }
 
 /* behavioural styling */
