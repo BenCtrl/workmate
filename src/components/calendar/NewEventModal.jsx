@@ -26,7 +26,9 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
         return;
       }
 
-      const createEventResult = await database.execute('INSERT INTO events (title, event_timestamp) VALUES ($1, $2) RETURNING id;', [eventTitle, Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHour}:${eventMinute}`)]);
+      const event_timestamp = Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHour}:${eventMinute}`);
+
+      const createEventResult = await database.execute('INSERT INTO events (title, event_timestamp) VALUES ($1, $2) RETURNING id;', [eventTitle, event_timestamp]);
 
       if (createEventResult.length > 0) {
         info(`Event '${eventTitle}' was created with ID '${createEventResult[0].id}'`);
@@ -35,7 +37,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
         warn('Unable to validate if event was created - No ID was returned');
       }
 
-      onNewEventSubmit();
+      onNewEventSubmit(new Date(event_timestamp));
     } catch(error) {
       console.error(`Error while creating new calendar event: '${error}'`);
     }

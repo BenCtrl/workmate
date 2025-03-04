@@ -18,7 +18,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
 
       info(`Updated event '${eventTitle}' with ID '${event.id}'`);
 
-      fetchEvents();
+      fetchEvents(new Date(event.event_timestamp));
       setUpdatingEvent((state) => !state);
     } catch(error) {
       console.error(`Error while updating event with ID '${event.id}': ${error}`);
@@ -28,7 +28,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
   const deleteEvent = async (id) => {
     try {
       await database.execute('DELETE FROM events WHERE id = $1;', [id]);
-      fetchEvents();
+      fetchEvents(new Date(event.event_timestamp));
 
       info(`Successfully deleted event with ID '${id}'`);
     } catch(error) {
