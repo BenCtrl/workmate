@@ -61,6 +61,7 @@ select,
 
 option {
   border-radius: var(--component-standard-border-radius);
+  background-color: var(--page-background-color);
   color: var(--font-color);
 }
 
