@@ -87,6 +87,7 @@
   color: white;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .sticky-note-group .group-color.visible {
@@ -128,7 +129,7 @@
 }
 
 .sticky-note-group .group-color svg {
-  padding: 0 0.4rem;
+  justify-self: end;
   transition: var(--button-transition);
 }
 
