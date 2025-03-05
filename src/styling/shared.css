@@ -156,7 +156,6 @@ button.warning {
   display: inline-flex;
   box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
   transition: var(--button-transition);
-  background-color: var(--button-background-color);
   color: var(--font-color);
   height: fit-content;
 }
@@ -178,8 +177,11 @@ button.warning {
   margin: 0;
   border-radius: 0;
   box-shadow: none;
-  background-color: transparent;
   border: none;
+}
+
+.button-group select {
+  background-color: transparent;
 }
 
 .button-group .divider {
@@ -405,14 +407,13 @@ fieldset legend {
 
 /* behavioural styling */
 button:hover, .navlink-button:hover, .button-group:hover, .react-calendar__navigation:hover {
-  background-color: none;
   box-shadow: 0 0 0 0.2rem var(--button-active-accent-color);
   color: var(--button-active-accent-color);
 }
 
 .button-group button:hover, .button-group select:focus, .react-calendar__navigation button:hover {
   box-shadow: none;
-  background-color: var(--component-alternate-background-color);
+  background-color: var(--button-hover-background-color);
 }
 
 button.warning:hover {

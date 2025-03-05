@@ -123,7 +123,6 @@
 }
 
 /* Theming overrides - stops dark mode font color affecting sticky notes */
-.sticky-note .button-group,
 .sticky-note button {
   background-color: #0000001c;
 }
