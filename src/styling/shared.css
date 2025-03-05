@@ -502,10 +502,6 @@ input:checked + .slider:before {
   color: #ebebeb;
 }
 
-[data-theme="dark"] select {
-  color: #ebebeb;
-}
-
 [data-theme="dark"] .scrollable {
   scrollbar-color: var(--button-background-color) transparent;
 }
