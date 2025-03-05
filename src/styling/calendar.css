@@ -131,7 +131,9 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  /* border-bottom: 2px solid var(--item-outline-color); */
+  border-bottom: 1px solid var(--font-faded-color);
 }
 
 .selected-day-summary-header h2 {
