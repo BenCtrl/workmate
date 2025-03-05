@@ -2,7 +2,10 @@
   height: 100vh;
   width: 100vw;
   position:  absolute;
-  background-color: rgba(0, 0, 0, 0.205);
+  background-color: #00000054;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-heading {
@@ -50,14 +53,9 @@
 .modal {
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 7px 29px 0px var(--item-standard-box-shadow-color);
   border: 0.15rem solid var(--item-outline-color);
   background-color: var(--item-background-color);
   border-radius: var(--component-standard-border-radius);
-  position:  absolute;
-  top:40%;
-  transform:translateY(-50%);
-  left: calc(50% - 10rem);
   padding: 1.4rem 1.4rem 1rem 1.4rem;
   min-width: 20rem;
 }
