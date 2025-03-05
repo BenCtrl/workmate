@@ -44,6 +44,12 @@
   min-height: 2.2rem;
 }
 
+.sticky-note-group .group-header .group-title-detault-tag {
+  color: var(--font-faded-color);
+  margin-left: 0.5rem;
+  font-weight: normal;
+}
+
 .sticky-note-group .group-header.expanded {
   margin-bottom: 0;
 }
