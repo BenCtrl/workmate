@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, Zoom } from 'react-toastify';
 import { getName, getVersion } from '@tauri-apps/api/app';
 
 import { WorkspaceTabs } from '../components/core/WorkspaceTabs';
@@ -37,6 +37,10 @@ const WorkspaceLayout = () => {
       <ToastContainer
         position='bottom-right'
         theme={appSettings.DARKMODE ? 'dark' : 'light'}
+        transition={Zoom}
+        pauseOnHover={false}
+        closeOnClick={true}
+        hideProgressBar={true}
       />
     </div>
   )
