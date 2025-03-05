@@ -364,7 +364,7 @@ fieldset legend {
 }
 
 .time-input-container {
-  border: 0.15rem solid var(--fieldset-outline-color);
+  border: 0.15rem solid var(--item-outline-color);
   color: var(--font-color);
   border-radius: var(--component-standard-border-radius);
   transition: var(--component-standard-transition);
