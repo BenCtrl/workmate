@@ -181,7 +181,7 @@ button.warning {
 }
 
 .button-group select {
-  background-color: transparent;
+  background-color: var(--button-background-color);
 }
 
 .button-group .divider {
