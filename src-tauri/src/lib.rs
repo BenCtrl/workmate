@@ -42,16 +42,17 @@ pub fn run() {
         .add_migrations("sqlite:workmate.db", migrations)
         .build(),
     )
-    .setup(|app| {
-      if cfg!(debug_assertions) {
-        app.handle().plugin(
-          tauri_plugin_log::Builder::default()
-            .level(log::LevelFilter::Trace)
-            .build(),
-        )?;
-      }
-      Ok(())
-    })
+    .plugin(
+      tauri_plugin_log::Builder::default()
+      .level({
+        if cfg!(debug_assertions) {
+          log::LevelFilter::Trace
+        } else {
+          log::LevelFilter::Info
+        }
+      })
+      .build(),
+    )
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }
