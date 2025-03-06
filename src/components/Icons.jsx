@@ -16,6 +16,9 @@ export {
 } from "react-icons/fi";
 
 export {
+  AiOutlineAlignLeft as IconAlignLeft,
+  AiOutlineAlignRight as IconAlignRight,
+  AiOutlineAlignCenter as IconAlignCenter,
   AiOutlineClose as IconX,
   AiOutlineBorder as IconSquare,
   AiOutlineMinus as IconMinus,
@@ -65,3 +68,5 @@ export {
 } from "react-icons/pi"
 
 export { VscChromeRestore as IconSquareLayer } from "react-icons/vsc";
+
+export { TfiAlignJustify as IconAlignJustify } from "react-icons/tfi";

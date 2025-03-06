@@ -52,12 +52,17 @@ import {
   IconUnderline,
   IconUnorderedList,
   IconWarningTriangle,
+  IconAlignLeft,
+  IconAlignCenter,
+  IconAlignRight,
+  IconAlignJustify,
 } from '../Icons';
 
 import '../../styling/page-editor.css';
 
 import database from '../../database/database';
 import { AppSettingsContext } from '../../App';
+import TextAlign from '@tiptap/extension-text-align';
 
 const extensions = [
   StarterKit,
@@ -75,6 +80,9 @@ const extensions = [
   }),
   CharacterCount.configure({
     wordCounter: (text) => text.split(/\s+/).filter((word) => word !== '').length,
+  }),
+  TextAlign.configure({
+    types: ['heading', 'paragraph'],
   })
 ];
 
@@ -203,6 +211,13 @@ const PageEditor = () => {
             <Button className={`small ${editor.isActive('italic') ? 'active' : ''}`} toolTip="Italic" children={<IconItalic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
             <Button className={`small ${editor.isActive('strike') ? 'active' : ''}`} toolTip="Strikethrough" children={<IconStrikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
             <Button className={`small ${editor.isActive('underline') ? 'active' : ''}`} toolTip="Underline" children={<IconUnderline />} onClick={() => {editor.chain().focus().toggleUnderline().run()}}/>
+            <Button className={`small ${editor.isActive({textAlign:'left'}) ? 'active' : ''}`} toolTip="Align Left" children={<IconAlignLeft />} onClick={() => {editor.chain().focus().setTextAlign('left').run()}}/>
+            <Button className={`small ${editor.isActive({textAlign:'center'}) ? 'active' : ''}`} toolTip="Align Center" children={<IconAlignCenter />} onClick={() => {editor.chain().focus().setTextAlign('center').run()}}/>
+            <Button className={`small ${editor.isActive({textAlign:'right'}) ? 'active' : ''}`} toolTip="Align Right" children={<IconAlignRight />} onClick={() => {editor.chain().focus().setTextAlign('right').run()}}/>
+            <Button className={`small ${editor.isActive({textAlign:'justify'}) ? 'active' : ''}`} toolTip="Align Justify" children={<IconAlignJustify />} onClick={() => {editor.chain().focus().setTextAlign('justify').run()}}/>
+          </ButtonGroup>
+
+          <ButtonGroup style={{marginLeft: '1rem'}}>
             <Button className={`small ${editor.isActive('code') ? 'active' : ''}`} toolTip="Code" children={<IconCode />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
             <Button className={`small ${editor.isActive('codeBlock') ? 'active' : ''}`} toolTip="Code block" children={<IconCodeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
             <Button className={`small ${editor.isActive('blockquote') ? 'active' : ''}`} toolTip="Block quote" children={<IconQuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
