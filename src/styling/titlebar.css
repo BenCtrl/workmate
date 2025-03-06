@@ -24,3 +24,8 @@
 .titlebar-button:hover {
   background: var(--page-list-item-hover-background-color);
 }
+
+.titlebar-button#titlebar-close:hover {
+  background: var(--component-error);
+  color: white;
+}

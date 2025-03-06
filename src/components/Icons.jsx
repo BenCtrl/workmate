@@ -1,7 +1,4 @@
 export { 
-  FiX as IconX,
-  FiSquare as IconSquare,
-  FiMinus as IconMinus,
   FiSearch as IconSearch,
   FiClock as IconClock,
   FiChevronUp as IconChevronUp,
@@ -19,6 +16,9 @@ export {
 } from "react-icons/fi";
 
 export {
+  AiOutlineClose as IconX,
+  AiOutlineBorder as IconSquare,
+  AiOutlineMinus as IconMinus,
   AiOutlineCalendar as IconCalendar,
   AiOutlineCarryOut as IconCalendarCheck,
   AiOutlineFileText as IconFileText,
@@ -63,3 +63,5 @@ export {
   PiTableFill as IconTableHeaderRow,
   PiTableDuotone as IconTableHeaderCell
 } from "react-icons/pi"
+
+export { VscChromeRestore as IconSquareLayer } from "react-icons/vsc";
