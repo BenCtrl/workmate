@@ -17,7 +17,7 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
     textAreaRef.current.focus();
 
     if(existingStickyNote) {
-      debug(`Attempting to load existing content of note '${existingStickyNote.id}' into editor...`);
+      debug(`Attempting to load existing content of note [ID: '${existingStickyNote.id}'] into editor...`);
 
       setId(existingStickyNote.id);
       setStickyNoteContent(existingStickyNote.content);
@@ -58,9 +58,9 @@ const StickyNoteEditor = ({noteSubmit, editorEnabled, existingStickyNote, groupI
     !changesMade && setChangesMade(true);
 
     if (content.length > 126) {
-      warn(`Character limit reached while editing note${id ? ` with ID '${id}'` : ''}`)
+      warn(`Character limit reached while editing note${id ? `[ID: '${id}']` : ''}`)
     } else if ((content.match(/\n/g)||[]).length > 6) {
-      warn(`New line limit reached while editing note${id ? ` with ID '${id}'` : ''}`);
+      warn(`New line limit reached while editing note${id ? ` [ID: '${id}']` : ''}`);
     } else {
       setStickyNoteContent(content);
     }

@@ -20,7 +20,7 @@ const StickyNotesList = ({stickyNotes, addNote, updateNote, deleteNote, group}) 
             if (!stickyNote.completed) {
               return stickyNoteComponent
             } else {
-              debug(`Hiding note with ID '${stickyNote.id}' - Marked as complete`);
+              debug(`Hiding note [ID: '${stickyNote.id}'] - Marked as complete`);
             }
           } else {
             return stickyNoteComponent

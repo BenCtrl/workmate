@@ -33,14 +33,14 @@ const StickyNoteGroup = ({
       const notesForGroup = await database.select('SELECT notes.* FROM notes INNER JOIN note_groups ON notes.group_id = note_groups.id WHERE note_groups.id = $1', [group.id]);
 
       if (notesForGroup.length > 0) {
-        info(`Retrieved '${notesForGroup.length}' notes for note group with ID '${group.id}'`);
+        info(`Retrieved '${notesForGroup.length}' notes for note group '${groupTitle}' [ID: '${group.id}']`);
       } else {
-        warn(`No notes returned for note group with ID '${group.id}'`);
+        warn(`No notes returned for note group '${groupTitle}' [ID: '${group.id}']`);
       }
 
       setNotes(notesForGroup);
     } catch(error) {
-      console.error(`Error while retrieving notes for group with ID '${group.id}': ${error}`);
+      console.error(`Error while retrieving notes for group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -60,12 +60,12 @@ const StickyNoteGroup = ({
 
       await database.execute('UPDATE note_groups SET title = $1 WHERE id = $2', [groupTitle, group.id]);
 
-      info(`Updated group '${groupTitle}' with ID '${group.id}'`);
+      info(`Updated group '${groupTitle}' [ID: '${group.id}']`);
 
       getGroups();
       setUpdatingGroup((state) => !state);
     } catch(error) {
-      console.error(`Error while updating group with ID '${group.id}': ${error}`);
+      console.error(`Error while updating group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -78,7 +78,7 @@ const StickyNoteGroup = ({
 
       getGroups();
     } catch(error) {
-      console.error(`Error while updating group with ID '${group.id}': ${error}`);
+      console.error(`Error while updating group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -87,10 +87,10 @@ const StickyNoteGroup = ({
       const deleteNotesInGroup = await database.execute('DELETE FROM notes WHERE group_id IN (SELECT group_id FROM notes INNER JOIN note_groups ON notes.group_id = note_groups.id WHERE note_groups.id = $1)', [group.id]);
       await database.execute('DELETE FROM note_groups WHERE id = $1', [group.id]);
 
-      info(`Deleted note group with ID '${group.id}' and deleted '${deleteNotesInGroup.rowsAffected}' notes associated to note group`);
+      info(`Deleted note group '${groupTitle}' [ID: '${group.id}'] and deleted '${deleteNotesInGroup.rowsAffected}' notes associated to note group`);
       getGroups();
     } catch(error) {
-      console.error(`Error while deleting group with ID '${group.id}': ${error}`);
+      console.error(`Error while deleting group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -100,14 +100,14 @@ const StickyNoteGroup = ({
       const createNoteResult = await database.select('INSERT INTO notes (content, completed, group_id) VALUES ($1, $2, $3) RETURNING id;', [newNote.content, noteCompleted, newNote.group_id]);
 
       if (createNoteResult.length > 0) {
-        info(`Created new note with ID '${createNoteResult[0].id}'`);
+        info(`Created new note [Note ID: '${createNoteResult[0].id}'] in group '${groupTitle}' [ID: '${group.id}']`);
       } else {
         warn('Unable to validate if note was created - No ID was returned');
       }
 
       getNotesForGroup();
     } catch(error) {
-      console.error(`Error while creating new note: ${error}`);
+      console.error(`Error while creating new note in group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -116,10 +116,10 @@ const StickyNoteGroup = ({
       const noteCompleted = (note.completed) ?  1 : 0;
       await database.execute('UPDATE notes SET content = $1, completed = $2, edited_timestamp = $3 WHERE id = $4', [note.content, noteCompleted, note.dateTimeEdited, note.id]);
 
-      info(`Updated note with ID '${note.id}'`);
+      info(`Updated note [Note ID: '${note.id}'] in note group '${groupTitle}' [ID: '${group.id}']`);
       getNotesForGroup();
     } catch(error) {
-      console.error(`Error while updating note with ID '${note.id}': ${error}`);
+      console.error(`Error while updating note [Note ID: '${note.id}'] in note group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -127,10 +127,10 @@ const StickyNoteGroup = ({
     try {
       await database.execute('DELETE FROM notes WHERE id = $1', [id]);
 
-      info(`Deleted note with ID '${id}'`);
+      info(`Deleted note [Note ID: '${id}'] from note group '${groupTitle}' [ID: '${group.id}']`);
       getNotesForGroup();
     } catch(error) {
-      console.error(`Error while deleting note with ID '${id}': ${error}`);
+      console.error(`Error while deleting note [Note ID: '${id}'] from note group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 

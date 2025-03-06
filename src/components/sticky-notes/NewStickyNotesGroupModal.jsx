@@ -42,7 +42,7 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
       const createNoteGroupResult = await database.select('INSERT INTO note_groups (title, color) VALUES ($1, $2) RETURNING id;', [finalGroupTitle, groupColor]);
 
       if (createNoteGroupResult.length > 0) {
-        info(`Group '${finalGroupTitle}' was successfully created with ID '${createNoteGroupResult[0].id}'`);
+        info(`Group '${finalGroupTitle}' was successfully created [ID: '${createNoteGroupResult[0].id}']`);
         handleIncomingAlert(false, `Group '${finalGroupTitle}' successfully created`);
       } else {
         warn('Unable to validate if note group was created - No ID was returned');
