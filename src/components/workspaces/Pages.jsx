@@ -35,14 +35,14 @@ const Pages = () => {
     }
   };
 
-  const deletePage = async (id) => {
+  const deletePage = async (page) => {
     try {
-      await database.execute('DELETE FROM pages WHERE id = $1;', [id]);
+      await database.execute('DELETE FROM pages WHERE id = $1;', [page.id]);
 
-      info(`Successfully deleted page with ID '${id}'`);
+      info(`Successfully deleted page '${page.title}' [ID: '${page.id}']`);
       getPages();
     } catch(error) {
-      console.error(`Error while deleting page with ID '${id}': ${error}`);
+      console.error(`Error while deleting page '${page.title}' [ID: '${page.id}']: ${error}`);
     }
   }
 

@@ -164,10 +164,10 @@ const PageEditor = () => {
           const newPageID = response[0].id;
           navigate(`/pages/editor/${newPageID}`);
 
-          info(`New page with ID '${newPageID}' was successfully created`);
+          info(`New page '${pageTitle}' was successfully created [ID: '${newPageID}']`);
           toast.success(`New page '${newPageData.title}' successfully created`);
         } else {
-          error('Attempted to create new page but no ID was returned');
+          error(`Attempted to create new page '${pageTitle}' but no ID was returned`);
           return;
         }
       } else {
@@ -179,12 +179,12 @@ const PageEditor = () => {
         navigate(`/pages/editor/${page.id}`);
 
         toast.success(`Page '${page.title}' successfully saved`);
-        info(`Page '${page.title}' with ID '${page.id}' successfully updated`);
+        info(`Page '${page.title}' successfully updated [ID: '${page.id}']`);
       }
 
       setChangesMade(false);
     } catch (error) {
-      console.error(`Error while attempting to submit page${page && ` with ID '${page.id}'`}: ${error}`);
+      console.error(`Error while attempting to submit page '${pageTitle}' ${page && `[ID: '${page.id}']`}: ${error}`);
     }
   }
 
@@ -329,8 +329,10 @@ const pageLoader = async ({params}) => {
     const pages = await database.select('SELECT * FROM pages WHERE id = $1;', [pageID]);
 
     if (pages.length > 0) {
-      info(`Successfully retrieved page with ID '${pageID}'`);
-      return pages[0];
+      const page = pages[0];
+
+      info(`Successfully retrieved page '${page.title}' [ID: '${pageID}']`);
+      return page;
     } else {
       warn(`No page found with ID '${pageID}'`);
       return;
