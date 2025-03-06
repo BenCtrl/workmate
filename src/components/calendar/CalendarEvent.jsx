@@ -16,12 +16,12 @@ const CalendarEvent = ({event, fetchEvents}) => {
     try {
       await database.execute('UPDATE events SET title = $1 WHERE id = $2', [eventTitle, event.id]);
 
-      info(`Updated event '${eventTitle}' with ID '${event.id}'`);
+      info(`Successfully updated event '${eventTitle}' [ID: '${event.id}']`);
 
       fetchEvents(new Date(event.event_timestamp));
       setUpdatingEvent((state) => !state);
     } catch(error) {
-      console.error(`Error while updating event with ID '${event.id}': ${error}`);
+      console.error(`Error while updating event '${eventTitle}' [ID: '${event.id}']: ${error}`);
     }
   }
 
@@ -30,9 +30,9 @@ const CalendarEvent = ({event, fetchEvents}) => {
       await database.execute('DELETE FROM events WHERE id = $1;', [id]);
       fetchEvents(new Date(event.event_timestamp));
 
-      info(`Successfully deleted event with ID '${id}'`);
+      info(`Successfully deleted event '${eventTitle}' [ID: '${id}']`);
     } catch(error) {
-      console.error(`Error while deleting event with ID '${id}': ${error}`);
+      console.error(`Error while deleting event '${eventTitle}' [ID: '${id}']: ${error}`);
     }
   }
 
