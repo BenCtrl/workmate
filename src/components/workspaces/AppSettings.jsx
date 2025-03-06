@@ -20,8 +20,6 @@ const AppSettings = () => {
 
   const [changesMade, setChangesMade] = useState(false);
 
-  info(`${appSettings.DARKMODE}`)
-
   const updateSettings = async (event) => {
     event.preventDefault();
 
@@ -42,7 +40,7 @@ const AppSettings = () => {
 
       info('Successfully updated application settings')
     } catch(error) {
-        console.error(`Error while updating settings: ${error}`);
+      console.error(`Error while updating settings: ${error}`);
     }
   }
 
