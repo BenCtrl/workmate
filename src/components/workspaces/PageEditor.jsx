@@ -201,115 +201,119 @@ const PageEditor = () => {
       </div>
       {editingPage &&
         <div className="page-editor-nodes">
-          <ButtonGroup>
-            <Button className='small' toolTip="Undo" children={<IconArrowLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
-            <Button className='small' toolTip="Redo" children={<IconArrowRight />} onClick={() => {editor.chain().focus().redo().run()}}/>
-          </ButtonGroup>
+          <div className="page-editor-extensions">
+            <ButtonGroup>
+              <Button className='small' toolTip="Undo" children={<IconArrowLeft />} onClick={() => {editor.chain().focus().undo().run()}}/>
+              <Button className='small' toolTip="Redo" children={<IconArrowRight />} onClick={() => {editor.chain().focus().redo().run()}}/>
+            </ButtonGroup>
 
-          <ButtonGroup style={{marginLeft: '1rem'}}>
-            <Button className={`small ${editor.isActive('bold') ? 'active' : ''}`} toolTip="Bold" children={<IconBold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
-            <Button className={`small ${editor.isActive('italic') ? 'active' : ''}`} toolTip="Italic" children={<IconItalic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
-            <Button className={`small ${editor.isActive('strike') ? 'active' : ''}`} toolTip="Strikethrough" children={<IconStrikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
-            <Button className={`small ${editor.isActive('underline') ? 'active' : ''}`} toolTip="Underline" children={<IconUnderline />} onClick={() => {editor.chain().focus().toggleUnderline().run()}}/>
-            <Button className={`small ${editor.isActive({textAlign:'left'}) ? 'active' : ''}`} toolTip="Align Left" children={<IconAlignLeft />} onClick={() => {editor.chain().focus().setTextAlign('left').run()}}/>
-            <Button className={`small ${editor.isActive({textAlign:'center'}) ? 'active' : ''}`} toolTip="Align Center" children={<IconAlignCenter />} onClick={() => {editor.chain().focus().setTextAlign('center').run()}}/>
-            <Button className={`small ${editor.isActive({textAlign:'right'}) ? 'active' : ''}`} toolTip="Align Right" children={<IconAlignRight />} onClick={() => {editor.chain().focus().setTextAlign('right').run()}}/>
-            <Button className={`small ${editor.isActive({textAlign:'justify'}) ? 'active' : ''}`} toolTip="Align Justify" children={<IconAlignJustify />} onClick={() => {editor.chain().focus().setTextAlign('justify').run()}}/>
-          </ButtonGroup>
+            <ButtonGroup>
+              <Button className={`small ${editor.isActive('bold') ? 'active' : ''}`} toolTip="Bold" children={<IconBold />} onClick={() => {editor.chain().focus().toggleBold().run()}}/>
+              <Button className={`small ${editor.isActive('italic') ? 'active' : ''}`} toolTip="Italic" children={<IconItalic />} onClick={() => {editor.chain().focus().toggleItalic().run()}}/>
+              <Button className={`small ${editor.isActive('strike') ? 'active' : ''}`} toolTip="Strikethrough" children={<IconStrikethrough />} onClick={() => {editor.chain().focus().toggleStrike().run()}}/>
+              <Button className={`small ${editor.isActive('underline') ? 'active' : ''}`} toolTip="Underline" children={<IconUnderline />} onClick={() => {editor.chain().focus().toggleUnderline().run()}}/>
+              <Button className={`small ${editor.isActive({textAlign:'left'}) ? 'active' : ''}`} toolTip="Align Left" children={<IconAlignLeft />} onClick={() => {editor.chain().focus().setTextAlign('left').run()}}/>
+              <Button className={`small ${editor.isActive({textAlign:'center'}) ? 'active' : ''}`} toolTip="Align Center" children={<IconAlignCenter />} onClick={() => {editor.chain().focus().setTextAlign('center').run()}}/>
+              <Button className={`small ${editor.isActive({textAlign:'right'}) ? 'active' : ''}`} toolTip="Align Right" children={<IconAlignRight />} onClick={() => {editor.chain().focus().setTextAlign('right').run()}}/>
+              <Button className={`small ${editor.isActive({textAlign:'justify'}) ? 'active' : ''}`} toolTip="Align Justify" children={<IconAlignJustify />} onClick={() => {editor.chain().focus().setTextAlign('justify').run()}}/>
+            </ButtonGroup>
 
-          <ButtonGroup style={{marginLeft: '1rem'}}>
-            <Button className={`small ${editor.isActive('code') ? 'active' : ''}`} toolTip="Code" children={<IconCode />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
-            <Button className={`small ${editor.isActive('codeBlock') ? 'active' : ''}`} toolTip="Code block" children={<IconCodeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
-            <Button className={`small ${editor.isActive('blockquote') ? 'active' : ''}`} toolTip="Block quote" children={<IconQuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
-            <Button className='small' toolTip="Horizontal rule" children={<IconHorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
-            <Button className={`small ${editor.isActive('bulletList') ? 'active' : ''}`} toolTip="Bullet list" children={<IconUnorderedList />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
-            <Button className={`small ${editor.isActive('orderedList') ? 'active' : ''}`} toolTip="Ordered list" children={<IconOrderedList />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
-          </ButtonGroup>
+            <ButtonGroup>
+              <Button className={`small ${editor.isActive('code') ? 'active' : ''}`} toolTip="Code" children={<IconCode />} onClick={() => {editor.chain().focus().toggleCode().run()}}/>
+              <Button className={`small ${editor.isActive('codeBlock') ? 'active' : ''}`} toolTip="Code block" children={<IconCodeblock />} onClick={() => {editor.chain().focus().toggleCodeBlock().run()}}/>
+              <Button className={`small ${editor.isActive('blockquote') ? 'active' : ''}`} toolTip="Block quote" children={<IconQuoteBlock />} onClick={() => {editor.chain().focus().toggleBlockquote().run()}}/>
+              <Button className='small' toolTip="Horizontal rule" children={<IconHorizontalRule />} onClick={() => {editor.chain().focus().setHorizontalRule().run()}}/>
+              <Button className={`small ${editor.isActive('bulletList') ? 'active' : ''}`} toolTip="Bullet list" children={<IconUnorderedList />} onClick={() => {editor.chain().focus().toggleBulletList().run()}}/>
+              <Button className={`small ${editor.isActive('orderedList') ? 'active' : ''}`} toolTip="Ordered list" children={<IconOrderedList />} onClick={() => {editor.chain().focus().toggleOrderedList().run()}}/>
+            </ButtonGroup>
 
-          <ButtonGroup style={{marginLeft: '1rem'}}>
-            <Button toolTip="Apply heading" className={`small ${editor.isActive('heading') ? 'active' : ''}`} children={<IconHeading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run()}}/>
+            <ButtonGroup>
+              <Button toolTip="Apply heading" className={`small ${editor.isActive('heading') ? 'active' : ''}`} children={<IconHeading />} onClick={() => {editor.chain().focus().toggleHeading({ level: selectedHeading }).run()}}/>
 
-            <select className='small' onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value))}} id="heading-select">
-              <option value="1">Heading 1</option>
-              <option value="2">Heading 2</option>
-              <option value="3">Heading 3</option>
-              <option value="4">Heading 4</option>
-              <option value="5">Heading 5</option>
-              <option value="6">Heading 6</option>
-            </select>
-          </ButtonGroup>
+              <select className='small' onChange={(changeEvent) => {setSelectedHeading(parseInt(changeEvent.target.value))}} id="heading-select">
+                <option value="1">Heading 1</option>
+                <option value="2">Heading 2</option>
+                <option value="3">Heading 3</option>
+                <option value="4">Heading 4</option>
+                <option value="5">Heading 5</option>
+                <option value="6">Heading 6</option>
+              </select>
+            </ButtonGroup>
 
-          <ButtonGroup style={{marginLeft: '1rem'}}>
-            <Button
-              className='small'
-              toolTip="Insert Table" children={<IconTable />}
-              onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
-            />
-            {editingTable &&
-              <>
-                <Button
-                  className='small'
-                  toolTip="Insert column before" children={<IconInsertRowLeft />}
-                  onClick={() => editor.chain().focus().addColumnBefore().run()}
-                />
-                <Button
-                  className='small'
-                  toolTip="Insert column after" children={<IconInsertRowRight />}
-                  onClick={() => editor.chain().focus().addColumnAfter().run()}
-                />
-                <Button
-                  className='small'
-                  toolTip="Insert row before" children={<IconInsertRowAbove />}
-                  onClick={() => editor.chain().focus().addRowBefore().run()}
-                />
-                <Button
-                  className='small'
-                  toolTip="Insert row after" children={<IconInsertRowBelow />}
-                  onClick={() => editor.chain().focus().addRowAfter().run()}
-                />
-                <Button
-                  className='small'
-                  toolTip="Delete row" children={<IconTableDeleteRow />}
-                  onClick={() => editor.chain().focus().deleteRow().run()}
-                />
-                <Button
-                  className='small'
-                  toolTip="Delete column" children={<IconTableDeleteColumn />}
-                  onClick={() => editor.chain().focus().deleteColumn().run()}
-                />
-                <Button
-                  className='small'
-                  toolTip="Header row" children={<IconTableHeaderRow />}
-                  onClick={() => editor.chain().focus().toggleHeaderRow().run()}
-                />
-                <Button
-                  className='small'
-                  toolTip="Header cell" children={<IconTableHeaderCell />}
-                  onClick={() => editor.chain().focus().toggleHeaderCell().run()}
-                />
-                <Button
-                  className='small'
-                  toolTip="Merge cells" children={<IconMergeCells />}
-                  onClick={() => editor.chain().focus().mergeCells().run()}
-                />
-                <Button
-                  className='small'
-                  toolTip="Split cell" children={<IconSplitCell />}
-                  onClick={() => editor.chain().focus().splitCell().run()}
-                />
-                <Button
-                  className='small'
-                  toolTip="Delete table" children={<IconTrash />}
-                  onClick={() => editor.chain().focus().deleteTable().run()}
-                />
-              </>
-            }
-          </ButtonGroup>
+            <ButtonGroup>
+              <Button
+                className='small'
+                toolTip="Insert Table" children={<IconTable />}
+                onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+              />
+              {editingTable &&
+                <>
+                  <Button
+                    className='small'
+                    toolTip="Insert column before" children={<IconInsertRowLeft />}
+                    onClick={() => editor.chain().focus().addColumnBefore().run()}
+                  />
+                  <Button
+                    className='small'
+                    toolTip="Insert column after" children={<IconInsertRowRight />}
+                    onClick={() => editor.chain().focus().addColumnAfter().run()}
+                  />
+                  <Button
+                    className='small'
+                    toolTip="Insert row before" children={<IconInsertRowAbove />}
+                    onClick={() => editor.chain().focus().addRowBefore().run()}
+                  />
+                  <Button
+                    className='small'
+                    toolTip="Insert row after" children={<IconInsertRowBelow />}
+                    onClick={() => editor.chain().focus().addRowAfter().run()}
+                  />
+                  <Button
+                    className='small'
+                    toolTip="Delete row" children={<IconTableDeleteRow />}
+                    onClick={() => editor.chain().focus().deleteRow().run()}
+                  />
+                  <Button
+                    className='small'
+                    toolTip="Delete column" children={<IconTableDeleteColumn />}
+                    onClick={() => editor.chain().focus().deleteColumn().run()}
+                  />
+                  <Button
+                    className='small'
+                    toolTip="Header row" children={<IconTableHeaderRow />}
+                    onClick={() => editor.chain().focus().toggleHeaderRow().run()}
+                  />
+                  <Button
+                    className='small'
+                    toolTip="Header cell" children={<IconTableHeaderCell />}
+                    onClick={() => editor.chain().focus().toggleHeaderCell().run()}
+                  />
+                  <Button
+                    className='small'
+                    toolTip="Merge cells" children={<IconMergeCells />}
+                    onClick={() => editor.chain().focus().mergeCells().run()}
+                  />
+                  <Button
+                    className='small'
+                    toolTip="Split cell" children={<IconSplitCell />}
+                    onClick={() => editor.chain().focus().splitCell().run()}
+                  />
+                  <Button
+                    className='small'
+                    toolTip="Delete table" children={<IconTrash />}
+                    onClick={() => editor.chain().focus().deleteTable().run()}
+                  />
+                </>
+              }
+            </ButtonGroup>
+          </div>
 
-          <ButtonGroup style={{marginLeft: 'auto'}}>
-            <Button className='small' id="page-save" children={<IconFileDone />} toolTip={changesMade ? "Save (Unsaved Changes)" : "Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
-            <Button className='small' id="page-save-as" children={<IconFileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
-          </ButtonGroup>
+          <div className="page-editor-save-controls">
+            <ButtonGroup>
+              <Button className='small' id="page-save" children={<IconFileDone />} toolTip={changesMade ? "Save (Unsaved Changes)" : "Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+              <Button className='small' id="page-save-as" children={<IconFileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
+            </ButtonGroup>
+          </div>
         </div>
       }
 

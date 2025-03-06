@@ -8,7 +8,6 @@
 .page-editor-nodes {
   display: flex;
   background-color: var(--page-background-accent-color);
-  padding: 0.6rem;
 }
 
 .page-editor-nodes button.mini,
@@ -19,6 +18,14 @@
 .page-editor-nodes .page-editor-nodes-divider {
   border-right: 0.06rem solid var(--font-color);
   margin: 0 0.5rem;
+}
+
+.page-editor-nodes .button-group {
+  margin: 0.6rem;
+}
+
+.page-editor-nodes .page-editor-save-controls {
+  margin-left: auto;
 }
 
 .page-editor-header {
