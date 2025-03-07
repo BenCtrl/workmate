@@ -182,7 +182,7 @@ const StickyNoteGroup = ({
                 }}
               />
             :
-              <span className="group-title-content" title={!isDefault && "Edit group title"} onClick={() => {!isDefault && setUpdatingGroup((state) => !state)}}>{group.title}{isDefault && <span className="group-title-detault-tag">(Default)</span>}</span>
+              <span className="group-title-content" title={!isDefault ? "Edit group title":""} onClick={() => {!isDefault && setUpdatingGroup((state) => !state)}}>{group.title}{isDefault && <span className="group-title-detault-tag">(Default)</span>}</span>
             }
           </div>
 
