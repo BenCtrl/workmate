@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 import { error, info, warn } from '@tauri-apps/plugin-log';
 
 import CharacterCount from '@tiptap/extension-character-count';
-import CodeBlock from '@tiptap/extension-code-block';
 import { EditorContent, useEditor } from '@tiptap/react';
 import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
@@ -66,7 +65,6 @@ import TextAlign from '@tiptap/extension-text-align';
 
 const extensions = [
   StarterKit,
-  CodeBlock,
   TextStyle,
   Underline,
   Table.configure({
