@@ -182,7 +182,6 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   border-radius: var(--component-standard-border-radius);
   border: 0.15rem solid var(--item-outline-color);
   background-color: var(--item-background-color);
-  cursor: pointer;
   transition: var(--component-standard-transition);
 }
 
@@ -206,6 +205,7 @@ button.react-calendar__tile--active.react-calendar__tile--now {
 .selected-day-events-list .event .event-title {
   flex-grow: 1;
   margin-right: 0.6rem;
+  cursor: pointer;
 }
 
 .selected-day-events-list .event button.mini.event-button {

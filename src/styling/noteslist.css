@@ -61,6 +61,12 @@
   align-items: center;
 }
 
+
+.sticky-note-group .group-header .group-title .group-title-content {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
 .sticky-note-group .group-header button,
 .sticky-note-group .group-header .button-group {
   opacity: 0;
