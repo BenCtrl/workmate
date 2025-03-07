@@ -85,6 +85,8 @@ const extensions = [
 ];
 
 const PageEditor = () => {
+  const SETTINGS = useContext(AppSettingsContext).appSettings;
+
   const page = useLoaderData();
   const navigate = useNavigate();
 
@@ -92,11 +94,16 @@ const PageEditor = () => {
   const [selectedHeading, setSelectedHeading] = useState(1);
 
   const [changesMade, setChangesMade] = useState(false);
-  const [editingPage, setIsEditing] = useState(page ? false : true);
+  const [editingPage, setIsEditing] = useState(() => {
+    if (SETTINGS.OPEN_PAGE_IN_EDIT_MODE) {
+      return true;
+    } else {
+      return page ? false : true;
+    }
+  });
   const [editingTable, setEditingTable] = useState(false);
 
   const content = page ? JSON.parse(page.page_content) : '';
-  const SETTINGS = useContext(AppSettingsContext).appSettings;
 
   const editor = useEditor({
     extensions,

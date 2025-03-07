@@ -29,6 +29,7 @@ function App() {
           "TOOLTIPS":false,
           "DARKMODE":false,
           "WORD_COUNTER":false,
+          "OPEN_PAGE_IN_EDIT_MODE": false,
           "HIDE_COMPLETED_NOTES":false,
           "CONFIRM_BEFORE_DELETE":false,
           "PREVENT_DUPLICATES":false

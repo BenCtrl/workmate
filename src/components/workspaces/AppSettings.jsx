@@ -14,6 +14,7 @@ const AppSettings = () => {
   const [toolTipsEnabled, setTooltipsEnabled] = useState(appSettings.TOOLTIPS);
   const [darkModeEnabled, setDarkModeEnabled] = useState(appSettings.DARKMODE);
   const [wordCounterEnabled, setWordCounterEnabled] = useState(appSettings.WORD_COUNTER);
+  const [openPageInEditModeEnabled, setOpenPageInEditModeEnabled] = useState(appSettings.OPEN_PAGE_IN_EDIT_MODE);
   const [hideCompletedNotes, setHideCompletedNotes] = useState(appSettings.HIDE_COMPLETED_NOTES);
   const [confirmBeforeDelete, setConfirmBeforeDelete] = useState(appSettings.CONFIRM_BEFORE_DELETE);
   const [preventDuplicates, setPreventDuplicates] = useState(appSettings.PREVENT_DUPLICATES);
@@ -27,6 +28,7 @@ const AppSettings = () => {
       TOOLTIPS: toolTipsEnabled,
       DARKMODE: darkModeEnabled,
       WORD_COUNTER: wordCounterEnabled,
+      OPEN_PAGE_IN_EDIT_MODE: openPageInEditModeEnabled,
       HIDE_COMPLETED_NOTES: hideCompletedNotes,
       CONFIRM_BEFORE_DELETE: confirmBeforeDelete,
       PREVENT_DUPLICATES: preventDuplicates
@@ -63,6 +65,7 @@ const AppSettings = () => {
 
         <fieldset>
           <legend>Page Editor</legend>
+          <CheckBoxSlider labelContent="Open in edit mode" checkBoxID="toggle-page-editor-open-in-edit-mode" checked={openPageInEditModeEnabled} onChange={() => {setOpenPageInEditModeEnabled((state) => !state)}} />
           <CheckBoxSlider labelContent="Word Counter" checkBoxID="toggle-page-editor-word-count" checked={wordCounterEnabled} onChange={() => {setWordCounterEnabled((state) => !state)}} />
         </fieldset>
 
