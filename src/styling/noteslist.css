@@ -181,6 +181,10 @@
 }
 
 /* behavioural styling */
+.sticky-note-group .group-header:hover {
+  border-color: var(--button-active-accent-color);
+}
+
 .sticky-note-group .group-color:hover {
   width: 1rem;
   cursor: pointer;
