@@ -67,6 +67,10 @@
   cursor: pointer;
 }
 
+.sticky-note-group.default .group-header .group-title .group-title-content {
+  cursor: default;
+}
+
 .sticky-note-group .group-header button,
 .sticky-note-group .group-header .button-group {
   opacity: 0;
