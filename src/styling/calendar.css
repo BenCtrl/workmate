@@ -233,10 +233,6 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   background-color: var(--button-active-background-color);
 }
 
-#new-event-title:hover {
-  border-color: var(--button-active-accent-color);
-}
-
 #new-event-title:focus {
   border-color: var(--button-active-accent-color);
   outline: none;
