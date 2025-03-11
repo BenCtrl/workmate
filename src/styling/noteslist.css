@@ -33,7 +33,7 @@
   background-color: var(--item-background-color);
   border-radius: var(--component-standard-border-radius);
   border: 0.15rem solid var(--item-outline-color);
-  transition: var(--component-standard-transition);
+  transition: border-color var(--component-standard-transition);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,7 +91,7 @@
 }
 
 .sticky-note-group .group-color {
-  transition: inherit;
+  transition: var(--component-standard-transition);
   background-color: var(--button-active-accent-color);
   left: 0;
   top: 0;
