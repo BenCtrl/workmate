@@ -11,7 +11,7 @@ const CalendarDay = ({date}) => {
 
   useEffect(() => {
     getEventCount();
-  }, []);
+  }, [date]);
 
   return (
     <div>
