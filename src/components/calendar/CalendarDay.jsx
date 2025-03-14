@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { eventsLoader } from '../workspaces/CalendarPlanner';
 
+import { IconClock } from '../Icons';
+
 const CalendarDay = ({date}) => {
   const [eventCount, setEventCount] = useState(0);
 
@@ -14,9 +16,9 @@ const CalendarDay = ({date}) => {
   }, [date]);
 
   return (
-    <div>
-      {eventCount > 0 && <span className="event-indicator">{eventCount}</span>}
+    <div className="date-of-month-container">
       <span className="date-of-month">{date.getDate()}</span>
+      {eventCount > 0 && <span className="event-indicator" title="Scheduled events"><IconClock />{eventCount}</span>}
     </div>
   )
 }

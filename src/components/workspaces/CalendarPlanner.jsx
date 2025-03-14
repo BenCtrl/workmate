@@ -16,6 +16,7 @@ import {
 } from '../Icons';
 
 import '../../styling/calendar.css';
+// import 'react-calendar/dist/Calendar.css';
 
 import database from '../../database/database';
 import CalendarDay from '../calendar/CalendarDay';
@@ -84,6 +85,8 @@ const CalendarPlanner = () => {
         next2Label={<IconDoubleChevronRight/>}
         prevLabel={<IconChevronLeft />}
         prev2Label={<IconDoubleChevronLeft/>}
+        showFixedNumberOfWeeks={true}
+        minDetail={'decade'}
         formatDay={(locale, date) => {
           return <CalendarDay date={date} />;
         }}

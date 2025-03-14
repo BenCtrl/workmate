@@ -18,21 +18,13 @@
 }
 
 /* react-calendar overrides */
-.react-calendar__navigation button {
-  margin: 0;
-  height: unset;
-}
-
-button.react-calendar__navigation__next-button,
-button.react-calendar__navigation__prev-button {
-  margin: 0 1rem;
-}
-
 .react-calendar__viewContainer,
 .react-calendar__month-view,
 .react-calendar__year-view,
 .react-calendar__decade-view,
 .react-calendar__century-view,
+.react-calendar__decade-view__years,
+.react-calendar__year-view__months,
 .react-calendar__month-view > div:nth-child(1),
 .react-calendar__month-view > div:nth-child(1) > div:nth-child(1),
 .react-calendar__month-view__days {
@@ -41,8 +33,10 @@ button.react-calendar__navigation__prev-button {
   align-items: unset;
 }
 
+.react-calendar__decade-view__years,
+.react-calendar__year-view__months,
 .react-calendar__month-view__days {
-  border: 0.15rem solid var(--page-background-accent-color);
+  border: 0.1rem solid var(--item-outline-color);
 }
 
 .react-calendar__month-view > div:nth-child(1) {
@@ -53,67 +47,77 @@ button.react-calendar__navigation__prev-button {
   flex-direction: column;
 }
 
-.react-calendar .react-calendar__viewContainer button {
-  margin: 0;
-  box-shadow: none;
-  border-radius: 0;
-  border: 0.15rem solid var(--page-background-accent-color);
-  background-color: var(--calendar-button-background-color);
-  flex-grow: 1 !important;
+.react-calendar__navigation button {
   height: unset;
 }
 
-button.react-calendar__tile {
-  padding: 2rem;
+.react-calendar__navigation {
+  border-radius: var(--component-standard-border-radius);
 }
 
-.react-calendar button.react-calendar__tile--active {
+.react-calendar__month-view__weekdays__weekday abbr {
+  padding-left: 0.6rem;
+}
+
+.react-calendar .react-calendar__viewContainer button {
+  margin: 0;
+  padding: 0.4rem;
+  box-shadow: none;
+  border-radius: 0;
+  border: 0.1rem solid var(--item-outline-color);
+  background-color: var(--calendar-button-background-color);
+}
+
+.react-calendar .react-calendar__viewContainer .react-calendar__month-view__days button {
+  height: 16.666%;
+}
+
+.react-calendar .react-calendar__viewContainer .react-calendar__year-view__months button,
+.react-calendar .react-calendar__viewContainer .react-calendar__decade-view__years button {
+  height: unset;
+}
+
+
+.react-calendar .react-calendar__viewContainer button.react-calendar__tile--active {
   color: var(--button-active-accent-color);
-  border: 0.15rem solid var(--button-active-accent-color);
+  border-color: var(--button-active-accent-color);
   font-weight: bold;
-}
-
-button.react-calendar__tile--active.react-calendar__tile--now {
-  color: white;
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
   color: var(--button-disabled-accent-color);
 }
 
+.react-calendar .react-calendar__viewContainer button abbr .event-indicator svg {
+  font-size: 0.8rem;
+  margin-right: 0.2rem;
+}
+
 .react-calendar .react-calendar__viewContainer button abbr .event-indicator {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 1.4rem;
-  height: 1.4rem;
   color: white;
   font-size: 0.8rem;
-  position: absolute;
+  padding: 0.3rem;
   background-color: var(--button-active-accent-color);
-  top: 0.4rem;
-  left: 0.4rem;
-  border-radius: 25%;
+  border-radius: var(--component-standard-border-radius);
+  margin-top: 0.4rem;
+}
+
+.react-calendar .react-calendar__viewContainer button .date-of-month-container {
+  height: 100%;
 }
 
 .react-calendar .react-calendar__viewContainer button .date-of-month {
   display: flex;
-  justify-self: center;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: fit-content;
   padding: 0.2rem;
-  border-radius: 50%;
+  border-radius: var(--component-standard-border-radius);
 }
 
 .react-calendar .react-calendar__viewContainer button.react-calendar__tile--now .date-of-month {
   color: white;
   background-color: var(--button-active-accent-color);
-}
-
-.react-calendar__navigation {
-  border-radius: var(--component-standard-border-radius);
 }
 
 /* Styling of bespoke components */
@@ -132,7 +136,6 @@ button.react-calendar__tile--active.react-calendar__tile--now {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1.25rem;
-  /* border-bottom: 2px solid var(--item-outline-color); */
   border-bottom: 1px solid var(--font-faded-color);
 }
 
@@ -230,7 +233,7 @@ button.react-calendar__tile--active.react-calendar__tile--now {
 .react-calendar .react-calendar__viewContainer button:hover {
   box-shadow: none;
   color: inherit;
-  background-color: var(--button-active-background-color);
+  background-color: var(--page-list-item-hover-background-color);
 }
 
 #new-event-title:focus {
