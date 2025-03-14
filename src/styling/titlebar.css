@@ -22,7 +22,7 @@
 }
 
 .titlebar-button:hover {
-  background: var(--page-list-item-hover-background-color);
+  background: var(--component-hover-accent-background-color);
 }
 
 .titlebar-button#titlebar-close:hover {

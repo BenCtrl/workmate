@@ -65,7 +65,7 @@
   box-shadow: none;
   border-radius: 0;
   border: 0.1rem solid var(--item-outline-color);
-  background-color: var(--calendar-button-background-color);
+  background-color: var(--calendar-tile-background-color);
 }
 
 .react-calendar .react-calendar__viewContainer button.react-calendar__month-view__days__day--neighboringMonth {
@@ -239,7 +239,7 @@
 .react-calendar .react-calendar__viewContainer button:hover {
   box-shadow: none;
   color: inherit;
-  background-color: var(--page-list-item-hover-background-color);
+  background-color: var(--component-hover-accent-background-color);
 }
 
 #new-event-title:focus {

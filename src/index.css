@@ -2,37 +2,41 @@
 /* Default theming variables */
 :root {
   /* Colors */
-  --font-color: #3d3d3d;
-  --page-background-color: #ebebeb;
-  --page-background-accent-color: #d7d7d7;
+  --app-background-watermark-color: #3d3d3d0d;
+
   --button-background-color: #0000001c;
   --button-active-accent-color: #4a7aff;
-  --table-highlight-color: #4a7aff4d;
   --button-active-background-color: #0000002c;
   --button-accent-color: #000000bf;
   --button-disabled-accent-color: #676767bf;
   --button-hover-background-color: #0000002c;
+
+  --calendar-tile-background-color: #f3f3f369;
+  --calendar-tile-neighbouring-month-background-color: #cbcbcb69;
+
+  --component-error: #ff4f4f;
+  --component-warning: #ffb121;
+  --component-success: #56d356;
+  --component-hover-accent-background-color: #4a7aff26;
   --component-alternate-background-color: #0000001c;
+
   --fieldset-outline-color: #cecece;
+  --font-color: #3d3d3d;
   --font-faded-color: #0000004f;
-  --page-list-item-hover-background-color: #4a7aff26;
   --item-standard-box-shadow-color: #444444;
-  --page-background-watermark-color: #3d3d3d0d;
-  --navbar-background-color: #ffffff;
   --item-outline-color: #cecece;
   --item-background-color: #fff;
-  --calendar-button-background-color: #f3f3f369;
-  --calendar-tile-neighbouring-month-background-color: #cbcbcb69;
-  --stickynote-font-faded-text: #0000003f;
+  --navbar-background-color: #ffffff;
+  --page-background-color: #ebebeb;
+  --page-background-accent-color: #d7d7d7;
 
   --sticky-note-yellow: #fff672;
   --sticky-note-pink: #ff72ba;
   --sticky-note-green: #88ff72;
   --sticky-note-blue: #72beff;
+  --stickynote-font-faded-text: #0000003f;
 
-  --component-error: #ff4f4f;
-  --component-warning: #ffb121;
-  --component-success: #56d356;
+  --table-highlight-color: #4a7aff4d;
 
   /* Toastify override */
   --toastify-color-success: var(--component-success);
@@ -48,20 +52,23 @@
 /* Dark theming variables */
 [data-theme="dark"]:root {
   /* Colors */
-  --font-color: #ebebeb;
-  --page-background-color: #1e202d;
-  --page-background-accent-color: #191a29;
+  --app-background-watermark-color: #3d3d3d1c;
+
   --button-background-color: #ffffff17;
+
+  --calendar-tile-background-color: #ffffff08;
+  --calendar-tile-neighbouring-month-background-color: #ffffff10;
+
   --component-alternate-background-color: #cfcfcf14;
   --fieldset-outline-color: #757575;
+  --font-color: #ebebeb;
   --font-faded-color: #ffffff4f;
   --item-standard-box-shadow-color: #000000;
-  --page-background-watermark-color: #3d3d3d1c;
-  --navbar-background-color: #161821;
   --item-outline-color: #0e0e0e;
   --item-background-color: #232433;
-  --calendar-button-background-color: #ffffff08;
-  --calendar-tile-neighbouring-month-background-color: #ffffff10;
+  --navbar-background-color: #161821;
+  --page-background-color: #1e202d;
+  --page-background-accent-color: #191a29;
 
   /* Toastify styling */
   --toastify-color-dark: var(--page-background-accent-color);

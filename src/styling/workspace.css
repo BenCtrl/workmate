@@ -23,7 +23,7 @@
   flex-grow: 1;
   justify-self: center;
   align-self: center;
-  color: var(--page-background-watermark-color);
+  color: var(--app-background-watermark-color);
   position: absolute;
   bottom: 10px;
   display: flex;
