@@ -68,6 +68,10 @@
   background-color: var(--calendar-button-background-color);
 }
 
+.react-calendar .react-calendar__viewContainer button.react-calendar__month-view__days__day--neighboringMonth {
+  background-color: var(--calendar-tile-neighbouring-month-background-color);
+}
+
 .react-calendar .react-calendar__viewContainer .react-calendar__month-view__days button {
   height: 16.666%;
 }
@@ -78,6 +82,8 @@
 }
 
 
+.react-calendar .react-calendar__viewContainer button.react-calendar__tile--now.react-calendar__decade-view__years__year,
+.react-calendar .react-calendar__viewContainer button.react-calendar__tile--now.react-calendar__year-view__months__month,
 .react-calendar .react-calendar__viewContainer button.react-calendar__tile--active {
   color: var(--button-active-accent-color);
   border-color: var(--button-active-accent-color);

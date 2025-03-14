@@ -22,6 +22,7 @@
   --item-outline-color: #cecece;
   --item-background-color: #fff;
   --calendar-button-background-color: #f3f3f369;
+  --calendar-tile-neighbouring-month-background-color: #cbcbcb69;
   --stickynote-font-faded-text: #0000003f;
 
   --sticky-note-yellow: #fff672;
@@ -60,6 +61,7 @@
   --item-outline-color: #0e0e0e;
   --item-background-color: #232433;
   --calendar-button-background-color: #ffffff08;
+  --calendar-tile-neighbouring-month-background-color: #ffffff10;
 
   /* Toastify styling */
   --toastify-color-dark: var(--page-background-accent-color);
