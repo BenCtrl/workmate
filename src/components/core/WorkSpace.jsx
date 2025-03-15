@@ -16,7 +16,7 @@ import Pages from '../workspaces/Pages';
 import { AppSettingsContext } from '../../App';
 import PageEditor, { pageLoader } from '../workspaces/PageEditor';
 
-import '../../styling/workspace.css';
+import '../../styling/work-space.css';
 
 const WorkSpace = () => {
   const SETTINGS = useContext(AppSettingsContext).appSettings;

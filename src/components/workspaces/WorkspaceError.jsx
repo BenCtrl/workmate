@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../styling/workspace-error.css';
+import '../../styling/work-space-error.css';
 
 const WorkspaceError = ({errorCode, errorMessage}) => {
   return (

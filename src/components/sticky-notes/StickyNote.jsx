@@ -4,7 +4,7 @@ import { Checkbox, DeleteConfirmButton } from '../CommonComponents';
 import StickyNoteEditor from './StickyNoteEditor';
 import { IconTrash } from '../Icons';
 
-import '../../styling/stickynote.css';
+import '../../styling/sticky-note.css';
 
 const StickyNote = ({stickyNote, updateNoteSubmit, deleteNote, groupID}) => {
   const [updatingNote, setUpdatingNote] = useState(false);

@@ -3,7 +3,7 @@ import { BaseDirectory, writeTextFile } from '@tauri-apps/plugin-fs';
 import { info } from '@tauri-apps/plugin-log';
 
 import { Alert, Button, CheckBoxSlider } from '../CommonComponents';
-import '../../styling/appsettings.css';
+import '../../styling/app-settings.css';
 
 import { AppSettingsContext } from '../../App';
 

@@ -4,7 +4,7 @@ import { debug } from '@tauri-apps/plugin-log';
 import NewStickyNote from './NewStickyNote';
 import StickyNote from './StickyNote';
 
-import '../../styling/noteslist.css';
+import '../../styling/sitcky-notes-list.css';
 
 import { AppSettingsContext } from '../../App';
 

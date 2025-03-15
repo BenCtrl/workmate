@@ -6,7 +6,7 @@ import { Button, Input } from '../CommonComponents'
 import PageListItem from '../pages/PageListItem';
 import { IconFileAdd, IconSearch } from '../Icons';
 
-import '../../styling/pagelist.css';
+import '../../styling/page-list.css';
 
 import database from '../../database/database';
 

@@ -7,7 +7,7 @@ import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
 import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
 import { IconFolder, IconFolderOpen, IconSearch, IconStack } from '../Icons';
 
-import '../../styling/noteslist.css'
+import '../../styling/sitcky-notes-list.css'
 
 import database from '../../database/database';
 
