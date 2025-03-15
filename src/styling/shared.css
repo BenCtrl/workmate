@@ -274,9 +274,13 @@ fieldset legend {
 }
 
 .checkbox-switch-container {
+  padding: 0.4rem;
+  background-color: var(--checkbox-slider-background-color);
+  border-radius: var(--component-standard-border-radius);
   margin: 6px 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .checkbox-switch {

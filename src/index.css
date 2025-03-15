@@ -14,6 +14,8 @@
   --calendar-tile-background-color: #f3f3f369;
   --calendar-tile-neighbouring-month-background-color: #cbcbcb69;
 
+  --checkbox-slider-background-color: #0000000f;
+
   --component-error: #ff4f4f;
   --component-warning: #ffb121;
   --component-success: #56d356;
@@ -58,6 +60,8 @@
 
   --calendar-tile-background-color: #ffffff08;
   --calendar-tile-neighbouring-month-background-color: #ffffff10;
+
+  --checkbox-slider-background-color: #ffffff0a;
 
   --component-alternate-background-color: #cfcfcf14;
   --fieldset-outline-color: #757575;
