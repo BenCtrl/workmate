@@ -1,18 +1,57 @@
 ![workmate logo](public/workmate-banner.png)
 # Workmate (0.1.0)
 
-Simple work planner app, designed for ease of use & convenience over power. For version 0.1 abilities of this application will be
- - 'Sticky notes' for quick notes, they can be created & organised in groups.
- - 'Pages' for detailed and well annotated documentation. They are endless, single page documents with a number of formatting features available.
- - 'Calendar' is a standard planner calendar, with the feature of being able to create scheduled events on chosen days.
+Simple work planner app, designed for ease of use & convenience over power.
+Each main feature of this app are separated into 'workspaces'.
+
+## Features (Workspaces)
+### Sticky Notes
+This workspace allows you to create short-quick notes. Each note takes a limited number of characters & new lines but allows you to do so quickly.
+Each note can be edited inline, with an additional feature of being able to 'complete' each note with the checkbox.
+
+#### Groups
+Sticky note groups can also be created to help organise sticky notes. Each installation of workmate comes with a default group named simply "Sticky Notes"
+that cannot have it's title edited, neither can the group be deleted. The group colour can be changed however.
+
+#### Hiding Completed Notes
+Notes that are marked as complete can be hidden from view to save space & declutter the workspace. This is a setting that can be configured in the apps settings.
+
+### Pages
+This workspace can be used to create elaborate, formatted documents where users can create documents for more in depth note taking or documentation.
+The page is constructed as an WSYIWYG editor and supports basic formatting & features such as:
+ - Font formatting (Bold, Italic, Underline, Strikethrough & Headings)
+ - Font Alignment
+ - Inline code
+ - Separate code blocks
+ - Block quotes
+ - Horizontal Rules
+ - Lists (ordered & unordered)
+ - Tables
+
+### Calendar
+This workspace is a simple calendar that tracks the current date and also allows users to create schedules events for any day selected.
+
+#### Events
+Events are comprised of two sets of data: The event title & the scheduled date/time of the event. The titles of existing events can be edited inline
+in this workspace by simply clicking on the title of the existing event. This will toggle the edit mode of the event and allow you to make the changes
+you wish.
 
  ## Demonstration Screenshots
+<details><summary>Light Mode</summary>
+  <img src='demo/screenshots/light-sticky-notes.png' alt='light-sticky-notes'>
+  <img src='demo/screenshots/light-page-list.png' alt='light-page-list'>
+  <img src='demo/screenshots/light-page-editor.png' alt='light-page-editor'>
+  <img src='demo/screenshots/light-calendar.png' alt='light-calendar'>
+  <img src='demo/screenshots/light-app-settings.png' alt='light-app-settings'>
+</details>
 
-![workmate sticky notes](demo/screenshots/stickynotes.png)
-![workmate page list](demo/screenshots/page-list.png)
-![workmate page editor](demo/screenshots/page-editor.png)
-![workmate calendar](demo/screenshots/calendar.png)
-![workmate app settings](demo/screenshots/settings.png)
+<details><summary>Dark Mode</summary>
+  <img src='demo/screenshots/dark-sticky-notes.png' alt='dark-sticky-notes'>
+  <img src='demo/screenshots/dark-page-list.png' alt='dark-page-list'>
+  <img src='demo/screenshots/dark-page-editor.png' alt='dark-page-editor'>
+  <img src='demo/screenshots/dark-calendar.png' alt='dark-calendar'>
+  <img src='demo/screenshots/dark-app-settings.png' alt='dark-app-settings'>
+</details>
 
 ## Development Installation
 1. Install the nodejs dependencies using `npm i`
