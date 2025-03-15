@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom';
 import { info, warn } from '@tauri-apps/plugin-log';
 
-import { Button, Modal } from '../CommonComponents'
+import { Button, Input, Modal } from '../CommonComponents'
 import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
 import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
-import { IconCollapse, IconExpand, IconStack } from '../Icons';
+import { IconCollapse, IconExpand, IconSearch, IconStack } from '../Icons';
 
 import '../../styling/noteslist.css'
 
 import database from '../../database/database';
 
 const NotesList = () => {
+  const [searchQuery, setSearchQuery] = useState('');
   const [groups, setGroups] = useState([]);
   const [showGroupModal, setShowGroupModal] = useState(false);
   const [allGroupsExpanded, setAllGroupsExpanded] = useState(false);
@@ -43,7 +44,7 @@ const NotesList = () => {
 
   return (
     <>
-      <div className='sticky-notes-controls'>
+      <div className='workspace-controls'>
         <Button children={<IconStack />} toolTip={'Create new group'} onClick={() => {setShowGroupModal((state) => !state)}} />
         {
           allGroupsExpanded ?
@@ -51,12 +52,28 @@ const NotesList = () => {
             :
             <Button children={<IconExpand />} toolTip="Expand groups" onClick={() => {toggleGroupExpansion()}} />
         }
+        <Input icon={<IconSearch />} id="note-group-search" className="search-input" placeholder="Search Groups..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
       </div>
+
       <div id="sticky-notes-list-container" className="scrollable">
-        {groups.map((group) => {
-          // Skip over default group to avoid duplicate render of group (ID is always assumed as 1 as should be primary group)
-          return group.id <= 1 ? <StickyNoteGroup key={group.id} group={group} expanded={true} isDefault={true} /> : <StickyNoteGroup key={group.id} expanded={allGroupsExpanded} getGroups={fetchGroups} group={group} />
-        })}
+        {
+          groups.map((group) => {
+            let stickyNoteGroup = undefined;
+
+            if (group.id === 1) {
+              stickyNoteGroup = <StickyNoteGroup key={group.id} group={group} expanded={true} isDefault={true} />
+            } else {
+              stickyNoteGroup = <StickyNoteGroup key={group.id} expanded={allGroupsExpanded} getGroups={fetchGroups} group={group} />
+            }
+
+            if (searchQuery.length <= 0) {
+              return stickyNoteGroup;
+            }
+            else if (group.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+              return stickyNoteGroup;
+            }
+          })
+        }
       </div>
 
       {showGroupModal &&

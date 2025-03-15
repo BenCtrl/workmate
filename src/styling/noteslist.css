@@ -4,24 +4,13 @@
   flex: 1 0 0;
   min-height: 0;
   overflow-y: auto;
+  margin-top: 1rem;
 }
 
 .sticky-notes-list {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 2rem;
-}
-
-.sticky-notes-controls {
-  margin-bottom: 1rem;
-}
-
-.sticky-notes-controls button:first-child {
-  margin-left: 0;
-}
-
-.sticky-notes-controls button {
-  margin: 0 0.6rem;
 }
 
 .sticky-note-group .group-title svg,

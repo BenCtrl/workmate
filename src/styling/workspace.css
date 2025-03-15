@@ -105,6 +105,22 @@
   width: 100%;
 }
 
+.workspace-controls {
+  display: flex;
+}
+
+.workspace-controls button:first-child {
+  margin-left: 0;
+}
+
+.workspace-controls button {
+  margin: 0 0.6rem;
+}
+
+.workspace-controls .search-input {
+  margin-left: auto;
+}
+
 /* behavioural styling */
 #workspace-tabs .workspace-tab:hover {
   color: var(--button-active-accent-color);

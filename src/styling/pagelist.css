@@ -12,10 +12,6 @@
   justify-content: end;
 }
 
-#pages-controls .page-control {
-  margin: 0;
-}
-
 .page-list-item {
   background-color: var(--item-background-color);
   border-radius: var(--component-standard-border-radius);

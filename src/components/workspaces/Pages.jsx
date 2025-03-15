@@ -52,20 +52,21 @@ const Pages = () => {
 
   return (
     <>
-      <div id="pages-controls">
-        <Button className="page-control" style={{marginLeft: '0', marginRight: 'auto'}} children={<IconFileAdd />} toolTip={"Create new page"} onClick={() => {navigateTo("/pages/editor")}}/>
-        <Input icon={<IconSearch />} id="pages-search" className="search-input page-control" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
+      <div className='workspace-controls'>
+        <Button children={<IconFileAdd />} toolTip={"Create new page"} onClick={() => {navigateTo("/pages/editor")}}/>
+        <Input icon={<IconSearch />} id="pages-search" className="search-input" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
       </div>
 
       <ul id="pages-list" className="scrollable">
         {
-          // TODO - Don't really like duplication of return line
           pages.map((page) => {
+            const pageListItem = <PageListItem key={page.id} page={page} deletePage={deletePage} />
+
             if (searchQuery.length <= 0) {
-              return <PageListItem key={page.id} page={page} deletePage={deletePage} />
+              return pageListItem;
             }
             else if (page.title.toLowerCase().includes(searchQuery.toLowerCase())) {
-              return <PageListItem key={page.id} page={page} deletePage={deletePage} />
+              return pageListItem;
             }
           })
         }
