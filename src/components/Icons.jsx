@@ -27,6 +27,8 @@ export {
   AiOutlineFileText as IconFileText,
   AiOutlineFileAdd as IconFileAdd,
   AiOutlineFileDone as IconFileDone,
+  AiOutlineFolder as IconFolder,
+  AiOutlineFolderOpen as IconFolderOpen,
   AiOutlineSave as IconSave,
   AiOutlineSetting as IconCog,
   AiOutlineDelete as IconTrash,

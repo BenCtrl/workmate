@@ -113,7 +113,8 @@
   margin-left: 0;
 }
 
-.workspace-controls button {
+.workspace-controls button,
+.workspace-controls .button-group {
   margin: 0 0.6rem;
 }
 

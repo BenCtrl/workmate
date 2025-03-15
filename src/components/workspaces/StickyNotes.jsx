@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom';
 import { info, warn } from '@tauri-apps/plugin-log';
 
-import { Button, Input, Modal } from '../CommonComponents'
+import { Button, ButtonGroup, Input, Modal } from '../CommonComponents'
 import NewStickyNotesGroupModal from '../sticky-notes/NewStickyNotesGroupModal';
 import StickyNoteGroup from '../sticky-notes/StickyNoteGroup';
-import { IconCollapse, IconExpand, IconSearch, IconStack } from '../Icons';
+import { IconFolder, IconFolderOpen, IconSearch, IconStack } from '../Icons';
 
 import '../../styling/noteslist.css'
 
@@ -32,8 +32,8 @@ const NotesList = () => {
     }
   };
 
-  const toggleGroupExpansion = () => {
-    setAllGroupsExpanded((state) => !state);
+  const toggleGroupExpansion = (expandAllGroups) => {
+    setAllGroupsExpanded(expandAllGroups);
     setGroups([]);
     fetchGroups();
   }
@@ -46,12 +46,12 @@ const NotesList = () => {
     <>
       <div className='workspace-controls'>
         <Button children={<IconStack />} toolTip={'Create new group'} onClick={() => {setShowGroupModal((state) => !state)}} />
-        {
-          allGroupsExpanded ?
-            <Button children={<IconCollapse />} toolTip="Collapse groups" onClick={() => {toggleGroupExpansion()}} />
-            :
-            <Button children={<IconExpand />} toolTip="Expand groups" onClick={() => {toggleGroupExpansion()}} />
-        }
+
+        <ButtonGroup>
+          <Button children={<IconFolder />} toolTip="Collapse groups" onClick={() => {toggleGroupExpansion(false)}} />
+          <Button children={<IconFolderOpen />} toolTip="Expand groups" onClick={() => {toggleGroupExpansion(true)}} />
+        </ButtonGroup>
+
         <Input icon={<IconSearch />} id="note-group-search" className="search-input" placeholder="Search Groups..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
       </div>
 
