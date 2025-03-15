@@ -19,6 +19,7 @@ const StickyNoteGroup = ({
   isDefault = false
 }) => {
   const [notes, setNotes] = useState([]);
+  const [completedNoteCount, setCompletedNoteCount] = useState(0);
   const [groupExpanded, setGroupExpanded] = useState(expanded);
   const [groupTitle, setGroupTitle] = useState(group.title);
   const [groupColor, setGroupColor] = useState(group.color);
@@ -39,6 +40,16 @@ const StickyNoteGroup = ({
       }
 
       setNotes(notesForGroup);
+    } catch(error) {
+      console.error(`Error while retrieving notes for group '${groupTitle}' [ID: '${group.id}']: ${error}`);
+    }
+  }
+
+  const getHiddenNotesForGroup = async () => {
+    try {
+      const notesForGroup = await database.select('SELECT notes.* FROM notes INNER JOIN note_groups ON notes.group_id = note_groups.id WHERE note_groups.id = $1 AND notes.completed = $2', [group.id, 1]);
+
+      setCompletedNoteCount(notesForGroup.length);
     } catch(error) {
       console.error(`Error while retrieving notes for group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
@@ -141,6 +152,7 @@ const StickyNoteGroup = ({
 
   useEffect(() => {
     getNotesForGroup();
+    getHiddenNotesForGroup();
   }, [])
 
   return (
@@ -182,7 +194,14 @@ const StickyNoteGroup = ({
                 }}
               />
             :
-              <span className="group-title-content" title={!isDefault ? "Edit group title":""} onClick={() => {!isDefault && setUpdatingGroup((state) => !state)}}>{group.title}{isDefault && <span className="group-title-detault-tag">(Default)</span>}</span>
+              <span className="group-title-content" title={!isDefault ? "Edit group title":""} onClick={() => {!isDefault && setUpdatingGroup((state) => !state)}}>
+                {group.title}
+                {isDefault && <span className="group-title-detault-tag">(Default)</span>}
+
+                <span className="group-note-count">
+                  {`${notes.length} Note${notes.length === 1 ? '' : 's'} ${completedNoteCount > 0 && SETTINGS.HIDE_COMPLETED_NOTES ? `(${completedNoteCount} Hidden)` : ''}`}
+                </span>
+              </span>
             }
           </div>
 

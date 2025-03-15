@@ -50,6 +50,12 @@
   align-items: center;
 }
 
+.sticky-note-group .group-header .group-note-count {
+  color: var(--font-faded-color);
+  font-size: 0.8rem;
+  font-weight: normal;
+  margin-left: 0.6rem;
+}
 
 .sticky-note-group .group-header .group-title .group-title-content {
   flex-grow: 1;
@@ -195,8 +201,9 @@
   color: var(--button-active-accent-color);
 }
 
-.sticky-note-group:hover > .group-header button,
-.sticky-note-group:hover > .group-header .button-group {
+.sticky-note-group .group-header:hover > button,
+.sticky-note-group:hover .group-header:hover > .button-group button,
+.sticky-note-group:hover .group-header:hover > .button-group {
   opacity: 1;
 }
 
