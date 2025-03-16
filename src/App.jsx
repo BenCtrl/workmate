@@ -32,7 +32,8 @@ function App() {
           "OPEN_PAGE_IN_EDIT_MODE": false,
           "HIDE_COMPLETED_NOTES":false,
           "CONFIRM_BEFORE_DELETE":false,
-          "PREVENT_DUPLICATES":false
+          "PREVENT_DUPLICATES":false,
+          "FULL_WIDTH_PAGE_EDITOR": false
         })));
         await file.close();
 

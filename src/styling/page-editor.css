@@ -61,16 +61,23 @@
 .page-editor {
   display: flex;
   flex-direction: column;
-  background-color: white;
-
   flex: 1 0 0;
   min-height: 0;
   overflow-y: scroll;
 }
 
+.page-editor.reduced-width > .tiptap {
+  align-self: center;
+  width: 70%;
+  box-shadow: 0.3rem 0.3rem 0.625rem var(--item-standard-box-shadow-color);
+  margin-bottom: 2rem;
+}
+
 .page-editor .tiptap {
   padding: 2rem;
   color: #3d3d3d;
+  flex-grow: 1;
+  background-color: white;
 }
 
 .page-editor-word-count {
