@@ -55,6 +55,9 @@
   font-size: 0.8rem;
   font-weight: normal;
   margin-left: 0.6rem;
+  background-color: var(--sticky-note-group-note-count-background-color);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--component-standard-border-radius);
 }
 
 .sticky-note-group .group-header .group-title .group-title-content {

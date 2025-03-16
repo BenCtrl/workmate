@@ -37,6 +37,7 @@
   --sticky-note-green: #88ff72;
   --sticky-note-blue: #72beff;
   --stickynote-font-faded-text: #0000003f;
+  --sticky-note-group-note-count-background-color: #00000014;
 
   --table-highlight-color: #4a7aff4d;
 
@@ -73,6 +74,8 @@
   --navbar-background-color: #161821;
   --page-background-color: #1e202d;
   --page-background-accent-color: #191a29;
+
+  --sticky-note-group-note-count-background-color: var(--page-background-accent-color);
 
   /* Toastify styling */
   --toastify-color-dark: var(--page-background-accent-color);
