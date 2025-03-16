@@ -28,7 +28,6 @@ import {
   IconCodeblock,
   IconFileText,
   IconFileAdd,
-  IconFileDone,
   IconHorizontalRule,
   IconHeading,
   IconPencil,
@@ -55,6 +54,7 @@ import {
   IconAlignCenter,
   IconAlignRight,
   IconAlignJustify,
+  IconSave,
 } from '../Icons';
 
 import '../../styling/page-editor.css';
@@ -315,7 +315,7 @@ const PageEditor = () => {
 
           <div className="page-editor-save-controls">
             <ButtonGroup>
-              <Button className='small' id="page-save" children={<IconFileDone />} toolTip={changesMade ? "Save (Unsaved Changes)" : "Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
+              <Button className='small' id="page-save" children={<IconSave />} toolTip={changesMade ? "Save (Unsaved Changes)" : "Save"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} disabled={!changesMade} />
               <Button className='small' id="page-save-as" children={<IconFileAdd />} toolTip={"Save As"} onClick={(buttonEvent) => {submitPage(buttonEvent)}} />
             </ButtonGroup>
           </div>
