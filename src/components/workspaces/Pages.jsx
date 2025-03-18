@@ -57,20 +57,27 @@ const Pages = () => {
         <Input icon={<IconSearch />} id="pages-search" className="search-input" placeholder="Search Pages..." value={searchQuery} onChange={(changeEvent) => {setSearchQuery(changeEvent.target.value)}} />
       </div>
 
-      <ul id="pages-list" className="scrollable">
-        {
-          pages.map((page) => {
-            const pageListItem = <PageListItem key={page.id} page={page} deletePage={deletePage} />
+      {
+        pages.length < 1 ?
+          <div className='no-pages-message'>
+            Create your first page!
+          </div>
+        :
+          <ul id="pages-list" className="scrollable">
+            {
+              pages.map((page) => {
+                const pageListItem = <PageListItem key={page.id} page={page} deletePage={deletePage} />
 
-            if (searchQuery.length <= 0) {
-              return pageListItem;
+                if (searchQuery.length <= 0) {
+                  return pageListItem;
+                }
+                else if (page.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+                  return pageListItem;
+                }
+              })
             }
-            else if (page.title.toLowerCase().includes(searchQuery.toLowerCase())) {
-              return pageListItem;
-            }
-          })
-        }
-      </ul>
+          </ul>
+      }
     </>
   )
 }

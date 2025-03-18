@@ -1,10 +1,22 @@
 /* base styling */
+.no-pages-message {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  color: var(--font-faded-color);
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--font-faded-color);
+}
+
 #pages-list {
-  padding: 0;
+  padding: 1rem 0 0 0;
   list-style-type: none;
   flex: 1 0 0;
   min-height: 0;
   overflow-y: auto;
+  border-top: 1px solid var(--font-faded-color);
 }
 
 #pages-controls {
