@@ -322,7 +322,7 @@ const PageEditor = () => {
         </div>
       }
 
-      <EditorContent editor={editor} className={`page-editor ${SETTINGS.FULL_WIDTH_PAGE_EDITOR ? '' : 'reduced-width scrollable'}`} />
+      <EditorContent editor={editor} className={`page-editor ${SETTINGS.FULL_WIDTH_PAGE_EDITOR ? '' : 'reduced-width scrollable'} ${!SETTINGS.FULL_WIDTH_PAGE_EDITOR && editingPage ? 'editor-border' : ''}`} />
       {SETTINGS.WORD_COUNTER && <div className="page-editor-word-count">Words: {editor.storage.characterCount.words()}</div>}
     </>
   )

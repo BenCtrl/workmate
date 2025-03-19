@@ -66,11 +66,17 @@
   overflow-y: scroll;
 }
 
+.page-editor.reduced-width.editor-border {
+  border: 2px solid var(--page-background-accent-color);
+  border-bottom-left-radius: var(--component-standard-border-radius);
+  border-bottom-right-radius: var(--component-standard-border-radius);
+}
+
 .page-editor.reduced-width > .tiptap {
   align-self: center;
   width: 70%;
   box-shadow: 0.3rem 0.3rem 0.625rem var(--item-standard-box-shadow-color);
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
 .page-editor .tiptap {
