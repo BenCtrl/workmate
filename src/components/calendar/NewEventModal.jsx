@@ -28,13 +28,13 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
 
       const event_timestamp = Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHour}:${eventMinute}`);
 
-      const createEventResult = await database.execute('INSERT INTO events (title, event_timestamp) VALUES ($1, $2) RETURNING id;', [eventTitle, event_timestamp]);
+      const createEventResult = await database.execute('INSERT INTO events (title, event_timestamp) VALUES ($1, $2);', [eventTitle, event_timestamp]);
 
-      if (createEventResult.length > 0) {
-        info(`Event '${eventTitle}' was created [ID: '${createEventResult[0].id}']`);
+      if (createEventResult.rowsAffected > 0) {
+        info(`Event '${eventTitle}' was created [ID: '${createEventResult.lastInsertId}']`);
         handleIncomingAlert(false, `Event '${eventTitle}' successfully created`);
       } else {
-        warn(`Unable to validate if event '${eventTitle}' was created - No ID was returned`);
+        warn(`Unable to validate if event '${eventTitle}' was created - No changes reported from database`);
       }
 
       onNewEventSubmit(new Date(event_timestamp));
