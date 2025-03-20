@@ -68,8 +68,6 @@
 
 .page-editor.reduced-width.editor-border {
   border: 2px solid var(--page-background-accent-color);
-  border-bottom-left-radius: var(--component-standard-border-radius);
-  border-bottom-right-radius: var(--component-standard-border-radius);
 }
 
 .page-editor.reduced-width > .tiptap {
