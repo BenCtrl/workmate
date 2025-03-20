@@ -56,7 +56,14 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
         <div className="new-event-form-input modal-input-container">
           <div className="modal-input">
             <label htmlFor="new-event-title">Event Title</label>
-            <Input name="new-event-title" id="new-event-title" placeholder='Title of Event' value={eventTitle} onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}} /> 
+            <Input
+              name="new-event-title"
+              id="new-event-title"
+              placeholder='Title of Event'
+              value={eventTitle}
+              onChange={(changeEvent) => {setEventTitle(changeEvent.target.value)}}
+              required={true}
+            />
           </div>
 
           <div className="modal-input">

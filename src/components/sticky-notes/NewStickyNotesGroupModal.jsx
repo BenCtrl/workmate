@@ -66,7 +66,14 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
       <div className="new-sticky-note-group-input modal-input-container">
         <div className="modal-input">
           <label htmlFor="new-sticky-note-group-title">Group Title</label>
-          <Input name="new-sticky-note-group-title" id="new-sticky-note-group-title" placeholder='Title' value={groupTitle} onChange={(changeEvent) => {setGroupTitle(changeEvent.target.value)}} />
+          <Input
+            name="new-sticky-note-group-title"
+            id="new-sticky-note-group-title"
+            placeholder='Title'
+            value={groupTitle}
+            onChange={(changeEvent) => {setGroupTitle(changeEvent.target.value)}}
+            required={true}
+          />
         </div>
 
         <div className="modal-input">
