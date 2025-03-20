@@ -40,6 +40,7 @@ const StickyNoteGroup = ({
       }
 
       setNotes(notesForGroup);
+      getHiddenNotesForGroup();
     } catch(error) {
       console.error(`Error while retrieving notes for group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
@@ -152,7 +153,6 @@ const StickyNoteGroup = ({
 
   useEffect(() => {
     getNotesForGroup();
-    getHiddenNotesForGroup();
   }, [])
 
   return (
