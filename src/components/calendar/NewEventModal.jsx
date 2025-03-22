@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { error, info, warn } from '@tauri-apps/plugin-log';
 
-import { Alert, Button, Input } from '../CommonComponents';
+import { Button, Input } from '../CommonComponents';
 import { IconClock } from '../Icons';
 
+import { AlertContext } from '../common/Modal';
 import database from '../../database/database';
 
 const NewEventModal = ({eventDate, onNewEventSubmit}) => {
+  const setAlert = useContext(AlertContext).setAlert;
   const [eventTitle, setEventTitle] = useState('');
   const [eventHour, setEventHour] = useState('00');
   const [eventMinute, setEventMinute] = useState('00');
-
-  // Alert state
-  const [showAlert, setShowAlert] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [alertType, sertAlertType] = useState('');
 
   const createEvent = async (event) => {
     event.preventDefault();
@@ -22,7 +19,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
     try {
       if (!eventTitle.trim()) {
         error('Event cannot be created - Title is empty');
-        handleIncomingAlert(true, 'Event title cannot be empty');
+        setAlert('error', 'Event title cannot be empty');
         return;
       }
 
@@ -32,7 +29,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
 
       if (createEventResult.rowsAffected > 0) {
         info(`Event '${eventTitle}' was created [ID: '${createEventResult.lastInsertId}']`);
-        handleIncomingAlert(false, `Event '${eventTitle}' successfully created`);
+        setAlert('success', `Event '${eventTitle}' successfully created`);
       } else {
         warn(`Unable to validate if event '${eventTitle}' was created - No changes reported from database`);
       }
@@ -43,16 +40,9 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
     }
   }
 
-  const handleIncomingAlert = (isError, errorMessage) => {
-    isError ? sertAlertType('error') : sertAlertType('success');
-    setErrorMessage(errorMessage);
-    setShowAlert(true);
-  }
-
   return (
     <>
       <form className="new-event-form" onSubmit={createEvent} action="">
-        {showAlert && <Alert alertType={alertType} message={errorMessage} />}
         <div className="new-event-form-input modal-input-container">
           <div className="modal-input">
             <label htmlFor="new-event-title">Event Title</label>

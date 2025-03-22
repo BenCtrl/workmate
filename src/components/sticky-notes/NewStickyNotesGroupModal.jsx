@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { error, info, warn } from '@tauri-apps/plugin-log';
 
-import { Alert, Button, Input } from '../CommonComponents';
+import { Button, Input } from '../CommonComponents';
 
 import { AppSettingsContext } from '../../App';
+import { AlertContext } from '../common/Modal';
 import database from '../../database/database';
 
 /**
@@ -11,13 +12,9 @@ import database from '../../database/database';
  */
 const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
   const SETTINGS = useContext(AppSettingsContext).appSettings;
+  const setAlert = useContext(AlertContext).setAlert;
   const [groupTitle, setGroupTitle] = useState('');
   const [groupColor, setGroupColor] = useState('yellow');
-
-  // Alert state
-  const [showAlert, setShowAlert] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [alertType, sertAlertType] = useState('');
 
   const addGroup = async (submitEvent) => {
     submitEvent.preventDefault();
@@ -27,12 +24,12 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
 
       if (!groupTitle.trim()) {
         error('Note group cannot be created - Title is empty');
-        handleIncomingAlert(true, 'Group title cannot be empty');
+        setAlert('error', 'Group title cannot be empty');
         return;
       } else if (await database.select('SELECT * FROM note_groups WHERE title = $1', [groupTitle]).then(result => {return result.length}) > 0) {
         if (SETTINGS.PREVENT_DUPLICATES) {
           error(`Note group cannot be created - Group with title '${groupTitle}' already exists`);
-          handleIncomingAlert(true, `Group with title '${groupTitle}' already exists`);
+          setAlert('error', `Group with title '${groupTitle}' already exists`)
           return;
         } else {
           finalGroupTitle = `${finalGroupTitle}-Copy`;
@@ -43,7 +40,7 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
 
       if (createNoteGroupResult.rowsAffected > 0) {
         info(`Group '${finalGroupTitle}' was successfully created [ID: '${createNoteGroupResult.lastInsertId}']`);
-        handleIncomingAlert(false, `Group '${finalGroupTitle}' successfully created`);
+        setAlert('success', `Group '${finalGroupTitle}' successfully created`);
       } else {
         warn('Unable to validate if note group was created - No changes reported from database');
       }
@@ -54,15 +51,8 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
     }
   }
 
-  const handleIncomingAlert = (isError, errorMessage) => {
-    isError ? sertAlertType('error') : sertAlertType('success');
-    setErrorMessage(errorMessage);
-    setShowAlert(true);
-  }
-
   return (
     <form id="new-sticky-note-group-form" onSubmit={addGroup}>
-      {showAlert && <Alert alertType={alertType} message={errorMessage} />}
       <div className="new-sticky-note-group-input modal-input-container">
         <div className="modal-input">
           <label htmlFor="new-sticky-note-group-title">Group Title</label>

@@ -36,6 +36,7 @@ div.text-input {
   margin: 0;
   border: none;
   background-color: transparent;
+  flex-grow: 1;
 }
 
 .text-input,
@@ -249,6 +250,10 @@ fieldset legend {
 }
 
 .alert {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   background-color: var(--button-active-accent-color);
   box-shadow: 0.25rem 0.25rem 0 0 var(--button-accent-color);
   border-radius: var(--component-standard-border-radius);
@@ -271,6 +276,12 @@ fieldset legend {
 
 .alert.error {
   background-color: var(--component-error);
+}
+
+.alert button.close-alert {
+  margin: 0 0 0 0.4rem;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .checkbox-switch-container {

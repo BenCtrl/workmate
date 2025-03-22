@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .modal-heading {
@@ -57,5 +58,5 @@
   background-color: var(--item-background-color);
   border-radius: var(--component-standard-border-radius);
   padding: 1.4rem 1.4rem 1rem 1.4rem;
-  min-width: 20rem;
+  width: 20rem;
 }
