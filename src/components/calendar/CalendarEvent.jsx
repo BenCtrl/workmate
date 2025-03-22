@@ -44,9 +44,9 @@ const CalendarEvent = ({event, fetchEvents}) => {
   return (
     <li className="event">
       <span className="event-details">
-        <span className="event-timestamp">
+        <div className="event-timestamp">
           {new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}
-        </span>
+        </div>
 
         {updatingEvent ?
           <input

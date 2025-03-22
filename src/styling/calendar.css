@@ -203,11 +203,12 @@
 
 .selected-day-events-list .event .event-details {
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
 }
 
 .selected-day-events-list .event .event-timestamp {
-  margin-right: 0.6rem;
+  margin-bottom: 0.6rem;
   color: var(--font-faded-color);
 }
 
