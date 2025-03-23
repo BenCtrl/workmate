@@ -75,7 +75,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
           <div className="modal-input event-time-container">
             <div className="modal-input">
               <label htmlFor="new-event-start-time">Start of Event*</label>
-              <span class="time-input-container" id="new-event-start-time" name="new-event-start-time">
+              <span className="time-input-container" id="new-event-start-time" name="new-event-start-time">
                 <IconClock style={{marginLeft: '0.4rem'}}/>
                 <select title="Hour" value={eventHourStart} name="new-event-start-hour-select" id="new-event-start-hour-select" onChange={(changeEvent) => {setEventHourStart(changeEvent.target.value)}}>
                   <option value="00">00</option>
@@ -115,7 +115,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
 
             <div className="modal-input">
               <label htmlFor="new-event-end-time">End of Event</label>
-              <span class={`time-input-container ${enableEventDuration ? '' : 'disabled'}`} id="new-event-end-time" name="new-event-end-time">
+              <span className={`time-input-container ${enableEventDuration ? '' : 'disabled'}`} id="new-event-end-time" name="new-event-end-time">
                 <IconClock style={{marginLeft: '0.4rem'}}/>
                 <select
                   title="Hour"
