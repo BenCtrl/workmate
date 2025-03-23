@@ -3,15 +3,15 @@ import { warn, debug, trace, info, error } from '@tauri-apps/plugin-log';
 /**
  * Function to bind an identified console logging function to a corresponding `@tauri-apps/plugin-log` log function
  * Overload of browsers `console` object to print console messages and additionally forward the same message to the `@tauri-apps/plugin-log` log function.
- * @param {*} fnName - Name of the console logging level function
- * @param {*} logger - The function name of the corresponding tauri log function
+ * @param {*} consoleFunction - Name of the console logging level function
+ * @param {*} tauriLoggerFunction - The function name of the corresponding tauri log function
  */
-function forwardConsole(fnName, logger) {
-  const original = console[fnName];
+function forwardConsole(consoleFunction, tauriLoggerFunction) {
+  const originalConsoleFunction = console[consoleFunction];
 
-  console[fnName] = (message) => {
-    original(message);
-    logger(message);
+  console[consoleFunction] = (message) => {
+    originalConsoleFunction(message);
+    tauriLoggerFunction(message);
   };
 }
 

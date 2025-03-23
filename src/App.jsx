@@ -7,11 +7,11 @@ import TitleBar from "./components/core/TitleBar";
 
 import './styling/shared.css'
 
-import { bindLoggers } from "./log/logging";
+// import { bindLoggers } from "./log/logging";
 
 const appSettingsFileName = 'app_settings.json';
 export const AppSettingsContext = createContext(null);
-bindLoggers();
+// bindLoggers();
 
 function App() {
   const [appSettings, setAppSettings] = useState({});
