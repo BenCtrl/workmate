@@ -250,7 +250,7 @@ fieldset legend {
 }
 
 .alert {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
 
@@ -259,11 +259,13 @@ fieldset legend {
   border-radius: var(--component-standard-border-radius);
   transition: var(--component-standard-transition);
   border: none;
-  margin: 1rem;
+  margin: 1rem 0;
   font-size: 1rem;
   padding: 0.3rem 0.6rem;
   position: relative;
   font-weight: bold;
+  max-width: 20rem;
+  overflow-wrap: anywhere;
 }
 
 .alert.success {

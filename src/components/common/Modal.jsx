@@ -32,7 +32,7 @@ const Modal = ({ onClose, children, modalHeading }) => {
             {children}
           </div>
         </div>
-        {alertMessage && <Alert alertType={alertType} message={alertMessage} />}
+        {alertMessage && <Alert alertType={alertType} message={alertMessage} dismissable={true} />}
       </div>
     </AlertContext.Provider>
   )
