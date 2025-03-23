@@ -24,7 +24,7 @@ pub fn run() {
     Migration {
       version: 4,
       description: "create events groups table",
-      sql: "CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, title TEXT NOT NULL, event_timestamp INTEGER DEFAULT(unixepoch('subsec') * 1000) NOT NULL);",
+      sql: "CREATE TABLE events (id INTEGER PRIMARY KEY, title TEXT NOT NULL, event_timestamp_start INTEGER DEFAULT(unixepoch('subsec') * 1000) NOT NULL, event_timestamp_end INTEGER DEFAULT(unixepoch('subsec') * 1000));",
       kind: MigrationKind::Up,
     },
     Migration {

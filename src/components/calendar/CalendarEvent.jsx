@@ -18,7 +18,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
 
       info(`Successfully updated event '${eventTitle}' [ID: '${event.id}']`);
 
-      fetchEvents(new Date(event.event_timestamp));
+      fetchEvents(new Date(event.event_timestamp_start));
       setUpdatingEvent((state) => !state);
     } catch(error) {
       console.error(`Error while updating event '${eventTitle}' [ID: '${event.id}']: ${error}`);
@@ -28,7 +28,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
   const deleteEvent = async (id) => {
     try {
       await database.execute('DELETE FROM events WHERE id = $1;', [id]);
-      fetchEvents(new Date(event.event_timestamp));
+      fetchEvents(new Date(event.event_timestamp_start));
 
       info(`Successfully deleted event '${eventTitle}' [ID: '${id}']`);
     } catch(error) {
@@ -41,11 +41,28 @@ const CalendarEvent = ({event, fetchEvents}) => {
     setEventTitle(event.title);
   }
 
+  const getTimeDifference = () => {
+    const startTime = new Date(event.event_timestamp_start);
+    const endTime = new Date(event.event_timestamp_end);
+    let timeDifference = endTime.getHours() - startTime.getHours();
+
+    if (timeDifference < 1) {
+      timeDifference = `${endTime.getMinutes() - startTime.getMinutes()} Minutes`;
+    } else if (timeDifference === 1) {
+      timeDifference = `${timeDifference} Hour`
+    } else {
+      timeDifference = `${timeDifference} Hours`
+    }
+
+    return timeDifference;
+  }
+
   return (
     <li className="event">
       <span className="event-details">
         <div className="event-timestamp">
-          {new Date(event.event_timestamp).toLocaleTimeString([], {timeStyle: 'short'})}
+          {new Date(event.event_timestamp_start).toLocaleTimeString([], {timeStyle: 'short'})}
+          {event.event_timestamp_end && ` - ${new Date(event.event_timestamp_end).toLocaleTimeString([], {timeStyle: 'short'})} (${getTimeDifference()})`}
         </div>
 
         {updatingEvent ?

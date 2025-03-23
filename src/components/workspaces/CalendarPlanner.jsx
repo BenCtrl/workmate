@@ -107,7 +107,7 @@ const eventsLoader = async (date) => {
     const dateTimeStamp = Date.parse(`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`);
     debug(`Processed date '${date.toDateString()}' to timestamp '${dateTimeStamp}'`);
 
-    const eventsFromDatabase = await database.select("SELECT * FROM events WHERE date(event_timestamp/1000, 'unixepoch') = date($1/1000, 'unixepoch') ORDER BY event_timestamp ASC", [dateTimeStamp]);
+    const eventsFromDatabase = await database.select("SELECT * FROM events WHERE date(event_timestamp_start/1000, 'unixepoch') = date($1/1000, 'unixepoch') ORDER BY event_timestamp_start ASC", [dateTimeStamp]);
 
     info(`Identified '${eventsFromDatabase.length}' event${eventsFromDatabase.length > 1 || eventsFromDatabase.length === 0 ? 's' : ''} for '${date.toDateString()}'`);
     return eventsFromDatabase;

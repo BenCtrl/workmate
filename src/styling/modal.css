@@ -47,6 +47,10 @@
   margin-bottom: 0.2rem;
 }
 
+.modal-input-container .modal-input .checkbox-switch {
+  margin-bottom: 0;
+}
+
 .modal-heading button {
   margin-right: 0;
 }

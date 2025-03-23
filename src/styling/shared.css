@@ -390,6 +390,11 @@ fieldset legend {
   width: max-content;
 }
 
+.time-input-container.disabled {
+  border-color: var(--font-faded-color);
+  color: var(--font-faded-color);
+}
+
 .time-input-container select {
   background-color: unset;
   box-shadow: unset;
@@ -501,6 +506,11 @@ input:checked + .slider:before {
 .time-input-container:focus-within {
   border-color: var(--button-active-accent-color);
   color: var(--button-active-accent-color);
+}
+
+.time-input-container.disabled:hover {
+  border-color: var(--font-faded-color);
+  color: var(--font-faded-color);
 }
 
 .time-input-container select:focus {
