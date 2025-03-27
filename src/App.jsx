@@ -45,7 +45,7 @@ function App() {
 
       info(`Successfully located ${appSettingsFileName} and retrieved application settings`)
     } catch(error) {
-      console.error(`Error retrieving app settings: ${error}`);
+      error(`Error retrieving app settings: ${error}`);
     }
   }
 

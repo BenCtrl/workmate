@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { debug, info } from '@tauri-apps/plugin-log';
+import { error, debug, info } from '@tauri-apps/plugin-log';
 import Calendar from 'react-calendar';
 
 import { Button, Modal } from '../CommonComponents'

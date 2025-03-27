@@ -47,7 +47,7 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
 
       onNewGroupSubmit();
     } catch(error) {
-      console.error(`Error while creating new note group: ${error}`);
+      error(`Error while creating new note group: ${error}`);
     }
   }
 

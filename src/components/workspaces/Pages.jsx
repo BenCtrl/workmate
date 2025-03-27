@@ -31,7 +31,7 @@ const Pages = () => {
 
       setPages(pages);
     } catch(error) {
-      console.error(`Error while retrieving pages: ${error}`);
+      error(`Error while retrieving pages: ${error}`);
     }
   };
 
@@ -42,7 +42,7 @@ const Pages = () => {
       info(`Successfully deleted page '${page.title}' [ID: '${page.id}']`);
       getPages();
     } catch(error) {
-      console.error(`Error while deleting page '${page.title}' [ID: '${page.id}']: ${error}`);
+      error(`Error while deleting page '${page.title}' [ID: '${page.id}']: ${error}`);
     }
   }
 

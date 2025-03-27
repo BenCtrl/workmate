@@ -42,7 +42,7 @@ const StickyNoteGroup = ({
       setNotes(notesForGroup);
       getHiddenNotesForGroup();
     } catch(error) {
-      console.error(`Error while retrieving notes for group '${groupTitle}' [ID: '${group.id}']: ${error}`);
+      error(`Error while retrieving notes for group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -52,7 +52,7 @@ const StickyNoteGroup = ({
 
       setCompletedNoteCount(notesForGroup.length);
     } catch(error) {
-      console.error(`Error while retrieving notes for group '${groupTitle}' [ID: '${group.id}']: ${error}`);
+      error(`Error while retrieving notes for group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -77,7 +77,7 @@ const StickyNoteGroup = ({
       getGroups();
       setUpdatingGroup((state) => !state);
     } catch(error) {
-      console.error(`Error while updating group '${groupTitle}' [ID: '${group.id}']: ${error}`);
+      error(`Error while updating group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -90,7 +90,7 @@ const StickyNoteGroup = ({
 
       getGroups();
     } catch(error) {
-      console.error(`Error while updating group '${groupTitle}' [ID: '${group.id}']: ${error}`);
+      error(`Error while updating group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -102,7 +102,7 @@ const StickyNoteGroup = ({
       info(`Deleted note group '${groupTitle}' [ID: '${group.id}'] and deleted '${deleteNotesInGroup.rowsAffected}' notes associated to note group`);
       getGroups();
     } catch(error) {
-      console.error(`Error while deleting group '${groupTitle}' [ID: '${group.id}']: ${error}`);
+      error(`Error while deleting group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -119,7 +119,7 @@ const StickyNoteGroup = ({
 
       getNotesForGroup();
     } catch(error) {
-      console.error(`Error while creating new note in group '${groupTitle}' [ID: '${group.id}']: ${error}`);
+      error(`Error while creating new note in group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -131,7 +131,7 @@ const StickyNoteGroup = ({
       info(`Updated note [Note ID: '${note.id}'] in note group '${groupTitle}' [ID: '${group.id}']`);
       getNotesForGroup();
     } catch(error) {
-      console.error(`Error while updating note [Note ID: '${note.id}'] in note group '${groupTitle}' [ID: '${group.id}']: ${error}`);
+      error(`Error while updating note [Note ID: '${note.id}'] in note group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 
@@ -142,7 +142,7 @@ const StickyNoteGroup = ({
       info(`Deleted note [Note ID: '${id}'] from note group '${groupTitle}' [ID: '${group.id}']`);
       getNotesForGroup();
     } catch(error) {
-      console.error(`Error while deleting note [Note ID: '${id}'] from note group '${groupTitle}' [ID: '${group.id}']: ${error}`);
+      error(`Error while deleting note [Note ID: '${id}'] from note group '${groupTitle}' [ID: '${group.id}']: ${error}`);
     }
   }
 

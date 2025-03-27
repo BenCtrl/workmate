@@ -44,7 +44,7 @@ const AppSettings = () => {
 
       info('Successfully updated application settings')
     } catch(error) {
-      console.error(`Error while updating settings: ${error}`);
+      error(`Error while updating settings: ${error}`);
     }
   }
 

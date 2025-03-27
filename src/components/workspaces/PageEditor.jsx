@@ -189,7 +189,7 @@ const PageEditor = () => {
 
       setChangesMade(false);
     } catch (error) {
-      console.error(`Error while attempting to submit page '${pageTitle}' ${page && `[ID: '${page.id}']`}: ${error}`);
+      error(`Error while attempting to submit page '${pageTitle}' ${page && `[ID: '${page.id}']`}: ${error}`);
     }
   }
 
@@ -343,7 +343,7 @@ const pageLoader = async ({params}) => {
       return;
     }
   } catch(error) {
-    console.error(`Error while retrieving page with ID '${pageID}': ${error}`);
+    error(`Error while retrieving page with ID '${pageID}': ${error}`);
   }
 }
 

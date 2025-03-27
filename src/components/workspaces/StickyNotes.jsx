@@ -28,7 +28,7 @@ const NotesList = () => {
         warn('No note groups returned');
       }
     } catch(error) {
-      console.error(`Error while retrieving note groups: ${error}`);
+      error(`Error while retrieving note groups: ${error}`);
     }
   };
 

@@ -52,7 +52,7 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
 
       onNewEventSubmit(new Date(event_timestamp_start));
     } catch(error) {
-      console.error(`Error while creating new calendar event '${eventTitle}': '${error}'`);
+      error(`Error while creating new calendar event '${eventTitle}': '${error}'`);
     }
   }
 

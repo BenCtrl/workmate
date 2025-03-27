@@ -21,7 +21,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
       fetchEvents(new Date(event.event_timestamp_start));
       setUpdatingEvent((state) => !state);
     } catch(error) {
-      console.error(`Error while updating event '${eventTitle}' [ID: '${event.id}']: ${error}`);
+      error(`Error while updating event '${eventTitle}' [ID: '${event.id}']: ${error}`);
     }
   }
 
@@ -32,7 +32,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
 
       info(`Successfully deleted event '${eventTitle}' [ID: '${id}']`);
     } catch(error) {
-      console.error(`Error while deleting event '${eventTitle}' [ID: '${id}']: ${error}`);
+      error(`Error while deleting event '${eventTitle}' [ID: '${id}']: ${error}`);
     }
   }
 
