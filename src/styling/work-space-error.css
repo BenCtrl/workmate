@@ -6,9 +6,9 @@
   flex-direction: column;
 }
 
-.workspace-error-container .error-code {
+.workspace-error-container .error-title {
   font-family: 'Square';
-  font-size: 6rem;
+  font-size: 4rem;
   font-weight: bold;
 }
 

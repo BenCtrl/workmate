@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { ToastContainer, Zoom } from 'react-toastify';
 import { getName, getVersion } from '@tauri-apps/api/app';
 
@@ -10,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import { AppSettingsContext } from '../App';
 
 const WorkspaceLayout = () => {
+  const navigate = useNavigate();
+
   const {appSettings, setAppSettings} = useContext(AppSettingsContext);
   const [appVersion, setAppVersion] = useState(null);
   const [appName, setAppName] = useState(null);
@@ -21,6 +23,7 @@ const WorkspaceLayout = () => {
 
   useEffect(() => {
     getAppDetails();
+    navigate('/stickynotes');
   }, []);
 
   return (

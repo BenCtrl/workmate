@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
   RouterProvider
 } from 'react-router-dom';
@@ -26,14 +27,15 @@ const WorkSpace = () => {
   }
 
   const router = createBrowserRouter(createRoutesFromElements(
-    <Route path='/' element={<WorkspaceLayout />}>
+    <Route path='/' element={<WorkspaceLayout />} errorElement={<WorkspaceError />} >
       <Route path='/stickynotes' element={<NotesList />} />
       <Route path='/pages' element={<Pages />} />
       <Route path='/pages/editor' element={<PageEditor />} />
       <Route path='/pages/editor/:id' element={<PageEditor />} loader={pageLoader}/>
       <Route path='/calendar' element={<CalendarPlanner />} />
       <Route path='/settings' element={<AppSettings />} />
-      <Route path='*' element={<WorkspaceError errorCode={'404'} errorMessage={'Error - Workspace not found!'}/>} />
+      <Route path='*' element={<Navigate to={'/error'} />} />
+      <Route path='/error' element={<WorkspaceError />} />
     </Route>
   ));
 
