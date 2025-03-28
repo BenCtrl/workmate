@@ -26,7 +26,7 @@ import {
   IconBold,
   IconCode,
   IconCodeblock,
-  IconFileText,
+  IconEye,
   IconFileAdd,
   IconHorizontalRule,
   IconHeading,
@@ -54,7 +54,7 @@ import {
   IconAlignCenter,
   IconAlignRight,
   IconAlignJustify,
-  IconSave,
+  IconSave
 } from '../Icons';
 
 import '../../styling/page-editor.css';
@@ -202,7 +202,7 @@ const PageEditor = () => {
       <div className="page-editor-header">
         <IconWarningTriangle className={`unsaved-changes-icon ${!changesMade && 'hidden'}`} title="Unsaved Changes!" />
         <input title={`${editingPage && SETTINGS.TOOLTIPS ? 'Edit page title':''}`} value={pageTitle} placeholder={'Page Title...'} onChange={(changeEvent) => {setPageTitle(changeEvent.target.value); setChangesMade(true)}} className="page-editor-title" disabled={!editingPage}></input>
-        {!editingPage ? <Button toolTip="Edit Page" children={<IconPencil />} onClick={() => {setIsEditing((state) => !state)}}/> : <Button toolTip="View Page" children={<IconFileText />} onClick={() => {setIsEditing((state) => !state)}}/>}
+        {!editingPage ? <Button toolTip="Edit Page" children={<IconPencil />} onClick={() => {setIsEditing((state) => !state)}}/> : <Button toolTip="View Page" children={<IconEye />} onClick={() => {setIsEditing((state) => !state)}}/>}
       </div>
       {editingPage &&
         <div className="page-editor-nodes">

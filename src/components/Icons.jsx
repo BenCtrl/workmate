@@ -46,7 +46,8 @@ export {
   AiOutlineDeleteRow as IconTableDeleteRow,
   AiOutlineDeleteColumn as IconTableDeleteColumn,
   AiOutlineShrink as IconCollapse,
-  AiOutlineArrowsAlt as IconExpand
+  AiOutlineArrowsAlt as IconExpand,
+  AiOutlineEye as IconEye
 } from "react-icons/ai";
 
 export {
