@@ -63,8 +63,9 @@ const CalendarEvent = ({event, fetchEvents}) => {
       <span className="event-details">
         <div className="event-timestamp">
           {/* TODO - Revisit handling of Date objects so new instances are not created with each rendered component */}
-          {new Date(event.event_timestamp_start + millisecondTimeZoneOffset).toLocaleTimeString([], {timeStyle: 'short'})}
-          {event.event_timestamp_end && ` - ${new Date(event.event_timestamp_end + millisecondTimeZoneOffset).toLocaleTimeString([], {timeStyle: 'short'})} (${getTimeDifference()})`}
+          {new Date(event.event_timestamp_start + (SETTINGS.CURRENT_TIME_ZONE_ENABLED ? millisecondTimeZoneOffset : 0)).toLocaleTimeString([], {timeStyle: 'short'})}
+          {event.event_timestamp_end && ` - ${new Date(event.event_timestamp_end + (SETTINGS.CURRENT_TIME_ZONE_ENABLED ? millisecondTimeZoneOffset : 0)).toLocaleTimeString([], {timeStyle: 'short'})} (${getTimeDifference()})`}
+          {SETTINGS.CURRENT_TIME_ZONE_ENABLED ? '' : ' (UTC)'}
         </div>
 
         {updatingEvent ?

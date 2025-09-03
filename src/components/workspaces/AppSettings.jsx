@@ -19,8 +19,11 @@ const AppSettings = () => {
   const [confirmBeforeDelete, setConfirmBeforeDelete] = useState(appSettings.CONFIRM_BEFORE_DELETE);
   const [preventDuplicates, setPreventDuplicates] = useState(appSettings.PREVENT_DUPLICATES);
   const [fullWidthPageEditor, setFullWidthPageEditor] = useState(appSettings.FULL_WIDTH_PAGE_EDITOR);
+  const [currentTimeZoneEnabled, setCurrentTimeZoneEnabled] = useState(appSettings.CURRENT_TIME_ZONE_ENABLED);
 
   const [changesMade, setChangesMade] = useState(false);
+
+  const [currentTimeZone, setCurrentTimeZone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
 
   const updateSettings = async (event) => {
     event.preventDefault();
@@ -33,7 +36,8 @@ const AppSettings = () => {
       HIDE_COMPLETED_NOTES: hideCompletedNotes,
       CONFIRM_BEFORE_DELETE: confirmBeforeDelete,
       PREVENT_DUPLICATES: preventDuplicates,
-      FULL_WIDTH_PAGE_EDITOR: fullWidthPageEditor
+      FULL_WIDTH_PAGE_EDITOR: fullWidthPageEditor,
+      CURRENT_TIME_ZONE_ENABLED: currentTimeZoneEnabled
     }
 
     try {
@@ -70,6 +74,11 @@ const AppSettings = () => {
           <CheckBoxSlider labelContent="Open in edit mode" checkBoxID="toggle-page-editor-open-in-edit-mode" checked={openPageInEditModeEnabled} onChange={() => {setOpenPageInEditModeEnabled((state) => !state)}} />
           <CheckBoxSlider labelContent="Word Counter" checkBoxID="toggle-page-editor-word-count" checked={wordCounterEnabled} onChange={() => {setWordCounterEnabled((state) => !state)}} />
           <CheckBoxSlider labelContent="Full width editor" checkBoxID="toggle-page-editor-full-width" checked={fullWidthPageEditor} onChange={() => {setFullWidthPageEditor((state) => !state)}} />
+        </fieldset>
+
+        <fieldset>
+          <legend>Calendar</legend>
+          <CheckBoxSlider labelContent={`Enable local time zone (${currentTimeZone})`} checkBoxID="toggle-current-time-zone" checked={currentTimeZoneEnabled} onChange={() => {setCurrentTimeZoneEnabled((state) => !state)}} />
         </fieldset>
 
         {changesMade && <Alert alertType="warning" message="Unsaved Changes!" />}
