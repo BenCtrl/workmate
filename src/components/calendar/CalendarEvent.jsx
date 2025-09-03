@@ -11,6 +11,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
   const SETTINGS = useContext(AppSettingsContext).appSettings;
   const [updatingEvent, setUpdatingEvent] = useState(false);
   const [eventTitle, setEventTitle] = useState(event.title);
+  const [millisecondTimeZoneOffset, setMillisecondTimeZoneOffset] = useState(new Date().getTimezoneOffset() * 60000);
 
   const updateEvent = async () => {
     try {
@@ -61,8 +62,9 @@ const CalendarEvent = ({event, fetchEvents}) => {
     <li className="event">
       <span className="event-details">
         <div className="event-timestamp">
-          {new Date(event.event_timestamp_start).toLocaleTimeString([], {timeStyle: 'short'})}
-          {event.event_timestamp_end && ` - ${new Date(event.event_timestamp_end).toLocaleTimeString([], {timeStyle: 'short'})} (${getTimeDifference()})`}
+          {/* TODO - Revisit handling of Date objects so new instances are not created with each rendered component */}
+          {new Date(event.event_timestamp_start + millisecondTimeZoneOffset).toLocaleTimeString([], {timeStyle: 'short'})}
+          {event.event_timestamp_end && ` - ${new Date(event.event_timestamp_end + millisecondTimeZoneOffset).toLocaleTimeString([], {timeStyle: 'short'})} (${getTimeDifference()})`}
         </div>
 
         {updatingEvent ?

@@ -28,11 +28,11 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
         return;
       }
 
-      const event_timestamp_start = Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHourStart}:${eventMinuteStart}`);
+      const event_timestamp_start = Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHourStart}:${eventMinuteStart} GMT`);
       let event_timestamp_end = null;
 
       if (enableEventDuration) {
-        event_timestamp_end = Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHourEnd}:${eventMinuteEnd}`);
+        event_timestamp_end = Date.parse(`${eventDate.getFullYear()}-${eventDate.getMonth()+1}-${eventDate.getDate()} ${eventHourEnd}:${eventMinuteEnd} GMT`);
       }
 
       if (enableEventDuration && (new Date(event_timestamp_end) <= new Date(event_timestamp_start))) {

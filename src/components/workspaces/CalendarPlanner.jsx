@@ -104,7 +104,7 @@ const CalendarPlanner = () => {
 
 const eventsLoader = async (date) => {
   try {
-    const dateTimeStamp = Date.parse(`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`);
+    const dateTimeStamp = Date.parse(`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} GMT`);
     debug(`Processed date '${date.toDateString()}' to timestamp '${dateTimeStamp}'`);
 
     const eventsFromDatabase = await database.select("SELECT * FROM events WHERE date(event_timestamp_start/1000, 'unixepoch') = date($1/1000, 'unixepoch') ORDER BY event_timestamp_start ASC", [dateTimeStamp]);
