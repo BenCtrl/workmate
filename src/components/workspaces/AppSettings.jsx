@@ -59,7 +59,7 @@ const AppSettings = () => {
         <fieldset>
           <legend>General</legend>
           <CheckBoxSlider labelContent="Tooltips" checkBoxID="toggle-tooltips" checked={toolTipsEnabled} onChange={() => {setTooltipsEnabled((state) => !state)}} />
-          <CheckBoxSlider labelContent="Dark Mode" checkBoxID="toggle-darkmode" checked={darkModeEnabled} onChange={() => {setDarkModeEnabled((state) => !state)}} />
+          <CheckBoxSlider labelContent="Dark mode" checkBoxID="toggle-darkmode" checked={darkModeEnabled} onChange={() => {setDarkModeEnabled((state) => !state)}} />
           <CheckBoxSlider labelContent="Confirm before delete" checkBoxID="toggle-confirm-before-delete" checked={confirmBeforeDelete} onChange={() => {setConfirmBeforeDelete((state) => !state)}} />
           <CheckBoxSlider labelContent="Prevent duplicates" checkBoxID="toggle-prevent-duplicates" checked={preventDuplicates} onChange={() => {setPreventDuplicates((state) => !state)}} />
         </fieldset>
@@ -72,7 +72,7 @@ const AppSettings = () => {
         <fieldset>
           <legend>Page Editor</legend>
           <CheckBoxSlider labelContent="Open in edit mode" checkBoxID="toggle-page-editor-open-in-edit-mode" checked={openPageInEditModeEnabled} onChange={() => {setOpenPageInEditModeEnabled((state) => !state)}} />
-          <CheckBoxSlider labelContent="Word Counter" checkBoxID="toggle-page-editor-word-count" checked={wordCounterEnabled} onChange={() => {setWordCounterEnabled((state) => !state)}} />
+          <CheckBoxSlider labelContent="Word counter" checkBoxID="toggle-page-editor-word-count" checked={wordCounterEnabled} onChange={() => {setWordCounterEnabled((state) => !state)}} />
           <CheckBoxSlider labelContent="Full width editor" checkBoxID="toggle-page-editor-full-width" checked={fullWidthPageEditor} onChange={() => {setFullWidthPageEditor((state) => !state)}} />
         </fieldset>
 
