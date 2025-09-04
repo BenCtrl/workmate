@@ -279,6 +279,10 @@ div.modal-input.event-time-container {
   cursor: text;
 }
 
+.event:has(.event-title:nth-of-type(1):hover) {
+  background-color: var(--component-hover-accent-background-color);
+}
+
 .selected-day-events-list .event:focus-within {
   border-color: var(--component-warning);
 }
