@@ -30,16 +30,16 @@ const AppSettings = () => {
     event.preventDefault();
 
     const newSettings = {
-      TOOLTIPS: toolTipsEnabled,
-      DARKMODE: darkModeEnabled,
-      WORD_COUNTER: wordCounterEnabled,
-      OPEN_PAGE_IN_EDIT_MODE: openPageInEditModeEnabled,
-      HIDE_COMPLETED_NOTES: hideCompletedNotes,
-      CONFIRM_BEFORE_DELETE: confirmBeforeDelete,
-      PREVENT_DUPLICATES: preventDuplicates,
-      FULL_WIDTH_PAGE_EDITOR: fullWidthPageEditor,
+      CLOSE_MODAL_ON_SUBMIT: closeModalOnSubmit,
       CURRENT_TIME_ZONE_ENABLED: currentTimeZoneEnabled,
-      CLOSE_MODAL_ON_SUBMIT: closeModalOnSubmit
+      CONFIRM_BEFORE_DELETE: confirmBeforeDelete,
+      DARKMODE: darkModeEnabled,
+      FULL_WIDTH_PAGE_EDITOR: fullWidthPageEditor,
+      HIDE_COMPLETED_NOTES: hideCompletedNotes,
+      OPEN_PAGE_IN_EDIT_MODE: openPageInEditModeEnabled,
+      PREVENT_DUPLICATES: preventDuplicates,
+      TOOLTIPS: toolTipsEnabled,
+      WORD_COUNTER: wordCounterEnabled
     }
 
     try {

@@ -26,14 +26,16 @@ function App() {
 
         const file = await create('app_settings.json', appDataDirectory);
         await file.write(new TextEncoder().encode(JSON.stringify({
-          "TOOLTIPS":true,
-          "DARKMODE":false,
-          "WORD_COUNTER":false,
-          "OPEN_PAGE_IN_EDIT_MODE": false,
-          "HIDE_COMPLETED_NOTES":false,
+          "CLOSE_MODAL_ON_SUBMIT": false,
+          "CURRENT_TIME_ZONE_ENABLED": true,
           "CONFIRM_BEFORE_DELETE":true,
+          "DARKMODE":false,
+          "FULL_WIDTH_PAGE_EDITOR": false,
+          "HIDE_COMPLETED_NOTES":false,
+          "OPEN_PAGE_IN_EDIT_MODE": false,
           "PREVENT_DUPLICATES":true,
-          "FULL_WIDTH_PAGE_EDITOR": false
+          "TOOLTIPS":true,
+          "WORD_COUNTER":false,
         })));
         await file.close();
 
