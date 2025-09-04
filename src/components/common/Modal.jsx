@@ -4,7 +4,7 @@ import { Alert, Button } from '../CommonComponents';
 import { IconX } from '../Icons';
 import '../../styling/modal.css';
 
-export const AlertContext = createContext(null);
+export const ModalContext = createContext(null);
 
 const Modal = ({ onClose, children, modalHeading }) => {
   const [alertMessage, setAlertMessage] = useState('');
@@ -21,7 +21,7 @@ const Modal = ({ onClose, children, modalHeading }) => {
   }
 
   return (
-    <AlertContext.Provider value={{setAlert, resetAlert}}>
+    <ModalContext.Provider value={{setAlert, resetAlert, onClose}}>
       <div className='modal-wrapper'>
         <div className='modal'>
           <div className='modal-heading'>
@@ -34,7 +34,7 @@ const Modal = ({ onClose, children, modalHeading }) => {
         </div>
         {alertMessage && <Alert alertType={alertType} message={alertMessage} dismissable={true} />}
       </div>
-    </AlertContext.Provider>
+    </ModalContext.Provider>
   )
 }
 

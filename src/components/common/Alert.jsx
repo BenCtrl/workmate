@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import Button from './Button';
 import { IconX } from '../Icons';
 
-import { AlertContext } from './Modal';
+import { ModalContext } from './Modal';
 
 const Alert = ({alertType, message, dismissable = false}) => {
-  const alertContext = useContext(AlertContext);
+  const alertContext = useContext(ModalContext);
 
   return (
     <div className={`alert ${alertType}`}>

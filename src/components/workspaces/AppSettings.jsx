@@ -20,6 +20,7 @@ const AppSettings = () => {
   const [preventDuplicates, setPreventDuplicates] = useState(appSettings.PREVENT_DUPLICATES);
   const [fullWidthPageEditor, setFullWidthPageEditor] = useState(appSettings.FULL_WIDTH_PAGE_EDITOR);
   const [currentTimeZoneEnabled, setCurrentTimeZoneEnabled] = useState(appSettings.CURRENT_TIME_ZONE_ENABLED);
+  const [closeModalOnSubmit, setCloseModalOnSubmit] = useState(appSettings.CLOSE_MODAL_ON_SUBMIT);
 
   const [changesMade, setChangesMade] = useState(false);
 
@@ -37,7 +38,8 @@ const AppSettings = () => {
       CONFIRM_BEFORE_DELETE: confirmBeforeDelete,
       PREVENT_DUPLICATES: preventDuplicates,
       FULL_WIDTH_PAGE_EDITOR: fullWidthPageEditor,
-      CURRENT_TIME_ZONE_ENABLED: currentTimeZoneEnabled
+      CURRENT_TIME_ZONE_ENABLED: currentTimeZoneEnabled,
+      CLOSE_MODAL_ON_SUBMIT: closeModalOnSubmit
     }
 
     try {
@@ -62,6 +64,7 @@ const AppSettings = () => {
           <CheckBoxSlider labelContent="Dark mode" checkBoxID="toggle-darkmode" checked={darkModeEnabled} onChange={() => {setDarkModeEnabled((state) => !state)}} />
           <CheckBoxSlider labelContent="Confirm before delete" checkBoxID="toggle-confirm-before-delete" checked={confirmBeforeDelete} onChange={() => {setConfirmBeforeDelete((state) => !state)}} />
           <CheckBoxSlider labelContent="Prevent duplicates" checkBoxID="toggle-prevent-duplicates" checked={preventDuplicates} onChange={() => {setPreventDuplicates((state) => !state)}} />
+          <CheckBoxSlider labelContent="Close modals on submit" checkBoxID="toggle-close-modals-on-submit" checked={closeModalOnSubmit} onChange={() => {setCloseModalOnSubmit((state) => !state)}} />
         </fieldset>
 
         <fieldset>

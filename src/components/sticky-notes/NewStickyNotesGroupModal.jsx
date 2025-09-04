@@ -4,7 +4,7 @@ import { error, info, warn } from '@tauri-apps/plugin-log';
 import { Button, Input } from '../CommonComponents';
 
 import { AppSettingsContext } from '../../App';
-import { AlertContext } from '../common/Modal';
+import { ModalContext } from '../common/Modal';
 import database from '../../database/database';
 
 /**
@@ -12,7 +12,9 @@ import database from '../../database/database';
  */
 const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
   const SETTINGS = useContext(AppSettingsContext).appSettings;
-  const setAlert = useContext(AlertContext).setAlert;
+  const setAlert = useContext(ModalContext).setAlert;
+  const closeModal = useContext(ModalContext).onClose;
+
   const [groupTitle, setGroupTitle] = useState('');
   const [groupColor, setGroupColor] = useState('yellow');
 
@@ -41,6 +43,8 @@ const NewStickyNotesGroupModal = ({ onNewGroupSubmit }) => {
       if (createNoteGroupResult.rowsAffected > 0) {
         info(`Group '${finalGroupTitle}' was successfully created [ID: '${createNoteGroupResult.lastInsertId}']`);
         setAlert('success', `Group '${finalGroupTitle}' successfully created`);
+
+        SETTINGS.CLOSE_MODAL_ON_SUBMIT && closeModal();
       } else {
         warn('Unable to validate if note group was created - No changes reported from database');
       }

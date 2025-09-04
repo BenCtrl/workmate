@@ -4,11 +4,14 @@ import { error, info, warn } from '@tauri-apps/plugin-log';
 import { Button, CheckBoxSlider, Input } from '../CommonComponents';
 import { IconClock } from '../Icons';
 
-import { AlertContext } from '../common/Modal';
+import { AppSettingsContext } from '../../App';
+import { ModalContext } from '../common/Modal';
 import database from '../../database/database';
 
 const NewEventModal = ({eventDate, onNewEventSubmit}) => {
-  const setAlert = useContext(AlertContext).setAlert;
+  const SETTINGS = useContext(AppSettingsContext).appSettings;
+  const setAlert = useContext(ModalContext).setAlert;
+  const closeModal = useContext(ModalContext).onClose;
 
   const [eventTitle, setEventTitle] = useState('');
   const [eventHourStart, setEventHourStart] = useState('00');
@@ -46,6 +49,8 @@ const NewEventModal = ({eventDate, onNewEventSubmit}) => {
       if (createEventResult.rowsAffected > 0) {
         info(`Event '${eventTitle}' was created [ID: '${createEventResult.lastInsertId}']`);
         setAlert('success', `Event '${eventTitle}' successfully created`);
+
+        SETTINGS.CLOSE_MODAL_ON_SUBMIT && closeModal();
       } else {
         warn(`Unable to validate if event '${eventTitle}' was created - No changes reported from database`);
       }
