@@ -11,6 +11,7 @@ const CalendarEvent = ({event, fetchEvents}) => {
   const SETTINGS = useContext(AppSettingsContext).appSettings;
   const [updatingEvent, setUpdatingEvent] = useState(false);
   const [eventTitle, setEventTitle] = useState(event.title);
+  const [calendarEventTimeFormat, setCalendarEventTimeFormat] = useState(new Intl.DateTimeFormat("en-GB", {timeStyle:"short"}));
   const [millisecondTimeZoneOffset, setMillisecondTimeZoneOffset] = useState(new Date().getTimezoneOffset() * 60000);
 
   const updateEvent = async () => {
@@ -62,9 +63,8 @@ const CalendarEvent = ({event, fetchEvents}) => {
     <li className="event">
       <span className="event-details">
         <div className="event-timestamp">
-          {/* TODO - Revisit handling of Date objects so new instances are not created with each rendered component */}
-          {new Date(event.event_timestamp_start + (SETTINGS.CURRENT_TIME_ZONE_ENABLED ? millisecondTimeZoneOffset : 0)).toLocaleTimeString([], {timeStyle: 'short'})}
-          {event.event_timestamp_end && ` - ${new Date(event.event_timestamp_end + (SETTINGS.CURRENT_TIME_ZONE_ENABLED ? millisecondTimeZoneOffset : 0)).toLocaleTimeString([], {timeStyle: 'short'})} (${getTimeDifference()})`}
+          {calendarEventTimeFormat.format(new Date(event.event_timestamp_start + (SETTINGS.CURRENT_TIME_ZONE_ENABLED ? millisecondTimeZoneOffset : 0)))}
+          {event.event_timestamp_end && ` - ${calendarEventTimeFormat.format(new Date(event.event_timestamp_end + (SETTINGS.CURRENT_TIME_ZONE_ENABLED ? millisecondTimeZoneOffset : 0)))} (${getTimeDifference()})`}
           {SETTINGS.CURRENT_TIME_ZONE_ENABLED ? '' : ' (UTC)'}
         </div>
 
